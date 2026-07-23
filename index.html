@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojang Master - Academia Profesional de Taekwondo</title>
+    <meta name="description" content="Descubre el arte, la disciplina y el poder del Taekwondo. Clases para niños, jóvenes y adultos. Reserva tu clase de prueba gratis hoy.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header / Navegación -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" stroke="url(#logo-grad)" stroke-width="8" />
+                    <path d="M30 45C40 30 60 30 70 45C60 60 40 60 30 45Z" fill="url(#blue-grad)" />
+                    <path d="M70 55C60 70 40 70 30 55C40 40 60 40 70 55Z" fill="url(#red-grad)" />
+                    <defs>
+                        <linearGradient id="logo-grad" x1="0" y1="0" x2="100" y2="100">
+                            <stop offset="0%" stop-color="#66FCF1" />
+                            <stop offset="100%" stop-color="#FF5E62" />
+                        </linearGradient>
+                        <linearGradient id="blue-grad" x1="30" y1="30" x2="70" y2="55">
+                            <stop offset="0%" stop-color="#00C9FF" />
+                            <stop offset="100%" stop-color="#92FE9D" />
+                        </linearGradient>
+                        <linearGradient id="red-grad" x1="30" y1="45" x2="70" y2="70">
+                            <stop offset="0%" stop-color="#FF5E62" />
+                            <stop offset="100%" stop-color="#FFD97D" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>DOJANG<span class="highlight">MASTER</span></span>
+            </a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                    <li><a href="#filosofia" class="nav-link">Filosofía</a></li>
+                    <li><a href="#cinturones" class="nav-link">Cinturones</a></li>
+                    <li><a href="#programas" class="nav-link">Programas</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <a href="#contacto" class="btn btn-nav">Clase Gratis</a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sección Inicio / Hero -->
+    <section id="inicio" class="hero-section">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
+        
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    Arte Marcial Olímpico
+                </div>
+                <h1>Forja tu <span class="text-gradient">Cuerpo</span>, Disciplina tu <span class="text-gradient-red">Mente</span></h1>
+                <p class="hero-desc">
+                    El Taekwondo no es solo defensa personal; es un camino de superación, equilibrio y fuerza mental. Ven a entrenar en el dojang más moderno y experimenta la verdadera disciplina coreana.
+                </p>
+                <div class="hero-actions">
+                    <a href="#contacto" class="btn btn-primary">Comienza Gratis</a>
+                    <a href="#programas" class="btn btn-secondary">Conoce los Programas</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-num">15+</span>
+                        <span class="stat-lbl">Años Formando Líderes</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-num">100%</span>
+                        <span class="stat-lbl">Instructores Certificados</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-num">500+</span>
+                        <span class="stat-lbl">Alumnos Activos</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper">
+                <div class="hero-glow-card">
+                    <div class="card-glow-blue"></div>
+                    <div class="card-glow-red"></div>
+                    <img src="assets/taekwondo_hero.png" alt="Pateador de Taekwondo en acción aérea" class="hero-image">
+                    
+                    <!-- Floating overlays -->
+                    <div class="floating-badge badge-top">
+                        <div class="icon-wrap">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Precisión y Control</h4>
+                            <p>Técnicas avanzadas de pateo</p>
+                        </div>
+                    </div>
+
+                    <div class="floating-badge badge-bottom">
+                        <div class="icon-wrap red">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Alto Rendimiento</h4>
+                            <p>Preparación física integral</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Filosofía / Principios -->
+    <section id="filosofia" class="philosophy-section reveal-on-scroll">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="subtitle">El Camino del Guerrero</span>
+                <h2>Los 5 Principios Fundamentales</h2>
+                <p class="section-desc">
+                    El Taekwondo tradicional se rige por un código ético que guía el comportamiento del practicante tanto dentro como fuera del área de entrenamiento.
+                </p>
+            </div>
+
+            <div class="philosophy-grid">
+                <!-- Principio 1 -->
+                <div class="philosophy-card">
+                    <div class="card-num">01</div>
+                    <h3>Cortesía <span class="korean-term">(Ye Ui)</span></h3>
+                    <p>Respeto mutuo, amabilidad y nobleza de espíritu. La base de toda relación en el dojang.</p>
+                    <div class="card-line"></div>
+                </div>
+                <!-- Principio 2 -->
+                <div class="philosophy-card">
+                    <div class="card-num">02</div>
+                    <h3>Integridad <span class="korean-term">(Yom Chi)</span></h3>
+                    <p>Aprender a distinguir lo correcto de lo incorrecto, manteniendo una conducta honesta y justa.</p>
+                    <div class="card-line"></div>
+                </div>
+                <!-- Principio 3 -->
+                <div class="philosophy-card">
+                    <div class="card-num">03</div>
+                    <h3>Perseverancia <span class="korean-term">(In Nae)</span></h3>
+                    <p>La constancia para alcanzar cualquier meta. La paciencia ante los obstáculos del camino.</p>
+                    <div class="card-line"></div>
+                </div>
+                <!-- Principio 4 -->
+                <div class="philosophy-card">
+                    <div class="card-num">04</div>
+                    <h3>Autocontrol <span class="korean-term">(Guk Gi)</span></h3>
+                    <p>Dominio sobre los propios pensamientos, impulsos y emociones. Esencial para la defensa personal.</p>
+                    <div class="card-line"></div>
+                </div>
+                <!-- Principio 5 -->
+                <div class="philosophy-card">
+                    <div class="card-num">05</div>
+                    <h3>Espíritu Indomable <span class="korean-term">(Baekjul Boolgool)</span></h3>
+                    <p>Mantener el valor y la convicción, enfrentando las injusticias y el miedo con valentía absoluta.</p>
+                    <div class="card-line"></div>
+                </div>
+            </div>
+
+            <!-- Zen/Dojang Highlight Banner -->
+            <div class="philosophy-banner reveal-on-scroll">
+                <div class="banner-image-wrapper">
+                    <img src="assets/dojang_interior.png" alt="Interior moderno del dojang de entrenamiento" class="banner-img">
+                </div>
+                <div class="banner-content">
+                    <h3>Un Entorno Diseñado para la Excelencia</h3>
+                    <p>
+                        Nuestro dojang cuenta con equipamiento oficial homologado olímpicamente, áreas acondicionadas para amortiguar impactos y un ambiente sagrado donde se respira honor, concentración y compañerismo.
+                    </p>
+                    <div class="quote-block">
+                        <span class="quote-icon">“</span>
+                        <p class="quote-text">La mente es como el agua. Cuando está calmada y en paz, puede reflejar la verdad de manera clara.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Interactiva de Cinturones -->
+    <section id="cinturones" class="belts-section reveal-on-scroll">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="subtitle">Evolución y Maestría</span>
+                <h2>Camino de Aprendizaje: Grados Gup y Dan</h2>
+                <p class="section-desc">
+                    El progreso del estudiante se refleja en el color de su cinturón. Haz clic en cada uno para descubrir su significado simbólico y técnico.
+                </p>
+            </div>
+
+            <div class="belt-selector-wrapper">
+                <!-- Cinturones Nav (Interactive Buttons) -->
+                <div class="belt-selector-nav" id="beltNav">
+                    <button class="belt-btn active" data-belt="blanco" aria-label="Cinturón Blanco">
+                        <span class="belt-preview preview-blanco"></span>
+                        <span class="belt-btn-lbl">Blanco</span>
+                    </button>
+                    <button class="belt-btn" data-belt="amarillo" aria-label="Cinturón Amarillo">
+                        <span class="belt-preview preview-amarillo"></span>
+                        <span class="belt-btn-lbl">Amarillo</span>
+                    </button>
+                    <button class="belt-btn" data-belt="verde" aria-label="Cinturón Verde">
+                        <span class="belt-preview preview-verde"></span>
+                        <span class="belt-btn-lbl">Verde</span>
+                    </button>
+                    <button class="belt-btn" data-belt="azul" aria-label="Cinturón Azul">
+                        <span class="belt-preview preview-azul"></span>
+                        <span class="belt-btn-lbl">Azul</span>
+                    </button>
+                    <button class="belt-btn" data-belt="rojo" aria-label="Cinturón Rojo">
+                        <span class="belt-preview preview-rojo"></span>
+                        <span class="belt-btn-lbl">Rojo</span>
+                    </button>
+                    <button class="belt-btn" data-belt="negro" aria-label="Cinturón Negro">
+                        <span class="belt-preview preview-negro"></span>
+                        <span class="belt-btn-lbl">Negro</span>
+                    </button>
+                </div>
+
+                <!-- Cinturón Detail Card (Dynamic Content) -->
+                <div class="belt-detail-card" id="beltDetailCard">
+                    <div class="belt-graphics">
+                        <!-- Interactive SVG Belt Display -->
+                        <div class="belt-display-box">
+                            <div class="belt-stripe-display" id="beltStripeDisplay">
+                                <!-- Styled via dynamic JS/CSS classes -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="belt-info" id="beltInfoContent">
+                        <div class="belt-header">
+                            <span class="belt-grade" id="beltGrade">10° Gup</span>
+                            <h3 id="beltTitle">Cinturón Blanco (Sip Gup)</h3>
+                        </div>
+                        <div class="belt-meaning">
+                            <h4>Significado Simbólico</h4>
+                            <p id="beltMeaningText">Representa la inocencia del estudiante principiante que no posee conocimientos previos de Taekwondo. Es el lienzo en blanco, la semilla que aún está bajo la tierra esperando brotar.</p>
+                        </div>
+                        <div class="belt-requirements">
+                            <h4>Enfoque Técnico</h4>
+                            <ul id="beltReqList">
+                                <li>Posiciones básicas de pie (Ap Kubi, Ap Sogui).</li>
+                                <li>Defensas fundamentales (Are Maki, Olgul Maki).</li>
+                                <li>Golpes de puño rectos (Jireugi).</li>
+                                <li>Primeros ejercicios de coordinación y cortesía.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Programas / Clases -->
+    <section id="programas" class="programs-section reveal-on-scroll">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="subtitle">Encuentra tu Categoría</span>
+                <h2>Programas de Entrenamiento</h2>
+                <p class="section-desc">
+                    Ofrecemos programas especializados adaptados a la edad, condición física y metas personales de cada alumno.
+                </p>
+            </div>
+
+            <div class="programs-grid">
+                <!-- Programa 1 -->
+                <div class="program-card">
+                    <div class="program-icon-box">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                    </div>
+                    <h3>TKD Infantil <span class="age-badge">4 - 11 años</span></h3>
+                    <p>Desarrollo psicomotriz, disciplina divertida, fomento de valores, mejora de la concentración escolar y anti-bullying.</p>
+                    <ul class="program-features">
+                        <li><span>✓</span> Coordinación y juego motriz</li>
+                        <li><span>✓</span> Respeto y valores cívicos</li>
+                        <li><span>✓</span> Flexibilidad y agilidad</li>
+                    </ul>
+                    <a href="#contacto" class="btn-card">Saber más ➔</a>
+                </div>
+
+                <!-- Programa 2 -->
+                <div class="program-card popular">
+                    <div class="popular-ribbon">Recomendado</div>
+                    <div class="program-icon-box">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                        </svg>
+                    </div>
+                    <h3>Jóvenes y Adultos <span class="age-badge">12+ años</span></h3>
+                    <p>Acondicionamiento físico de alta intensidad, reducción de estrés, defensa personal práctica y superación mental constante.</p>
+                    <ul class="program-features">
+                        <li><span>✓</span> Resistencia cardiovascular</li>
+                        <li><span>✓</span> Combate y táctica de pateo</li>
+                        <li><span>✓</span> Defensa personal avanzada</li>
+                    </ul>
+                    <a href="#contacto" class="btn-card">Saber más ➔</a>
+                </div>
+
+                <!-- Programa 3 -->
+                <div class="program-card">
+                    <div class="program-icon-box">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="8" r="7" />
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                        </svg>
+                    </div>
+                    <h3>Combate Olímpico <span class="age-badge">Alto Rendimiento</span></h3>
+                    <p>Entrenamiento técnico-táctico enfocado al reglamento oficial WT (World Taekwondo). Preparación competitiva y sparring.</p>
+                    <ul class="program-features">
+                        <li><span>✓</span> Tácticas de velocidad de reacción</li>
+                        <li><span>✓</span> Uso de protectores electrónicos</li>
+                        <li><span>✓</span> Preparación de torneos oficiales</li>
+                    </ul>
+                    <a href="#contacto" class="btn-card">Saber más ➔</a>
+                </div>
+
+                <!-- Programa 4 -->
+                <div class="program-card">
+                    <div class="program-icon-box">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
+                    </div>
+                    <h3>Defensa Personal <span class="age-badge">Hosinsul</span></h3>
+                    <p>Técnicas de escape, luxaciones, proyecciones y manejo de situaciones críticas en la vida real. Fortalece tu seguridad personal.</p>
+                    <ul class="program-features">
+                        <li><span>✓</span> Liberaciones de agarre rápidas</li>
+                        <li><span>✓</span> Uso del peso del oponente</li>
+                        <li><span>✓</span> Inteligencia y control emocional</li>
+                    </ul>
+                    <a href="#contacto" class="btn-card">Saber más ➔</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto y Reserva de Clase -->
+    <section id="contacto" class="contact-section reveal-on-scroll">
+        <div class="container contact-container">
+            <div class="contact-info-side">
+                <span class="subtitle">Agenda tu Clase</span>
+                <h2>Reserva una Clase de Prueba Totalmente Gratis</h2>
+                <p>
+                    Ven a conocernos, experimenta una sesión real y siente la energía del dojang. No requieres experiencia previa, solo ropa cómoda y la disposición para aprender.
+                </p>
+                
+                <div class="contact-details">
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Ubicación</h4>
+                            <p>Calle Marcial 123, Colonia Deportiva, Ciudad de México</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Teléfono y Redes</h4>
+                            <p>+52 55 1234 5678 | @dojangmaster</p>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12 6 12 12 16 14" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Horarios de Clase</h4>
+                            <p>Lunes a Viernes: 15:00 - 21:30 | Sábados: 09:00 - 13:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Card -->
+            <div class="contact-form-side">
+                <div class="glass-form-card">
+                    <form id="bookingForm" novalidate>
+                        <h3>Formulario de Inscripción de Prueba</h3>
+                        <p class="form-sub">Completa los datos y te contactaremos en menos de 24 horas para agendar tu horario.</p>
+                        
+                        <div class="input-group">
+                            <label for="name">Nombre Completo</label>
+                            <input type="text" id="name" name="name" placeholder="Ej. Carlos Pérez" required>
+                            <span class="error-msg" id="nameError">El nombre es requerido.</span>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="email">Correo Electrónico</label>
+                                <input type="email" id="email" name="email" placeholder="carlos@example.com" required>
+                                <span class="error-msg" id="emailError">Ingresa un correo electrónico válido.</span>
+                            </div>
+                            <div class="input-group">
+                                <label for="phone">Teléfono / WhatsApp</label>
+                                <input type="tel" id="phone" name="phone" placeholder="5512345678" required>
+                                <span class="error-msg" id="phoneError">El teléfono es requerido.</span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="programSelect">Programa de Interés</label>
+                            <div class="select-wrapper">
+                                <select id="programSelect" name="program" required>
+                                    <option value="" disabled selected>Selecciona un programa</option>
+                                    <option value="infantil">Taekwondo Infantil (4-11 años)</option>
+                                    <option value="adultos">Jóvenes y Adultos (12+ años)</option>
+                                    <option value="combate">Combate Olímpico WT</option>
+                                    <option value="defensa">Defensa Personal (Hosinsul)</option>
+                                </select>
+                            </div>
+                            <span class="error-msg" id="programError">Selecciona un programa de interés.</span>
+                        </div>
+
+                        <button type="submit" class="btn btn-submit" id="submitBtn">
+                            <span class="btn-text">Reservar Clase Gratis</span>
+                            <span class="spinner" id="formSpinner"></span>
+                        </button>
+                    </form>
+
+                    <!-- Success State -->
+                    <div class="form-success-state" id="formSuccessState">
+                        <div class="success-icon-wrap">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#66FCF1" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </div>
+                        <h3>¡Registro Completado!</h3>
+                        <p>Hemos recibido tus datos con éxito. Un maestro de nuestra academia se comunicará contigo vía WhatsApp o llamada telefónica para confirmar tu horario de clase gratuita.</p>
+                        <button class="btn btn-primary btn-reset-form" id="btnResetForm">Volver a registrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <svg width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="45" stroke="url(#footer-logo-grad)" stroke-width="8" />
+                        <path d="M30 45C40 30 60 30 70 45C60 60 40 60 30 45Z" fill="url(#footer-blue-grad)" />
+                        <path d="M70 55C60 70 40 70 30 55C40 40 60 40 70 55Z" fill="url(#footer-red-grad)" />
+                        <defs>
+                            <linearGradient id="footer-logo-grad" x1="0" y1="0" x2="100" y2="100">
+                                <stop offset="0%" stop-color="#66FCF1" />
+                                <stop offset="100%" stop-color="#FF5E62" />
+                            </linearGradient>
+                            <linearGradient id="footer-blue-grad" x1="30" y1="30" x2="70" y2="55">
+                                <stop offset="0%" stop-color="#00C9FF" />
+                                <stop offset="100%" stop-color="#92FE9D" />
+                            </linearGradient>
+                            <linearGradient id="footer-red-grad" x1="30" y1="45" x2="70" y2="70">
+                                <stop offset="0%" stop-color="#FF5E62" />
+                                <stop offset="100%" stop-color="#FFD97D" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>DOJANG<span class="highlight">MASTER</span></span>
+                </a>
+                <p>Formando cinturones negros con altos estándares morales y físicos. Disciplina, técnica y espíritu.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#filosofia">Filosofía</a></li>
+                    <li><a href="#cinturones">Cinturones</a></li>
+                    <li><a href="#programas">Programas</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Términos de Servicio</a></li>
+                    <li><a href="#">Políticas de Privacidad</a></li>
+                    <li><a href="#">Reglamento del Dojang</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-social">
+                <h4>Síguenos</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="YouTube">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Dojang Master. Todos los derechos reservados. Diseñado para demostración comercial.</p>
+        </div>
+    </footer>
+
+    <!-- JS Logic -->
+    <script src="app.js"></script>
+</body>
+</html>

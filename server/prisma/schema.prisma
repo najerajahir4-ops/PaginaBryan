@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id           Int      @id @default(autoincrement())
+  usuario      String   @unique
+  passwordHash String
+  rol          String   @default("ADMIN")
+  createdAt    DateTime @default(now())
+}
+
+model Club {
+  id          Int       @id @default(autoincrement())
+  nombre      String
+  descripcion String
+  students    Student[]
+  createdAt   DateTime  @default(now())
+}
+
+model Student {
+  id                   Int               @id @default(autoincrement())
+  nombres              String
+  apellidos            String
+  cedula               String            @unique
+  fechaNacimiento      String
+  edad                 Int
+  celular              String
+  direccion            String
+  correo               String
+  horarioElegido       String
+  alergias             String?
+  enfermedades         String?
+  lesiones             String?
+  contactoEmergencia   String
+  nombreRepresentante  String?
+  cedulaRepresentante  String?
+  celularRepresentante String?
+  comoSeEntero         String?
+  autorizaImagen       Boolean           @default(false)
+  diaDeCobro           Int               @default(1)
+  
+  clubId               Int?
+  club                 Club?             @relation(fields: [clubId], references: [id], onDelete: SetNull)
+  grado                String
+  modalidad            String?           @default("TAEKWONDO")
+  fechaIngreso         String
+  fechaUltimoPago      String
+  fechaProximoPago     String
+  periodicidadPago     String            @default("MENSUAL") // MENSUAL, TRIMESTRAL, ANUAL
+  foto                 String?
+  estado               String            @default("ACTIVO")
+  payments             Payment[]
+  featuredStudents     FeaturedStudent[]
+  attendances          Attendance[]
+  createdAt            DateTime          @default(now())
+}
+
+model Payment {
+  id              Int      @id @default(autoincrement())
+  studentId       Int
+  student         Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  monto           Float
+  fechaPago       String
+  metodoPago      String // EFECTIVO, TRANSFERENCIA, TARJETA
+  periodoCubierto String
+  createdAt       DateTime @default(now())
+}
+
+model FeaturedStudent {
+  id         Int      @id @default(autoincrement())
+  studentId  Int
+  student    Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  logros     String
+  categoria  String // INFANTIL, JUVENIL, ADULTO
+  disciplina String // TAEKWONDO, KICKBOXING
+  orden      Int      @default(0)
+  createdAt  DateTime @default(now())
+}
+
+model Content {
+  id               Int      @id @default(autoincrement())
+  titulo           String
+  categoria        String // TECNICA, REGLAMENTO, NUTRICION, NOTICIAS, ENTREVISTAS
+  resumen          String
+  cuerpo           String
+  imagenUrl        String?
+  videoUrl         String?
+  fechaPublicacion String
+  orden            Int      @default(0)
+  createdAt        DateTime @default(now())
+}
+
+model ModuleData {
+  id          Int      @id @default(autoincrement())
+  modulo      String // CLUBES, GRADOS, HISTORIAL, LLAVES, CARNETS, DIPLOMAS, ESTADISTICAS
+  titulo      String
+  descripcion String
+  icono       String?
+  datosExtra  String?
+  createdAt   DateTime @default(now())
+}
+
+model Attendance {
+  id        Int      @id @default(autoincrement())
+  studentId Int
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  fecha     String   // Formato YYYY-MM-DD
+  estado    String   // PRESENTE, AUSENTE, TARDE, JUSTIFICADO
+  createdAt DateTime @default(now())
+
+  @@unique([studentId, fecha])
+}
+

@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#F5F2E9] text-[#111114] font-sans selection:bg-[#8C1D1D] selection:text-[#F5F2E9];
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-widest uppercase;
+  }
+}
+
+
+/* Sharp Tatami Panel & Chamfer Card */
+.tatami-panel {
+  background-color: #0B1550;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  border-radius: 4px;
+}
+
+.tatami-panel-dark {
+  background-color: #111114;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  border-radius: 4px;
+}
+
+.chamfer-card {
+  background-color: #111114;
+  border-left: 4px solid #C9A227;
+  border-top: 1px solid rgba(201, 162, 39, 0.2);
+  border-right: 1px solid rgba(201, 162, 39, 0.2);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+  border-radius: 4px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chamfer-card:hover {
+  transform: translateY(-6px);
+  border-left-color: #8C1D1D; /* Cambia a Rojo Dojang */
+  border-top-color: rgba(201, 162, 39, 0.45);
+  border-right-color: rgba(201, 162, 39, 0.45);
+  border-bottom-color: rgba(201, 162, 39, 0.45);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(201, 162, 39, 0.05);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #060D33;
+}
+::-webkit-scrollbar-thumb {
+  background: #C9A227;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8C1D1D;
+}
