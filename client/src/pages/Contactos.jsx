@@ -15,8 +15,8 @@ const Contactos = () => {
     {
       nombre: 'Mtro. Bryan Nájera',
       cargo: 'Director General & Head Coach',
-      ciudad: 'Ciudad de México, MX',
-      telefono: '+52 (55) 1234-5678',
+      ciudad: 'Santo Domingo, Ecuador (Sector Bombolí)',
+      telefono: '+593 98 324 4247',
     }
   ];
 
@@ -177,12 +177,25 @@ const Contactos = () => {
 
         {/* Mapa Embebido */}
         <div class="lg:col-span-6 space-y-4">
-          <h3 class="text-2xl font-bold text-[#0B1550] font-heading tracking-wider border-l-4 border-[#C9A227] pl-3">Ubicación Central del Dojang</h3>
-          <div class="rounded-sm overflow-hidden border border-[#C9A227]/40 shadow-2xl h-[420px] bg-black">
+          <div class="flex items-center justify-between">
+            <h3 class="text-2xl font-bold text-[#0B1550] font-heading tracking-wider border-l-4 border-[#C9A227] pl-3">Ubicación Central del Dojang</h3>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=-0.249442,-79.187382"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs font-bold text-[#C9A227] hover:underline flex items-center gap-1 uppercase tracking-wider"
+            >
+              Abrir en Google Maps ↗
+            </a>
+          </div>
+          <p class="text-xs text-[#111114]/70">
+            Sector Bombolí, Santo Domingo, Ecuador (Plus Code: QR27+62H • Coordenadas: 0°14'58.0"S 79°11'14.6"W)
+          </p>
+          <div class="rounded-sm overflow-hidden border border-[#C9A227]/40 shadow-2xl h-[380px] bg-black">
             <iframe
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-99.18%2C19.38%2C-99.12%2C19.44&amp;layer=mapnik"
-              class="w-full h-full border-0 filter grayscale invert contrast-125"
-              title="Mapa Ubicación Najeras Team"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=-79.192382%2C-0.254442%2C-79.182382%2C-0.244442&amp;layer=mapnik&amp;marker=-0.249442%2C-79.187382"
+              class="w-full h-full border-0"
+              title="Mapa Ubicación Najeras Team Santo Domingo"
             ></iframe>
           </div>
         </div>

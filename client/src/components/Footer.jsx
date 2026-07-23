@@ -82,11 +82,11 @@ const Footer = () => {
           <ul class="space-y-3 text-xs text-[#F5F2E9]/80">
             <li class="flex items-start gap-2.5">
               <MapPin class="w-4 h-4 text-[#C9A227] flex-shrink-0 mt-0.5" />
-              <span>Av. Marcial 456, Villa Deportiva, Ciudad Central</span>
+              <span>Santo Domingo, Ecuador (Sector Bombolí)</span>
             </li>
             <li class="flex items-center gap-2.5">
               <Phone class="w-4 h-4 text-[#C9A227] flex-shrink-0" />
-              <span>+52 (55) 1234-5678</span>
+              <span>+593 98 324 4247</span>
             </li>
             <li class="flex items-center gap-2.5">
               <Mail class="w-4 h-4 text-[#C9A227] flex-shrink-0" />
