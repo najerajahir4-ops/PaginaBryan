@@ -3,6 +3,7 @@ import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
+import ScrollToTop from './components/ScrollToTop';
 import { useAuth } from './context/AuthContext';
 
 // Public Pages
@@ -83,8 +84,10 @@ const AdminLayout = ({ children }) => (
 
 function App() {
   return (
-    <Routes>
-      {/* Rutas Públicas */}
+    <>
+      <ScrollToTop />
+      <Routes>
+        {/* Rutas Públicas */}
       <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />
       <Route path="/quienes-somos" element={<PublicLayout><QuienesSomos /></PublicLayout>} />
       <Route path="/alumnos-destacados" element={<PublicLayout><AlumnosDestacados /></PublicLayout>} />
@@ -117,7 +120,8 @@ function App() {
         path="/admin/modulos"
         element={<ProtectedRoute><AdminLayout><ModulosAdmin /></AdminLayout></ProtectedRoute>}
       />
-    </Routes>
+      </Routes>
+    </>
   );
 }
 

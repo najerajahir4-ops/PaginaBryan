@@ -3,9 +3,21 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Respeta la preferencia de accesibilidad "reducir movimiento" */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   body {
     @apply bg-[#F5F2E9] text-[#111114] font-sans selection:bg-[#8C1D1D] selection:text-[#F5F2E9];
   }
+
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading tracking-widest uppercase;

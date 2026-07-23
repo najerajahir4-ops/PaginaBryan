@@ -15,10 +15,8 @@ const Galeria = () => {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
       
       <div class="text-center space-y-3 max-w-3xl mx-auto">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-dojang-red/20 text-dojang-red border border-dojang-red/30 text-xs font-bold uppercase tracking-wider">
-          <Camera size={14} />
-          Fotografía & Galería
-        </div>
+
+
         <h1 class="text-4xl font-extrabold text-[#0B1550] font-heading">
           GALERÍA DE MOMENTOS MARCIALES
         </h1>
