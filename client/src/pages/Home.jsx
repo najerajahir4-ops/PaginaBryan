@@ -118,39 +118,37 @@ const Home = () => {
 
           {/* Right Column Emblem Badge */}
           <div class="lg:col-span-4 flex flex-col items-center lg:items-end justify-center animate-fade-in-up-delay">
-            <div class="relative group w-full max-w-xs animate-float-badge">
-              {/* Glow Aura Backdrop */}
-              <div class="absolute -inset-1 bg-gradient-to-r from-[#C9A227] via-[#8C1D1D] to-[#0B1550] rounded-sm blur-md opacity-25 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
+            <div class="relative group w-full max-w-xs animate-float-badge text-center space-y-4">
               
-              {/* Glassmorphic Card Container */}
-              <div class="relative bg-[#111114]/90 backdrop-blur-md border border-[#C9A227]/40 p-8 rounded-sm text-center space-y-4 shadow-2xl transform group-hover:-translate-y-1.5 transition-all duration-500 ease-out">
+              {/* Rotating Dashed Ring & Logo Container */}
+              <div class="relative w-40 h-40 mx-auto flex items-center justify-center">
+                {/* Soft glow on the logo itself */}
+                <div class="absolute -inset-1 bg-[#C9A227]/25 rounded-full blur-md opacity-40 group-hover:opacity-85 transition duration-500"></div>
+
+                {/* Rotating dashed ring */}
+                <div class="absolute inset-0 rounded-full border-2 border-dashed border-[#C9A227]/40 animate-spin-slow"></div>
                 
-                {/* Rotating Dashed Ring & Logo Container */}
-                <div class="relative w-36 h-36 mx-auto flex items-center justify-center">
-                  {/* Rotating dashed ring */}
-                  <div class="absolute inset-0 rounded-full border-2 border-dashed border-[#C9A227]/30 animate-spin-slow"></div>
-                  
-                  {/* Logo Image wrapper */}
-                  <div class="relative w-32 h-32 rounded-full p-1 border-2 border-[#C9A227] bg-[#0B1550] shadow-[0_0_20px_rgba(201,162,39,0.25)] transition-transform duration-500 group-hover:scale-105">
-                    <img src="/logo.png" alt="Najera's Team Official Emblem" class="w-full h-full object-contain rounded-full p-1" />
-                  </div>
-                </div>
-                
-                {/* Text Content with Hover Separator */}
-                <div class="space-y-2">
-                  <h3 class="text-xl font-bold text-[#F5F2E9] font-heading tracking-wider transition-colors duration-300 group-hover:text-[#C9A227]">
-                    NAJERA'S TEAM
-                  </h3>
-                  <span class="text-[11px] font-bold text-[#C9A227] uppercase tracking-widest block">
-                    Formativo Especializado
-                  </span>
-                  {/* Interactive gold-red line divider */}
-                  <div class="w-12 h-[2px] bg-[#8C1D1D] mx-auto transition-all duration-500 group-hover:w-20"></div>
-                  <p class="text-[11px] text-gray-300 mt-1 italic font-medium">
-                    "Formando Campeones"
-                  </p>
+                {/* Logo Image wrapper */}
+                <div class="relative w-36 h-36 rounded-full p-1 border-2 border-[#C9A227] bg-[#0B1550] shadow-[0_0_20px_rgba(201,162,39,0.3)] transition-transform duration-500 group-hover:scale-105">
+                  <img src="/logo.png" alt="Najera's Team Official Emblem" class="w-full h-full object-contain rounded-full p-1" />
                 </div>
               </div>
+              
+              {/* Text Content */}
+              <div class="space-y-2">
+                <h3 class="text-2xl font-bold text-[#F5F2E9] font-heading tracking-wider transition-colors duration-300 group-hover:text-[#C9A227]">
+                  NAJERA'S TEAM
+                </h3>
+                <span class="text-[12px] font-bold text-[#C9A227] uppercase tracking-widest block">
+                  Formativo Especializado
+                </span>
+                {/* Interactive line divider */}
+                <div class="w-12 h-[2px] bg-[#8C1D1D] mx-auto transition-all duration-500 group-hover:w-20"></div>
+                <p class="text-[12px] text-gray-300 mt-1 italic font-medium">
+                  "Formando Campeones"
+                </p>
+              </div>
+              
             </div>
           </div>
 
