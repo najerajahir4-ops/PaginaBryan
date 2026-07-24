@@ -5,7 +5,6 @@ const Contactos = () => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     nombre: '',
-    email: '',
     telefono: '',
     asunto: '',
     mensaje: '',
@@ -26,7 +25,6 @@ const Contactos = () => {
     // Generar mensaje personalizado de WhatsApp sin emojis para evitar problemas de compatibilidad
     const message = `*Nueva Consulta - Najera's Team Central*\n\n` +
       `- *Nombre:* ${formData.nombre}\n` +
-      `- *Email:* ${formData.email}\n` +
       `- *Teléfono:* ${formData.telefono}\n` +
       `- *Asunto:* ${formData.asunto}\n\n` +
       `*Mensaje:* ${formData.mensaje}`;
@@ -115,29 +113,16 @@ const Contactos = () => {
                 />
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Email</label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="juan@ejemplo.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    class="w-full bg-[#0B1550] border border-white/10 rounded-sm px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#C9A227]"
-                  />
-                </div>
-                <div>
-                  <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Teléfono</label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="5512345678"
-                    value={formData.telefono}
-                    onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
-                    class="w-full bg-[#0B1550] border border-white/10 rounded-sm px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#C9A227]"
-                  />
-                </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Teléfono</label>
+                <input
+                  type="tel"
+                  required
+                  placeholder="Ej. 0981234567"
+                  value={formData.telefono}
+                  onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
+                  class="w-full bg-[#0B1550] border border-white/10 rounded-sm px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#C9A227]"
+                />
               </div>
 
               <div>
