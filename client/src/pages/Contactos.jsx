@@ -5,7 +5,6 @@ const Contactos = () => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     nombre: '',
-    telefono: '',
     asunto: '',
     mensaje: '',
   });
@@ -25,7 +24,6 @@ const Contactos = () => {
     // Generar mensaje personalizado de WhatsApp sin emojis para evitar problemas de compatibilidad
     const message = `*Nueva Consulta - Najera's Team Central*\n\n` +
       `- *Nombre:* ${formData.nombre}\n` +
-      `- *Teléfono:* ${formData.telefono}\n` +
       `- *Asunto:* ${formData.asunto}\n\n` +
       `*Mensaje:* ${formData.mensaje}`;
       
@@ -109,18 +107,6 @@ const Contactos = () => {
                   placeholder="Ej. Juan Pérez"
                   value={formData.nombre}
                   onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
-                  class="w-full bg-[#0B1550] border border-white/10 rounded-sm px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#C9A227]"
-                />
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Teléfono</label>
-                <input
-                  type="tel"
-                  required
-                  placeholder="Ej. 0981234567"
-                  value={formData.telefono}
-                  onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
                   class="w-full bg-[#0B1550] border border-white/10 rounded-sm px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#C9A227]"
                 />
               </div>

@@ -183,9 +183,9 @@ Se solucionó un bloqueo de seguridad (CORS) que impedía al frontend comunicars
 
 ## 12. Simplificación del Formulario de Contacto (Contactos.jsx)
 
-A petición del usuario, se eliminó el campo de recolección de correo electrónico para agilizar el proceso de contacto.
-* **Interfaz:** Se removió el campo **"Email"** del formulario visual público.
-* **Mensaje de WhatsApp:** Se actualizó la estructura del texto generado que se envía por WhatsApp para que ya no incluya la variable de correo electrónico, manteniendo un formato limpio y directo.
+A petición del usuario, se eliminaron los campos de recolección de correo electrónico y teléfono para agilizar el proceso de contacto.
+* **Interfaz:** Se removieron los campos **"Email"** y **"Teléfono"** del formulario visual público.
+* **Mensaje de WhatsApp:** Se actualizó la estructura del texto generado que se envía por WhatsApp para que ya no incluya las variables de correo electrónico ni teléfono, manteniendo un formato aún más limpio y directo.
 
 
 
