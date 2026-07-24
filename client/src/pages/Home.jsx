@@ -77,10 +77,10 @@ const Home = () => {
           <div class="absolute inset-0 bg-gradient-to-t from-[#0B1550] via-[#0B1550]/80 to-transparent"></div>
         </div>
 
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-12 flex flex-col lg:flex-row items-center justify-between gap-12">
           
           {/* Left Column Championship Text */}
-          <div class="lg:col-span-8 space-y-6 text-left animate-fade-in-up">
+          <div class="w-full lg:w-7/12 space-y-6 text-left animate-fade-in-up">
             <div class="inline-block px-3 py-1 bg-[#111114] border border-[#C9A227] text-[#C9A227] font-heading text-xs font-bold tracking-widest uppercase rounded-sm">
               [ GRADO CENTRAL • FORMATIVO ESPECIALIZADO ]
             </div>
@@ -117,7 +117,7 @@ const Home = () => {
           </div>
 
           {/* Right Column Emblem Badge */}
-          <div class="lg:col-span-4 flex flex-col items-center lg:items-end justify-center animate-fade-in-up-delay">
+          <div class="w-full lg:w-4/12 flex flex-col items-center lg:items-end justify-center animate-fade-in-up-delay">
             <div class="relative group w-full max-w-xs animate-float-badge text-center space-y-4">
               
               {/* Rotating Dashed Ring & Logo Container */}
