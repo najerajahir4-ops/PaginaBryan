@@ -206,7 +206,7 @@ Se removió por completo el cuadro negro de fondo (tanto el contenedor estático
   * Se implementó una estructura flex completa de fila adaptativa en pantallas de escritorio (`flex flex-col lg:flex-row items-center justify-between`) convirtiendo las dos columnas en hijas directas con anchos proporcionales (`w-7/12` y `w-4/12`). Esto asegura la alineación absoluta de los centros verticales del bloque de texto izquierdo y el logotipo derecho sin desbalances visuales.
 * **Indicador de Desplazamiento (Scroll Down Indicator):**
   * Se inyectó un botón flotante con el texto "Explorar" y un ícono SVG `ChevronDown` de la librería `lucide-react`, pintado en el tono dorado oficial (`#C9A227`).
-  * Se colocó de forma absoluta en la parte inferior del Hero (`absolute bottom-6 left-1/2 -translate-x-1/2 z-20`) para un posicionado simétrico.
+  * Se colocó de forma absoluta como hijo directo de la sección principal del Hero (`absolute bottom-6 left-1/2 -translate-x-1/2 z-20`) para garantizar que se posicione a 24px del borde inferior de la sección completa (no del contenedor flex interno), logrando una ubicación correcta cerca de la onda inferior.
   * Se programó una animación de rebote vertical suave en CSS (`bounce-subtle`) con `@keyframes` de traslación (`translateY(6px)`) en un loop infinito para mejorar el flujo visual.
   * Se configuró un escuchador de eventos de scroll en React (`window.scrollY`) para desvanecer suavemente el indicador (`opacity-0 translate-y-4`) al rebasar 50px de scroll hacia abajo, y reaparecerlo al regresar al tope de la página (`scrollY === 0`).
   * Es clickeable y cuenta con funcionalidad de scroll fluido hacia la sección subsiguiente (`id="welcome-section"`) mediante `scrollIntoView({ behavior: 'smooth' })`.

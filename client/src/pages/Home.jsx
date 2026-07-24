@@ -173,22 +173,22 @@ const Home = () => {
               
             </div>
           </div>
-
-          {/* Scroll Down Indicator */}
-          <button
-            onClick={handleScrollDown}
-            class={`absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 cursor-pointer text-[#C9A227] hover:text-yellow-200 transition-all duration-300 ${
-              showScrollArrow ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
-            }`}
-            aria-label="Desplazarse hacia abajo"
-          >
-            <span class="text-[9px] font-heading font-bold uppercase tracking-widest opacity-80">
-              Explorar
-            </span>
-            <ChevronDown class="w-5 h-5 animate-bounce-subtle" />
-          </button>
-
         </div>
+
+        {/* Scroll Down Indicator */}
+        <button
+          onClick={handleScrollDown}
+          class={`absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 cursor-pointer text-[#C9A227] hover:text-yellow-200 transition-all duration-300 ${
+            showScrollArrow ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+          }`}
+          aria-label="Desplazarse hacia abajo"
+        >
+          <span class="text-[9px] font-heading font-bold uppercase tracking-widest opacity-80">
+            Explorar
+          </span>
+          <ChevronDown class="w-5 h-5 animate-bounce-subtle" />
+        </button>
+
       </section>
 
       {/* WELCOME SECTION & 3X3 QUICK ACCESS CARDS */}
