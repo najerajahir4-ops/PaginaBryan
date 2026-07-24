@@ -172,6 +172,21 @@ Se implementó una solución robusta para ordenar interactivamente las tarjetas 
 * **Diseño e Integración:** Se añadió una miniatura redonda (avatar) con la foto de perfil del estudiante (`student.foto`) al lado de su nombre y apellido en cada fila de la tabla.
 * **Mecanismo de Fallback:** Si el alumno no cuenta con una URL de foto asignada, se despliega un círculo con las iniciales de sus nombres y apellidos sobre un fondo azul y letras doradas, conservando exactamente el mismo estilo estético que en la pantalla de Asistencia.
 
+---
+
+## 11. Corrección de Políticas CORS para Producción
+
+Se solucionó un bloqueo de seguridad (CORS) que impedía al frontend comunicarse con el backend en el entorno de producción de Vercel.
+* **Configuración del Servidor (`server/src/index.js`):** Se agregó explícitamente el dominio de producción `https://paginabryan-db.vercel.app` a la lista de `allowedOrigins`, permitiendo que las peticiones del panel de administración fluyan correctamente hacia la base de datos sin ser bloqueadas por el navegador.
+
+---
+
+## 12. Simplificación del Formulario de Contacto (Contactos.jsx)
+
+A petición del usuario, se eliminó el campo de recolección de correo electrónico para agilizar el proceso de contacto.
+* **Interfaz:** Se removió el campo **"Email"** del formulario visual público.
+* **Mensaje de WhatsApp:** Se actualizó la estructura del texto generado que se envía por WhatsApp para que ya no incluya la variable de correo electrónico, manteniendo un formato limpio y directo.
+
 
 
 
