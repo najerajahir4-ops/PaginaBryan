@@ -61,7 +61,7 @@ const Home = () => {
     <div class="space-y-16 pb-16">
       
       {/* HERO SECTION */}
-      <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-[#0B1550] border-b-2 border-[#C9A227]">
+      <section class="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden bg-[#0B1550] border-b-2 border-[#C9A227]">
         {/* Dragon Watermark Background */}
         <div class="absolute right-0 top-1/2 -translate-y-1/2 opacity-10 pointer-events-none z-0 w-[600px] h-[600px]">
           <img src="/logo.png" alt="Dragon Watermark" class="w-full h-full object-contain filter grayscale" />
@@ -77,7 +77,7 @@ const Home = () => {
           <div class="absolute inset-0 bg-gradient-to-t from-[#0B1550] via-[#0B1550]/80 to-transparent"></div>
         </div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column Championship Text */}
           <div class="lg:col-span-8 space-y-6 text-left animate-fade-in-up">

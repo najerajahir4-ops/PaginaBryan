@@ -200,9 +200,14 @@ Se removió por completo el cuadro negro de fondo (tanto el contenedor estático
   * El logotipo circular realiza un zoom sutil (`group-hover:scale-105`) con transiciones suaves.
   * La línea roja de acento bajo la disciplina se expande horizontalmente (`group-hover:w-20`).
   * El título principal "NAJERA'S TEAM" transiciona al color dorado oficial (`group-hover:text-[#C9A227]`).
+* **Optimización de Distribución y Centrado Vertical (Hero Layout):**
+  * Se configuró el alto mínimo de la sección Hero a un valor adaptativo `min-h-[calc(100vh-4rem)]` (restando la altura fija de 64px `h-16` del navbar sticky) para que el centrado sea 100% dinámico según el alto del dispositivo.
+  * Se reemplazó el padding rígido `py-20` del contenedor interno por un espaciado más moderado y responsivo `py-8 sm:py-12 lg:py-12`, previniendo scrolls excesivos en pantallas pequeñas o laptops de baja resolución.
+  * Se implementó el centrado vertical con flexbox en el contenedor principal (`flex items-center`) y en la grilla (`items-center`), alineando perfectamente la columna de textos (izquierda) con el emblema flotante (derecha) para lograr una composición balanceada.
 * **Archivos Modificados:**
-  * [Home.jsx](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/pages/Home.jsx) (Eliminación del box de fondo e integración de los estilos flotantes directos)
+  * [Home.jsx](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/pages/Home.jsx) (Ajuste del alto mínimo de sección, reducción de paddings e inclusión de centrado vertical flex)
   * [index.css](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/index.css) (Animaciones de `@keyframes` personalizadas)
+
 
 
 
