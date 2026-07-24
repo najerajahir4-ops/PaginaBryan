@@ -99,3 +99,18 @@
   animation: spin-slow 25s linear infinite;
 }
 
+/* Animación sutil de rebote para la flecha scroll-down */
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 1.8s infinite ease-in-out;
+}
+
+

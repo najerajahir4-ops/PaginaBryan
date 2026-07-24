@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   GiBlackBelt, 
@@ -16,10 +16,32 @@ import {
   Zap,
   BookOpen,
   Monitor,
-  Code
+  Code,
+  ChevronDown
 } from 'lucide-react';
 
 const Home = () => {
+  const [showScrollArrow, setShowScrollArrow] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setShowScrollArrow(false);
+      } else {
+        setShowScrollArrow(true);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleScrollDown = () => {
+    const nextSection = document.getElementById('welcome-section');
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   // 3x3 Square Cards (White #F5F2E9 fill, carbon #111114 icon on top, red #8C1D1D title on bottom)
   const quickAccessCards = [
     { title: 'Alumnos Destacados', icon: GiTrophyCup, path: '/alumnos-destacados' },
@@ -152,11 +174,25 @@ const Home = () => {
             </div>
           </div>
 
+          {/* Scroll Down Indicator */}
+          <button
+            onClick={handleScrollDown}
+            class={`absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 cursor-pointer text-[#C9A227] hover:text-yellow-200 transition-all duration-300 ${
+              showScrollArrow ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+            }`}
+            aria-label="Desplazarse hacia abajo"
+          >
+            <span class="text-[9px] font-heading font-bold uppercase tracking-widest opacity-80">
+              Explorar
+            </span>
+            <ChevronDown class="w-5 h-5 animate-bounce-subtle" />
+          </button>
+
         </div>
       </section>
 
       {/* WELCOME SECTION & 3X3 QUICK ACCESS CARDS */}
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="welcome-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* Left Column Welcome Message */}

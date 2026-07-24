@@ -204,9 +204,15 @@ Se removió por completo el cuadro negro de fondo (tanto el contenedor estático
   * Se configuró el alto mínimo de la sección Hero a un valor adaptativo `min-h-[calc(100vh-4rem)]` (restando la altura fija de 64px `h-16` del navbar sticky) para que el centrado sea 100% dinámico según el alto del dispositivo.
   * Se reemplazó el padding rígido `py-20` del contenedor interno por un espaciado más moderado y responsivo `py-8 sm:py-12 lg:py-12`, previniendo scrolls excesivos en pantallas pequeñas o laptops de baja resolución.
   * Se implementó una estructura flex completa de fila adaptativa en pantallas de escritorio (`flex flex-col lg:flex-row items-center justify-between`) convirtiendo las dos columnas en hijas directas con anchos proporcionales (`w-7/12` y `w-4/12`). Esto asegura la alineación absoluta de los centros verticales del bloque de texto izquierdo y el logotipo derecho sin desbalances visuales.
+* **Indicador de Desplazamiento (Scroll Down Indicator):**
+  * Se inyectó un botón flotante con el texto "Explorar" y un ícono SVG `ChevronDown` de la librería `lucide-react`, pintado en el tono dorado oficial (`#C9A227`).
+  * Se colocó de forma absoluta en la parte inferior del Hero (`absolute bottom-6 left-1/2 -translate-x-1/2 z-20`) para un posicionado simétrico.
+  * Se programó una animación de rebote vertical suave en CSS (`bounce-subtle`) con `@keyframes` de traslación (`translateY(6px)`) en un loop infinito para mejorar el flujo visual.
+  * Se configuró un escuchador de eventos de scroll en React (`window.scrollY`) para desvanecer suavemente el indicador (`opacity-0 translate-y-4`) al rebasar 50px de scroll hacia abajo, y reaparecerlo al regresar al tope de la página (`scrollY === 0`).
+  * Es clickeable y cuenta con funcionalidad de scroll fluido hacia la sección subsiguiente (`id="welcome-section"`) mediante `scrollIntoView({ behavior: 'smooth' })`.
 * **Archivos Modificados:**
-  * [Home.jsx](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/pages/Home.jsx) (Refactorización de Grid a Flexbox, reducción de paddings e inclusión de centrado vertical flex)
-  * [index.css](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/index.css) (Animaciones de `@keyframes` personalizadas)
+  * [Home.jsx](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/pages/Home.jsx) (Estructura de la sección Hero, lógica de scroll, importaciones y botón de indicador)
+  * [index.css](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/index.css) (Animaciones de `@keyframes` para `float-badge`, `spin-slow` y `bounce-subtle`)
 
 
 
