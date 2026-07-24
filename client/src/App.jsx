@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -29,6 +30,7 @@ import ModulosAdmin from './pages/admin/ModulosAdmin';
 const AdminNavbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleLogout = async () => {
     await logout();
@@ -52,17 +54,40 @@ const AdminNavbar = () => {
           </nav>
         </div>
 
-        <div class="flex items-center gap-4 text-xs">
+        <div class="flex items-center gap-2 sm:gap-4 text-xs">
           <Link to="/" class="text-gray-400 hover:text-dojang-gold underline font-bold tracking-wider uppercase hidden sm:block">Ver Web Pública</Link>
-          <span class="text-white font-bold bg-[#111114] px-3 py-1 rounded-sm border border-white/10 uppercase tracking-widest">{user?.usuario}</span>
+          <span class="text-white font-bold bg-[#111114] px-3 py-1 rounded-sm border border-white/10 uppercase tracking-widest text-[10px] sm:text-xs">{user?.usuario}</span>
           <button
             onClick={handleLogout}
             class="px-3 py-1.5 bg-dojang-red hover:bg-dojang-redHover text-white rounded-sm font-bold tracking-widest uppercase shadow-lg transition-colors border border-dojang-red"
           >
             Salir
           </button>
+          
+          {/* Mobile Admin Menu Toggle */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            class="md:hidden text-white hover:text-dojang-gold p-2 ml-1"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile admin nav dropdown */}
+      {mobileOpen && (
+        <div class="md:hidden bg-[#060D33] border-b border-dojang-gold px-4 py-3 space-y-3 font-heading text-xs font-bold tracking-widest uppercase shadow-xl animate-fade-in">
+          <Link to="/admin/estudiantes" onClick={() => setMobileOpen(false)} class="block text-gray-300 hover:text-dojang-gold py-1">Fichas & Pagos</Link>
+          <Link to="/admin/asistencia" onClick={() => setMobileOpen(false)} class="block text-gray-300 hover:text-dojang-gold py-1">Asistencia</Link>
+          <Link to="/admin/contenido" onClick={() => setMobileOpen(false)} class="block text-gray-300 hover:text-dojang-gold py-1">Contenido</Link>
+          <Link to="/admin/alumnos-destacados" onClick={() => setMobileOpen(false)} class="block text-gray-300 hover:text-dojang-gold py-1">Destacados</Link>
+          <Link to="/admin/modulos" onClick={() => setMobileOpen(false)} class="block text-gray-300 hover:text-dojang-gold py-1">Configuración</Link>
+          <div class="border-t border-white/10 pt-2">
+            <Link to="/" onClick={() => setMobileOpen(false)} class="block text-gray-400 hover:text-dojang-gold underline py-1">Ver Web Pública</Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

@@ -227,9 +227,19 @@ Se configuró el botón "UNIRSE AHORA" de la página de inicio para redirigir y 
   * [Home.jsx](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/pages/Home.jsx) (Configuración del Link con estado y parámetros)
   * [Contactos.jsx](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/pages/Contactos.jsx) (Efecto de scroll automático, activación de pulso y clases responsivas)
   * [index.css](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/index.css) (Animación de fotogramas clave `@keyframes glow-pulse-gold` y clase asociada)
+---
 
+## 15. Menú de Navegación Responsivo para el Panel de Administración (App.jsx)
 
-
-
-
-
+Se implementó una solución para permitir la navegación móvil entre las diferentes secciones administrativas del panel (anteriormente ocultas por completo en resoluciones menores a `md`):
+* **Botón de Menú (Hamburger Toggle):** Se añadió un botón en la barra superior del panel administrativo (`AdminNavbar`) visible únicamente en dispositivos móviles (`md:hidden`). Este botón utiliza los íconos dinámicos `Menu` y `X` de Lucide para indicar el estado abierto o cerrado.
+* **Menú Desplegable (Dropdown Drawer):** Se creó una sección de enlaces vertical que se despliega de manera fluida y con transición sobre la cabecera. Cuenta con accesos directos a todas las secciones:
+  * Fichas & Pagos
+  * Asistencia
+  * Contenido
+  * Destacados
+  * Configuración
+  * Ver Web Pública (antes visible únicamente en pantallas grandes)
+* **Control de Cierre Automático:** Cada enlace del menú móvil tiene configurado un controlador de eventos `onClick` que cierra el menú de manera inmediata tras cambiar de ruta para una navegación óptima.
+* **Archivos Modificados:**
+  * [App.jsx](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/App.jsx) (Adición de estado `mobileOpen`, botón de toggle en `AdminNavbar` e inyección de la estructura del menú responsivo)
