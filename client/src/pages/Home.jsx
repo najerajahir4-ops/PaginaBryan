@@ -130,7 +130,8 @@ const Home = () => {
                 INGRESAR
               </Link>
               <Link
-                to="/contactos"
+                to="/contactos?scroll=true"
+                state={{ scrollTarget: 'contact-cards-section' }}
                 class="px-8 py-4 font-heading text-sm font-bold tracking-widest bg-[#8C1D1D] text-[#F5F2E9] border border-[#8C1D1D] rounded-sm hover:bg-[#6B1414] transition-colors shadow-lg uppercase"
               >
                 UNIRSE AHORA ➔

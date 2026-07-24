@@ -113,4 +113,22 @@
   animation: bounce-subtle 1.8s infinite ease-in-out;
 }
 
+/* Pulsación dorada premium para la tarjeta de admisión */
+@keyframes glow-pulse-gold {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(201, 162, 39, 0.1);
+    border-color: rgba(201, 162, 39, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(201, 162, 39, 0.65), 0 0 10px rgba(201, 162, 39, 0.2);
+    border-color: rgba(201, 162, 39, 0.95);
+    transform: translateY(-4px);
+  }
+}
+
+.animate-glow-pulse-gold {
+  animation: glow-pulse-gold 2s ease-in-out 2;
+}
+
+
 

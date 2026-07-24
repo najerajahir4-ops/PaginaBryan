@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Mail, Phone, MapPin, User, Send, CheckCircle2 } from 'lucide-react';
 
 const Contactos = () => {
@@ -8,6 +9,27 @@ const Contactos = () => {
     asunto: '',
     mensaje: '',
   });
+  const [shouldPulse, setShouldPulse] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const scrollTarget = (location.state && location.state.scrollTarget) || 
+                         (location.search.includes('scroll=true') ? 'contact-cards-section' : null);
+    if (scrollTarget) {
+      const targetElement = document.getElementById(scrollTarget);
+      if (targetElement) {
+        setShouldPulse(true);
+        setTimeout(() => {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 200);
+
+        const timer = setTimeout(() => {
+          setShouldPulse(false);
+        }, 4000);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [location]);
 
   const contacts = [
     {
@@ -51,9 +73,14 @@ const Contactos = () => {
       </div>
 
       {/* Tarjeta de Responsable */}
-      <div class="flex justify-center w-full">
+      <div id="contact-cards-section" class="flex justify-center w-full scroll-mt-20">
         {contacts.map((c, idx) => (
-          <div key={idx} class="w-full max-w-md bg-[#111114] border border-[#C9A227]/30 p-6 rounded-sm space-y-4 shadow-xl">
+          <div
+            key={idx}
+            class={`w-full max-w-md bg-[#111114] border p-6 rounded-sm space-y-4 shadow-xl hover:border-[#C9A227] hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 transform ${
+              shouldPulse ? 'animate-glow-pulse-gold border-[#C9A227]' : 'border-[#C9A227]/30'
+            }`}
+          >
             <div class="w-10 h-10 rounded-sm bg-[#0B1550] border border-[#C9A227]/40 text-[#C9A227] flex items-center justify-center">
               <User size={20} />
             </div>

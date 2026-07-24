@@ -214,6 +214,21 @@ Se removió por completo el cuadro negro de fondo (tanto el contenedor estático
   * [Home.jsx](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/pages/Home.jsx) (Estructura de la sección Hero, lógica de scroll, importaciones y botón de indicador)
   * [index.css](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/index.css) (Animaciones de `@keyframes` para `float-badge`, `spin-slow` y `bounce-subtle`)
 
+---
+
+## 14. Enlace Inteligente "Unirse Ahora" con Desplazamiento y Animación (Contactos.jsx)
+
+Se configuró el botón "UNIRSE AHORA" de la página de inicio para redirigir y enfocar la sección de admisiones de la página de contactos de forma fluida y visualmente interactiva:
+* **Navegación con Estado y Parámetros:** Se modificó el enlace `<Link>` en la página de inicio para apuntar a `/contactos?scroll=true` e inyectar un estado de navegación de React Router (`state={{ scrollTarget: 'contact-cards-section' }}`).
+* **Escuchador de Entrada y Desplazamiento Fluido:** Se implementó un efecto secundario (`useEffect`) en la página de contactos que detecta si el usuario proviene de dicha navegación. Si se cumple la condición, realiza un desplazamiento automático y suave (`scrollIntoView({ behavior: 'smooth', block: 'start' })`) hacia la sección de la tarjeta del Head Coach.
+* **Margen de Scroll (Scroll Margin):** Se añadió la clase `scroll-mt-20` (80px) al destino del scroll para prevenir que la tarjeta quede cubierta por la barra de navegación sticky (cabecera).
+* **Animación de Pulso Dorado (Golden Glow Animation):** Se definió una micro-animación premium en CSS (`glow-pulse-gold`) que genera dos destellos de luz dorada en el borde y sombra de la tarjeta de contacto del Head Coach durante 4 segundos. Esto capta la atención del usuario en el punto clave de contacto y admisiones tan pronto se detiene la animación del scroll.
+* **Archivos Modificados:**
+  * [Home.jsx](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/pages/Home.jsx) (Configuración del Link con estado y parámetros)
+  * [Contactos.jsx](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/pages/Contactos.jsx) (Efecto de scroll automático, activación de pulso y clases responsivas)
+  * [index.css](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/index.css) (Animación de fotogramas clave `@keyframes glow-pulse-gold` y clase asociada)
+
+
 
 
 
