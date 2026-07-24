@@ -10,7 +10,7 @@ const login = async (req, res, next) => {
       return res.status(400).json({ error: 'Por favor ingrese usuario y contraseña.' });
     }
 
-    const admin = await prisma.adminUser.findUnique({ where: { usuario } });
+    const admin = await prisma.adminUser.findUnique({ where: { usuario: usuario.toLowerCase() } });
     if (!admin) {
       return res.status(401).json({ error: 'Credenciales inválidas.' });
     }
