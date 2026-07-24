@@ -187,15 +187,23 @@ A petición del usuario, se eliminaron los campos de recolección de correo elec
 * **Interfaz:** Se removieron los campos **"Email"** y **"Teléfono"** del formulario visual público.
 * **Mensaje de WhatsApp:** Se actualizó la estructura del texto generado que se envía por WhatsApp para que ya no incluya las variables de correo electrónico ni teléfono, manteniendo un formato aún más limpio y directo.
 
+---
 
+## 13. Rediseño y Animación Premium del Emblema Principal (Home.jsx)
 
-
-
-
-
-
-
-
+Se removió el cuadro negro plano y estático detrás del logotipo oficial de la academia para reemplazarlo por una tarjeta con diseño premium, efectos interactivos y animaciones fluidas:
+* **Efecto de Vidrio (Glassmorphic Card):** Se reemplazó el color de fondo sólido `bg-[#111114]` por un panel semi-translúcido con desenfoque de fondo (`bg-[#111114]/90 backdrop-blur-md`), que permite apreciar los degradados y marcas de agua de fondo integrándose armónicamente.
+* **Aura de Brillo Trasero (Glow Aura Backdrop):** Se añadió un elemento absoluto detrás de la tarjeta con un degradado en los colores de la marca (Amarillo/Oro `#C9A227`, Rojo `#8C1D1D` y Azul `#0B1550`) con filtro de desenfoque (`blur-md`). Esta aura brilla suavemente de fondo e intensifica su resplandor y opacidad cuando el cursor pasa por encima de la tarjeta.
+* **Animación de Flotado Constante (Floating Effect):** Se programó una animación de fotogramas clave en CSS (`float-badge`) que desplaza verticalmente la tarjeta de forma suave e infinita, dándole vida y dinamismo a la sección Hero.
+* **Anillo Dorado Giratorio (Rotating Dashed Ring):** Se diseñó un anillo circular punteado (`border-dashed border-[#C9A227]/30`) alrededor del logotipo que gira continuamente de forma lenta (`animate-spin-slow`) imitando el look de un medallón de campeonato o insignia técnica.
+* **Interacciones de Cursor (Hover Effects):**
+  * La tarjeta completa se desplaza sutilmente hacia arriba (`group-hover:-translate-y-1.5`) y su sombra se intensifica.
+  * El logotipo central se amplía ligeramente (`group-hover:scale-105`).
+  * La línea decorativa de color rojo entre la modalidad y el lema se ensancha dinámicamente (`group-hover:w-20`).
+  * El título principal "NAJERA'S TEAM" cambia suavemente al color dorado de la academia (`group-hover:text-[#C9A227]`).
+* **Archivos Modificados:**
+  * [Home.jsx](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/pages/Home.jsx) (Estructura de la tarjeta y clases de Tailwind)
+  * [index.css](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/index.css) (Animaciones de `@keyframes` para `float-badge` y `spin-slow`)
 
 
 
