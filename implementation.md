@@ -243,3 +243,14 @@ Se implementó una solución para permitir la navegación móvil entre las difer
 * **Control de Cierre Automático:** Cada enlace del menú móvil tiene configurado un controlador de eventos `onClick` que cierra el menú de manera inmediata tras cambiar de ruta para una navegación óptima.
 * **Archivos Modificados:**
   * [App.jsx](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/App.jsx) (Adición de estado `mobileOpen`, botón de toggle en `AdminNavbar` e inyección de la estructura del menú responsivo)
+
+---
+
+## 16. Redirección Automática para Sesión Activa de Administrador (AdminLogin.jsx)
+
+Se corrigió la usabilidad al ingresar a la pantalla de autenticación para evitar solicitudes redundantes de credenciales:
+* **Verificación del Estado de Autenticación:** Se importó el estado `isAuthenticated` desde el contexto global de autenticación (`useAuth`) dentro de [AdminLogin.jsx](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/pages/AdminLogin.jsx).
+* **Redirección Activa (Auto-Redirect):** Se programó un efecto secundario (`useEffect`) que se ejecuta inmediatamente al cargar el formulario de login. Si se detecta que la sesión ya se encuentra activa (`isAuthenticated === true`), el sistema redirige al usuario de manera instantánea y transparente al panel principal (`/admin/estudiantes`), sin requerir interacción ni volver a pedir usuario y contraseña.
+* **Archivos Modificados:**
+  * [AdminLogin.jsx](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/pages/AdminLogin.jsx) (Inyección del hook `useEffect` y validación de sesión para auto-redirección)
+
