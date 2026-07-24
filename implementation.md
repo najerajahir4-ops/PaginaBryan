@@ -202,7 +202,7 @@ Se removió por completo el cuadro negro de fondo (tanto el contenedor estático
   * El título principal "NAJERA'S TEAM" transiciona al color dorado oficial (`group-hover:text-[#C9A227]`).
 * **Optimización de Distribución y Centrado Vertical (Hero Layout):**
   * Se configuró el alto mínimo de la sección Hero a un valor adaptativo `min-h-[calc(100vh-4rem)]` (restando la altura fija de 64px `h-16` del navbar sticky) para que el centrado sea 100% dinámico según el alto del dispositivo.
-  * Se reemplazó el padding rígido `py-20` del contenedor interno por un espaciado más moderado y responsivo `py-8 sm:py-12 lg:py-12`, previniendo scrolls excesivos en pantallas pequeñas o laptops de baja resolución.
+  * Se reemplazó el padding rígido `py-20` del contenedor interno por un espaciado más adaptativo. En mobile y tablet, para evitar que el indicador absoluto "EXPLORAR" colisione con el texto inferior del logotipo, se ajustó a `pt-8 pb-20 sm:pt-12 sm:pb-24 lg:py-12`, garantizando un espacio vacío seguro (zona de resguardo) de 80px a 96px de alto en la base de la sección.
   * Se implementó una estructura flex completa de fila adaptativa en pantallas de escritorio (`flex flex-col lg:flex-row items-center justify-between`) convirtiendo las dos columnas en hijas directas con anchos proporcionales (`w-7/12` y `w-4/12`). Esto asegura la alineación absoluta de los centros verticales del bloque de texto izquierdo y el logotipo derecho sin desbalances visuales.
 * **Indicador de Desplazamiento (Scroll Down Indicator):**
   * Se inyectó un botón flotante con el texto "Explorar" y un ícono SVG `ChevronDown` de la librería `lucide-react`, pintado en el tono dorado oficial (`#C9A227`).

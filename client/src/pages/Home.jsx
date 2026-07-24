@@ -99,7 +99,7 @@ const Home = () => {
           <div class="absolute inset-0 bg-gradient-to-t from-[#0B1550] via-[#0B1550]/80 to-transparent"></div>
         </div>
 
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-12 flex flex-col lg:flex-row items-center justify-between gap-12">
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20 sm:pt-12 sm:pb-24 lg:py-12 flex flex-col lg:flex-row items-center justify-between gap-12">
           
           {/* Left Column Championship Text */}
           <div class="w-full lg:w-7/12 space-y-6 text-left animate-fade-in-up">
