@@ -109,7 +109,7 @@ const Home = () => {
               loop
               muted
               playsInline
-              class="w-full h-full object-cover drop-shadow-[0_0_40px_rgba(200,16,46,0.4)] contrast-125 saturate-150"
+              class="w-full h-full object-cover drop-shadow-[0_0_40px_rgba(200,16,46,0.4)] contrast-[1.4] brightness-[0.6] saturate-150"
             />
           </div>
 
