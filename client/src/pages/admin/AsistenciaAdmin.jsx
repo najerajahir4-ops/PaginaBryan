@@ -14,7 +14,9 @@ import {
   Award,
   History,
   FileSpreadsheet,
-  CalendarDays
+  CalendarDays,
+  Eye,
+  EyeOff
 } from 'lucide-react';
 
 const AsistenciaAdmin = () => {
@@ -39,6 +41,7 @@ const AsistenciaAdmin = () => {
     justificados: 0,
     sinRegistrar: 0
   });
+  const [showStats, setShowStats] = useState(true);
 
   const [filtersOpen, setFiltersOpen] = useState(false);
 
@@ -430,8 +433,24 @@ const AsistenciaAdmin = () => {
       {/* --- TAB 1: REGISTRAR ASISTENCIA --- */}
       {activeTab === 'tomar' && (
         <div class="space-y-6">
+          {/* Header & Toggle de Estadísticas */}
+          <div class="flex items-center justify-between border-b border-white/5 pb-2">
+            <h3 class="text-xs font-bold text-gray-400 font-display tracking-widest uppercase">Resumen del Día</h3>
+            <button
+              onClick={() => setShowStats(!showStats)}
+              class="text-[10px] text-dorado-campeon hover:text-white transition-colors flex items-center gap-1.5 font-bold uppercase tracking-widest bg-carbon border border-dorado-campeon/30 px-3 py-1.5 rounded-lg"
+            >
+              {showStats ? (
+                <><EyeOff size={14} /> Ocultar</>
+              ) : (
+                <><Eye size={14} /> Mostrar</>
+              )}
+            </button>
+          </div>
+
           {/* Panel de Estadísticas del día */}
-          <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+          {showStats && (
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
             <div class="bg-emerald-950/20 border border-emerald-500/20 p-4 rounded-xl text-center space-y-1">
               <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest block">Presentes</span>
               <div class="text-2xl font-bold text-emerald-400 font-heading">{stats.presentes}</div>
@@ -461,7 +480,7 @@ const AsistenciaAdmin = () => {
               <div class="text-2xl font-bold text-white font-heading">{stats.sinRegistrar}</div>
               <span class="text-[9px] text-gray-500">Pendiente tomar lista</span>
             </div>
-          </div>
+          )}
 
           {/* Tabla de Estudiantes */}
           <div class="bg-carbon/70 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
