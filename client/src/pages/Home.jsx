@@ -93,18 +93,12 @@ const Home = () => {
           {/* Resplandor rojo central */}
           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[25rem] h-[25rem] lg:w-[45rem] lg:h-[45rem] bg-rojo-impacto/30 blur-[100px] rounded-full"></div>
           
-          {/* Emblema Central Animado (Video) */}
-          <div 
-            class="relative w-72 h-72 lg:w-[45rem] lg:h-[45rem] lg:translate-x-12 opacity-90 mix-blend-screen hover:opacity-100 transition-all duration-700 cursor-default"
-            style={{ WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 70%)', maskImage: 'radial-gradient(circle, black 50%, transparent 70%)' }}
-          >
-            <video
-              src="/dragon_loop.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              class="w-full h-full object-cover drop-shadow-[0_0_40px_rgba(200,16,46,0.4)] contrast-125 saturate-150"
+          {/* Emblema Central */}
+          <div class="relative w-72 h-72 lg:w-[35rem] lg:h-[35rem] lg:translate-x-20 opacity-30 mix-blend-screen filter grayscale hover:grayscale-0 hover:opacity-90 hover:scale-105 transition-all duration-700 cursor-default">
+            <img
+              src="/logo.png"
+              alt="Najera's Team Emblem"
+              class="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(200,16,46,0.6)]"
             />
           </div>
 
