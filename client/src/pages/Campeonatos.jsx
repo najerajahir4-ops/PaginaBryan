@@ -25,7 +25,7 @@ const Campeonatos = () => {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
       
       <div class="text-center space-y-3 max-w-3xl mx-auto">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-dojang-red/20 text-dojang-red border border-dojang-red/30 text-xs font-bold uppercase tracking-wider">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rojo-impacto/20 text-rojo-impacto border border-rojo-impacto/30 text-xs font-bold uppercase tracking-wider">
           <Trophy size={14} />
           Circuito Competitivo
         </div>
@@ -39,12 +39,12 @@ const Campeonatos = () => {
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {events.map((event) => (
-          <div key={event.id} class="bg-dojang-navy/80 border border-white/10 p-6 sm:p-8 rounded-2xl space-y-6 shadow-xl relative overflow-hidden">
+          <div key={event.id} class="bg-carbon/80 border border-white/10 p-6 sm:p-8 rounded-2xl space-y-6 shadow-xl relative overflow-hidden">
             <div class="flex items-center justify-between">
-              <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase bg-dojang-red text-white tracking-wider">
+              <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase bg-rojo-impacto text-white tracking-wider">
                 {event.disciplina}
               </span>
-              <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase bg-dojang-gold/20 text-dojang-gold border border-dojang-gold/30">
+              <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase bg-dorado-campeon/20 text-dorado-campeon border border-dorado-campeon/30">
                 {event.bracketStatus}
               </span>
             </div>
@@ -55,21 +55,21 @@ const Campeonatos = () => {
 
             <div class="space-y-2 text-xs text-gray-300">
               <div class="flex items-center gap-2">
-                <Calendar size={14} class="text-dojang-red" />
+                <Calendar size={14} class="text-rojo-impacto" />
                 <span>Fecha: {event.date}</span>
               </div>
               <div class="flex items-center gap-2">
-                <MapPin size={14} class="text-dojang-red" />
+                <MapPin size={14} class="text-rojo-impacto" />
                 <span>Lugar: {event.place}</span>
               </div>
             </div>
 
             <div class="pt-4 border-t border-white/10 flex items-center justify-between">
-              <div class="flex items-center gap-2 text-xs font-bold text-dojang-gold">
+              <div class="flex items-center gap-2 text-xs font-bold text-dorado-campeon">
                 <GitMerge size={16} />
                 Bracket Electrónico Disponible
               </div>
-              <button class="px-4 py-2 bg-dojang-red text-white text-xs font-bold rounded-lg hover:bg-dojang-crimson transition-colors shadow">
+              <button class="px-4 py-2 bg-rojo-impacto text-white text-xs font-bold rounded-lg hover:bg-red-700 transition-colors shadow">
                 Ver Llaves ➔
               </button>
             </div>

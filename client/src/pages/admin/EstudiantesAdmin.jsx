@@ -749,12 +749,12 @@ const EstudiantesAdmin = () => {
     <div class="space-y-8">
       
       {/* Header & Warning Banner */}
-      <div class="flex flex-wrap items-center justify-between gap-4 border-b-2 border-dojang-gold pb-4">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b-2 border-dorado-campeon pb-4">
         <div>
           <h1 class="text-3xl font-extrabold text-white font-heading uppercase tracking-wider">
             Gestión de Estudiantes & Pagos
           </h1>
-          <p class="text-xs text-dojang-gold font-bold tracking-widest uppercase mt-1">
+          <p class="text-xs text-dorado-campeon font-bold tracking-widest uppercase mt-1">
             Administra el padrón de alumnos y registro de fichas
           </p>
         </div>
@@ -762,14 +762,14 @@ const EstudiantesAdmin = () => {
         <div class="flex gap-3">
           <button
             onClick={handleExportExcel}
-            class="px-4 py-2.5 bg-dojang-navy border border-dojang-gold text-dojang-gold text-xs font-bold rounded-sm hover:bg-dojang-gold hover:text-dojang-navy transition-colors inline-flex items-center gap-2 tracking-widest uppercase"
+            class="px-4 py-2.5 bg-carbon border border-dorado-campeon text-dorado-campeon text-xs font-bold rounded-sm hover:bg-dorado-campeon hover:text-carbon transition-colors inline-flex items-center gap-2 tracking-widest uppercase"
           >
             <FileSpreadsheet size={16} />
             EXCEL
           </button>
           <button
             onClick={() => handleOpenStudentModal()}
-            class="px-5 py-2.5 bg-dojang-red hover:bg-dojang-redHover text-white text-xs font-bold rounded-sm transition-colors shadow-lg shadow-dojang-red/30 inline-flex items-center gap-2 tracking-widest uppercase"
+            class="px-5 py-2.5 bg-rojo-impacto hover:bg-red-700 text-white text-xs font-bold rounded-sm transition-colors shadow-lg shadow-rojo-impacto/30 inline-flex items-center gap-2 tracking-widest uppercase"
           >
             <Plus size={16} />
             NUEVA FICHA
@@ -796,19 +796,19 @@ const EstudiantesAdmin = () => {
       {/* Filters Bar */}
       <div class="bg-[#111114] border border-white/10 p-4 rounded-sm grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="relative">
-          <Search class="w-4 h-4 text-dojang-gold absolute left-3 top-3" />
+          <Search class="w-4 h-4 text-dorado-campeon absolute left-3 top-3" />
           <input
             type="text"
             placeholder="Buscar por nombre o cédula..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            class="w-full bg-[#1C1C21] border border-white/10 rounded-sm pl-9 pr-4 py-2 text-xs text-white focus:outline-none focus:border-dojang-gold"
+            class="w-full bg-[#1C1C21] border border-white/10 rounded-sm pl-9 pr-4 py-2 text-xs text-white focus:outline-none focus:border-dorado-campeon"
           />
         </div>
         <select
           value={selectedClub}
           onChange={(e) => setSelectedClub(e.target.value)}
-          class="bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-2 text-xs text-white focus:outline-none focus:border-dojang-gold uppercase tracking-wider font-bold"
+          class="bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-2 text-xs text-white focus:outline-none focus:border-dorado-campeon uppercase tracking-wider font-bold"
         >
           <option value="">TODOS LOS CLUBES</option>
           {clubs.map((c) => (
@@ -818,7 +818,7 @@ const EstudiantesAdmin = () => {
         <select
           value={selectedEstado}
           onChange={(e) => setSelectedEstado(e.target.value)}
-          class="bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-2 text-xs text-white focus:outline-none focus:border-dojang-gold uppercase tracking-wider font-bold"
+          class="bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-2 text-xs text-white focus:outline-none focus:border-dorado-campeon uppercase tracking-wider font-bold"
         >
           <option value="">TODOS LOS ESTADOS</option>
           <option value="VERDE">AL DÍA (VERDE)</option>
@@ -831,7 +831,7 @@ const EstudiantesAdmin = () => {
       <div class="tatami-panel overflow-hidden">
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs border-collapse">
-            <thead class="bg-[#060D33] text-dojang-gold font-heading text-[11px] uppercase tracking-wider border-b border-dojang-gold/30">
+            <thead class="bg-[#060D33] text-dorado-campeon font-heading text-[11px] uppercase tracking-wider border-b border-dorado-campeon/30">
               <tr>
                 <th class="p-4 border-r border-white/5">Alumno</th>
                 <th class="p-4 border-r border-white/5">Cédula</th>
@@ -846,12 +846,12 @@ const EstudiantesAdmin = () => {
               {loading ? (
                 <tr>
                   <td colSpan="7" class="text-center py-12">
-                    <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-dojang-red mx-auto"></div>
+                    <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-rojo-impacto mx-auto"></div>
                   </td>
                 </tr>
               ) : students.length === 0 ? (
                 <tr>
-                  <td colSpan="7" class="text-center py-12 text-gray-400 uppercase tracking-widest font-heading">
+                  <td colSpan="7" class="text-center py-12 text-gray-400 uppercase font-body font-semibold">
                     NO HAY FICHAS REGISTRADAS.
                   </td>
                 </tr>
@@ -859,7 +859,7 @@ const EstudiantesAdmin = () => {
                 students.map((student) => (
                   <tr key={student.id} class="hover:bg-white/5 transition-colors">
                     <td class="p-4 flex items-center gap-3 border-r border-white/5">
-                      <div class="w-8 h-8 bg-dojang-navy border border-dojang-gold text-dojang-gold flex items-center justify-center font-bold text-xs rounded-sm uppercase">
+                      <div class="w-8 h-8 bg-carbon border border-dorado-campeon text-dorado-campeon flex items-center justify-center font-bold text-xs rounded-sm uppercase">
                         {student.nombres.charAt(0)}{student.apellidos.charAt(0)}
                       </div>
                       <div>
@@ -870,7 +870,7 @@ const EstudiantesAdmin = () => {
                     <td class="p-4 font-mono text-gray-300 border-r border-white/5">{student.cedula}</td>
                     <td class="p-4 border-r border-white/5">
                       <span class="block font-semibold text-white">{student.grado}</span>
-                      <span class="text-[10px] text-dojang-gold uppercase tracking-widest">{student.club?.nombre || 'Central'}</span>
+                      <span class="text-[10px] text-dorado-campeon uppercase tracking-widest">{student.club?.nombre || 'Central'}</span>
                     </td>
                     <td class="p-4 font-mono text-gray-400 border-r border-white/5">{student.fechaUltimoPago}</td>
                     <td class="p-4 font-bold font-mono text-white border-r border-white/5">{student.fechaProximoPago}</td>
@@ -879,7 +879,7 @@ const EstudiantesAdmin = () => {
                     </td>
                     <td class="p-4">
                       <div class="flex items-center justify-center gap-1.5 relative">
-                        <button onClick={() => handleOpenPaymentModal(student)} title="Registrar Pago" class="p-1.5 rounded-sm bg-[#111114] border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500 hover:text-white transition-colors">
+                        <button onClick={() => handleOpenPaymentModal(student)} title="Registrar Pago" class="p-1.5 rounded-sm bg-[#111114] border border-dorado-campeon/30 text-dorado-campeon hover:bg-dorado-campeon hover:text-carbon transition-colors">
                           <CreditCard size={14} />
                         </button>
                         <button onClick={() => handleOpenStudentModal(student)} title="Ver / Editar Ficha" class="p-1.5 rounded-sm bg-[#111114] border border-amber-500/30 text-amber-400 hover:bg-amber-500 hover:text-white transition-colors">
@@ -918,7 +918,7 @@ const EstudiantesAdmin = () => {
                                 }}
                                 class="w-full px-3 py-2 text-xs text-gray-300 hover:bg-white/5 flex items-center gap-2"
                               >
-                                <FileText size={12} class="text-dojang-gold" />
+                                <FileText size={12} class="text-dorado-campeon" />
                                 Descargar PDF
                               </button>
                               <div class="border-t border-white/5 my-1"></div>
@@ -955,68 +955,68 @@ const EstudiantesAdmin = () => {
           
           {/* SECCIÓN 1: DATOS DEL ALUMNO */}
           <div class="space-y-3">
-            <h3 class="text-xs font-bold text-dojang-gold font-heading tracking-widest uppercase border-b border-white/10 pb-1">
+            <h3 class="text-xs font-bold text-dorado-campeon font-heading tracking-widest uppercase border-b border-white/10 pb-1">
               1. Datos del Alumno
             </h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Nombres</label>
-                <input type="text" name="nombres" required value={studentForm.nombres} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+                <input type="text" name="nombres" required value={studentForm.nombres} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
               <div>
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Apellidos</label>
-                <input type="text" name="apellidos" required value={studentForm.apellidos} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+                <input type="text" name="apellidos" required value={studentForm.apellidos} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
               <div>
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Fecha de Nacimiento</label>
-                <input type="date" name="fechaNacimiento" required value={studentForm.fechaNacimiento} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+                <input type="date" name="fechaNacimiento" required value={studentForm.fechaNacimiento} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
               <div>
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Edad</label>
-                <input type="number" name="edad" required value={studentForm.edad} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+                <input type="number" name="edad" required value={studentForm.edad} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
               <div>
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Cédula de Identidad</label>
-                <input type="text" name="cedula" required value={studentForm.cedula} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white font-mono focus:outline-none focus:border-dojang-gold" />
+                <input type="text" name="cedula" required value={studentForm.cedula} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white font-mono focus:outline-none focus:border-dorado-campeon" />
               </div>
               <div>
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Celular</label>
-                <input type="text" name="celular" required value={studentForm.celular} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+                <input type="text" name="celular" required value={studentForm.celular} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
               <div class="sm:col-span-2">
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Dirección</label>
-                <input type="text" name="direccion" required value={studentForm.direccion} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+                <input type="text" name="direccion" required value={studentForm.direccion} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
               <div class="sm:col-span-2">
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Correo Electrónico</label>
-                <input type="email" name="correo" required value={studentForm.correo} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+                <input type="email" name="correo" required value={studentForm.correo} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
             </div>
           </div>
 
           {/* SECCIÓN 2: HORARIOS DE ENTRENAMIENTO */}
           <div class="space-y-3">
-            <h3 class="text-xs font-bold text-dojang-gold font-heading tracking-widest uppercase border-b border-white/10 pb-1">
+            <h3 class="text-xs font-bold text-dorado-campeon font-heading tracking-widest uppercase border-b border-white/10 pb-1">
               2. Horarios de Entrenamiento
             </h3>
             <div class="bg-[#1C1C21] border border-white/10 rounded-sm p-3">
               <p class="text-[11px] text-gray-300 font-bold uppercase mb-2">Días: Lunes, Miércoles y Viernes</p>
               <label class="block text-[10px] text-gray-400 uppercase mb-1">Horario Elegido (Marque uno):</label>
               <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs text-white mt-2">
-                <label class="flex items-center gap-2 cursor-pointer border border-white/10 p-2 rounded-sm hover:border-dojang-gold transition-colors">
-                  <input type="radio" name="horarioElegido" value="15:00 a 16:00 hrs" checked={studentForm.horarioElegido === '15:00 a 16:00 hrs'} onChange={handleChange} class="accent-dojang-red" />
+                <label class="flex items-center gap-2 cursor-pointer border border-white/10 p-2 rounded-sm hover:border-dorado-campeon transition-colors">
+                  <input type="radio" name="horarioElegido" value="15:00 a 16:00 hrs" checked={studentForm.horarioElegido === '15:00 a 16:00 hrs'} onChange={handleChange} class="accent-rojo-impacto" />
                   15:00 a 16:00 hrs
                 </label>
-                <label class="flex items-center gap-2 cursor-pointer border border-white/10 p-2 rounded-sm hover:border-dojang-gold transition-colors">
-                  <input type="radio" name="horarioElegido" value="16:00 a 17:00 hrs" checked={studentForm.horarioElegido === '16:00 a 17:00 hrs'} onChange={handleChange} class="accent-dojang-red" />
+                <label class="flex items-center gap-2 cursor-pointer border border-white/10 p-2 rounded-sm hover:border-dorado-campeon transition-colors">
+                  <input type="radio" name="horarioElegido" value="16:00 a 17:00 hrs" checked={studentForm.horarioElegido === '16:00 a 17:00 hrs'} onChange={handleChange} class="accent-rojo-impacto" />
                   16:00 a 17:00 hrs
                 </label>
-                <label class="flex items-center gap-2 cursor-pointer border border-white/10 p-2 rounded-sm hover:border-dojang-gold transition-colors">
-                  <input type="radio" name="horarioElegido" value="17:00 a 18:00 hrs" checked={studentForm.horarioElegido === '17:00 a 18:00 hrs'} onChange={handleChange} class="accent-dojang-red" />
+                <label class="flex items-center gap-2 cursor-pointer border border-white/10 p-2 rounded-sm hover:border-dorado-campeon transition-colors">
+                  <input type="radio" name="horarioElegido" value="17:00 a 18:00 hrs" checked={studentForm.horarioElegido === '17:00 a 18:00 hrs'} onChange={handleChange} class="accent-rojo-impacto" />
                   17:00 a 18:00 hrs
                 </label>
-                <label class="flex items-center gap-2 cursor-pointer border border-white/10 p-2 rounded-sm hover:border-dojang-gold transition-colors">
-                  <input type="radio" name="horarioElegido" value="18:30 a 19:30 hrs" checked={studentForm.horarioElegido === '18:30 a 19:30 hrs'} onChange={handleChange} class="accent-dojang-red" />
+                <label class="flex items-center gap-2 cursor-pointer border border-white/10 p-2 rounded-sm hover:border-dorado-campeon transition-colors">
+                  <input type="radio" name="horarioElegido" value="18:30 a 19:30 hrs" checked={studentForm.horarioElegido === '18:30 a 19:30 hrs'} onChange={handleChange} class="accent-rojo-impacto" />
                   18:30 a 19:30 hrs
                 </label>
               </div>
@@ -1025,54 +1025,54 @@ const EstudiantesAdmin = () => {
 
           {/* SECCIÓN 3: INFORMACIÓN DE EMERGENCIA */}
           <div class="space-y-3">
-            <h3 class="text-xs font-bold text-dojang-gold font-heading tracking-widest uppercase border-b border-white/10 pb-1">
+            <h3 class="text-xs font-bold text-dorado-campeon font-heading tracking-widest uppercase border-b border-white/10 pb-1">
               3. Información de Emergencia
             </h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Alergias</label>
-                <input type="text" name="alergias" value={studentForm.alergias} onChange={handleChange} placeholder="Ninguna" class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+                <input type="text" name="alergias" value={studentForm.alergias} onChange={handleChange} placeholder="Ninguna" class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
               <div>
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Enfermedades crónicas</label>
-                <input type="text" name="enfermedades" value={studentForm.enfermedades} onChange={handleChange} placeholder="Ninguna" class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+                <input type="text" name="enfermedades" value={studentForm.enfermedades} onChange={handleChange} placeholder="Ninguna" class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
               <div>
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Lesiones previas</label>
-                <input type="text" name="lesiones" value={studentForm.lesiones} onChange={handleChange} placeholder="Ninguna" class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+                <input type="text" name="lesiones" value={studentForm.lesiones} onChange={handleChange} placeholder="Ninguna" class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
               <div>
                 <label class="block text-[10px] text-red-400 font-bold uppercase mb-1">Nombre Contacto Emergencia *</label>
-                <input type="text" name="contactoEmergenciaNombre" required value={studentForm.contactoEmergenciaNombre} onChange={handleChange} placeholder="Ej. Juan Pérez" class="w-full bg-[#1C1C21] border border-red-500/50 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+                <input type="text" name="contactoEmergenciaNombre" required value={studentForm.contactoEmergenciaNombre} onChange={handleChange} placeholder="Ej. Juan Pérez" class="w-full bg-[#1C1C21] border border-red-500/50 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
               <div>
                 <label class="block text-[10px] text-red-400 font-bold uppercase mb-1">Celular Contacto Emergencia *</label>
-                <input type="text" name="contactoEmergenciaCelular" required value={studentForm.contactoEmergenciaCelular} onChange={handleChange} placeholder="Ej. 0988362990" class="w-full bg-[#1C1C21] border border-red-500/50 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+                <input type="text" name="contactoEmergenciaCelular" required value={studentForm.contactoEmergenciaCelular} onChange={handleChange} placeholder="Ej. 0988362990" class="w-full bg-[#1C1C21] border border-red-500/50 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
             </div>
           </div>
 
           {/* SECCIÓN 4: DATOS DEL REPRESENTANTE */}
           <div class="space-y-3">
-            <h3 class="text-xs font-bold text-dojang-gold font-heading tracking-widest uppercase border-b border-white/10 pb-1">
+            <h3 class="text-xs font-bold text-dorado-campeon font-heading tracking-widest uppercase border-b border-white/10 pb-1">
               4. Datos del Representante e Información Adicional
             </h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Nombre del Responsable</label>
-                <input type="text" name="nombreRepresentante" value={studentForm.nombreRepresentante} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+                <input type="text" name="nombreRepresentante" value={studentForm.nombreRepresentante} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
               <div>
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Cédula del Responsable</label>
-                <input type="text" name="cedulaRepresentante" value={studentForm.cedulaRepresentante} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white font-mono focus:outline-none focus:border-dojang-gold" />
+                <input type="text" name="cedulaRepresentante" value={studentForm.cedulaRepresentante} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white font-mono focus:outline-none focus:border-dorado-campeon" />
               </div>
               <div>
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Celular del Responsable</label>
-                <input type="text" name="celularRepresentante" value={studentForm.celularRepresentante} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+                <input type="text" name="celularRepresentante" value={studentForm.celularRepresentante} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
               <div>
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">¿Cómo se enteró de nosotros?</label>
-                <input type="text" name="comoSeEntero" value={studentForm.comoSeEntero} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+                <input type="text" name="comoSeEntero" value={studentForm.comoSeEntero} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
             </div>
           </div>
@@ -1080,10 +1080,10 @@ const EstudiantesAdmin = () => {
 
 
           {/* ADMIN INTERNAL FIELDS (Hidden or minimized) */}
-          <div class="pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-[#0B1550]/50 p-3 rounded-sm border border-dojang-gold/20">
+          <div class="pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-[#0B1550]/50 p-3 rounded-sm border border-dorado-campeon/20">
              <div>
               <label class="block text-[10px] text-gray-400 uppercase mb-1">Club Asignado</label>
-              <select name="clubId" value={studentForm.clubId} onChange={handleChange} class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dojang-gold">
+              <select name="clubId" value={studentForm.clubId} onChange={handleChange} class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dorado-campeon">
                 <option value="">NINGUNO / EN BLANCO</option>
                 {clubs.map((c) => (
                   <option key={c.id} value={c.id}>{c.nombre}</option>
@@ -1096,7 +1096,7 @@ const EstudiantesAdmin = () => {
                 name="grado"
                 value={studentForm.grado}
                 onChange={handleChange}
-                class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dojang-gold uppercase tracking-wider font-bold"
+                class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dorado-campeon uppercase tracking-wider font-bold"
               >
                 {studentForm.modalidad === 'TAEKWONDO'
                   ? TAEKWONDO_BELTS.map((belt) => (
@@ -1110,14 +1110,14 @@ const EstudiantesAdmin = () => {
             </div>
             <div>
               <label class="block text-[10px] text-gray-400 uppercase mb-1">Modalidad</label>
-              <select name="modalidad" value={studentForm.modalidad} onChange={handleChange} class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dojang-gold">
+              <select name="modalidad" value={studentForm.modalidad} onChange={handleChange} class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dorado-campeon">
                 <option value="TAEKWONDO">Taekwondo</option>
                 <option value="KICKBOXING">Kickboxing</option>
               </select>
             </div>
             <div>
               <label class="block text-[10px] text-gray-400 uppercase mb-1">Periodicidad Pago</label>
-              <select name="periodicidadPago" value={studentForm.periodicidadPago} onChange={handleChange} class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dojang-gold">
+              <select name="periodicidadPago" value={studentForm.periodicidadPago} onChange={handleChange} class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dorado-campeon">
                 <option value="MENSUAL">Mensual</option>
                 <option value="TRIMESTRAL">Trimestral</option>
                 <option value="ANUAL">Anual</option>
@@ -1132,7 +1132,7 @@ const EstudiantesAdmin = () => {
               <button
                 type="button"
                 onClick={() => handleDownloadPDF(studentForm)}
-                class="w-full py-4 bg-dojang-navy text-dojang-gold font-bold text-xs uppercase tracking-widest rounded-sm hover:bg-dojang-gold hover:text-dojang-navy shadow-[0_0_15px_rgba(201,162,39,0.2)] border border-dojang-gold/50 transition-all flex items-center justify-center gap-2"
+                class="w-full py-4 bg-carbon text-dorado-campeon font-bold text-xs uppercase tracking-widest rounded-sm hover:bg-dorado-campeon hover:text-carbon shadow-[0_0_15px_rgba(201,162,39,0.2)] border border-dorado-campeon/50 transition-all flex items-center justify-center gap-2"
               >
                 <FileText size={16} />
                 Descargar Ficha PDF
@@ -1140,7 +1140,7 @@ const EstudiantesAdmin = () => {
             )}
             <button
               type="submit"
-              class={`w-full py-4 bg-dojang-red text-white font-bold text-xs uppercase tracking-widest rounded-sm hover:bg-dojang-redHover shadow-[0_0_15px_rgba(140,29,29,0.5)] border border-dojang-red transition-all ${
+              class={`w-full py-4 bg-rojo-impacto text-white font-bold text-xs uppercase tracking-widest rounded-sm hover:bg-red-700 shadow-[0_0_15px_rgba(140,29,29,0.5)] border border-rojo-impacto transition-all ${
                 selectedStudent ? '' : 'sm:col-span-2'
               }`}
             >
@@ -1160,18 +1160,18 @@ const EstudiantesAdmin = () => {
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">Monto ($ USD)</label>
-              <input type="number" step="0.01" required value={paymentForm.monto} onChange={(e) => setPaymentForm({ ...paymentForm, monto: e.target.value })} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-4 py-2 text-xs text-white font-mono focus:outline-none focus:border-dojang-gold" />
+              <input type="number" step="0.01" required value={paymentForm.monto} onChange={(e) => setPaymentForm({ ...paymentForm, monto: e.target.value })} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-4 py-2 text-xs text-white font-mono focus:outline-none focus:border-dorado-campeon" />
             </div>
             <div>
               <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">Fecha de Pago</label>
-              <input type="date" required value={paymentForm.fechaPago} onChange={(e) => setPaymentForm({ ...paymentForm, fechaPago: e.target.value })} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-4 py-2 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+              <input type="date" required value={paymentForm.fechaPago} onChange={(e) => setPaymentForm({ ...paymentForm, fechaPago: e.target.value })} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-4 py-2 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
             </div>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">Método de Pago</label>
-              <select value={paymentForm.metodoPago} onChange={(e) => setPaymentForm({ ...paymentForm, metodoPago: e.target.value })} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-4 py-2 text-xs text-white uppercase font-bold focus:outline-none focus:border-dojang-gold">
+              <select value={paymentForm.metodoPago} onChange={(e) => setPaymentForm({ ...paymentForm, metodoPago: e.target.value })} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-4 py-2 text-xs text-white uppercase font-bold focus:outline-none focus:border-dorado-campeon">
                 <option value="TRANSFERENCIA">Transferencia</option>
                 <option value="EFECTIVO">Efectivo</option>
                 <option value="TARJETA">Tarjeta</option>
@@ -1179,7 +1179,7 @@ const EstudiantesAdmin = () => {
             </div>
             <div>
               <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">Mes a Cubrir</label>
-              <input type="text" required value={paymentForm.periodoCubierto} onChange={(e) => setPaymentForm({ ...paymentForm, periodoCubierto: e.target.value })} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-4 py-2 text-xs text-white focus:outline-none focus:border-dojang-gold" />
+              <input type="text" required value={paymentForm.periodoCubierto} onChange={(e) => setPaymentForm({ ...paymentForm, periodoCubierto: e.target.value })} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-4 py-2 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
             </div>
           </div>
 
@@ -1187,7 +1187,7 @@ const EstudiantesAdmin = () => {
             * Al guardar este pago, la fecha de próximo pago se recalculará al <strong>Día {selectedStudent?.diaDeCobro}</strong> del siguiente periodo.
           </p>
 
-          <button type="submit" class="w-full py-3 bg-emerald-600 text-white font-bold text-xs uppercase tracking-widest rounded-sm hover:bg-emerald-700 shadow-[0_0_15px_rgba(5,150,105,0.4)]">
+          <button type="submit" class="w-full py-3 bg-dorado-campeon text-carbon font-bold text-xs uppercase tracking-widest rounded-sm hover:bg-[#b08d20] shadow-[0_0_15px_rgba(212,175,55,0.4)]">
             Confirmar Pago
           </button>
         </form>
@@ -1197,7 +1197,7 @@ const EstudiantesAdmin = () => {
       <Modal isOpen={isHistoryModalOpen} onClose={() => setIsHistoryModalOpen(false)} title={`Historial de Pagos`}>
         <div class="space-y-4">
           {paymentHistory.length === 0 ? (
-            <p class="text-xs text-gray-400 text-center py-4 font-heading uppercase tracking-widest">Sin pagos registrados.</p>
+            <p class="text-xs text-gray-400 text-center py-4 font-body font-semibold uppercase">Sin pagos registrados.</p>
           ) : (
             <div class="divide-y divide-white/10 text-xs text-gray-200">
               {paymentHistory.map((p) => (

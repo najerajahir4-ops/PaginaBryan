@@ -130,7 +130,7 @@ const Grados = () => {
       
       {/* Header */}
       <div class="text-center space-y-3 max-w-3xl mx-auto">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-dojang-gold/10 text-dojang-gold border border-dojang-gold/20 text-xs font-bold uppercase tracking-wider">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-dorado-campeon/10 text-dorado-campeon border border-dorado-campeon/20 text-xs font-bold uppercase tracking-wider">
           <Award size={14} />
           Cuadro de Honor & Grados
         </div>
@@ -143,7 +143,7 @@ const Grados = () => {
       </div>
 
       {/* Controls: Tab selector + Search */}
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-dojang-navyDark/85 border border-white/10 p-4 rounded-xl shadow-xl">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-carbon/85 border border-white/10 p-4 rounded-xl shadow-xl">
         {/* Tab filters */}
         <div class="flex bg-carbon border border-dorado-campeon/30 p-1 w-full sm:w-auto">
           {['TODOS', 'TAEKWONDO', 'KICKBOXING'].map(filter => (
@@ -169,7 +169,7 @@ const Grados = () => {
             placeholder="Buscar alumno..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            class="w-full bg-dojang-carbon border border-white/10 rounded-lg pl-9 pr-4 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-dojang-gold"
+            class="w-full bg-carbon border border-white/10 rounded-lg pl-9 pr-4 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-dorado-campeon"
           />
         </div>
       </div>
@@ -187,11 +187,11 @@ const Grados = () => {
       {/* Gallery Grid */}
       {loading ? (
         <div class="flex flex-col items-center justify-center py-24 gap-4">
-          <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-dojang-gold"></div>
+          <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-dorado-campeon"></div>
           <p class="text-xs text-gray-400">Cargando galería de grados...</p>
         </div>
       ) : filteredStudents.length === 0 ? (
-        <div class="text-center py-20 bg-dojang-navyDark/30 border border-white/5 rounded-2xl space-y-4">
+        <div class="text-center py-20 bg-carbon/30 border border-white/5 rounded-2xl space-y-4">
           <Award size={48} class="text-gray-600 mx-auto" />
           <h3 class="text-base font-bold text-white uppercase tracking-wider">No se encontraron alumnos</h3>
           <p class="text-xs text-gray-400 max-w-sm mx-auto">
@@ -207,7 +207,7 @@ const Grados = () => {
               style={{ minHeight: '340px' }}
             >
               {/* Photo Area */}
-              <div class="h-56 bg-dojang-carbon/50 relative overflow-hidden flex items-center justify-center border-b border-white/5">
+              <div class="h-56 bg-carbon/50 relative overflow-hidden flex items-center justify-center border-b border-white/5">
                 {student.foto ? (
                   <img
                     src={student.foto}
@@ -238,7 +238,7 @@ const Grados = () => {
                 {isAuthenticated && (
                   <button
                     onClick={() => handleOpenEditModal(student)}
-                    class="absolute bottom-3 right-3 p-2 bg-dojang-gold text-dojang-navyDark hover:bg-white rounded-lg shadow-lg hover:scale-105 transition-all flex items-center justify-center"
+                    class="absolute bottom-3 right-3 p-2 bg-dorado-campeon text-carbon hover:bg-white rounded-lg shadow-lg hover:scale-105 transition-all flex items-center justify-center"
                     title="Editar Grado & Foto"
                   >
                     <Edit2 size={12} class="stroke-[3]" />
@@ -278,13 +278,13 @@ const Grados = () => {
       >
         {selectedStudent && (
           <form onSubmit={handleSave} class="space-y-4 font-sans text-xs">
-            <div class="bg-dojang-navy/40 border border-white/10 p-3 rounded-lg flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-dojang-navy flex items-center justify-center font-bold text-dojang-gold border border-dojang-gold">
+            <div class="bg-carbon/40 border border-white/10 p-3 rounded-lg flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-carbon flex items-center justify-center font-bold text-dorado-campeon border border-dorado-campeon">
                 {selectedStudent.nombres[0]}{selectedStudent.apellidos[0]}
               </div>
               <div>
                 <h4 class="font-bold text-white text-sm uppercase">{selectedStudent.nombres} {selectedStudent.apellidos}</h4>
-                <p class="text-[10px] text-gray-400">Modalidad registrada: <strong class="text-dojang-gold">{selectedStudent.modalidad}</strong></p>
+                <p class="text-[10px] text-gray-400">Modalidad registrada: <strong class="text-dorado-campeon">{selectedStudent.modalidad}</strong></p>
               </div>
             </div>
 
@@ -295,7 +295,7 @@ const Grados = () => {
                 value={formFoto}
                 onChange={(e) => setFormFoto(e.target.value)}
                 placeholder="https://images.unsplash.com/..."
-                class="w-full bg-[#1C1C21] border border-white/10 rounded-lg px-4 py-2 text-xs text-white focus:outline-none focus:border-dojang-gold"
+                class="w-full bg-[#1C1C21] border border-white/10 rounded-lg px-4 py-2 text-xs text-white focus:outline-none focus:border-dorado-campeon"
               />
               <p class="text-[9px] text-gray-500 mt-1">Copia y pega la URL de una foto del estudiante en formato .jpg o .png.</p>
             </div>
@@ -306,7 +306,7 @@ const Grados = () => {
                 value={formGrado}
                 onChange={(e) => setFormGrado(e.target.value)}
                 required
-                class="w-full bg-[#1C1C21] border border-white/10 rounded-lg px-4 py-2 text-xs text-white uppercase font-bold focus:outline-none focus:border-dojang-gold"
+                class="w-full bg-[#1C1C21] border border-white/10 rounded-lg px-4 py-2 text-xs text-white uppercase font-bold focus:outline-none focus:border-dorado-campeon"
               >
                 {selectedStudent.modalidad === 'TAEKWONDO'
                   ? TAEKWONDO_BELTS.map(belt => (
@@ -322,7 +322,7 @@ const Grados = () => {
             <button
               type="submit"
               disabled={saving}
-              class="w-full py-3 bg-dojang-red hover:bg-dojang-crimson text-white text-xs font-bold tracking-widest uppercase rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+              class="w-full py-3 bg-rojo-impacto hover:bg-red-700 text-white text-xs font-bold tracking-widest uppercase rounded-lg transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
             >
               {saving ? 'Guardando...' : 'GUARDAR CAMBIOS'}
             </button>

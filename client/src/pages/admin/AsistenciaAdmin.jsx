@@ -40,6 +40,8 @@ const AsistenciaAdmin = () => {
     sinRegistrar: 0
   });
 
+  const [filtersOpen, setFiltersOpen] = useState(false);
+
   // States para Tab 2: Historial por Fecha
   const [historyList, setHistoryList] = useState([]);
   const [loadingHistory, setLoadingHistory] = useState(false);
@@ -298,8 +300,8 @@ const AsistenciaAdmin = () => {
 
         {activeTab === 'tomar' && (
           <div class="flex items-center gap-3">
-            <div class="flex items-center gap-2 bg-dojang-carbon border border-white/10 px-3 py-1.5 rounded-lg shadow-inner">
-              <Calendar size={16} class="text-dojang-gold" />
+            <div class="flex items-center gap-2 bg-carbon border border-white/10 px-3 py-1.5 rounded-lg shadow-inner">
+              <Calendar size={16} class="text-dorado-campeon" />
               <input
                 type="date"
                 value={fecha}
@@ -311,7 +313,7 @@ const AsistenciaAdmin = () => {
             <button
               onClick={handleMarkAllPresent}
               disabled={students.length === 0 || loading}
-              class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-emerald-950/30 flex items-center gap-2"
+              class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-emerald-900/20 flex items-center gap-2"
             >
               <CheckCircle size={16} />
               MARCAR TODOS PRESENTES
@@ -326,7 +328,7 @@ const AsistenciaAdmin = () => {
           onClick={() => { setActiveTab('tomar'); clearFilters(); }}
           class={`px-6 py-3 text-xs font-extrabold uppercase tracking-widest transition-all border-b-2 flex items-center gap-2 ${
             activeTab === 'tomar'
-              ? 'border-dojang-gold text-dojang-gold'
+              ? 'border-dorado-campeon text-dorado-campeon'
               : 'border-transparent text-gray-400 hover:text-white'
           }`}
         >
@@ -337,7 +339,7 @@ const AsistenciaAdmin = () => {
           onClick={() => { setActiveTab('historial'); clearFilters(); }}
           class={`px-6 py-3 text-xs font-extrabold uppercase tracking-widest transition-all border-b-2 flex items-center gap-2 ${
             activeTab === 'historial'
-              ? 'border-dojang-gold text-dojang-gold'
+              ? 'border-dorado-campeon text-dorado-campeon'
               : 'border-transparent text-gray-400 hover:text-white'
           }`}
         >
@@ -348,7 +350,7 @@ const AsistenciaAdmin = () => {
           onClick={() => { setActiveTab('reporte'); clearFilters(); }}
           class={`px-6 py-3 text-xs font-extrabold uppercase tracking-widest transition-all border-b-2 flex items-center gap-2 ${
             activeTab === 'reporte'
-              ? 'border-dojang-gold text-dojang-gold'
+              ? 'border-dorado-campeon text-dorado-campeon'
               : 'border-transparent text-gray-400 hover:text-white'
           }`}
         >
@@ -359,9 +361,9 @@ const AsistenciaAdmin = () => {
 
       {/* FILTROS (Se muestran para Registrar Día y Reporte por Alumno) */}
       {activeTab !== 'historial' && (
-        <div class="bg-dojang-navyDark/90 border border-white/10 p-4 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-4 shadow-xl">
+        <div class="bg-carbon/90 border border-white/10 p-4 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-4 shadow-xl">
           {/* Buscar */}
-          <div class="relative flex items-center bg-dojang-carbon rounded-lg border border-white/10 px-3 py-2">
+          <div class="relative flex items-center bg-carbon rounded-lg border border-white/10 px-3 py-2">
             <Search size={16} class="text-gray-400 mr-2" />
             <input
               type="text"
@@ -372,35 +374,53 @@ const AsistenciaAdmin = () => {
             />
           </div>
 
-          {/* Club Dropdown */}
-          <div class="flex items-center bg-dojang-carbon rounded-lg border border-white/10 px-3 py-2">
-            <Filter size={16} class="text-gray-400 mr-2" />
-            <select
-              value={selectedClub}
-              onChange={(e) => setSelectedClub(e.target.value)}
-              class="bg-transparent text-xs text-white focus:outline-none w-full cursor-pointer"
+          {/* BOTÓN DE FILTROS COLAPSABLES */}
+          <div class="relative md:col-span-2">
+            <button
+              onClick={() => setFiltersOpen(!filtersOpen)}
+              class="flex items-center gap-2 bg-carbon rounded-lg border border-white/10 px-4 py-2 text-xs text-white hover:bg-white/5 transition-colors w-full md:w-auto"
             >
-              <option value="" class="bg-dojang-carbon text-white">Todos los Clubes / Sedes</option>
-              {clubs.map((club) => (
-                <option key={club.id} value={club.id} class="bg-dojang-carbon text-white">
-                  {club.nombre}
-                </option>
-              ))}
-            </select>
-          </div>
+              <Filter size={16} class="text-dorado-campeon" />
+              <span class="font-bold uppercase tracking-wider">Filtros</span>
+              {(selectedClub || selectedModalidad) && (
+                <span class="ml-2 w-2 h-2 rounded-full bg-dorado-campeon"></span>
+              )}
+            </button>
 
-          {/* Disciplina Dropdown */}
-          <div class="flex items-center bg-dojang-carbon rounded-lg border border-white/10 px-3 py-2">
-            <Award size={16} class="text-gray-400 mr-2" />
-            <select
-              value={selectedModalidad}
-              onChange={(e) => setSelectedModalidad(e.target.value)}
-              class="bg-transparent text-xs text-white focus:outline-none w-full cursor-pointer"
-            >
-              <option value="" class="bg-dojang-carbon text-white">Todas las Disciplinas</option>
-              <option value="TAEKWONDO" class="bg-dojang-carbon text-white">Taekwondo</option>
-              <option value="KICKBOXING" class="bg-dojang-carbon text-white">Kickboxing</option>
-            </select>
+            {filtersOpen && (
+              <div class="absolute top-full left-0 mt-2 w-full md:w-80 bg-carbon border border-white/10 rounded-xl shadow-2xl p-4 z-50 space-y-4">
+                {/* Club Dropdown */}
+                <div class="space-y-1">
+                  <label class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Club / Sede</label>
+                  <select
+                    value={selectedClub}
+                    onChange={(e) => setSelectedClub(e.target.value)}
+                    class="bg-[#111114] text-xs text-white border border-white/10 rounded-lg p-2 w-full focus:outline-none focus:border-dorado-campeon"
+                  >
+                    <option value="">Todos los Clubes / Sedes</option>
+                    {clubs.map((club) => (
+                      <option key={club.id} value={club.id}>
+                        {club.nombre}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Disciplina Dropdown */}
+                <div class="space-y-1">
+                  <label class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Disciplina</label>
+                  <select
+                    value={selectedModalidad}
+                    onChange={(e) => setSelectedModalidad(e.target.value)}
+                    class="bg-[#111114] text-xs text-white border border-white/10 rounded-lg p-2 w-full focus:outline-none focus:border-dorado-campeon"
+                  >
+                    <option value="">Todas las Disciplinas</option>
+                    <option value="TAEKWONDO">Taekwondo</option>
+                    <option value="KICKBOXING">Kickboxing</option>
+                  </select>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -436,7 +456,7 @@ const AsistenciaAdmin = () => {
               <span class="text-[9px] text-blue-500/80">Faltas notificadas</span>
             </div>
 
-            <div class="bg-dojang-carbon/50 border border-white/5 p-4 rounded-xl text-center space-y-1 col-span-2 md:col-span-1">
+            <div class="bg-carbon/50 border border-white/5 p-4 rounded-xl text-center space-y-1 col-span-2 md:col-span-1">
               <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block">Sin Registrar</span>
               <div class="text-2xl font-bold text-white font-heading">{stats.sinRegistrar}</div>
               <span class="text-[9px] text-gray-500">Pendiente tomar lista</span>
@@ -444,16 +464,16 @@ const AsistenciaAdmin = () => {
           </div>
 
           {/* Tabla de Estudiantes */}
-          <div class="bg-dojang-navyDark/70 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+          <div class="bg-carbon/70 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
             {loading ? (
               <div class="flex flex-col items-center justify-center py-20 gap-4">
-                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-dojang-gold"></div>
+                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-dorado-campeon"></div>
                 <p class="text-xs text-gray-400">Cargando fichas de alumnos...</p>
               </div>
             ) : students.length === 0 ? (
               <div class="text-center py-16 px-4 space-y-3">
                 <Users size={48} class="text-gray-600 mx-auto" />
-                <h3 class="text-base font-bold text-white uppercase tracking-wider">No se encontraron estudiantes</h3>
+                <h3 class="text-base font-body font-semibold text-white uppercase">No se encontraron estudiantes</h3>
                 <p class="text-xs text-gray-400 max-w-md mx-auto">
                   Asegúrate de tener estudiantes registrados en las fichas de alumnos.
                 </p>
@@ -462,7 +482,7 @@ const AsistenciaAdmin = () => {
               <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                   <thead>
-                    <tr class="bg-dojang-navy border-b border-white/10 text-[10px] font-bold text-gray-300 uppercase tracking-widest">
+                    <tr class="bg-carbon border-b border-white/10 text-[10px] font-bold text-gray-300 uppercase tracking-widest">
                       <th class="py-4 px-6">Estudiante</th>
                       <th class="py-4 px-6 hidden sm:table-cell">Cédula</th>
                       <th class="py-4 px-6 hidden md:table-cell">Club / Sede</th>
@@ -486,7 +506,7 @@ const AsistenciaAdmin = () => {
                                   class="w-8 h-8 rounded-full object-cover border border-white/20"
                                 />
                               ) : (
-                                <div class="w-8 h-8 rounded-full bg-dojang-navy border border-dojang-gold/30 flex items-center justify-center text-[10px] font-bold text-dojang-gold uppercase">
+                                <div class="w-8 h-8 rounded-full bg-carbon border border-dorado-campeon/30 flex items-center justify-center text-[10px] font-bold text-dorado-campeon uppercase">
                                   {student.nombres[0]}
                                   {student.apellidos[0]}
                                 </div>
@@ -528,7 +548,7 @@ const AsistenciaAdmin = () => {
                                 class={`px-2.5 py-1.5 rounded-lg border text-[10px] font-bold tracking-widest transition-all flex items-center gap-1 ${
                                   currentEstado === 'PRESENTE'
                                     ? 'bg-emerald-600 border-emerald-500 text-white shadow-lg shadow-emerald-950/40'
-                                    : 'bg-dojang-carbon/40 border-white/10 text-gray-400 hover:border-emerald-500/50 hover:text-emerald-400'
+                                    : 'bg-carbon/40 border-white/10 text-gray-400 hover:border-emerald-500/50 hover:text-emerald-400'
                                 }`}
                               >
                                 <CheckCircle size={12} />
@@ -543,7 +563,7 @@ const AsistenciaAdmin = () => {
                                 class={`px-2.5 py-1.5 rounded-lg border text-[10px] font-bold tracking-widest transition-all flex items-center gap-1 ${
                                   currentEstado === 'AUSENTE'
                                     ? 'bg-rose-600 border-rose-500 text-white shadow-lg shadow-rose-950/40'
-                                    : 'bg-dojang-carbon/40 border-white/10 text-gray-400 hover:border-rose-500/50 hover:text-rose-400'
+                                    : 'bg-carbon/40 border-white/10 text-gray-400 hover:border-rose-500/50 hover:text-rose-400'
                                 }`}
                               >
                                 <XCircle size={12} />
@@ -558,7 +578,7 @@ const AsistenciaAdmin = () => {
                                 class={`px-2.5 py-1.5 rounded-lg border text-[10px] font-bold tracking-widest transition-all flex items-center gap-1 ${
                                   currentEstado === 'TARDE'
                                     ? 'bg-amber-600 border-amber-500 text-white shadow-lg shadow-amber-950/40'
-                                    : 'bg-dojang-carbon/40 border-white/10 text-gray-400 hover:border-amber-500/50 hover:text-amber-400'
+                                    : 'bg-carbon/40 border-white/10 text-gray-400 hover:border-amber-500/50 hover:text-amber-400'
                                 }`}
                               >
                                 <Clock size={12} />
@@ -573,7 +593,7 @@ const AsistenciaAdmin = () => {
                                 class={`px-2.5 py-1.5 rounded-lg border text-[10px] font-bold tracking-widest transition-all flex items-center gap-1 ${
                                   currentEstado === 'JUSTIFICADO'
                                     ? 'bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-950/40'
-                                    : 'bg-dojang-carbon/40 border-white/10 text-gray-400 hover:border-blue-500/50 hover:text-blue-400'
+                                    : 'bg-carbon/40 border-white/10 text-gray-400 hover:border-blue-500/50 hover:text-blue-400'
                                 }`}
                               >
                                 <HelpCircle size={12} />
@@ -586,7 +606,7 @@ const AsistenciaAdmin = () => {
                                 <button
                                   onClick={() => handleClearAttendance(student.id)}
                                   disabled={isUpdating}
-                                  class="p-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-400 hover:bg-dojang-red hover:text-white hover:border-dojang-red transition-all"
+                                  class="p-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-400 hover:bg-rojo-impacto hover:text-white hover:border-rojo-impacto transition-all"
                                 >
                                   <RotateCcw size={12} />
                                 </button>
@@ -607,16 +627,16 @@ const AsistenciaAdmin = () => {
       {/* --- TAB 2: HISTORIAL DE FECHAS --- */}
       {activeTab === 'historial' && (
         <div class="space-y-6">
-          <div class="bg-dojang-navyDark/70 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+          <div class="bg-carbon/70 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
             {loadingHistory ? (
               <div class="flex flex-col items-center justify-center py-20 gap-4">
-                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-dojang-gold"></div>
+                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-dorado-campeon"></div>
                 <p class="text-xs text-gray-400">Cargando fechas de asistencia históricas...</p>
               </div>
             ) : historyList.length === 0 ? (
               <div class="text-center py-16 px-4 space-y-3">
                 <Calendar size={48} class="text-gray-600 mx-auto" />
-                <h3 class="text-base font-bold text-white uppercase tracking-wider">No hay registros guardados</h3>
+                <h3 class="text-base font-body font-semibold text-white uppercase">No se encontraron registros de asistencia</h3>
                 <p class="text-xs text-gray-400 max-w-md mx-auto">
                   Registra la asistencia diaria para ver el historial consolidado de fechas aquí.
                 </p>
@@ -625,7 +645,7 @@ const AsistenciaAdmin = () => {
               <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                   <thead>
-                    <tr class="bg-dojang-navy border-b border-white/10 text-[10px] font-bold text-gray-300 uppercase tracking-widest">
+                    <tr class="bg-carbon border-b border-white/10 text-[10px] font-bold text-gray-300 uppercase tracking-widest">
                       <th class="py-4 px-6">Fecha</th>
                       <th class="py-4 px-6 text-center">Presentes</th>
                       <th class="py-4 px-6 text-center">Ausentes</th>
@@ -641,7 +661,7 @@ const AsistenciaAdmin = () => {
                         {/* Fecha */}
                         <td class="py-4 px-6 text-left font-bold text-white">
                           <span class="inline-flex items-center gap-2">
-                            <Calendar size={14} class="text-dojang-gold" />
+                            <Calendar size={14} class="text-dorado-campeon" />
                             {formatDateString(h.fecha)}
                           </span>
                         </td>
@@ -677,7 +697,7 @@ const AsistenciaAdmin = () => {
                         <td class="py-4 px-6">
                           <button
                             onClick={() => loadDateFromHistory(h.fecha)}
-                            class="px-3 py-1 bg-dojang-gold hover:bg-dojang-goldMuted text-[#111114] text-[10px] font-extrabold rounded uppercase tracking-widest transition-colors"
+                            class="px-3 py-1 bg-dorado-campeon hover:bg-dorado-campeon/70 text-[#111114] text-[10px] font-extrabold rounded uppercase tracking-widest transition-colors"
                           >
                             Ver / Editar
                           </button>
@@ -695,16 +715,16 @@ const AsistenciaAdmin = () => {
       {/* --- TAB 3: REPORTE POR ALUMNO --- */}
       {activeTab === 'reporte' && (
         <div class="space-y-6">
-          <div class="bg-dojang-navyDark/70 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+          <div class="bg-carbon/70 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
             {loadingReport ? (
               <div class="flex flex-col items-center justify-center py-20 gap-4">
-                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-dojang-gold"></div>
+                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-dorado-campeon"></div>
                 <p class="text-xs text-gray-400">Calculando estadísticas de asistencia de alumnos...</p>
               </div>
             ) : reportList.length === 0 ? (
               <div class="text-center py-16 px-4 space-y-3">
                 <Users size={48} class="text-gray-600 mx-auto" />
-                <h3 class="text-base font-bold text-white uppercase tracking-wider">No hay alumnos para reportar</h3>
+                <h3 class="text-base font-body font-semibold text-white uppercase">No hay alumnos para reportar</h3>
                 <p class="text-xs text-gray-400 max-w-md mx-auto">
                   Asegúrate de que haya alumnos cargados bajo los filtros seleccionados.
                 </p>
@@ -713,7 +733,7 @@ const AsistenciaAdmin = () => {
               <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse font-sans">
                   <thead>
-                    <tr class="bg-dojang-navy border-b border-white/10 text-[10px] font-bold text-gray-300 uppercase tracking-widest">
+                    <tr class="bg-carbon border-b border-white/10 text-[10px] font-bold text-gray-300 uppercase tracking-widest">
                       <th class="py-4 px-6">Estudiante</th>
                       <th class="py-4 px-6 hidden sm:table-cell">Sede / Club</th>
                       <th class="py-4 px-6 text-center">Clases Registradas</th>
@@ -747,7 +767,7 @@ const AsistenciaAdmin = () => {
                                   class="w-8 h-8 rounded-full object-cover border border-white/20"
                                 />
                               ) : (
-                                <div class="w-8 h-8 rounded-full bg-dojang-navy border border-dojang-gold/30 flex items-center justify-center text-[10px] font-bold text-dojang-gold uppercase">
+                                <div class="w-8 h-8 rounded-full bg-carbon border border-dorado-campeon/30 flex items-center justify-center text-[10px] font-bold text-dorado-campeon uppercase">
                                   {student.nombreCompleto[0]}
                                 </div>
                               )}

@@ -105,16 +105,16 @@ const AlumnosDestacadosAdmin = () => {
 
         <button
           onClick={() => handleOpenModal()}
-          class="px-5 py-2.5 bg-dojang-red hover:bg-dojang-crimson text-white text-xs font-bold rounded-xl transition-colors shadow-lg shadow-dojang-red/30 inline-flex items-center gap-2"
+          class="px-5 py-2.5 bg-rojo-impacto hover:bg-red-700 text-white text-xs font-bold rounded-xl transition-colors shadow-lg shadow-rojo-impacto/30 inline-flex items-center gap-2"
         >
           <Plus size={16} />
           NUEVO RECONOCIMIENTO
         </button>
       </div>
 
-      <div class="bg-dojang-navyDark/70 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+      <div class="bg-carbon/70 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
         <table class="w-full text-left text-xs border-collapse">
-          <thead class="bg-dojang-dark/80 text-gray-300 font-heading uppercase text-[11px]">
+          <thead class="bg-carbon/80 text-gray-300 font-heading uppercase text-[11px]">
             <tr>
               <th class="p-4">Estudiante</th>
               <th class="p-4">Disciplina / Categoría</th>
@@ -137,7 +137,7 @@ const AlumnosDestacadosAdmin = () => {
                           class="w-8 h-8 rounded-full object-cover border border-white/20 flex-shrink-0"
                         />
                       ) : (
-                        <div class="w-8 h-8 rounded-full bg-dojang-navy border border-dojang-gold/30 flex items-center justify-center text-[10px] font-bold text-dojang-gold uppercase flex-shrink-0">
+                        <div class="w-8 h-8 rounded-full bg-carbon border border-dorado-campeon/30 flex items-center justify-center text-[10px] font-bold text-dorado-campeon uppercase flex-shrink-0">
                           {item.student?.nombres?.[0] || ''}
                           {item.student?.apellidos?.[0] || ''}
                         </div>
@@ -147,7 +147,7 @@ const AlumnosDestacadosAdmin = () => {
                       </span>
                     </div>
                   </td>
-                  <td class="p-4 font-semibold text-dojang-gold">{item.disciplina} ({item.categoria})</td>
+                  <td class="p-4 font-semibold text-dorado-campeon">{item.disciplina} ({item.categoria})</td>
                   <td class="p-4 italic">"{item.logros}"</td>
                   <td class="p-4 text-center space-x-2">
                     <button onClick={() => handleOpenModal(item)} class="p-2 bg-amber-500/20 text-amber-400 rounded-lg"><Edit size={14} /></button>
@@ -168,7 +168,7 @@ const AlumnosDestacadosAdmin = () => {
               value={form.studentId}
               onChange={(e) => setForm({ ...form, studentId: e.target.value })}
               required
-              class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+              class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
             >
               <option value="">-- Selecciona un estudiante --</option>
               {students.map((s) => (
@@ -183,7 +183,7 @@ const AlumnosDestacadosAdmin = () => {
               <select
                 value={form.disciplina}
                 onChange={(e) => setForm({ ...form, disciplina: e.target.value })}
-                class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+                class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
               >
                 <option value="TAEKWONDO">Taekwondo</option>
                 <option value="KICKBOXING">Kickboxing</option>
@@ -194,7 +194,7 @@ const AlumnosDestacadosAdmin = () => {
               <select
                 value={form.categoria}
                 onChange={(e) => setForm({ ...form, categoria: e.target.value })}
-                class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+                class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
               >
                 <option value="INFANTIL">Infantil</option>
                 <option value="JUVENIL">Juvenil</option>
@@ -211,11 +211,11 @@ const AlumnosDestacadosAdmin = () => {
               value={form.logros}
               onChange={(e) => setForm({ ...form, logros: e.target.value })}
               placeholder="Ej. Medalla de Oro Torneo Abierto Nacional 2025"
-              class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+              class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
             ></textarea>
           </div>
 
-          <button type="submit" class="w-full py-3 bg-dojang-red text-white font-bold text-xs uppercase rounded-xl">
+          <button type="submit" class="w-full py-3 bg-rojo-impacto text-white font-bold text-xs uppercase rounded-xl">
             Guardar Reconocimiento
           </button>
         </form>

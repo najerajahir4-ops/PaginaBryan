@@ -103,7 +103,7 @@ const ContenidoAdmin = () => {
 
         <button
           onClick={() => handleOpenModal()}
-          class="px-5 py-2.5 bg-dojang-red hover:bg-dojang-crimson text-white text-xs font-bold rounded-xl transition-colors shadow-lg shadow-dojang-red/30 inline-flex items-center gap-2"
+          class="px-5 py-2.5 bg-rojo-impacto hover:bg-red-700 text-white text-xs font-bold rounded-xl transition-colors shadow-lg shadow-rojo-impacto/30 inline-flex items-center gap-2"
         >
           <Plus size={16} />
           NUEVA PUBLICACIÓN
@@ -113,15 +113,15 @@ const ContenidoAdmin = () => {
       {/* Grid of Articles */}
       {loading ? (
         <div class="flex justify-center py-12">
-          <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-dojang-red"></div>
+          <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-rojo-impacto"></div>
         </div>
       ) : (
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {contents.map((item) => (
-            <div key={item.id} class="bg-dojang-navy/80 border border-white/10 rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between p-5 space-y-4">
+            <div key={item.id} class="bg-carbon/80 border border-white/10 rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between p-5 space-y-4">
               <div class="space-y-2">
                 <div class="flex items-center justify-between text-[10px]">
-                  <span class="px-2.5 py-1 rounded-full font-extrabold uppercase bg-dojang-red text-white">
+                  <span class="px-2.5 py-1 rounded-full font-extrabold uppercase bg-rojo-impacto text-white">
                     {item.categoria}
                   </span>
                   <span class="text-gray-400">{item.fechaPublicacion}</span>
@@ -170,7 +170,7 @@ const ContenidoAdmin = () => {
               required
               value={form.titulo}
               onChange={(e) => setForm({ ...form, titulo: e.target.value })}
-              class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+              class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
             />
           </div>
 
@@ -180,7 +180,7 @@ const ContenidoAdmin = () => {
               <select
                 value={form.categoria}
                 onChange={(e) => setForm({ ...form, categoria: e.target.value })}
-                class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+                class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
               >
                 <option value="TECNICA">Técnica</option>
                 <option value="REGLAMENTO">Reglamento</option>
@@ -196,7 +196,7 @@ const ContenidoAdmin = () => {
                 required
                 value={form.fechaPublicacion}
                 onChange={(e) => setForm({ ...form, fechaPublicacion: e.target.value })}
-                class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+                class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
               />
             </div>
           </div>
@@ -208,7 +208,7 @@ const ContenidoAdmin = () => {
               required
               value={form.resumen}
               onChange={(e) => setForm({ ...form, resumen: e.target.value })}
-              class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+              class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
             />
           </div>
 
@@ -219,7 +219,7 @@ const ContenidoAdmin = () => {
               required
               value={form.cuerpo}
               onChange={(e) => setForm({ ...form, cuerpo: e.target.value })}
-              class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+              class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
             ></textarea>
           </div>
 
@@ -231,7 +231,7 @@ const ContenidoAdmin = () => {
                 value={form.imagenUrl}
                 onChange={(e) => setForm({ ...form, imagenUrl: e.target.value })}
                 placeholder="https://..."
-                class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+                class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
               />
             </div>
             <div>
@@ -241,14 +241,14 @@ const ContenidoAdmin = () => {
                 value={form.videoUrl}
                 onChange={(e) => setForm({ ...form, videoUrl: e.target.value })}
                 placeholder="https://www.youtube.com/embed/..."
-                class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+                class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
               />
             </div>
           </div>
 
           <button
             type="submit"
-            class="w-full py-3 bg-dojang-red text-white font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-dojang-crimson"
+            class="w-full py-3 bg-rojo-impacto text-white font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-red-700"
           >
             Guardar Publicación
           </button>

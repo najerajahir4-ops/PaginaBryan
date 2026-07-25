@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -43,12 +43,12 @@ const AdminNavbar = () => {
 
   const getLinkClass = (path) => {
     const isActive = location.pathname.startsWith(path);
-    return `transition-colors py-1 border-b-2 ${isActive ? 'text-dojang-gold border-dojang-gold' : 'text-gray-300 border-transparent hover:text-dojang-gold hover:border-dojang-gold/50'}`;
+    return `transition-colors py-1 border-b-2 ${isActive ? 'text-dorado-campeon border-dorado-campeon' : 'text-gray-300 border-transparent hover:text-dorado-campeon hover:border-dorado-campeon/50'}`;
   };
 
   const getMobileLinkClass = (path) => {
     const isActive = location.pathname.startsWith(path);
-    return `block py-1 border-l-2 pl-2 ${isActive ? 'text-dojang-gold border-dojang-gold font-extrabold bg-white/5' : 'text-gray-300 border-transparent hover:text-dojang-gold hover:border-dojang-gold/50'}`;
+    return `block py-1 border-l-2 pl-2 ${isActive ? 'text-dorado-campeon border-dorado-campeon font-extrabold bg-white/5' : 'text-gray-300 border-transparent hover:text-dorado-campeon hover:border-dorado-campeon/50'}`;
   };
 
   const handleLogout = async () => {
@@ -57,11 +57,11 @@ const AdminNavbar = () => {
   };
 
   return (
-    <header class="bg-[#060D33] border-b-2 border-dojang-gold sticky top-0 z-40 shadow-xl">
+    <header class="bg-[#060D33] border-b-2 border-dorado-campeon sticky top-0 z-40 shadow-xl">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div class="flex items-center gap-6">
-          <Link to="/admin/estudiantes" class="font-heading font-extrabold text-dojang-gold text-lg flex items-center gap-2 tracking-widest uppercase">
-            <span class="w-3 h-3 rounded-sm bg-dojang-red"></span>
+          <Link to="/admin/estudiantes" class="font-heading font-extrabold text-dorado-campeon text-lg flex items-center gap-2 tracking-widest uppercase">
+            <span class="w-3 h-3 rounded-sm bg-rojo-impacto"></span>
             PANEL ADMIN
           </Link>
           <nav class="hidden md:flex items-center gap-4 text-xs font-bold tracking-widest uppercase">
@@ -73,12 +73,15 @@ const AdminNavbar = () => {
           </nav>
         </div>
 
-        <div class="flex items-center gap-2 sm:gap-4 text-xs">
-          <Link to="/" class="text-gray-400 hover:text-dojang-gold underline font-bold tracking-wider uppercase hidden sm:block">Ver Web Pública</Link>
-          <span class="text-white font-bold bg-[#111114] px-3 py-1 rounded-sm border border-white/10 uppercase tracking-widest text-[10px] sm:text-xs">{user?.usuario}</span>
+        <div class="flex items-center gap-3 sm:gap-5 text-xs">
+          <Link to="/" class="text-gray-400 hover:text-dorado-campeon underline font-bold tracking-wider uppercase hidden sm:block">Ver Web Pública</Link>
+          <div class="flex items-center gap-1.5 text-gray-300 px-2 uppercase tracking-widest text-[10px] sm:text-xs">
+            <User size={14} class="opacity-70" />
+            <span>{user?.usuario}</span>
+          </div>
           <button
             onClick={handleLogout}
-            class="px-3 py-1.5 bg-dojang-red hover:bg-dojang-redHover text-white rounded-sm font-bold tracking-widest uppercase shadow-lg transition-colors border border-dojang-red"
+            class="px-4 py-1.5 bg-rojo-impacto hover:bg-red-700 text-tatami-blanco font-display text-sm tracking-widest uppercase clip-button shadow-lg transition-colors"
           >
             Salir
           </button>
@@ -86,7 +89,7 @@ const AdminNavbar = () => {
           {/* Mobile Admin Menu Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            class="md:hidden text-white hover:text-dojang-gold p-2 ml-1"
+            class="md:hidden text-white hover:text-dorado-campeon p-2 ml-1"
             aria-label="Toggle navigation menu"
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -96,7 +99,7 @@ const AdminNavbar = () => {
 
       {/* Mobile admin nav dropdown */}
       {mobileOpen && (
-        <div class="md:hidden bg-[#060D33] border-b border-dojang-gold px-4 py-3 space-y-3 font-heading text-xs font-bold tracking-widest uppercase shadow-xl animate-fade-in">
+        <div class="md:hidden bg-[#060D33] border-b border-dorado-campeon px-4 py-3 space-y-3 font-heading text-xs font-bold tracking-widest uppercase shadow-xl animate-fade-in">
             {navLinks.map((link) => (
               <Link 
                 key={link.path} 
@@ -108,7 +111,7 @@ const AdminNavbar = () => {
               </Link>
             ))}
           <div class="border-t border-white/10 pt-2">
-            <Link to="/" onClick={() => setMobileOpen(false)} class="block text-gray-400 hover:text-dojang-gold underline py-1">Ver Web Pública</Link>
+            <Link to="/" onClick={() => setMobileOpen(false)} class="block text-gray-400 hover:text-dorado-campeon underline py-1">Ver Web Pública</Link>
           </div>
         </div>
       )}

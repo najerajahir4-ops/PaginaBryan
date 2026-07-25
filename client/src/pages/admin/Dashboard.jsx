@@ -66,13 +66,13 @@ const Dashboard = () => {
       {/* Metrics Cards */}
       {loading ? (
         <div class="flex justify-center py-8">
-          <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-dojang-red"></div>
+          <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-rojo-impacto"></div>
         </div>
       ) : (
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           
           {/* Total Estudiantes Activos */}
-          <div class="bg-dojang-navy/80 border border-white/10 p-6 rounded-2xl space-y-3 shadow-xl">
+          <div class="bg-carbon/80 border border-white/10 p-6 rounded-2xl space-y-3 shadow-xl">
             <div class="flex items-center justify-between text-blue-400">
               <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Estudiantes Activos</span>
               <div class="p-2 rounded-xl bg-blue-500/10">
@@ -86,7 +86,7 @@ const Dashboard = () => {
           </div>
 
           {/* Pagos al Día */}
-          <div class="bg-dojang-navy/80 border border-white/10 p-6 rounded-2xl space-y-3 shadow-xl">
+          <div class="bg-carbon/80 border border-white/10 p-6 rounded-2xl space-y-3 shadow-xl">
             <div class="flex items-center justify-between text-emerald-400">
               <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Pagos al Día</span>
               <div class="p-2 rounded-xl bg-emerald-500/10">
@@ -100,7 +100,7 @@ const Dashboard = () => {
           </div>
 
           {/* Por Vencer (7 días o menos) */}
-          <div class="bg-dojang-navy/80 border border-white/10 p-6 rounded-2xl space-y-3 shadow-xl">
+          <div class="bg-carbon/80 border border-white/10 p-6 rounded-2xl space-y-3 shadow-xl">
             <div class="flex items-center justify-between text-amber-400">
               <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Por Vencer (7 días)</span>
               <div class="p-2 rounded-xl bg-amber-500/10">
@@ -114,7 +114,7 @@ const Dashboard = () => {
           </div>
 
           {/* Pagos Vencidos */}
-          <div class="bg-dojang-navy/80 border border-white/10 p-6 rounded-2xl space-y-3 shadow-xl">
+          <div class="bg-carbon/80 border border-white/10 p-6 rounded-2xl space-y-3 shadow-xl">
             <div class="flex items-center justify-between text-rose-400">
               <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Pagos Vencidos</span>
               <div class="p-2 rounded-xl bg-rose-500/10">

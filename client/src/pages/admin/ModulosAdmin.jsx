@@ -133,13 +133,13 @@ const ModulosAdmin = () => {
         <div class="flex items-center justify-between border-b border-white/10 pb-4">
           <div>
             <h2 class="text-2xl font-extrabold text-white font-heading flex items-center gap-2">
-              <Users class="text-dojang-red" /> Gestor de Clubes Afiliados
+              <Users class="text-rojo-impacto" /> Gestor de Clubes Afiliados
             </h2>
             <p class="text-xs text-gray-400 mt-1">Registra los Do-Jangs y clubes pertenecientes a la red.</p>
           </div>
           <button
             onClick={() => handleOpenClubModal()}
-            class="px-4 py-2 bg-dojang-red hover:bg-dojang-crimson text-white text-xs font-bold rounded-xl"
+            class="px-4 py-2 bg-rojo-impacto hover:bg-red-700 text-white text-xs font-bold rounded-xl"
           >
             + NUEVO CLUB
           </button>
@@ -147,11 +147,11 @@ const ModulosAdmin = () => {
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {clubs.map((c) => (
-            <div key={c.id} class="bg-dojang-navy/80 border border-white/10 p-6 rounded-2xl space-y-3 relative shadow-xl">
+            <div key={c.id} class="bg-carbon/80 border border-white/10 p-6 rounded-2xl space-y-3 relative shadow-xl">
               <h3 class="text-lg font-bold text-white font-heading">{c.nombre}</h3>
               <p class="text-xs text-gray-300 leading-relaxed">{c.descripcion}</p>
               <div class="pt-3 border-t border-white/10 flex justify-between items-center text-xs">
-                <span class="text-dojang-gold font-bold">{c._count?.students || 0} Alumnos Inscritos</span>
+                <span class="text-dorado-campeon font-bold">{c._count?.students || 0} Alumnos Inscritos</span>
                 <div class="flex gap-2">
                   <button onClick={() => handleOpenClubModal(c)} class="p-1.5 bg-amber-500/20 text-amber-400 rounded-lg"><Edit size={14} /></button>
                   <button onClick={() => handleDeleteClub(c.id)} class="p-1.5 bg-rose-500/20 text-rose-400 rounded-lg"><Trash2 size={14} /></button>
@@ -167,21 +167,21 @@ const ModulosAdmin = () => {
         <div class="flex items-center justify-between border-b border-white/10 pb-4">
           <div>
             <h2 class="text-2xl font-extrabold text-white font-heading flex items-center gap-2">
-              <Layers class="text-dojang-gold" /> Módulos Informativos (Grados, Llaves, Carnets, Diplomas)
+              <Layers class="text-dorado-campeon" /> Módulos Informativos (Grados, Llaves, Carnets, Diplomas)
             </h2>
             <p class="text-xs text-gray-400 mt-1">Configura la información visible en las 9 tarjetas de acceso rápido públicas.</p>
           </div>
           <button
             onClick={() => handleOpenModuleModal()}
-            class="px-4 py-2 bg-dojang-navy border border-dojang-gold text-dojang-gold hover:bg-dojang-gold hover:text-dojang-dark text-xs font-bold rounded-xl transition-colors"
+            class="px-4 py-2 bg-carbon border border-dorado-campeon text-dorado-campeon hover:bg-dorado-campeon hover:text-carbon text-xs font-bold rounded-xl transition-colors"
           >
             + NUEVO ELEMENTO DE MÓDULO
           </button>
         </div>
 
-        <div class="bg-dojang-navy/80 border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
+        <div class="bg-carbon/80 border border-white/10 rounded-3xl overflow-hidden shadow-2xl">
           <table class="w-full text-left text-xs border-collapse">
-            <thead class="bg-dojang-dark/80 text-gray-300 font-heading uppercase text-[11px]">
+            <thead class="bg-carbon/80 text-gray-300 font-heading uppercase text-[11px]">
               <tr>
                 <th class="p-4">Módulo</th>
                 <th class="p-4">Título</th>
@@ -193,7 +193,7 @@ const ModulosAdmin = () => {
               {modules.map((m) => (
                 <tr key={m.id} class="hover:bg-white/5">
                   <td class="p-4">
-                    <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase bg-dojang-red text-white">
+                    <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase bg-rojo-impacto text-white">
                       {m.modulo}
                     </span>
                   </td>
@@ -220,7 +220,7 @@ const ModulosAdmin = () => {
               required
               value={clubForm.nombre}
               onChange={(e) => setClubForm({ ...clubForm, nombre: e.target.value })}
-              class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+              class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
             />
           </div>
           <div>
@@ -229,10 +229,10 @@ const ModulosAdmin = () => {
               rows="3"
               value={clubForm.descripcion}
               onChange={(e) => setClubForm({ ...clubForm, descripcion: e.target.value })}
-              class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+              class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
             ></textarea>
           </div>
-          <button type="submit" class="w-full py-3 bg-dojang-red text-white font-bold text-xs uppercase rounded-xl">
+          <button type="submit" class="w-full py-3 bg-rojo-impacto text-white font-bold text-xs uppercase rounded-xl">
             Guardar Club
           </button>
         </form>
@@ -246,7 +246,7 @@ const ModulosAdmin = () => {
             <select
               value={moduleForm.modulo}
               onChange={(e) => setModuleForm({ ...moduleForm, modulo: e.target.value })}
-              class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+              class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
             >
               <option value="GRADOS">Grados (Kup y Dan)</option>
               <option value="HISTORIAL">Historial de Combates</option>
@@ -263,7 +263,7 @@ const ModulosAdmin = () => {
               required
               value={moduleForm.titulo}
               onChange={(e) => setModuleForm({ ...moduleForm, titulo: e.target.value })}
-              class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+              class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
             />
           </div>
           <div>
@@ -272,10 +272,10 @@ const ModulosAdmin = () => {
               rows="3"
               value={moduleForm.descripcion}
               onChange={(e) => setModuleForm({ ...moduleForm, descripcion: e.target.value })}
-              class="w-full bg-dojang-dark border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+              class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
             ></textarea>
           </div>
-          <button type="submit" class="w-full py-3 bg-dojang-red text-white font-bold text-xs uppercase rounded-xl">
+          <button type="submit" class="w-full py-3 bg-rojo-impacto text-white font-bold text-xs uppercase rounded-xl">
             Guardar Elemento
           </button>
         </form>

@@ -65,7 +65,7 @@ const SortableContentCard = ({ item, isEditMode }) => {
             class="w-full h-full object-cover"
           />
         ) : (
-          <div class="w-full h-full bg-dojang-navyDark/90 border border-white/5 flex flex-col items-center justify-center space-y-2">
+          <div class="w-full h-full bg-carbon/90 border border-white/5 flex flex-col items-center justify-center space-y-2">
             <FileText size={48} class="text-[#C9A227]/40" />
             <span class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Sin imagen de portada</span>
           </div>
