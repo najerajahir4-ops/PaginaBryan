@@ -122,24 +122,27 @@ const Home = () => {
         </div>
 
         {/* Left Column Text (Always on top) */}
-        <div class="relative z-10 w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-16 lg:py-0 pointer-events-auto">
-          <div class="space-y-6 text-left animate-hit max-w-xl mx-auto lg:mx-0 w-full">
-            {/* Badge with increased horizontal padding to prevent clip-button text cutoff */}
-            <div class="inline-block px-5 py-1.5 bg-dorado-campeon text-carbon font-display text-xs sm:text-sm tracking-widest uppercase clip-button">
-              FORMATIVO ESPECIALIZADO
-            </div>
+        <div class="relative z-10 w-full lg:w-1/2 flex flex-col px-4 sm:px-6 lg:px-8 py-8 lg:py-0 pointer-events-auto self-stretch lg:justify-center">
+          <div class="flex flex-col justify-between h-full lg:h-auto text-left animate-hit max-w-xl mx-auto lg:mx-0 w-full">
             
-            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-display text-tatami-blanco leading-none tracking-tight uppercase">
-              ENTRENA. <br/>
-              COMPITE. <br/>
-              <span class="text-rojo-impacto">GANA.</span>
-            </h1>
+            <div class="space-y-6 mt-8 lg:mt-0">
+              {/* Badge with increased horizontal padding to prevent clip-button text cutoff */}
+              <div class="inline-block px-5 py-1.5 bg-dorado-campeon text-carbon font-display text-xs sm:text-sm tracking-widest uppercase clip-button">
+                FORMATIVO ESPECIALIZADO
+              </div>
+              
+              <h1 class="text-5xl sm:text-6xl lg:text-7xl font-display text-tatami-blanco leading-none tracking-tight uppercase">
+                ENTRENA. <br/>
+                COMPITE. <br/>
+                <span class="text-rojo-impacto">GANA.</span>
+              </h1>
 
-            <p class="text-base sm:text-lg text-tatami-blanco/80 font-body border-l-4 border-dorado-campeon pl-4 py-1 max-w-lg">
-              Disciplina, fuerza y humildad. Tu mejor versión empieza en el tatami de Najera's Team Central.
-            </p>
+              <p class="text-base sm:text-lg text-tatami-blanco/80 font-body border-l-4 border-dorado-campeon pl-4 py-1 max-w-lg">
+                Disciplina, fuerza y humildad. Tu mejor versión empieza en el tatami de Najera's Team Central.
+              </p>
+            </div>
 
-            <div class="pt-6 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+            <div class="pt-6 pb-6 lg:pb-0 mt-auto lg:mt-6 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
               <Link
                 to="/contactos?scroll=true"
                 state={{ scrollTarget: 'contact-cards-section' }}
