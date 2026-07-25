@@ -80,10 +80,11 @@
 }
 
 @keyframes loop-fade {
-  0% { opacity: 0; }
-  10% { opacity: 0.9; }
-  90% { opacity: 0.9; }
-  100% { opacity: 0; }
+  0% { opacity: 0; }      /* Reinicio en negro */
+  25% { opacity: 0.9; }   /* Termina de aparecer a los 2s */
+  70% { opacity: 0.9; }   /* Empieza a desaparecer a los 5.6s */
+  85% { opacity: 0; }     /* Se oscurece por completo antes del corte */
+  100% { opacity: 0; }    /* Permanece oculto durante el salto de bucle */
 }
 
 /* SVG Draw Animation */
