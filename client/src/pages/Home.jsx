@@ -99,22 +99,12 @@ const Home = () => {
           {/* Resplandor rojo central (solo PC para no quemar el fondo en móvil) */}
           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[45rem] bg-rojo-impacto/30 blur-[100px] rounded-full hidden lg:block"></div>
           
-          {/* Emblema Central Animado (Video con Loop-Fade) */}
-          <div 
-            class="relative w-[120%] aspect-square max-w-lg lg:max-w-none lg:w-[45rem] lg:h-[45rem] lg:translate-x-12 mix-blend-screen opacity-[0.08] lg:opacity-100 transition-all duration-700"
-            style={{ 
-              WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 70%)', 
-              maskImage: 'radial-gradient(circle, black 50%, transparent 70%)',
-              animation: 'loop-fade 8s infinite linear'
-            }}
-          >
-            <video
-              src="/dragon_loop.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              class="w-full h-full object-cover drop-shadow-[0_0_40px_rgba(200,16,46,0.4)] contrast-125 saturate-150"
+          {/* Emblema Central (Logo Estático) */}
+          <div class="relative w-72 h-72 lg:w-[35rem] lg:h-[35rem] lg:translate-x-12 opacity-[0.15] lg:opacity-100 transition-all duration-700 animate-pulse-slow">
+            <img
+              src="/logo.png"
+              alt="Najera's Team Logo"
+              class="w-full h-full object-contain drop-shadow-[0_0_25px_rgba(201,162,39,0.5)] lg:drop-shadow-[0_0_40px_rgba(200,16,46,0.4)]"
             />
           </div>
 
@@ -190,7 +180,7 @@ const Home = () => {
           </div>
 
           {/* Right Column 3x3 Grid of Square Cards (#F5F2E9 fill, #111114 icon, #8C1D1D title) */}
-          <div class="lg:col-span-7 grid grid-cols-3 gap-4 sm:gap-5">
+          <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
             {quickAccessCards.map((card, idx) => {
               const IconComp = card.icon;
               return (

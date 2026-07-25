@@ -323,10 +323,10 @@ const AsistenciaAdmin = () => {
       </div>
 
       {/* Navegación por Pestañas (Tabs) */}
-      <div class="flex border-b border-white/10 gap-2">
+      <div class="flex overflow-x-auto whitespace-nowrap border-b border-white/10 gap-2 pb-1" style={{ scrollbarWidth: 'none' }}>
         <button
           onClick={() => { setActiveTab('tomar'); clearFilters(); }}
-          class={`px-6 py-3 text-xs font-extrabold uppercase tracking-widest transition-all border-b-2 flex items-center gap-2 ${
+          class={`flex-shrink-0 px-4 sm:px-6 py-3 text-[10px] sm:text-xs font-extrabold uppercase tracking-widest transition-all border-b-2 flex items-center gap-2 ${
             activeTab === 'tomar'
               ? 'border-dorado-campeon text-dorado-campeon'
               : 'border-transparent text-gray-400 hover:text-white'
@@ -337,7 +337,7 @@ const AsistenciaAdmin = () => {
         </button>
         <button
           onClick={() => { setActiveTab('historial'); clearFilters(); }}
-          class={`px-6 py-3 text-xs font-extrabold uppercase tracking-widest transition-all border-b-2 flex items-center gap-2 ${
+          class={`flex-shrink-0 px-4 sm:px-6 py-3 text-[10px] sm:text-xs font-extrabold uppercase tracking-widest transition-all border-b-2 flex items-center gap-2 ${
             activeTab === 'historial'
               ? 'border-dorado-campeon text-dorado-campeon'
               : 'border-transparent text-gray-400 hover:text-white'
@@ -348,7 +348,7 @@ const AsistenciaAdmin = () => {
         </button>
         <button
           onClick={() => { setActiveTab('reporte'); clearFilters(); }}
-          class={`px-6 py-3 text-xs font-extrabold uppercase tracking-widest transition-all border-b-2 flex items-center gap-2 ${
+          class={`flex-shrink-0 px-4 sm:px-6 py-3 text-[10px] sm:text-xs font-extrabold uppercase tracking-widest transition-all border-b-2 flex items-center gap-2 ${
             activeTab === 'reporte'
               ? 'border-dorado-campeon text-dorado-campeon'
               : 'border-transparent text-gray-400 hover:text-white'

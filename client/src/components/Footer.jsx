@@ -64,13 +64,13 @@ const Footer = () => {
           <h4 class="font-display font-bold text-tatami-blanco text-base tracking-widest uppercase border-b border-dorado-campeon pb-1.5 inline-block">
             Navegación
           </h4>
-          <ul class="space-y-2 text-xs font-semibold">
-            <li><Link to="/" class="hover:text-dorado-campeon transition-colors">➔ INICIO</Link></li>
-            <li><Link to="/quienes-somos" class="hover:text-dorado-campeon transition-colors">➔ QUIÉNES SOMOS</Link></li>
-            <li><Link to="/alumnos-destacados" class="hover:text-dorado-campeon transition-colors">➔ ALUMNOS DESTACADOS</Link></li>
-            <li><Link to="/contenido" class="hover:text-dorado-campeon transition-colors">➔ CONTENIDO & BLOG</Link></li>
-            <li><Link to="/contactos" class="hover:text-dorado-campeon transition-colors">➔ CONTACTOS</Link></li>
-            <li><Link to="/admin/login" class="hover:text-dorado-campeon transition-colors">➔ ÁREA TÉCNICA</Link></li>
+          <ul class="space-y-1 text-xs font-semibold">
+            <li><Link to="/" class="block py-1.5 hover:text-dorado-campeon transition-colors">➔ INICIO</Link></li>
+            <li><Link to="/quienes-somos" class="block py-1.5 hover:text-dorado-campeon transition-colors">➔ QUIÉNES SOMOS</Link></li>
+            <li><Link to="/alumnos-destacados" class="block py-1.5 hover:text-dorado-campeon transition-colors">➔ ALUMNOS DESTACADOS</Link></li>
+            <li><Link to="/contenido" class="block py-1.5 hover:text-dorado-campeon transition-colors">➔ CONTENIDO & BLOG</Link></li>
+            <li><Link to="/contactos" class="block py-1.5 hover:text-dorado-campeon transition-colors">➔ CONTACTOS</Link></li>
+            <li><Link to="/admin/login" class="block py-1.5 hover:text-dorado-campeon transition-colors">➔ ÁREA TÉCNICA</Link></li>
           </ul>
         </div>
 

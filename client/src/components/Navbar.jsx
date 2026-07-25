@@ -102,9 +102,9 @@ const Navbar = () => {
         {/* Mobile menu toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          class="lg:hidden text-tatami-blanco hover:text-dorado-campeon p-2"
+          class="lg:hidden text-tatami-blanco hover:text-dorado-campeon p-3 -mr-1"
         >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
@@ -116,7 +116,7 @@ const Navbar = () => {
               key={link.path}
               to={link.path}
               onClick={() => setMobileOpen(false)}
-              class={`block py-1.5 font-display text-xs font-bold tracking-wider uppercase ${
+              class={`block py-3 font-display text-xs font-bold tracking-wider uppercase border-b border-white/5 ${
                 isActive(link.path) ? 'text-dorado-campeon' : 'text-tatami-blanco'
               }`}
             >
