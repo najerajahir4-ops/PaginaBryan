@@ -148,10 +148,10 @@ const Home = () => {
           
           {/* Left Column Welcome Message */}
           <div class="lg:col-span-5 space-y-6">
-            <h2 class="text-4xl sm:text-5xl font-display text-carbon leading-none border-l-8 border-rojo-impacto pl-4 uppercase">
+            <h2 class="text-4xl sm:text-5xl font-display text-tatami-blanco leading-none border-l-8 border-rojo-impacto pl-4 uppercase">
               Bienvenido a Najera's Team Central
             </h2>
-            <p class="text-sm text-carbon/80 font-body leading-relaxed">
+            <p class="text-sm text-tatami-blanco/80 font-body leading-relaxed">
               Ofrecemos una infraestructura integral para la enseñanza marcial y la gestión técnica de competencias. Nuestro portal centraliza el control de estudiantes, cronogramas de combate, validación de grados y diplomados oficiales.
             </p>
             <div>
