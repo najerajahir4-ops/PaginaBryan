@@ -86,7 +86,12 @@ const Home = () => {
       <section class="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-carbon">
         
         {/* Right Column Dragon (Absolute background watermark on mobile, split on desktop) */}
-        <div class="absolute right-0 top-0 w-full lg:w-3/5 h-full z-0 lg:clip-diagonal-right bg-transparent lg:bg-[#0a0b0e] border-none lg:border-l-[12px] lg:border-rojo-impacto overflow-hidden flex items-center justify-center pointer-events-none">
+        <div class="absolute right-0 top-0 w-full lg:w-3/5 h-full z-0 lg:clip-diagonal-right bg-transparent lg:bg-[#0a0b0e] overflow-hidden flex items-center justify-center pointer-events-none">
+          
+          {/* Línea roja diagonal separadora (Perfect match con clip-diagonal-right) */}
+          <svg class="absolute inset-0 w-full h-full z-20 hidden lg:block pointer-events-none" preserveAspectRatio="none" viewBox="0 0 100 100">
+            <line x1="15" y1="0" x2="0" y2="100" stroke="#D62839" stroke-width="6" vector-effect="non-scaling-stroke" />
+          </svg>
           
           {/* Fondo de patrón de puntos */}
           <div class="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#ffffff 2px, transparent 2px)', backgroundSize: '30px 30px' }}></div>
