@@ -80,8 +80,8 @@ const QuienesSomos = () => {
           </div>
 
           <div class="lg:col-span-4 flex justify-center">
-            <div class="w-56 h-56 rounded-full border-4 border-dorado-campeon p-2 bg-carbon shadow-[0_0_30px_rgba(201,162,39,0.3)]">
-              <img src="/logo.png" alt="Najera's Team Logo" class="w-full h-full object-contain rounded-full" />
+            <div class="w-64 h-64 lg:w-72 lg:h-72 drop-shadow-[0_0_30px_rgba(201,162,39,0.3)] animate-pulse-slow hover:scale-105 transition-transform duration-500">
+              <img src="/logo.png" alt="Najera's Team Logo" class="w-full h-full object-contain" />
             </div>
           </div>
         </div>
