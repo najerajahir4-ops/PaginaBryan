@@ -187,10 +187,10 @@ const AlumnosDestacados = () => {
         <div class="text-xs font-heading font-bold text-[#C9A227] tracking-widest uppercase">
           [ CUADRO DE HONOR Y ATLETAS DE ÉLITE ]
         </div>
-        <h1 class="text-4xl sm:text-5xl font-bold text-[#0B1550] font-heading tracking-wider">
+        <h1 class="text-4xl sm:text-5xl font-bold text-white font-heading tracking-wider">
           ALUMNOS DESTACADOS
         </h1>
-        <p class="text-xs sm:text-sm text-[#111114]/80 max-w-2xl">
+        <p class="text-xs sm:text-sm text-gray-300 max-w-2xl">
           Reconocimiento oficial a nuestros competidores con logros destacados en torneos de Taekwondo y Kickboxing.
         </p>
       </div>

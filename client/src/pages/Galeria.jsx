@@ -9,10 +9,10 @@ const Galeria = () => {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
 
       <div class="text-center space-y-3 max-w-3xl mx-auto">
-        <h1 class="text-4xl font-extrabold text-[#0B1550] font-heading">
+        <h1 class="text-4xl font-extrabold text-white font-heading">
           GALERÍA DE MOMENTOS MARCIALES
         </h1>
-        <p class="text-sm text-[#111114]/80">
+        <p class="text-sm text-gray-300">
           Imágenes destacadas de nuestras clases, seminarios internacionales, pesajes y finales de campeonato.
         </p>
       </div>
@@ -23,10 +23,10 @@ const Galeria = () => {
             <ImageOff size={36} class="text-[#C9A227]/60" />
           </div>
           <div class="space-y-1">
-            <p class="font-heading font-bold text-[#0B1550] text-lg tracking-widest uppercase">
+            <p class="font-heading font-bold text-white text-lg tracking-widest uppercase">
               Galería en construcción
             </p>
-            <p class="text-sm text-[#111114]/60 max-w-xs">
+            <p class="text-sm text-gray-400 max-w-xs">
               Pronto encontrarás aquí fotos de nuestros entrenamientos, competencias y graduaciones.
             </p>
           </div>

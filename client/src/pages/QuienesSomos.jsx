@@ -38,14 +38,14 @@ const QuienesSomos = () => {
           <div class="text-sm font-display font-bold text-dorado-campeon tracking-widest uppercase">
             [ FILOSOFÍA INSTITUCIONAL • SEDE CENTRAL ]
           </div>
-          <h1 class="text-4xl sm:text-6xl font-bold text-carbon font-display tracking-wider uppercase">
+          <h1 class="text-4xl sm:text-6xl font-bold text-white font-display tracking-wider uppercase">
             NAJERA'S TEAM CENTRAL
           </h1>
-          <p class="text-sm sm:text-base text-carbon/80 font-body font-bold uppercase tracking-widest">
+          <p class="text-sm sm:text-base text-gray-300 font-body font-bold uppercase tracking-widest">
             "FORMANDO CAMPEONES EN EL TATAMI CON DISCIPLINA, FUERZA Y HUMILDAD"
           </p>
         </div>
-        <div class="lg:col-span-4 text-left lg:text-right text-sm font-body text-carbon/70 font-bold uppercase">
+        <div class="lg:col-span-4 text-left lg:text-right text-sm font-body text-gray-400 font-bold uppercase">
           Fundado por el Mtro. Bryan Nájera <br />
           Taekwondo Olímpico & Kickboxing WAKO
         </div>

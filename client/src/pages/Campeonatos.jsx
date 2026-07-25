@@ -29,10 +29,10 @@ const Campeonatos = () => {
           <Trophy size={14} />
           Circuito Competitivo
         </div>
-        <h1 class="text-4xl font-extrabold text-[#0B1550] font-heading">
+        <h1 class="text-4xl font-extrabold text-white font-heading">
           CAMPEONATOS & LLAVES DE COMPETENCIA
         </h1>
-        <p class="text-sm text-[#111114]/80">
+        <p class="text-sm text-gray-300">
           Consulta las próximas fechas oficiales de competencia, llaves de eliminación (brackets) y resultados en tiempo real.
         </p>
       </div>
