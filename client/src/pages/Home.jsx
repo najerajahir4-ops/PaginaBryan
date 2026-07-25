@@ -152,6 +152,9 @@ const Home = () => {
           </div>
         </div>
 
+        {/* Bottom Fade to blend Right Column seamlessly into the page background */}
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-carbon to-transparent z-20 pointer-events-none"></div>
+
         {/* Scroll Indicator */}
         <div class="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center">
           <button
