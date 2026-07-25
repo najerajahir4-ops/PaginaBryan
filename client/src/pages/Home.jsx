@@ -96,7 +96,7 @@ const Home = () => {
           
           {/* Emblema Central Animado (Video con Loop-Fade) */}
           <div 
-            class="relative w-[120%] aspect-square max-w-lg lg:max-w-none lg:w-[45rem] lg:h-[45rem] lg:translate-x-12 mix-blend-screen opacity-15 lg:opacity-100 transition-all duration-700"
+            class="relative w-[120%] aspect-square max-w-lg lg:max-w-none lg:w-[45rem] lg:h-[45rem] lg:translate-x-12 mix-blend-screen opacity-[0.08] lg:opacity-100 transition-all duration-700"
             style={{ 
               WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 70%)', 
               maskImage: 'radial-gradient(circle, black 50%, transparent 70%)',
@@ -144,9 +144,14 @@ const Home = () => {
               </Link>
               <Link
                 to="/admin/login"
-                class="px-8 py-4 text-center font-display text-base tracking-widest bg-transparent text-dorado-campeon border-2 border-dorado-campeon hover:bg-dorado-campeon hover:text-carbon transition-colors shadow-lg uppercase clip-button impact-flash"
+                class="relative px-8 py-4 text-center font-display text-base tracking-widest text-dorado-campeon hover:text-carbon shadow-lg uppercase clip-button impact-flash group"
               >
-                ACCESO
+                {/* Border simulation layer */}
+                <span class="absolute inset-0 bg-dorado-campeon z-0"></span>
+                {/* Inner background layer */}
+                <span class="absolute inset-[2px] bg-carbon group-hover:bg-dorado-campeon transition-colors z-0 clip-button" style={{ clipPath: 'polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)' }}></span>
+                {/* Text layer */}
+                <span class="relative z-10">ACCESO</span>
               </Link>
             </div>
           </div>
