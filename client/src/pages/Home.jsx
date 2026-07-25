@@ -84,14 +84,25 @@ const Home = () => {
       
       {/* HERO SECTION */}
       <section class="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden bg-carbon">
-        {/* Lado derecho con imagen cortada en diagonal */}
-        <div class="absolute right-0 top-0 w-full lg:w-3/5 h-full z-0 clip-diagonal-right">
-          <img
-            src="https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1920&q=80"
-            alt="Combat Impact"
-            class="w-full h-full object-cover object-center opacity-40 mix-blend-overlay"
-          />
-          <div class="absolute inset-0 bg-rojo-impacto mix-blend-multiply opacity-20"></div>
+        {/* Lado derecho con emblema gigante cortado en diagonal */}
+        <div class="absolute right-0 top-0 w-full lg:w-3/5 h-full z-0 clip-diagonal-right bg-[#0a0b0e] border-l-[12px] border-rojo-impacto overflow-hidden flex items-center justify-center">
+          
+          {/* Fondo de patrón de puntos */}
+          <div class="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#ffffff 2px, transparent 2px)', backgroundSize: '30px 30px' }}></div>
+
+          {/* Resplandor rojo central */}
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[25rem] h-[25rem] lg:w-[45rem] lg:h-[45rem] bg-rojo-impacto/30 blur-[100px] rounded-full"></div>
+          
+          {/* Emblema Central */}
+          <div class="relative w-72 h-72 lg:w-[35rem] lg:h-[35rem] lg:translate-x-20 opacity-30 mix-blend-screen filter grayscale hover:grayscale-0 hover:opacity-90 hover:scale-105 transition-all duration-700 cursor-default">
+            <img
+              src="/logo.png"
+              alt="Najera's Team Emblem"
+              class="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(200,16,46,0.6)]"
+            />
+          </div>
+
+          <div class="absolute inset-0 bg-gradient-to-r from-carbon via-transparent to-black/30 pointer-events-none"></div>
         </div>
 
         <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12">
