@@ -137,7 +137,7 @@ const Home = () => {
                 <span class="text-rojo-impacto">GANA.</span>
               </h1>
 
-              <p class="text-base sm:text-lg text-tatami-blanco/80 font-body border-l-4 border-dorado-campeon pl-4 py-1 max-w-lg">
+              <p class="hidden sm:block text-base sm:text-lg text-tatami-blanco/80 font-body border-l-4 border-dorado-campeon pl-4 py-1 max-w-lg">
                 Disciplina, fuerza y humildad. Tu mejor versión empieza en el tatami de Najera's Team Central.
               </p>
             </div>
