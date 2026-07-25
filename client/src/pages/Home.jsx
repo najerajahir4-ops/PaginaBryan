@@ -96,15 +96,15 @@ const Home = () => {
           {/* Fondo de patrón de puntos */}
           <div class="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#ffffff 2px, transparent 2px)', backgroundSize: '30px 30px' }}></div>
 
-          {/* Resplandor rojo central (solo PC para no quemar el fondo en móvil) */}
-          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[45rem] bg-rojo-impacto/30 blur-[100px] rounded-full hidden lg:block"></div>
+          {/* Resplandor dorado central (solo PC para no quemar el fondo en móvil) */}
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[45rem] bg-dorado-campeon/25 blur-[100px] rounded-full hidden lg:block"></div>
           
           {/* Emblema Central (Logo Estático) */}
           <div class="relative w-72 h-72 lg:w-[35rem] lg:h-[35rem] lg:translate-x-12 opacity-[0.15] lg:opacity-100 transition-all duration-700 animate-pulse-slow">
             <img
               src="/logo.png"
               alt="Najera's Team Logo"
-              class="w-full h-full object-contain drop-shadow-[0_0_25px_rgba(201,162,39,0.5)] lg:drop-shadow-[0_0_40px_rgba(200,16,46,0.4)]"
+              class="w-full h-full object-contain drop-shadow-[0_0_25px_rgba(201,162,39,0.5)] lg:drop-shadow-[0_0_50px_rgba(201,162,39,0.4)]"
             />
           </div>
 
