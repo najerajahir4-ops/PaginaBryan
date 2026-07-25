@@ -92,9 +92,6 @@ const Home = () => {
           <svg class="absolute inset-0 w-full h-full z-20 hidden lg:block pointer-events-none" preserveAspectRatio="none" viewBox="0 0 100 100">
             <line x1="15" y1="0" x2="0" y2="100" stroke="#D62839" stroke-width="6" vector-effect="non-scaling-stroke" />
           </svg>
-          
-          {/* Fondo de patrón de puntos */}
-          <div class="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#ffffff 2px, transparent 2px)', backgroundSize: '30px 30px' }}></div>
 
           {/* Resplandor dorado central (solo PC para no quemar el fondo en móvil) */}
           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[45rem] bg-dorado-campeon/25 blur-[100px] rounded-full hidden lg:block"></div>
