@@ -53,11 +53,7 @@ const QuienesSomos = () => {
 
       {/* Main Asymmetric Panel with Integrated Watermark Dragon */}
       <div class="relative bg-carbon border-l-8 border-dorado-campeon p-8 sm:p-12 overflow-hidden shadow-2xl clip-card">
-        {/* Dragon Watermark */}
-        <div class="absolute right-0 bottom-0 opacity-10 pointer-events-none w-96 h-96 z-0">
-          <img src="/logo.png" alt="Dragon Emblem" class="w-full h-full object-contain filter grayscale" />
-        </div>
-
+        
         <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <div class="lg:col-span-8 space-y-6">
             <h2 class="text-3xl sm:text-4xl font-bold text-tatami-blanco font-display tracking-wider border-b border-dorado-campeon/30 pb-3 uppercase">
@@ -79,8 +75,11 @@ const QuienesSomos = () => {
             </div>
           </div>
 
-          <div class="lg:col-span-4 flex justify-center">
-            <div class="w-64 h-64 lg:w-72 lg:h-72 drop-shadow-[0_0_30px_rgba(201,162,39,0.3)] animate-pulse-slow hover:scale-105 transition-transform duration-500">
+          <div class="lg:col-span-4 flex justify-center relative">
+            {/* Spotlight dorado suave detrás del logo */}
+            <div class="absolute inset-0 bg-dorado-campeon/10 blur-[80px] rounded-full scale-150 pointer-events-none"></div>
+            
+            <div class="relative w-64 h-64 lg:w-72 lg:h-72 drop-shadow-[0_0_40px_rgba(201,162,39,0.5)] animate-pulse-slow hover:scale-110 transition-transform duration-700">
               <img src="/logo.png" alt="Najera's Team Logo" class="w-full h-full object-contain" />
             </div>
           </div>
