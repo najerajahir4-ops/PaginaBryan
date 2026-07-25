@@ -810,9 +810,9 @@ const EstudiantesAdmin = () => {
           onChange={(e) => setSelectedClub(e.target.value)}
           class="bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-2 text-xs text-white focus:outline-none focus:border-dorado-campeon uppercase tracking-wider font-bold"
         >
-          <option value="">TODOS LOS CLUBES</option>
+          <option value="" class="bg-[#1C1C21]">TODOS LOS CLUBES</option>
           {clubs.map((c) => (
-            <option key={c.id} value={c.id}>{c.nombre}</option>
+            <option key={c.id} value={c.id} class="bg-[#1C1C21]">{c.nombre}</option>
           ))}
         </select>
         <select
@@ -820,10 +820,10 @@ const EstudiantesAdmin = () => {
           onChange={(e) => setSelectedEstado(e.target.value)}
           class="bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-2 text-xs text-white focus:outline-none focus:border-dorado-campeon uppercase tracking-wider font-bold"
         >
-          <option value="">TODOS LOS ESTADOS</option>
-          <option value="VERDE">AL DÍA (VERDE)</option>
-          <option value="AMARILLO">PRÓXIMO A VENCER (AMARILLO)</option>
-          <option value="ROJO">VENCIDO (ROJO)</option>
+          <option value="" class="bg-[#1C1C21]">TODOS LOS ESTADOS</option>
+          <option value="VERDE" class="bg-[#1C1C21]">AL DÍA (VERDE)</option>
+          <option value="AMARILLO" class="bg-[#1C1C21]">PRÓXIMO A VENCER (AMARILLO)</option>
+          <option value="ROJO" class="bg-[#1C1C21]">VENCIDO (ROJO)</option>
         </select>
       </div>
 
@@ -1172,9 +1172,9 @@ const EstudiantesAdmin = () => {
             <div>
               <label class="block text-[10px] font-bold text-gray-300 uppercase mb-1">Método de Pago</label>
               <select value={paymentForm.metodoPago} onChange={(e) => setPaymentForm({ ...paymentForm, metodoPago: e.target.value })} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-4 py-2 text-xs text-white uppercase font-bold focus:outline-none focus:border-dorado-campeon">
-                <option value="TRANSFERENCIA">Transferencia</option>
-                <option value="EFECTIVO">Efectivo</option>
-                <option value="TARJETA">Tarjeta</option>
+                <option value="TRANSFERENCIA" class="bg-[#1C1C21]">Transferencia</option>
+                <option value="EFECTIVO" class="bg-[#1C1C21]">Efectivo</option>
+                <option value="TARJETA" class="bg-[#1C1C21]">Tarjeta</option>
               </select>
             </div>
             <div>

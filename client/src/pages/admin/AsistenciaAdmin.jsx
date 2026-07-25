@@ -397,9 +397,9 @@ const AsistenciaAdmin = () => {
                     onChange={(e) => setSelectedClub(e.target.value)}
                     class="bg-[#111114] text-xs text-white border border-white/10 rounded-lg p-2 w-full focus:outline-none focus:border-dorado-campeon"
                   >
-                    <option value="">Todos los Clubes / Sedes</option>
+                    <option value="" class="bg-[#111114]">Todos los Clubes / Sedes</option>
                     {clubs.map((club) => (
-                      <option key={club.id} value={club.id}>
+                      <option key={club.id} value={club.id} class="bg-[#111114]">
                         {club.nombre}
                       </option>
                     ))}
@@ -414,9 +414,9 @@ const AsistenciaAdmin = () => {
                     onChange={(e) => setSelectedModalidad(e.target.value)}
                     class="bg-[#111114] text-xs text-white border border-white/10 rounded-lg p-2 w-full focus:outline-none focus:border-dorado-campeon"
                   >
-                    <option value="">Todas las Disciplinas</option>
-                    <option value="TAEKWONDO">Taekwondo</option>
-                    <option value="KICKBOXING">Kickboxing</option>
+                    <option value="" class="bg-[#111114]">Todas las Disciplinas</option>
+                    <option value="TAEKWONDO" class="bg-[#111114]">Taekwondo</option>
+                    <option value="KICKBOXING" class="bg-[#111114]">Kickboxing</option>
                   </select>
                 </div>
               </div>
