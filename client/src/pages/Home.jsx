@@ -142,14 +142,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* SVG KICK TRAJECTORY DIVIDER */}
-      <div class="w-full h-16 sm:h-24 bg-carbon flex justify-center items-center overflow-hidden">
-        <svg viewBox="0 0 1200 100" class="w-full h-full px-4" preserveAspectRatio="none">
-          <path d="M-100,80 L200,80 L400,20 L800,20 L1000,80 L1300,80" stroke="var(--rojo-impacto)" strokeWidth="4" fill="none" class="draw-path" />
-          <circle cx="600" cy="20" r="6" fill="var(--dorado-campeon)" class="animate-pulse" />
-        </svg>
-      </div>
-
       {/* WELCOME SECTION & 3X3 QUICK ACCESS CARDS */}
       <section id="welcome-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
