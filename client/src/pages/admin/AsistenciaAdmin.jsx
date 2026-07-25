@@ -480,6 +480,7 @@ const AsistenciaAdmin = () => {
               <div class="text-2xl font-bold text-white font-heading">{stats.sinRegistrar}</div>
               <span class="text-[9px] text-gray-500">Pendiente tomar lista</span>
             </div>
+          </div>
           )}
 
           {/* Tabla de Estudiantes */}
