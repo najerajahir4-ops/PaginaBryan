@@ -75,11 +75,11 @@ const QuienesSomos = () => {
             </div>
           </div>
 
-          <div class="lg:col-span-4 flex justify-center relative">
-            {/* Spotlight dorado suave detrás del logo */}
-            <div class="absolute inset-0 bg-dorado-campeon/10 blur-[80px] rounded-full scale-150 pointer-events-none"></div>
+          <div class="lg:col-span-4 flex justify-center relative items-center">
+            {/* Resplandor radial puro para evitar artefactos de recuadro del drop-shadow/blur */}
+            <div class="absolute w-[30rem] h-[30rem] bg-[radial-gradient(circle_at_center,_rgba(201,162,39,0.25)_0%,_transparent_60%)] pointer-events-none"></div>
             
-            <div class="relative w-64 h-64 lg:w-72 lg:h-72 drop-shadow-[0_0_40px_rgba(201,162,39,0.5)] animate-pulse-slow hover:scale-110 transition-transform duration-700">
+            <div class="relative w-64 h-64 lg:w-72 lg:h-72 animate-pulse-slow hover:scale-110 transition-transform duration-700">
               <img src="/logo.png" alt="Najera's Team Logo" class="w-full h-full object-contain" />
             </div>
           </div>
