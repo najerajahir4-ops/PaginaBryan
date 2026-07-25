@@ -64,10 +64,10 @@ const Contactos = () => {
         <div class="text-sm font-display font-bold text-dorado-campeon tracking-widest uppercase">
           [ COMUNICACIÓN DIRECTA • SEDE CENTRAL ]
         </div>
-        <h1 class="text-4xl sm:text-5xl font-bold text-carbon font-display tracking-wider uppercase">
+        <h1 class="text-4xl sm:text-5xl font-bold text-tatami-blanco font-display tracking-wider uppercase">
           CONTACTOS & ADMISIONES
         </h1>
-        <p class="text-sm text-carbon/80 max-w-2xl font-body">
+        <p class="text-sm text-tatami-blanco/80 max-w-2xl font-body">
           Atención directa con la dirección técnica de Najera's Team Central para información de entrenamientos, torneos o seminarios.
         </p>
       </div>
@@ -77,7 +77,7 @@ const Contactos = () => {
         {contacts.map((c, idx) => (
           <div
             key={idx}
-            class={`w-full max-w-md bg-carbon border p-6 clip-card space-y-4 shadow-xl hover:border-dorado-campeon hover:-translate-y-1 transition-all duration-300 transform ${
+            class={`w-full max-w-md bg-black/40 border-2 p-6 space-y-4 shadow-xl hover:border-dorado-campeon hover:-translate-y-1 transition-all duration-300 transform ${
               shouldPulse ? 'animate-glow-pulse-gold border-dorado-campeon' : 'border-dorado-campeon/30'
             }`}
           >
@@ -106,7 +106,7 @@ const Contactos = () => {
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         
         {/* Formulario */}
-        <div class="lg:col-span-6 bg-carbon border border-dorado-campeon/40 p-8 clip-card shadow-2xl space-y-6">
+        <div class="lg:col-span-6 bg-black/40 border-2 border-dorado-campeon/40 p-8 shadow-2xl space-y-6">
           <div class="border-b border-dorado-campeon/30 pb-3">
             <h3 class="text-3xl font-bold text-tatami-blanco font-display tracking-wider uppercase">Envíanos un Mensaje</h3>
             <p class="text-sm text-tatami-blanco/60 font-body mt-1">Atención pedagógica y técnica especializada.</p>
@@ -134,7 +134,7 @@ const Contactos = () => {
                   placeholder="Ej. Juan Pérez"
                   value={formData.nombre}
                   onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
-                  class="w-full bg-black/40 border border-white/10 clip-button px-4 py-2.5 text-xs text-white focus:outline-none focus:border-dorado-campeon transition-colors"
+                  class="w-full bg-black/40 border border-white/10 px-4 py-2.5 text-xs text-white focus:outline-none focus:border-dorado-campeon transition-colors"
                 />
               </div>
 
@@ -146,7 +146,7 @@ const Contactos = () => {
                   placeholder="Inscripción a torneo / Informes de clase"
                   value={formData.asunto}
                   onChange={(e) => setFormData({ ...formData, asunto: e.target.value })}
-                  class="w-full bg-black/40 border border-white/10 clip-button px-4 py-2.5 text-xs text-white focus:outline-none focus:border-dorado-campeon transition-colors"
+                  class="w-full bg-black/40 border border-white/10 px-4 py-2.5 text-xs text-white focus:outline-none focus:border-dorado-campeon transition-colors"
                 />
               </div>
 
@@ -176,7 +176,7 @@ const Contactos = () => {
         {/* Mapa Embebido */}
         <div class="lg:col-span-6 space-y-4">
           <div class="flex items-center justify-between border-l-8 border-dorado-campeon pl-3">
-            <h3 class="text-3xl font-bold text-carbon font-display tracking-wider uppercase">Ubicación</h3>
+            <h3 class="text-3xl font-bold text-tatami-blanco font-display tracking-wider uppercase">Ubicación</h3>
             <a
               href="https://www.google.com/maps/search/?api=1&query=-0.249442,-79.187382"
               target="_blank"
