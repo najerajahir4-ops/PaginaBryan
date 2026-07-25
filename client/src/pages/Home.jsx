@@ -155,7 +155,21 @@ const Home = () => {
           </div>
         </div>
 
+        {/* Scroll Indicator */}
+        <div class="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center">
+          <button
+            onClick={handleScrollDown}
+            class={`transition-opacity duration-500 text-dorado-campeon/80 hover:text-dorado-campeon animate-bounce ${showScrollArrow ? 'opacity-100' : 'opacity-0'}`}
+          >
+            <ChevronDown size={36} />
+          </button>
+        </div>
       </section>
+
+      {/* SEPARADOR DECORATIVO */}
+      <div class="w-full flex justify-center px-4 -my-4 lg:-my-6">
+        <div class="w-full max-w-3xl h-[2px] bg-gradient-to-r from-transparent via-dorado-campeon/40 to-transparent"></div>
+      </div>
 
       {/* WELCOME SECTION & 3X3 QUICK ACCESS CARDS */}
       <section id="welcome-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
