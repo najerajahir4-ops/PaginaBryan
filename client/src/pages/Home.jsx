@@ -96,10 +96,10 @@ const Home = () => {
           
           {/* Emblema Central Animado (Video con Loop-Fade) */}
           <div 
-            class="relative w-[120%] aspect-square max-w-lg lg:max-w-none lg:w-[45rem] lg:h-[45rem] lg:translate-x-12 mix-blend-lighten opacity-[0.08] lg:opacity-100 transition-all duration-700"
+            class="relative w-[120%] aspect-square max-w-lg lg:max-w-none lg:w-[45rem] lg:h-[45rem] lg:translate-x-12 mix-blend-screen opacity-[0.08] lg:opacity-100 transition-all duration-700"
             style={{ 
-              WebkitMaskImage: 'radial-gradient(circle closest-side, black 40%, transparent 80%)', 
-              maskImage: 'radial-gradient(circle closest-side, black 40%, transparent 80%)',
+              WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 70%)', 
+              maskImage: 'radial-gradient(circle, black 50%, transparent 70%)',
               animation: 'loop-fade 8s infinite linear'
             }}
           >
