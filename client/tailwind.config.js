@@ -7,41 +7,36 @@ export default {
   theme: {
     extend: {
       colors: {
-        dojang: {
-          navy: "#0B1550",
-          navyDark: "#060D33",
-          gold: "#C9A227",
-          goldMuted: "#96771A",
-          offwhite: "#F5F2E9",
-          red: "#8C1D1D",
-          redHover: "#6B1414",
-          carbon: "#111114",
-          carbonLight: "#1C1C21",
-        }
+        carbon: "var(--carbon)",
+        'rojo-impacto': "var(--rojo-impacto)",
+        'dorado-campeon': "var(--dorado-campeon)",
+        'azul-cinturon': "var(--azul-cinturon)",
+        'tatami-blanco': "var(--tatami-blanco)",
       },
       fontFamily: {
-        heading: ['Oswald', 'sans-serif'],
-        sans: ['Inter', 'sans-serif'],
-      },
-      borderRadius: {
-        'tatami': '4px',
-        'chamfer': '8px',
-        'card': '6px',
+        display: ['Anton', 'sans-serif'],
+        body: ['Manrope', 'sans-serif'],
       },
       keyframes: {
-        fadeInUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+        hit: {
+          '0%': { transform: 'translateX(-40px)', opacity: '0' },
+          '70%': { transform: 'translateX(10px)' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
         },
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(30px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
         }
       },
       animation: {
-        'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-        'fade-in-up-delay': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards',
-        'fade-in': 'fadeIn 0.8s ease-out forwards',
+        'hit': 'hit 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+        'hit-delay': 'hit 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.15s forwards',
+        'fade-in': 'fadeIn 0.5s ease-out forwards',
+        'slide-up': 'slideUp 0.5s ease-out forwards',
       }
     },
   },

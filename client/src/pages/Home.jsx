@@ -83,114 +83,65 @@ const Home = () => {
     <div class="space-y-16 pb-16">
       
       {/* HERO SECTION */}
-      <section class="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden bg-[#0B1550] border-b-2 border-[#C9A227]">
-        {/* Dragon Watermark Background */}
-        <div class="absolute right-0 top-1/2 -translate-y-1/2 opacity-10 pointer-events-none z-0 w-[600px] h-[600px]">
-          <img src="/logo.png" alt="Dragon Watermark" class="w-full h-full object-contain filter grayscale" />
-        </div>
-
-        {/* Combat Background Photo Overlay */}
-        <div class="absolute inset-0 z-0">
+      <section class="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden bg-carbon">
+        {/* Lado derecho con imagen cortada en diagonal */}
+        <div class="absolute right-0 top-0 w-full lg:w-3/5 h-full z-0 clip-diagonal-right">
           <img
             src="https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1920&q=80"
-            alt="Practicante de Taekwondo y Kickboxing"
-            class="w-full h-full object-cover object-center opacity-20 mix-blend-multiply"
+            alt="Combat Impact"
+            class="w-full h-full object-cover object-center opacity-40 mix-blend-overlay"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#0B1550] via-[#0B1550]/80 to-transparent"></div>
+          <div class="absolute inset-0 bg-rojo-impacto mix-blend-multiply opacity-20"></div>
         </div>
 
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20 sm:pt-12 sm:pb-24 lg:py-12 flex flex-col lg:flex-row items-center justify-between gap-12">
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12">
           
           {/* Left Column Championship Text */}
-          <div class="w-full lg:w-7/12 space-y-6 text-left animate-fade-in-up">
-            <div class="inline-block px-3 py-1 bg-[#111114] border border-[#C9A227] text-[#C9A227] font-heading text-xs font-bold tracking-widest uppercase rounded-sm">
-              [ GRADO CENTRAL • FORMATIVO ESPECIALIZADO ]
+          <div class="w-full lg:w-1/2 space-y-6 text-left animate-hit">
+            <div class="inline-block px-3 py-1 bg-dorado-campeon text-carbon font-display text-sm tracking-widest uppercase clip-button">
+              FORMATIVO ESPECIALIZADO
             </div>
             
-            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#F5F2E9] leading-tight font-heading tracking-wider">
-              NAJERA'S TEAM CENTRAL <br />
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A227] via-yellow-200 to-[#F5F2E9]">
-                FORMANDO CAMPEONES
-              </span>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-display text-tatami-blanco leading-none tracking-tight uppercase">
+              ENTRENA. <br/>
+              COMPITE. <br/>
+              <span class="text-rojo-impacto">GANA.</span>
             </h1>
 
-            <p class="text-sm sm:text-base text-[#C9A227] font-heading font-semibold uppercase tracking-widest border-l-4 border-[#8C1D1D] pl-4 py-1">
-              "FORMANDO CAMPEONES EN EL TATAMI CON DISCIPLINA, FUERZA Y HUMILDAD"
-            </p>
-
-            <p class="text-xs sm:text-sm text-[#F5F2E9]/80 max-w-xl leading-relaxed">
-              Taekwondo Olímpico y Kickboxing de Alto Rendimiento. Tu mejor versión empieza en el tatami con metodología pedagógica profesional.
+            <p class="text-sm sm:text-lg text-tatami-blanco/80 font-body border-l-4 border-dorado-campeon pl-4 py-1 max-w-lg">
+              Disciplina, fuerza y humildad. Tu mejor versión empieza en el tatami de Najera's Team Central.
             </p>
 
             <div class="pt-4 flex flex-wrap gap-4 items-center">
               <Link
-                to="/admin/login"
-                class="px-8 py-4 font-heading text-sm font-bold tracking-widest text-[#F5F2E9] border-2 border-[#F5F2E9] rounded-sm hover:bg-[#F5F2E9] hover:text-[#111114] transition-colors shadow-lg uppercase"
-              >
-                INGRESAR
-              </Link>
-              <Link
                 to="/contactos?scroll=true"
                 state={{ scrollTarget: 'contact-cards-section' }}
-                class="px-8 py-4 font-heading text-sm font-bold tracking-widest bg-[#8C1D1D] text-[#F5F2E9] border border-[#8C1D1D] rounded-sm hover:bg-[#6B1414] transition-colors shadow-lg uppercase"
+                class="px-8 py-4 font-display text-base tracking-widest bg-rojo-impacto text-tatami-blanco hover:bg-white hover:text-rojo-impacto transition-colors shadow-lg uppercase clip-button impact-flash"
               >
-                UNIRSE AHORA ➔
+                UNIRSE AHORA
               </Link>
-            </div>
-          </div>
-
-          {/* Right Column Emblem Badge */}
-          <div class="w-full lg:w-4/12 flex flex-col items-center lg:items-end justify-center animate-fade-in-up-delay">
-            <div class="relative group w-full max-w-xs animate-float-badge text-center space-y-4">
-              
-              {/* Rotating Dashed Ring & Logo Container */}
-              <div class="relative w-40 h-40 mx-auto flex items-center justify-center">
-                {/* Soft glow on the logo itself */}
-                <div class="absolute -inset-1 bg-[#C9A227]/25 rounded-full blur-md opacity-40 group-hover:opacity-85 transition duration-500"></div>
-
-                {/* Rotating dashed ring */}
-                <div class="absolute inset-0 rounded-full border-2 border-dashed border-[#C9A227]/40 animate-spin-slow"></div>
-                
-                {/* Logo Image wrapper */}
-                <div class="relative w-36 h-36 rounded-full p-1 border-2 border-[#C9A227] bg-[#0B1550] shadow-[0_0_20px_rgba(201,162,39,0.3)] transition-transform duration-500 group-hover:scale-105">
-                  <img src="/logo.png" alt="Najera's Team Official Emblem" class="w-full h-full object-contain rounded-full p-1" />
-                </div>
-              </div>
-              
-              {/* Text Content */}
-              <div class="space-y-2">
-                <h3 class="text-2xl font-bold text-[#F5F2E9] font-heading tracking-wider transition-colors duration-300 group-hover:text-[#C9A227]">
-                  NAJERA'S TEAM
-                </h3>
-                <span class="text-[12px] font-bold text-[#C9A227] uppercase tracking-widest block">
-                  Formativo Especializado
-                </span>
-                {/* Interactive line divider */}
-                <div class="w-12 h-[2px] bg-[#8C1D1D] mx-auto transition-all duration-500 group-hover:w-20"></div>
-                <p class="text-[12px] text-gray-300 mt-1 italic font-medium">
-                  "Formando Campeones"
-                </p>
-              </div>
-              
+              <Link
+                to="/admin/login"
+                class="px-8 py-4 font-display text-base tracking-widest bg-carbon text-dorado-campeon border border-dorado-campeon hover:bg-dorado-campeon hover:text-carbon transition-colors shadow-lg uppercase clip-button impact-flash"
+              >
+                ACCESO
+              </Link>
             </div>
           </div>
         </div>
 
-        {/* Scroll Down Indicator */}
-        <button
-          onClick={handleScrollDown}
-          class={`absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 cursor-pointer text-[#C9A227] hover:text-yellow-200 transition-all duration-300 ${
-            showScrollArrow ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
-          }`}
-          aria-label="Desplazarse hacia abajo"
-        >
-          <span class="text-[9px] font-heading font-bold uppercase tracking-widest opacity-80">
-            Explorar
-          </span>
-          <ChevronDown class="w-5 h-5 animate-bounce-subtle" />
-        </button>
+
+        </div>
 
       </section>
+
+      {/* SVG KICK TRAJECTORY DIVIDER */}
+      <div class="w-full h-16 sm:h-24 bg-carbon flex justify-center items-center overflow-hidden">
+        <svg viewBox="0 0 1200 100" class="w-full h-full px-4" preserveAspectRatio="none">
+          <path d="M-100,80 L200,80 L400,20 L800,20 L1000,80 L1300,80" stroke="var(--rojo-impacto)" strokeWidth="4" fill="none" class="draw-path" />
+          <circle cx="600" cy="20" r="6" fill="var(--dorado-campeon)" class="animate-pulse" />
+        </svg>
+      </div>
 
       {/* WELCOME SECTION & 3X3 QUICK ACCESS CARDS */}
       <section id="welcome-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -198,22 +149,18 @@ const Home = () => {
           
           {/* Left Column Welcome Message */}
           <div class="lg:col-span-5 space-y-6">
-            <span class="text-xs font-bold uppercase tracking-widest text-[#C9A227] font-heading">
-              PLATAFORMA OFICIAL
-            </span>
-            <h2 class="text-3xl sm:text-4xl font-bold text-[#0B1550] font-heading leading-tight border-l-4 border-[#C9A227] pl-4">
-              Bienvenido a Najera's Team Central - Administrador de Eventos de Taekwondo y Kickboxing
+            <h2 class="text-4xl sm:text-5xl font-display text-carbon leading-none border-l-8 border-rojo-impacto pl-4 uppercase">
+              Bienvenido a Najera's Team Central
             </h2>
-            <p class="text-xs sm:text-sm text-[#111114]/80 leading-relaxed">
+            <p class="text-sm text-carbon/80 font-body leading-relaxed">
               Ofrecemos una infraestructura integral para la enseñanza marcial y la gestión técnica de competencias. Nuestro portal centraliza el control de estudiantes, cronogramas de combate, validación de grados y diplomados oficiales.
             </p>
             <div>
               <Link
                 to="/quienes-somos"
-                class="inline-flex items-center gap-2 px-6 py-3 bg-[#8C1D1D] hover:bg-[#6B1414] text-[#F5F2E9] font-heading text-xs font-bold tracking-widest rounded-sm transition-colors uppercase shadow"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-carbon hover:bg-rojo-impacto text-tatami-blanco font-display text-sm tracking-widest uppercase clip-button impact-flash"
               >
-                LEER MÁS...
-                <span class="text-lg">➔</span>
+                LEER MÁS
               </Link>
             </div>
           </div>
@@ -226,12 +173,12 @@ const Home = () => {
                 <Link
                   key={idx}
                   to={card.path}
-                  class="bg-[#F5F2E9] rounded-sm p-4 sm:p-5 flex flex-col items-center justify-center text-center shadow-md hover:shadow-xl transition-all duration-200 border-b-4 border-[#8C1D1D] aspect-square group"
+                  class="bg-white p-4 sm:p-5 flex flex-col items-center justify-center text-center hover:bg-rojo-impacto hover:text-white transition-colors duration-200 clip-card aspect-square group text-carbon"
                 >
-                  <div class="w-12 h-12 rounded-sm bg-[#111114] flex items-center justify-center mb-3 group-hover:bg-[#8C1D1D] transition-colors">
-                    <IconComp class="w-6 h-6 text-[#F5F2E9]" />
+                  <div class="mb-3 group-hover:scale-110 transition-transform">
+                    <IconComp class="w-8 h-8" />
                   </div>
-                  <span class="font-heading text-xs sm:text-sm font-bold text-[#8C1D1D] uppercase tracking-wider line-clamp-2">
+                  <span class="font-display text-xs sm:text-sm uppercase tracking-wider line-clamp-2">
                     {card.title}
                   </span>
                 </Link>
@@ -244,12 +191,12 @@ const Home = () => {
 
       {/* NUESTROS SERVICIOS */}
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        <div class="space-y-2 border-l-4 border-[#C9A227] pl-4">
-          <h2 class="text-3xl sm:text-4xl font-bold text-[#0B1550] font-heading tracking-wider">
+        <div class="space-y-2 border-l-8 border-dorado-campeon pl-4">
+          <h2 class="text-4xl sm:text-5xl font-display text-carbon uppercase">
             NUESTROS SERVICIOS
           </h2>
-          <p class="text-xs font-bold text-[#C9A227] uppercase tracking-widest">
-            Somos especialistas en el campo deportivo de Taekwondo y Kickboxing
+          <p class="text-sm font-body font-bold text-carbon/70 uppercase tracking-widest">
+            Especialistas en el campo deportivo de Taekwondo y Kickboxing
           </p>
         </div>
 
@@ -259,21 +206,18 @@ const Home = () => {
             return (
               <div
                 key={index}
-                class="chamfer-card p-6 space-y-4 flex flex-col justify-between group"
+                class="bg-carbon text-tatami-blanco p-6 space-y-4 flex flex-col justify-between group clip-card hover:bg-rojo-impacto transition-colors"
               >
                 <div class="space-y-4">
                   <div class="flex items-center justify-between">
-                    <div class="w-10 h-10 rounded-sm bg-[#0B1550] border border-[#C9A227]/40 flex items-center justify-center text-[#C9A227] group-hover:bg-[#8C1D1D] group-hover:text-[#F5F2E9] group-hover:border-[#8C1D1D] transition-all duration-300">
-                      <SrvIcon size={20} class="group-hover:scale-110 transition-transform duration-300" />
+                    <div class="text-dorado-campeon group-hover:text-white transition-colors">
+                      <SrvIcon size={24} strokeWidth={2} />
                     </div>
-                    <span class="font-heading text-xs font-bold text-[#C9A227] group-hover:text-white tracking-widest transition-colors duration-300">
-                      0{index + 1}
-                    </span>
                   </div>
-                  <h3 class="text-base font-bold text-[#F5F2E9] group-hover:text-[#C9A227] font-heading tracking-wider transition-colors duration-300">
+                  <h3 class="text-xl font-display uppercase tracking-wide group-hover:text-white transition-colors">
                     {srv.title}
                   </h3>
-                  <p class="text-xs text-[#F5F2E9]/75 leading-relaxed">
+                  <p class="text-sm font-body text-tatami-blanco/70 group-hover:text-white/90 leading-relaxed">
                     {srv.desc}
                   </p>
                 </div>

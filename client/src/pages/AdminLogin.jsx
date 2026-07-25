@@ -35,16 +35,16 @@ const AdminLogin = () => {
 
   return (
     <div class="min-h-[80vh] flex items-center justify-center px-4 py-12">
-      <div class="bg-dojang-navy/90 border border-white/10 p-8 sm:p-10 rounded-3xl backdrop-blur-xl shadow-2xl w-full max-w-md space-y-6">
+      <div class="bg-carbon border border-white/10 p-8 sm:p-10 rounded-sm shadow-2xl w-full max-w-md space-y-6">
         
         <div class="text-center space-y-2">
-          <div class="w-20 h-20 rounded-full border-2 border-dojang-gold p-1 bg-dojang-carbon flex items-center justify-center mx-auto shadow-xl shadow-dojang-gold/10">
+          <div class="w-20 h-20 rounded-full border-2 border-dorado-campeon p-1 bg-carbon flex items-center justify-center mx-auto shadow-xl">
             <img src="/logo.png" alt="Najera's Team Emblem" class="w-full h-full object-contain rounded-full" />
           </div>
-          <h2 class="text-2xl font-extrabold text-white font-heading">
+          <h2 class="text-2xl font-bold text-white font-display tracking-widest uppercase">
             NAJERA'S TEAM - ADMIN
           </h2>
-          <p class="text-xs text-gray-400">
+          <p class="text-xs text-gray-400 font-body">
             Panel de gestión técnica para Taekwondo y Kickboxing Formativo Especializado.
           </p>
         </div>
@@ -67,7 +67,7 @@ const AdminLogin = () => {
                 value={usuario}
                 onChange={(e) => setUsuario(e.target.value)}
                 placeholder=""
-                class="w-full bg-dojang-carbon border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-dojang-red"
+                class="w-full bg-black/40 border border-white/10 rounded-sm pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-dorado-campeon"
               />
             </div>
           </div>
@@ -82,7 +82,7 @@ const AdminLogin = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder=""
-                class="w-full bg-dojang-carbon border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-dojang-red"
+                class="w-full bg-black/40 border border-white/10 rounded-sm pl-10 pr-4 py-2.5 text-xs text-white focus:outline-none focus:border-dorado-campeon"
               />
             </div>
           </div>
@@ -90,7 +90,7 @@ const AdminLogin = () => {
           <button
             type="submit"
             disabled={submitting}
-            class="w-full py-3 bg-dojang-red hover:bg-dojang-crimson text-white text-xs font-bold tracking-wider uppercase rounded-xl transition-colors shadow-lg shadow-dojang-red/30 flex items-center justify-center gap-2 disabled:opacity-50"
+            class="w-full py-3 bg-rojo-impacto hover:bg-white hover:text-rojo-impacto text-white text-xs font-bold tracking-wider font-display uppercase clip-button transition-colors shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 impact-flash"
           >
             {submitting ? 'Verificando...' : 'INICIAR SESIÓN'}
           </button>

@@ -2,9 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --carbon: #15171C;
+  --rojo-impacto: #D62839;
+  --dorado-campeon: #E3B23C;
+  --azul-cinturon: #2B4C7E;
+  --tatami-blanco: #F2EFE9;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-carbon text-tatami-blanco font-body selection:bg-rojo-impacto selection:text-tatami-blanco;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight uppercase;
   }
 
   /* Respeta la preferencia de accesibilidad "reducir movimiento" */
@@ -12,49 +28,15 @@
     html {
       scroll-behavior: auto;
     }
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
-
-  body {
-    @apply bg-[#F5F2E9] text-[#111114] font-sans selection:bg-[#8C1D1D] selection:text-[#F5F2E9];
-  }
-
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading tracking-widest uppercase;
-  }
-}
-
-
-/* Sharp Tatami Panel & Chamfer Card */
-.tatami-panel {
-  background-color: #0B1550;
-  border: 1px solid rgba(201, 162, 39, 0.35);
-  border-radius: 4px;
-}
-
-.tatami-panel-dark {
-  background-color: #111114;
-  border: 1px solid rgba(201, 162, 39, 0.3);
-  border-radius: 4px;
-}
-
-.chamfer-card {
-  background-color: #111114;
-  border-left: 4px solid #C9A227;
-  border-top: 1px solid rgba(201, 162, 39, 0.2);
-  border-right: 1px solid rgba(201, 162, 39, 0.2);
-  border-bottom: 1px solid rgba(201, 162, 39, 0.2);
-  border-radius: 4px;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.chamfer-card:hover {
-  transform: translateY(-6px);
-  border-left-color: #8C1D1D; /* Cambia a Rojo Dojang */
-  border-top-color: rgba(201, 162, 39, 0.45);
-  border-right-color: rgba(201, 162, 39, 0.45);
-  border-bottom-color: rgba(201, 162, 39, 0.45);
-  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(201, 162, 39, 0.05);
 }
 
 /* Custom Scrollbar */
@@ -62,72 +44,71 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #060D33;
+  background: var(--carbon);
 }
 ::-webkit-scrollbar-thumb {
-  background: #C9A227;
-  border-radius: 2px;
+  background: var(--rojo-impacto);
+  border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #8C1D1D;
+  background: var(--dorado-campeon);
 }
 
-/* Premium Animaciones para el Emblema */
-@keyframes float-badge {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+/* Efecto de "Flash" en Hover (Impact Flash) */
+.impact-flash {
+  position: relative;
+  overflow: hidden;
+}
+.impact-flash::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--dorado-campeon);
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+  pointer-events: none;
+  z-index: 10;
+}
+.impact-flash:hover::after {
+  animation: flash 0.3s ease-out forwards;
 }
 
-.animate-float-badge {
-  animation: float-badge 6s ease-in-out infinite;
+@keyframes flash {
+  0% { opacity: 0; transform: scale(1); }
+  50% { opacity: 0.25; transform: scale(1.05); }
+  100% { opacity: 0; transform: scale(1); }
 }
 
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
+/* SVG Draw Animation */
+.draw-path {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: draw 2s ease-out forwards;
+}
+@keyframes draw {
   to {
-    transform: rotate(360deg);
+    stroke-dashoffset: 0;
   }
 }
 
-.animate-spin-slow {
-  animation: spin-slow 25s linear infinite;
+/* Diagonal Dividers & Clip Paths */
+.clip-diagonal-left {
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+}
+.clip-diagonal-right {
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+}
+.clip-button {
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+}
+.clip-card {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
 }
 
-/* Animación sutil de rebote para la flecha scroll-down */
-@keyframes bounce-subtle {
-  0%, 100% {
-    transform: translateY(0);
+@media (max-width: 1024px) {
+  .clip-diagonal-left, .clip-diagonal-right {
+    clip-path: none;
   }
-  50% {
-    transform: translateY(6px);
-  }
-}
-
-.animate-bounce-subtle {
-  animation: bounce-subtle 1.8s infinite ease-in-out;
-}
-
-/* Pulsación dorada premium para la tarjeta de admisión */
-@keyframes glow-pulse-gold {
-  0%, 100% {
-    box-shadow: 0 4px 15px rgba(201, 162, 39, 0.1);
-    border-color: rgba(201, 162, 39, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 25px rgba(201, 162, 39, 0.65), 0 0 10px rgba(201, 162, 39, 0.2);
-    border-color: rgba(201, 162, 39, 0.95);
-    transform: translateY(-4px);
-  }
-}
-
-.animate-glow-pulse-gold {
-  animation: glow-pulse-gold 2s ease-in-out 2;
 }
 
 

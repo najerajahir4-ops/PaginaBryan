@@ -41,14 +41,14 @@ const SortableFeaturedCard = ({ item, isEditMode }) => {
     <div
       ref={setNodeRef}
       style={style}
-      class="bg-[#111114] border border-[#C9A227]/30 rounded-sm overflow-hidden flex flex-col shadow-xl relative group"
+      class="bg-carbon overflow-hidden flex flex-col relative group clip-card border border-dorado-campeon/30 hover:border-dorado-campeon transition-colors duration-300"
     >
       {/* Handle de Arrastre */}
       {isEditMode && (
         <div
           {...attributes}
           {...listeners}
-          class="absolute top-3 right-3 z-30 p-2 bg-[#0B1550] border border-[#C9A227]/40 text-[#C9A227] hover:bg-[#C9A227] hover:text-[#0B1550] rounded-sm cursor-grab active:cursor-grabbing shadow-lg"
+          class="absolute top-3 right-3 z-30 p-2 bg-carbon border border-dorado-campeon text-dorado-campeon hover:bg-dorado-campeon hover:text-carbon rounded-sm cursor-grab active:cursor-grabbing shadow-lg"
           title="Arrastra para reordenar"
         >
           <GripVertical size={16} />
@@ -71,10 +71,10 @@ const SortableFeaturedCard = ({ item, isEditMode }) => {
         )}
         
         <div class="absolute top-3 left-3 flex flex-wrap gap-2">
-          <span class="px-2.5 py-1 text-[10px] font-heading font-extrabold uppercase bg-[#8C1D1D] text-white tracking-widest">
+          <span class="px-3 py-1 text-[10px] font-display uppercase bg-rojo-impacto text-tatami-blanco tracking-widest clip-button">
             {item.disciplina}
           </span>
-          <span class="px-2.5 py-1 text-[10px] font-heading font-extrabold uppercase bg-[#C9A227] text-[#111114] tracking-widest">
+          <span class="px-3 py-1 text-[10px] font-display uppercase bg-dorado-campeon text-carbon tracking-widest clip-button">
             {item.categoria}
           </span>
         </div>
@@ -83,24 +83,24 @@ const SortableFeaturedCard = ({ item, isEditMode }) => {
       {/* Card Details */}
       <div class="p-6 space-y-4 flex-grow flex flex-col justify-between">
         <div>
-          <h3 class="text-xl font-bold text-[#F5F2E9] font-heading tracking-wider">
+          <h3 class="text-xl font-bold text-tatami-blanco font-display tracking-widest uppercase group-hover:text-dorado-campeon transition-colors">
             {item.student.nombres} {item.student.apellidos}
           </h3>
-          <div class="text-xs text-[#C9A227] font-semibold mt-1">
+          <div class="text-xs text-dorado-campeon font-body mt-1 uppercase font-bold">
             {item.student.grado}
           </div>
-          <div class="text-xs text-gray-400 mt-0.5">
+          <div class="text-xs text-tatami-blanco/50 mt-0.5 uppercase font-body">
             Club: {item.student.club ? item.student.club.nombre : 'Independiente'}
           </div>
         </div>
 
         {/* Logros */}
-        <div class="bg-[#0B1550] p-4 rounded-sm border border-[#C9A227]/30 space-y-2">
-          <div class="flex items-center gap-2 text-xs font-heading font-bold text-[#C9A227] uppercase tracking-widest">
+        <div class="bg-black/30 p-4 border-l-4 border-rojo-impacto space-y-2">
+          <div class="flex items-center gap-2 text-xs font-display text-rojo-impacto uppercase tracking-widest">
             <Star size={14} class="fill-current" />
             Logros Destacados:
           </div>
-          <p class="text-xs text-[#F5F2E9]/80 leading-relaxed italic">
+          <p class="text-sm font-body text-tatami-blanco/90 leading-relaxed italic">
             "{item.logros}"
           </p>
         </div>

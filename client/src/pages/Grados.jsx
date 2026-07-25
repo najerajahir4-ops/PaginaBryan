@@ -28,6 +28,21 @@ const KICKBOXING_BELTS = [
   "Cinturón negro 1 dan",
 ];
 
+const getBeltColorClass = (beltName) => {
+  if (!beltName) return 'bg-gray-400 text-carbon';
+  const belt = beltName.toLowerCase();
+  if (belt.includes('negro')) return 'bg-black text-dorado-campeon border-t-2 border-dorado-campeon';
+  if (belt.includes('blanco')) return 'bg-white text-carbon';
+  if (belt.includes('amarillo')) return 'bg-yellow-400 text-carbon';
+  if (belt.includes('naranja')) return 'bg-orange-500 text-white';
+  if (belt.includes('verde')) return 'bg-green-600 text-white';
+  if (belt.includes('azul')) return 'bg-blue-600 text-white';
+  if (belt.includes('rojo')) return 'bg-rojo-impacto text-white';
+  if (belt.includes('violeta')) return 'bg-purple-600 text-white';
+  if (belt.includes('café') || belt.includes('cafe')) return 'bg-amber-800 text-white';
+  return 'bg-gray-400 text-carbon';
+};
+
 const Grados = () => {
   const { isAuthenticated } = useAuth();
   const [students, setStudents] = useState([]);
@@ -130,15 +145,15 @@ const Grados = () => {
       {/* Controls: Tab selector + Search */}
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-dojang-navyDark/85 border border-white/10 p-4 rounded-xl shadow-xl">
         {/* Tab filters */}
-        <div class="flex bg-dojang-carbon border border-white/10 p-1 rounded-lg w-full sm:w-auto">
+        <div class="flex bg-carbon border border-dorado-campeon/30 p-1 w-full sm:w-auto">
           {['TODOS', 'TAEKWONDO', 'KICKBOXING'].map(filter => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              class={`px-5 py-2 text-xs font-extrabold tracking-wider rounded-md uppercase transition-all flex-grow sm:flex-grow-0 ${
+              class={`px-5 py-2 text-xs font-display tracking-widest uppercase transition-all flex-grow sm:flex-grow-0 clip-button ${
                 activeFilter === filter
-                  ? 'bg-dojang-red text-white shadow-lg shadow-dojang-red/20'
-                  : 'text-gray-400 hover:text-white bg-transparent'
+                  ? 'bg-rojo-impacto text-tatami-blanco shadow-lg shadow-rojo-impacto/20'
+                  : 'text-tatami-blanco/50 hover:text-tatami-blanco bg-transparent'
               }`}
             >
               {filter}
@@ -188,7 +203,7 @@ const Grados = () => {
           {filteredStudents.map(student => (
             <div
               key={student.id}
-              class="tatami-panel-dark flex flex-col justify-between overflow-hidden shadow-2xl relative group"
+              class="bg-carbon flex flex-col justify-between overflow-hidden relative group clip-card border-t border-r border-dorado-campeon/30 hover:border-dorado-campeon transition-colors duration-300"
               style={{ minHeight: '340px' }}
             >
               {/* Photo Area */}
@@ -232,20 +247,20 @@ const Grados = () => {
               </div>
 
               {/* Text Info */}
-              <div class="p-4 flex-grow flex flex-col justify-between bg-[#111114]/90 space-y-3">
+              <div class="p-4 flex-grow flex flex-col justify-between bg-carbon space-y-3">
                 <div class="space-y-1">
-                  <h3 class="text-sm font-extrabold text-white uppercase tracking-wider line-clamp-1">
+                  <h3 class="text-lg font-display text-tatami-blanco uppercase tracking-widest line-clamp-1 group-hover:text-dorado-campeon transition-colors">
                     {student.nombres} {student.apellidos}
                   </h3>
-                  <span class="text-[10px] text-gray-400 font-medium block">
+                  <span class="text-[10px] text-tatami-blanco/50 font-body block uppercase">
                     C.I. {student.cedula}
                   </span>
                 </div>
 
-                {/* Belt / Grade Info */}
-                <div class="bg-[#1C1C21] border border-white/5 px-3 py-2 rounded flex items-center gap-2">
-                  <Award size={14} class="text-dojang-gold flex-shrink-0" />
-                  <span class="text-[10px] font-bold text-dojang-gold uppercase tracking-wider line-clamp-1">
+                {/* Real Belt Color Block */}
+                <div class={`px-3 py-2 flex items-center justify-center gap-2 clip-button ${getBeltColorClass(student.grado)}`}>
+                  <Award size={14} class="flex-shrink-0" />
+                  <span class="text-xs font-display uppercase tracking-widest line-clamp-1">
                     {student.grado}
                   </span>
                 </div>

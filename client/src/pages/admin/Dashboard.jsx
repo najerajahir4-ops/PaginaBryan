@@ -46,17 +46,17 @@ const Dashboard = () => {
       {/* Header */}
       <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
         <div>
-          <h1 class="text-3xl font-extrabold text-white font-heading">
+          <h1 class="text-3xl font-extrabold text-white font-display tracking-widest uppercase">
             Panel Principal de Control
           </h1>
-          <p class="text-xs text-gray-400 mt-1">
+          <p class="text-xs text-gray-400 mt-1 font-body">
             Resumen estadístico de estudiantes, estado de cobranza e ingresos generales.
           </p>
         </div>
 
         <Link
           to="/admin/estudiantes"
-          class="px-5 py-2.5 bg-dojang-red hover:bg-dojang-crimson text-white text-xs font-bold rounded-xl transition-colors shadow-lg shadow-dojang-red/30 inline-flex items-center gap-2"
+          class="px-5 py-2.5 bg-rojo-impacto hover:bg-white hover:text-rojo-impacto text-white text-xs font-bold clip-button uppercase transition-colors shadow-lg inline-flex items-center gap-2 impact-flash"
         >
           <Users size={16} />
           GESTIONAR ESTUDIANTES
@@ -131,13 +131,13 @@ const Dashboard = () => {
       )}
 
       {/* Chart Section */}
-      <div class="bg-dojang-navy/80 border border-white/10 p-6 sm:p-8 rounded-3xl shadow-xl space-y-6">
+      <div class="bg-carbon border border-white/10 p-6 sm:p-8 rounded-sm shadow-xl space-y-6">
         <div class="flex items-center justify-between">
           <div>
-            <h3 class="text-xl font-bold text-white font-heading">Ingresos Mensuales por Colegiaturas</h3>
-            <p class="text-xs text-gray-400">Histórico de recaudación acumulada del año 2026</p>
+            <h3 class="text-xl font-bold text-white font-display uppercase tracking-widest">Ingresos Mensuales por Colegiaturas</h3>
+            <p class="text-xs text-gray-400 font-body">Histórico de recaudación acumulada del año 2026</p>
           </div>
-          <div class="flex items-center gap-2 text-dojang-gold font-bold text-sm">
+          <div class="flex items-center gap-2 text-dorado-campeon font-bold text-sm">
             <DollarSign size={18} />
             Total Recaudado: ${stats.totalRevenue.toFixed(2)} USD
           </div>
