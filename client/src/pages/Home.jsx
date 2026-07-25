@@ -85,7 +85,7 @@ const Home = () => {
       {/* HERO SECTION */}
       <section class="relative min-h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden bg-carbon">
         {/* Lado derecho con emblema gigante cortado en diagonal */}
-        <div class="absolute right-0 top-0 w-full lg:w-3/5 h-full z-0 clip-diagonal-right bg-[#0a0b0e] border-l-0 lg:border-l-[12px] border-rojo-impacto overflow-hidden flex items-center justify-center">
+        <div class="absolute right-0 top-0 w-full lg:w-3/5 h-full z-0 clip-diagonal-right bg-[#0a0b0e] border-none lg:border-l-[12px] border-rojo-impacto overflow-hidden flex items-center justify-center">
           
           {/* Fondo de patrón de puntos */}
           <div class="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#ffffff 2px, transparent 2px)', backgroundSize: '30px 30px' }}></div>
@@ -95,7 +95,7 @@ const Home = () => {
           
           {/* Emblema Central Animado (Video con Loop-Fade) */}
           <div 
-            class="relative w-80 h-80 lg:w-[45rem] lg:h-[45rem] lg:translate-x-12 mix-blend-screen opacity-25 lg:opacity-100 transition-all duration-700 cursor-default"
+            class="relative w-80 h-80 lg:w-[45rem] lg:h-[45rem] lg:translate-x-12 mix-blend-screen opacity-15 lg:opacity-100 transition-all duration-700 cursor-default"
             style={{ 
               WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 70%)', 
               maskImage: 'radial-gradient(circle, black 50%, transparent 70%)',
