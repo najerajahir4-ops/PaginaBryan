@@ -88,16 +88,6 @@ const Home = () => {
         {/* Right Column Dragon (Absolute background watermark on mobile, split on desktop) */}
         <div class="absolute right-0 top-0 w-full lg:w-3/5 h-full z-0 lg:clip-diagonal-right bg-transparent lg:bg-[#0a0b0e] overflow-hidden flex items-center justify-center pointer-events-none">
           
-          {/* Línea diagonal 3D - bevel effect */}
-          <svg class="absolute inset-0 w-full h-full z-20 hidden lg:block pointer-events-none" preserveAspectRatio="none" viewBox="0 0 100 100">
-            {/* Sombra oscura (lado derecho) - profundidad */}
-            <line x1="16.5" y1="0" x2="1.5" y2="100" stroke="#0a0b0e" stroke-width="14" vector-effect="non-scaling-stroke" />
-            {/* Cuerpo principal oscuro */}
-            <line x1="15" y1="0" x2="0" y2="100" stroke="#1e2128" stroke-width="10" vector-effect="non-scaling-stroke" />
-            {/* Borde claro (lado izquierdo) - resalte */}
-            <line x1="14" y1="0" x2="-1" y2="100" stroke="#3a3f4a" stroke-width="3" vector-effect="non-scaling-stroke" />
-          </svg>
-
           {/* Resplandor dorado central (radial gradient para evitar cortes cuadrados de blur) */}
           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[45rem] bg-[radial-gradient(circle_at_center,_rgba(201,162,39,0.20)_0%,_transparent_65%)] pointer-events-none hidden lg:block"></div>
           
