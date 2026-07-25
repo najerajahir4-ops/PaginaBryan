@@ -96,7 +96,7 @@ const Home = () => {
           
           {/* Emblema Central Animado (Video con Loop-Fade) */}
           <div 
-            class="relative w-[120%] aspect-square max-w-lg lg:max-w-none lg:w-[45rem] lg:h-[45rem] lg:translate-x-12 mix-blend-screen opacity-[0.08] lg:opacity-100 transition-all duration-700"
+            class="relative w-[120%] aspect-square max-w-lg lg:max-w-none lg:w-[45rem] lg:h-[45rem] lg:translate-x-12 mix-blend-lighten opacity-[0.08] lg:opacity-100 transition-all duration-700"
             style={{ 
               WebkitMaskImage: 'radial-gradient(circle closest-side, black 40%, transparent 80%)', 
               maskImage: 'radial-gradient(circle closest-side, black 40%, transparent 80%)',
@@ -109,7 +109,7 @@ const Home = () => {
               loop
               muted
               playsInline
-              class="w-full h-full object-cover drop-shadow-[0_0_40px_rgba(200,16,46,0.4)] contrast-[1.4] brightness-[0.6] saturate-150"
+              class="w-full h-full object-cover drop-shadow-[0_0_40px_rgba(200,16,46,0.4)] contrast-125 saturate-150"
             />
           </div>
 
