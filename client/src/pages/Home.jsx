@@ -88,9 +88,9 @@ const Home = () => {
         {/* Right Column Dragon (Absolute background watermark on mobile, split on desktop) */}
         <div class="absolute right-0 top-0 w-full lg:w-3/5 h-full z-0 lg:clip-diagonal-right bg-transparent lg:bg-[#0a0b0e] overflow-hidden flex items-center justify-center pointer-events-none">
           
-          {/* Línea roja diagonal separadora (Perfect match con clip-diagonal-right) */}
+          {/* Línea diagonal separadora sutil */}
           <svg class="absolute inset-0 w-full h-full z-20 hidden lg:block pointer-events-none" preserveAspectRatio="none" viewBox="0 0 100 100">
-            <line x1="15" y1="0" x2="0" y2="100" stroke="#D62839" stroke-width="6" vector-effect="non-scaling-stroke" />
+            <line x1="15" y1="0" x2="0" y2="100" stroke="#2a2d34" stroke-width="6" vector-effect="non-scaling-stroke" />
           </svg>
 
           {/* Resplandor dorado central (radial gradient para evitar cortes cuadrados de blur) */}
