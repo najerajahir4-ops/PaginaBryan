@@ -93,8 +93,8 @@ const Home = () => {
             <line x1="15" y1="0" x2="0" y2="100" stroke="#D62839" stroke-width="6" vector-effect="non-scaling-stroke" />
           </svg>
 
-          {/* Resplandor dorado central (solo PC para no quemar el fondo en móvil) */}
-          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[45rem] bg-dorado-campeon/25 blur-[100px] rounded-full hidden lg:block"></div>
+          {/* Resplandor dorado central (radial gradient para evitar cortes cuadrados de blur) */}
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[45rem] bg-[radial-gradient(circle_at_center,_rgba(201,162,39,0.20)_0%,_transparent_65%)] pointer-events-none hidden lg:block"></div>
           
           {/* Emblema Central (Logo Estático) */}
           <div class="relative w-72 h-72 lg:w-[35rem] lg:h-[35rem] lg:translate-x-12 opacity-[0.15] lg:opacity-100 transition-all duration-700 animate-pulse-slow">
