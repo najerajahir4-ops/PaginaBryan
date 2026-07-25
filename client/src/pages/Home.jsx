@@ -83,10 +83,41 @@ const Home = () => {
     <div class="space-y-16 pb-16">
       
       {/* HERO SECTION */}
-      <section class="relative flex flex-col lg:block overflow-hidden bg-carbon">
+      <section class="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-carbon">
         
-        {/* Left Column Text (Solid background on mobile, overlay on desktop) */}
-        <div class="relative z-10 w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-20 lg:py-0 lg:min-h-[calc(100vh-4rem)] bg-carbon lg:bg-transparent">
+        {/* Right Column Dragon (Absolute background watermark on mobile, split on desktop) */}
+        <div class="absolute right-0 top-0 w-full lg:w-3/5 h-full z-0 lg:clip-diagonal-right bg-transparent lg:bg-[#0a0b0e] border-none lg:border-l-[12px] lg:border-rojo-impacto overflow-hidden flex items-center justify-center pointer-events-none">
+          
+          {/* Fondo de patrón de puntos */}
+          <div class="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#ffffff 2px, transparent 2px)', backgroundSize: '30px 30px' }}></div>
+
+          {/* Resplandor rojo central (solo PC para no quemar el fondo en móvil) */}
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[45rem] bg-rojo-impacto/30 blur-[100px] rounded-full hidden lg:block"></div>
+          
+          {/* Emblema Central Animado (Video con Loop-Fade) */}
+          <div 
+            class="relative w-[120%] aspect-square max-w-lg lg:max-w-none lg:w-[45rem] lg:h-[45rem] lg:translate-x-12 mix-blend-screen opacity-15 lg:opacity-100 transition-all duration-700"
+            style={{ 
+              WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 70%)', 
+              maskImage: 'radial-gradient(circle, black 50%, transparent 70%)',
+              animation: 'loop-fade 8s infinite linear'
+            }}
+          >
+            <video
+              src="/dragon_loop.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              class="w-full h-full object-cover drop-shadow-[0_0_40px_rgba(200,16,46,0.4)] contrast-125 saturate-150"
+            />
+          </div>
+
+          <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-carbon via-transparent to-black/30 pointer-events-none"></div>
+        </div>
+
+        {/* Left Column Text (Always on top) */}
+        <div class="relative z-10 w-full lg:w-1/2 flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-16 lg:py-0 pointer-events-auto">
           <div class="space-y-6 text-left animate-hit max-w-xl mx-auto lg:mx-0 w-full">
             {/* Badge with increased horizontal padding to prevent clip-button text cutoff */}
             <div class="inline-block px-5 py-1.5 bg-dorado-campeon text-carbon font-display text-xs sm:text-sm tracking-widest uppercase clip-button">
@@ -113,43 +144,12 @@ const Home = () => {
               </Link>
               <Link
                 to="/admin/login"
-                class="px-8 py-4 text-center font-display text-base tracking-widest bg-carbon text-dorado-campeon border border-dorado-campeon hover:bg-dorado-campeon hover:text-carbon transition-colors shadow-lg uppercase clip-button impact-flash"
+                class="px-8 py-4 text-center font-display text-base tracking-widest bg-transparent text-dorado-campeon border-2 border-dorado-campeon hover:bg-dorado-campeon hover:text-carbon transition-colors shadow-lg uppercase clip-button impact-flash"
               >
                 ACCESO
               </Link>
             </div>
           </div>
-        </div>
-
-        {/* Right Column Dragon (Stacked below on mobile, absolute background on desktop) */}
-        <div class="relative lg:absolute right-0 top-0 w-full lg:w-3/5 h-[60vh] lg:h-full z-0 lg:clip-diagonal-right bg-[#0a0b0e] border-none lg:border-l-[12px] border-rojo-impacto overflow-hidden flex items-center justify-center">
-          
-          {/* Fondo de patrón de puntos */}
-          <div class="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#ffffff 2px, transparent 2px)', backgroundSize: '30px 30px' }}></div>
-
-          {/* Resplandor rojo central */}
-          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[20rem] h-[20rem] lg:w-[45rem] lg:h-[45rem] bg-rojo-impacto/30 blur-[100px] rounded-full"></div>
-          
-          {/* Emblema Central Animado (Video con Loop-Fade) */}
-          <div 
-            class="relative w-80 h-80 lg:w-[45rem] lg:h-[45rem] lg:translate-x-12 mix-blend-screen transition-all duration-700 cursor-default"
-            style={{ 
-              WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 70%)', 
-              maskImage: 'radial-gradient(circle, black 50%, transparent 70%)',
-              animation: 'loop-fade 8s infinite linear'
-            }}
-          >
-            <video
-              src="/dragon_loop.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              class="w-full h-full object-cover drop-shadow-[0_0_40px_rgba(200,16,46,0.4)] contrast-125 saturate-150"
-            />
-          </div>
-
-          <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-carbon via-transparent to-black/30 pointer-events-none"></div>
         </div>
 
       </section>
