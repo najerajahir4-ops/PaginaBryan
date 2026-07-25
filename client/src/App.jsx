@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -30,7 +30,26 @@ import ModulosAdmin from './pages/admin/ModulosAdmin';
 const AdminNavbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const navLinks = [
+    { path: '/admin/estudiantes', label: 'Fichas & Pagos' },
+    { path: '/admin/asistencia', label: 'Asistencia' },
+    { path: '/admin/contenido', label: 'Contenido' },
+    { path: '/admin/alumnos-destacados', label: 'Destacados' },
+    { path: '/admin/modulos', label: 'Configuración' },
+  ];
+
+  const getLinkClass = (path) => {
+    const isActive = location.pathname.startsWith(path);
+    return `transition-colors py-1 border-b-2 ${isActive ? 'text-dojang-gold border-dojang-gold' : 'text-gray-300 border-transparent hover:text-dojang-gold hover:border-dojang-gold/50'}`;
+  };
+
+  const getMobileLinkClass = (path) => {
+    const isActive = location.pathname.startsWith(path);
+    return `block py-1 border-l-2 pl-2 ${isActive ? 'text-dojang-gold border-dojang-gold font-extrabold bg-white/5' : 'text-gray-300 border-transparent hover:text-dojang-gold hover:border-dojang-gold/50'}`;
+  };
 
   const handleLogout = async () => {
     await logout();
@@ -46,11 +65,11 @@ const AdminNavbar = () => {
             PANEL ADMIN
           </Link>
           <nav class="hidden md:flex items-center gap-4 text-xs font-bold tracking-widest uppercase">
-            <Link to="/admin/estudiantes" class="text-gray-300 hover:text-dojang-gold transition-colors py-1">Fichas & Pagos</Link>
-            <Link to="/admin/asistencia" class="text-gray-300 hover:text-dojang-gold transition-colors py-1">Asistencia</Link>
-            <Link to="/admin/contenido" class="text-gray-300 hover:text-dojang-gold transition-colors py-1">Contenido</Link>
-            <Link to="/admin/alumnos-destacados" class="text-gray-300 hover:text-dojang-gold transition-colors py-1">Destacados</Link>
-            <Link to="/admin/modulos" class="text-gray-300 hover:text-dojang-gold transition-colors py-1">Configuración</Link>
+            {navLinks.map((link) => (
+              <Link key={link.path} to={link.path} class={getLinkClass(link.path)}>
+                {link.label}
+              </Link>
+            ))}
           </nav>
         </div>
 
@@ -78,11 +97,16 @@ const AdminNavbar = () => {
       {/* Mobile admin nav dropdown */}
       {mobileOpen && (
         <div class="md:hidden bg-[#060D33] border-b border-dojang-gold px-4 py-3 space-y-3 font-heading text-xs font-bold tracking-widest uppercase shadow-xl animate-fade-in">
-          <Link to="/admin/estudiantes" onClick={() => setMobileOpen(false)} class="block text-gray-300 hover:text-dojang-gold py-1">Fichas & Pagos</Link>
-          <Link to="/admin/asistencia" onClick={() => setMobileOpen(false)} class="block text-gray-300 hover:text-dojang-gold py-1">Asistencia</Link>
-          <Link to="/admin/contenido" onClick={() => setMobileOpen(false)} class="block text-gray-300 hover:text-dojang-gold py-1">Contenido</Link>
-          <Link to="/admin/alumnos-destacados" onClick={() => setMobileOpen(false)} class="block text-gray-300 hover:text-dojang-gold py-1">Destacados</Link>
-          <Link to="/admin/modulos" onClick={() => setMobileOpen(false)} class="block text-gray-300 hover:text-dojang-gold py-1">Configuración</Link>
+            {navLinks.map((link) => (
+              <Link 
+                key={link.path} 
+                to={link.path} 
+                onClick={() => setMobileOpen(false)} 
+                class={getMobileLinkClass(link.path)}
+              >
+                {link.label}
+              </Link>
+            ))}
           <div class="border-t border-white/10 pt-2">
             <Link to="/" onClick={() => setMobileOpen(false)} class="block text-gray-400 hover:text-dojang-gold underline py-1">Ver Web Pública</Link>
           </div>
