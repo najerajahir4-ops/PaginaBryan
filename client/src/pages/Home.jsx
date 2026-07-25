@@ -129,10 +129,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-
-
-        </div>
-
       </section>
 
       {/* SVG KICK TRAJECTORY DIVIDER */}
