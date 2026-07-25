@@ -52,10 +52,10 @@ const QuienesSomos = () => {
       </div>
 
       {/* Main Asymmetric Panel with Integrated Watermark Dragon */}
-      <div class="relative bg-carbon border-l-8 border-dorado-campeon p-8 sm:p-12 overflow-hidden shadow-2xl clip-card">
+      <div class="relative bg-carbon border-l-8 border-dorado-campeon px-6 py-10 sm:p-12 shadow-2xl clip-card">
         
-        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <div class="lg:col-span-8 space-y-6">
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+          <div class="lg:col-span-8 space-y-8 lg:space-y-6">
             <h2 class="text-3xl sm:text-4xl font-bold text-tatami-blanco font-display tracking-wider border-b border-dorado-campeon/30 pb-3 uppercase">
               El Significado del Dragón en Nuestro Escudo
             </h2>
@@ -75,12 +75,12 @@ const QuienesSomos = () => {
             </div>
           </div>
 
-          <div class="lg:col-span-4 flex justify-center relative items-center">
+          <div class="lg:col-span-4 flex justify-center relative items-center mt-6 lg:mt-0 pb-4 lg:pb-0">
             {/* Resplandor radial puro para evitar artefactos de recuadro del drop-shadow/blur */}
-            <div class="absolute w-[30rem] h-[30rem] bg-[radial-gradient(circle_at_center,_rgba(201,162,39,0.25)_0%,_transparent_60%)] pointer-events-none"></div>
+            <div class="absolute w-[150%] h-[150%] bg-[radial-gradient(circle_at_center,_rgba(201,162,39,0.25)_0%,_transparent_60%)] pointer-events-none"></div>
             
             <div class="relative w-64 h-64 lg:w-72 lg:h-72 animate-pulse-slow hover:scale-110 transition-transform duration-700">
-              <img src="/logo.png" alt="Najera's Team Logo" class="w-full h-full object-contain" />
+              <img src="/logo.png" alt="Najera's Team Logo" class="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(201,162,39,0.3)]" />
             </div>
           </div>
         </div>
