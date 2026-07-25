@@ -20,9 +20,13 @@ const login = async (req, res, next) => {
       return res.status(401).json({ error: 'Credenciales inválidas.' });
     }
 
+    if (!process.env.JWT_SECRET) {
+      throw new Error('JWT_SECRET is not defined in environment variables');
+    }
+
     const token = jwt.sign(
       { id: admin.id, usuario: admin.usuario, rol: admin.rol },
-      process.env.JWT_SECRET || 'super_secret_jwt_key_taekwondo_2026',
+      process.env.JWT_SECRET,
       { expiresIn: '24h' }
     );
 
@@ -38,7 +42,6 @@ const login = async (req, res, next) => {
 
     return res.json({
       message: 'Inicio de sesión exitoso',
-      token,
       user: { id: admin.id, usuario: admin.usuario, rol: admin.rol },
     });
   } catch (error) {

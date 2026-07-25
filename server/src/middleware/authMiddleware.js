@@ -16,7 +16,11 @@ const authMiddleware = (req, res, next) => {
       return res.status(401).json({ error: 'Acceso denegado. Token no proporcionado.' });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'super_secret_jwt_key_taekwondo_2026');
+    if (!process.env.JWT_SECRET) {
+      throw new Error('JWT_SECRET is not defined in environment variables');
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
     next();
   } catch (error) {
