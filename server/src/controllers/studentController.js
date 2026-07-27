@@ -1,19 +1,15 @@
 const prisma = require('../config/db');
 
-// Función auxiliar para calcular estado de pago usando diaDeCobro
-const calculatePaymentStatus = (fechaProximoPagoStr, diaDeCobro) => {
+// Función auxiliar para calcular estado de pago usando la fecha próxima de pago real
+const calculatePaymentStatus = (fechaProximoPagoStr) => {
   if (!fechaProximoPagoStr) return 'ROJO';
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const nextPaymentDate = new Date(fechaProximoPagoStr);
-  
-  // Ajustar la fecha próxima de pago al día de cobro estipulado
-  if (diaDeCobro) {
-    nextPaymentDate.setDate(diaDeCobro);
-  }
-  
+  // Parsear la fecha YYYY-MM-DD en hora local para evitar desfases de zona horaria
+  const [year, month, day] = fechaProximoPagoStr.split('-').map(Number);
+  const nextPaymentDate = new Date(year, month - 1, day);
   nextPaymentDate.setHours(0, 0, 0, 0);
 
   const diffTime = nextPaymentDate.getTime() - today.getTime();
