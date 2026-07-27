@@ -88,9 +88,11 @@ const EstudiantesAdmin = () => {
     // Internal Admin Fields
     clubId: '',
     grado: 'Cinturón Blanco (10° Kup)',
+    gradoTKD: 'Cinturón Blanco (10° Kup)',
+    gradoKB: 'Cinturón blanco',
     modalidad: 'TAEKWONDO',
-    fechaIngreso: new Date().toISOString().split('T')[0],
-    fechaUltimoPago: new Date().toISOString().split('T')[0],
+    fechaIngreso: new Date().toLocaleDateString('sv-SE'),
+    fechaUltimoPago: new Date().toLocaleDateString('sv-SE'),
     periodicidadPago: 'MENSUAL',
     foto: '',
   };
@@ -99,7 +101,7 @@ const EstudiantesAdmin = () => {
 
   const [paymentForm, setPaymentForm] = useState({
     monto: '50.00',
-    fechaPago: new Date().toISOString().split('T')[0],
+    fechaPago: new Date().toLocaleDateString('sv-SE'),
     metodoPago: 'TRANSFERENCIA',
     periodoCubierto: 'Mensualidad Corriente',
   });
@@ -177,9 +179,11 @@ const EstudiantesAdmin = () => {
 
         clubId: student.clubId || '',
         grado: student.grado || 'Cinturón Blanco (10° Kup)',
+        gradoTKD: student.modalidad === 'AMBAS' ? (student.grado || '').split(' / ')[0] || 'Cinturón Blanco (10° Kup)' : student.grado || 'Cinturón Blanco (10° Kup)',
+        gradoKB: student.modalidad === 'AMBAS' ? (student.grado || '').split(' / ')[1] || 'Cinturón blanco' : 'Cinturón blanco',
         modalidad: student.modalidad || 'TAEKWONDO',
-        fechaIngreso: student.fechaIngreso || new Date().toISOString().split('T')[0],
-        fechaUltimoPago: student.fechaUltimoPago || new Date().toISOString().split('T')[0],
+        fechaIngreso: student.fechaIngreso || new Date().toLocaleDateString('sv-SE'),
+        fechaUltimoPago: student.fechaUltimoPago || new Date().toLocaleDateString('sv-SE'),
         periodicidadPago: student.periodicidadPago || 'MENSUAL',
         foto: student.foto || '',
       });
@@ -194,12 +198,20 @@ const EstudiantesAdmin = () => {
   const handleSaveStudent = async (e) => {
     e.preventDefault();
     try {
+      let finalGrado = studentForm.grado;
+      if (studentForm.modalidad === 'AMBAS') {
+        finalGrado = `${studentForm.gradoTKD} / ${studentForm.gradoKB}`;
+      }
+
       const payload = {
         ...studentForm,
+        grado: finalGrado,
         contactoEmergencia: `${studentForm.contactoEmergenciaNombre} - ${studentForm.contactoEmergenciaCelular}`.trim()
       };
       delete payload.contactoEmergenciaNombre;
       delete payload.contactoEmergenciaCelular;
+      delete payload.gradoTKD;
+      delete payload.gradoKB;
 
       if (selectedStudent) {
         await API.put(`/students/${selectedStudent.id}`, payload);
@@ -218,7 +230,7 @@ const EstudiantesAdmin = () => {
     setSelectedStudent(student);
     setPaymentForm({
       monto: '50.00',
-      fechaPago: new Date().toISOString().split('T')[0],
+      fechaPago: new Date().toLocaleDateString('sv-SE'),
       metodoPago: 'TRANSFERENCIA',
       periodoCubierto: 'Mensualidad Corriente',
     });
@@ -736,7 +748,20 @@ const EstudiantesAdmin = () => {
       
       // Ajustar automáticamente el cinturón/grado si se cambia la modalidad
       if (name === 'modalidad') {
-        updated.grado = value === 'TAEKWONDO' ? TAEKWONDO_BELTS[0] : KICKBOXING_BELTS[0];
+        if (value === 'TAEKWONDO') {
+          updated.grado = updated.gradoTKD || TAEKWONDO_BELTS[0];
+        } else if (value === 'KICKBOXING') {
+          updated.grado = updated.gradoKB || KICKBOXING_BELTS[0];
+        } else if (value === 'AMBAS') {
+          updated.grado = `${updated.gradoTKD || TAEKWONDO_BELTS[0]} / ${updated.gradoKB || KICKBOXING_BELTS[0]}`;
+        }
+      }
+
+      if (name === 'gradoTKD') {
+        updated.grado = `${value} / ${prev.gradoKB || KICKBOXING_BELTS[0]}`;
+      }
+      if (name === 'gradoKB') {
+        updated.grado = `${prev.gradoTKD || TAEKWONDO_BELTS[0]} / ${value}`;
       }
       
       return updated;
@@ -869,7 +894,14 @@ const EstudiantesAdmin = () => {
                     </td>
                     <td class="p-4 font-mono text-gray-300 border-r border-white/5">{student.cedula}</td>
                     <td class="p-4 border-r border-white/5">
-                      <span class="block font-semibold text-white">{student.grado}</span>
+                      {student.modalidad === 'AMBAS' ? (
+                        <>
+                          <span class="block font-semibold text-blue-400">TKD: {student.grado.split(' / ')[0]}</span>
+                          <span class="block font-semibold text-red-400">KB: {student.grado.split(' / ')[1]}</span>
+                        </>
+                      ) : (
+                        <span class="block font-semibold text-white">{student.grado}</span>
+                      )}
                       <span class="text-[10px] text-dorado-campeon uppercase tracking-widest">{student.club?.nombre || 'Central'}</span>
                     </td>
                     <td class="p-4 font-mono text-gray-400 border-r border-white/5">{student.fechaUltimoPago}</td>
@@ -1080,7 +1112,7 @@ const EstudiantesAdmin = () => {
 
 
           {/* ADMIN INTERNAL FIELDS (Hidden or minimized) */}
-          <div class="pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 bg-[#0B1550]/50 p-3 rounded-sm border border-dorado-campeon/20">
+          <div class={`pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 ${studentForm.modalidad === 'AMBAS' ? 'lg:grid-cols-6' : 'lg:grid-cols-5'} gap-3 bg-[#0B1550]/50 p-3 rounded-sm border border-dorado-campeon/20`}>
              <div>
               <label class="block text-[10px] text-gray-400 uppercase mb-1">Club Asignado</label>
               <select name="clubId" value={studentForm.clubId} onChange={handleChange} class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dorado-campeon">
@@ -1090,29 +1122,61 @@ const EstudiantesAdmin = () => {
                 ))}
               </select>
             </div>
-            <div>
-              <label class="block text-[10px] text-gray-400 uppercase mb-1">Grado / Cinturón</label>
-              <select
-                name="grado"
-                value={studentForm.grado}
-                onChange={handleChange}
-                class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dorado-campeon uppercase tracking-wider font-bold"
-              >
-                {studentForm.modalidad === 'TAEKWONDO'
-                  ? TAEKWONDO_BELTS.map((belt) => (
+            {studentForm.modalidad === 'AMBAS' ? (
+              <>
+                <div>
+                  <label class="block text-[10px] text-gray-400 uppercase mb-1">Cinturón Taekwondo</label>
+                  <select
+                    name="gradoTKD"
+                    value={studentForm.gradoTKD}
+                    onChange={handleChange}
+                    class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dorado-campeon uppercase tracking-wider font-bold"
+                  >
+                    {TAEKWONDO_BELTS.map((belt) => (
                       <option key={belt} value={belt}>{belt}</option>
-                    ))
-                  : KICKBOXING_BELTS.map((belt) => (
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-[10px] text-gray-400 uppercase mb-1">Cinturón Kickboxing</label>
+                  <select
+                    name="gradoKB"
+                    value={studentForm.gradoKB}
+                    onChange={handleChange}
+                    class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dorado-campeon uppercase tracking-wider font-bold"
+                  >
+                    {KICKBOXING_BELTS.map((belt) => (
                       <option key={belt} value={belt}>{belt}</option>
-                    ))
-                }
-              </select>
-            </div>
+                    ))}
+                  </select>
+                </div>
+              </>
+            ) : (
+              <div>
+                <label class="block text-[10px] text-gray-400 uppercase mb-1">Grado / Cinturón</label>
+                <select
+                  name="grado"
+                  value={studentForm.grado}
+                  onChange={handleChange}
+                  class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dorado-campeon uppercase tracking-wider font-bold"
+                >
+                  {studentForm.modalidad === 'TAEKWONDO'
+                    ? TAEKWONDO_BELTS.map((belt) => (
+                        <option key={belt} value={belt}>{belt}</option>
+                      ))
+                    : KICKBOXING_BELTS.map((belt) => (
+                        <option key={belt} value={belt}>{belt}</option>
+                      ))
+                  }
+                </select>
+              </div>
+            )}
             <div>
               <label class="block text-[10px] text-gray-400 uppercase mb-1">Modalidad</label>
               <select name="modalidad" value={studentForm.modalidad} onChange={handleChange} class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dorado-campeon">
                 <option value="TAEKWONDO">Taekwondo</option>
                 <option value="KICKBOXING">Kickboxing</option>
+                <option value="AMBAS">Taekwondo y Kickboxing</option>
               </select>
             </div>
             <div>

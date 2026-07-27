@@ -57,6 +57,8 @@ const Grados = () => {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [formFoto, setFormFoto] = useState('');
   const [formGrado, setFormGrado] = useState('');
+  const [formGradoTKD, setFormGradoTKD] = useState('');
+  const [formGradoKB, setFormGradoKB] = useState('');
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -81,6 +83,21 @@ const Grados = () => {
     setSelectedStudent(student);
     setFormFoto(student.foto || '');
     setFormGrado(student.grado || '');
+
+    let gTKD = 'Cinturón Blanco (10° Kup)';
+    let gKB = 'Cinturón blanco';
+    if (student.modalidad === 'AMBAS' && student.grado) {
+      const gradeParts = student.grado.split(' / ');
+      gTKD = gradeParts[0] || 'Cinturón Blanco (10° Kup)';
+      gKB = gradeParts[1] || 'Cinturón blanco';
+    } else if (student.modalidad === 'TAEKWONDO') {
+      gTKD = student.grado || 'Cinturón Blanco (10° Kup)';
+    } else if (student.modalidad === 'KICKBOXING') {
+      gKB = student.grado || 'Cinturón blanco';
+    }
+    setFormGradoTKD(gTKD);
+    setFormGradoKB(gKB);
+
     setIsModalOpen(true);
   };
 
@@ -88,17 +105,21 @@ const Grados = () => {
     e.preventDefault();
     if (!selectedStudent) return;
 
+    const finalGrado = selectedStudent.modalidad === 'AMBAS'
+      ? `${formGradoTKD} / ${formGradoKB}`
+      : formGrado;
+
     try {
       setSaving(true);
       await API.put(`/students/${selectedStudent.id}`, {
         foto: formFoto,
-        grado: formGrado
+        grado: finalGrado
       });
 
       // Actualizar estado local
       setStudents(prev => prev.map(s => {
         if (s.id === selectedStudent.id) {
-          return { ...s, foto: formFoto, grado: formGrado };
+          return { ...s, foto: formFoto, grado: finalGrado };
         }
         return s;
       }));
@@ -117,7 +138,8 @@ const Grados = () => {
   const filteredStudents = students.filter(student => {
     const matchesFilter = 
       activeFilter === 'TODOS' || 
-      student.modalidad === activeFilter;
+      student.modalidad === activeFilter ||
+      (student.modalidad === 'AMBAS' && (activeFilter === 'TAEKWONDO' || activeFilter === 'KICKBOXING'));
     
     const fullName = `${student.nombres} ${student.apellidos}`.toLowerCase();
     const matchesSearch = fullName.includes(search.toLowerCase()) || (student.cedula && student.cedula.includes(search));
@@ -229,9 +251,11 @@ const Grados = () => {
                 <span class={`absolute top-3 right-3 px-2 py-0.5 rounded text-[8px] font-extrabold tracking-widest uppercase text-white shadow-md ${
                   student.modalidad === 'TAEKWONDO'
                     ? 'bg-blue-600 border border-blue-400/30'
-                    : 'bg-red-600 border border-red-400/30'
+                    : student.modalidad === 'KICKBOXING'
+                    ? 'bg-red-600 border border-red-400/30'
+                    : 'bg-purple-600 border border-purple-400/30'
                 }`}>
-                  {student.modalidad}
+                  {student.modalidad === 'AMBAS' ? 'TKD & KB' : student.modalidad}
                 </span>
 
                 {/* Admin Quick Action Button Over Photo */}
@@ -258,12 +282,25 @@ const Grados = () => {
                 </div>
 
                 {/* Real Belt Color Block */}
-                <div class={`px-3 py-2 flex items-center justify-center gap-2 clip-button ${getBeltColorClass(student.grado)}`}>
-                  <Award size={14} class="flex-shrink-0" />
-                  <span class="text-xs font-display uppercase tracking-widest line-clamp-1">
-                    {student.grado}
-                  </span>
-                </div>
+                {student.modalidad === 'AMBAS' ? (
+                  <div class="flex flex-col sm:flex-row gap-2 w-full justify-center">
+                    {(student.grado || '').split(' / ').map((grade, index) => (
+                      <div key={index} class={`px-2 py-1.5 flex items-center justify-center gap-1 clip-button flex-1 ${getBeltColorClass(grade)}`}>
+                        <Award size={10} class="flex-shrink-0" />
+                        <span class="text-[10px] font-display uppercase tracking-widest line-clamp-1">
+                          {index === 0 ? 'TKD: ' : 'KB: '}{grade}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div class={`px-3 py-2 flex items-center justify-center gap-2 clip-button ${getBeltColorClass(student.grado)}`}>
+                    <Award size={14} class="flex-shrink-0" />
+                    <span class="text-xs font-display uppercase tracking-widest line-clamp-1">
+                      {student.grado}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -302,21 +339,52 @@ const Grados = () => {
 
             <div>
               <label class="block text-[10px] text-gray-400 uppercase mb-1">Grado / Cinturón Actual</label>
-              <select
-                value={formGrado}
-                onChange={(e) => setFormGrado(e.target.value)}
-                required
-                class="w-full bg-[#1C1C21] border border-white/10 rounded-lg px-4 py-2 text-xs text-white uppercase font-bold focus:outline-none focus:border-dorado-campeon"
-              >
-                {selectedStudent.modalidad === 'TAEKWONDO'
-                  ? TAEKWONDO_BELTS.map(belt => (
-                      <option key={belt} value={belt}>{belt}</option>
-                    ))
-                  : KICKBOXING_BELTS.map(belt => (
-                      <option key={belt} value={belt}>{belt}</option>
-                    ))
-                }
-              </select>
+              {selectedStudent.modalidad === 'AMBAS' ? (
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-[9px] text-gray-500 uppercase mb-1">Cinturón Taekwondo</label>
+                    <select
+                      value={formGradoTKD}
+                      onChange={(e) => setFormGradoTKD(e.target.value)}
+                      required
+                      class="w-full bg-[#1C1C21] border border-white/10 rounded-lg px-4 py-2 text-xs text-white uppercase font-bold focus:outline-none focus:border-dorado-campeon"
+                    >
+                      {TAEKWONDO_BELTS.map(belt => (
+                        <option key={belt} value={belt}>{belt}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-[9px] text-gray-500 uppercase mb-1">Cinturón Kickboxing</label>
+                    <select
+                      value={formGradoKB}
+                      onChange={(e) => setFormGradoKB(e.target.value)}
+                      required
+                      class="w-full bg-[#1C1C21] border border-white/10 rounded-lg px-4 py-2 text-xs text-white uppercase font-bold focus:outline-none focus:border-dorado-campeon"
+                    >
+                      {KICKBOXING_BELTS.map(belt => (
+                        <option key={belt} value={belt}>{belt}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              ) : (
+                <select
+                  value={formGrado}
+                  onChange={(e) => setFormGrado(e.target.value)}
+                  required
+                  class="w-full bg-[#1C1C21] border border-white/10 rounded-lg px-4 py-2 text-xs text-white uppercase font-bold focus:outline-none focus:border-dorado-campeon"
+                >
+                  {selectedStudent.modalidad === 'TAEKWONDO'
+                    ? TAEKWONDO_BELTS.map(belt => (
+                        <option key={belt} value={belt}>{belt}</option>
+                      ))
+                    : KICKBOXING_BELTS.map(belt => (
+                        <option key={belt} value={belt}>{belt}</option>
+                      ))
+                  }
+                </select>
+              )}
             </div>
 
             <button
