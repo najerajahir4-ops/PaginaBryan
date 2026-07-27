@@ -1080,7 +1080,7 @@ const EstudiantesAdmin = () => {
 
 
           {/* ADMIN INTERNAL FIELDS (Hidden or minimized) */}
-          <div class="pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-[#0B1550]/50 p-3 rounded-sm border border-dorado-campeon/20">
+          <div class="pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 bg-[#0B1550]/50 p-3 rounded-sm border border-dorado-campeon/20">
              <div>
               <label class="block text-[10px] text-gray-400 uppercase mb-1">Club Asignado</label>
               <select name="clubId" value={studentForm.clubId} onChange={handleChange} class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dorado-campeon">
@@ -1122,6 +1122,10 @@ const EstudiantesAdmin = () => {
                 <option value="TRIMESTRAL">Trimestral</option>
                 <option value="ANUAL">Anual</option>
               </select>
+            </div>
+            <div>
+              <label class="block text-[10px] text-gray-400 uppercase mb-1">Último Pago</label>
+              <input type="date" name="fechaUltimoPago" value={studentForm.fechaUltimoPago} onChange={handleChange} class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dorado-campeon" />
             </div>
           </div>
 

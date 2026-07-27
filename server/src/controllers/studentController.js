@@ -232,7 +232,36 @@ const updateStudent = async (req, res, next) => {
       periodicidadPago,
       foto,
       estado,
+      fechaUltimoPago,
     } = req.body;
+
+    // Obtener estudiante actual para calcular fechaProximoPago si fechaUltimoPago o periodicidadPago cambian
+    const currentStudent = await prisma.student.findUnique({
+      where: { id: parseInt(id) }
+    });
+
+    if (!currentStudent) {
+      return res.status(404).json({ error: 'Estudiante no encontrado.' });
+    }
+
+    // Si se especificó una nueva fecha de último pago o una nueva periodicidad, recalculamos la próxima
+    let proximoPagoCalculado = undefined;
+    if (fechaUltimoPago !== undefined || periodicidadPago !== undefined) {
+      const finalUltimoPago = fechaUltimoPago !== undefined ? fechaUltimoPago : currentStudent.fechaUltimoPago;
+      const finalPeriod = periodicidadPago !== undefined ? periodicidadPago : currentStudent.periodicidadPago;
+      
+      const baseDate = new Date(finalUltimoPago);
+      const nextDate = new Date(baseDate);
+      
+      if (finalPeriod === 'TRIMESTRAL') {
+        nextDate.setMonth(nextDate.getMonth() + 3);
+      } else if (finalPeriod === 'ANUAL') {
+        nextDate.setFullYear(nextDate.getFullYear() + 1);
+      } else {
+        nextDate.setMonth(nextDate.getMonth() + 1);
+      }
+      proximoPagoCalculado = nextDate.toISOString().split('T')[0];
+    }
 
     const updatedStudent = await prisma.student.update({
       where: { id: parseInt(id) },
@@ -264,6 +293,8 @@ const updateStudent = async (req, res, next) => {
         periodicidadPago,
         foto,
         estado,
+        fechaUltimoPago,
+        fechaProximoPago: proximoPagoCalculado,
       },
       include: { club: true },
     });

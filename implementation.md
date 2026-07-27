@@ -254,3 +254,19 @@ Se corrigió la usabilidad al ingresar a la pantalla de autenticación para evit
 * **Archivos Modificados:**
   * [AdminLogin.jsx](file:///c:/Users/najer/OneDrive/Desktop/PAGINABRYAN/client/src/pages/AdminLogin.jsx) (Inyección del hook `useEffect` y validación de sesión para auto-redirección)
 
+---
+
+## 17. Modificación Manual de la Fecha de Último Pago en Ficha (Frontend & Backend)
+
+Se implementó el soporte para editar de forma manual la fecha del último pago del estudiante directamente en su Ficha de Inscripción (Edición/Creación), sincronizando los cambios y recalculando de manera inteligente su próxima fecha de pago:
+* **Entrada de Datos en Formulario:** Se añadió un nuevo campo de tipo `<input type="date">` bajo el título "Último Pago" dentro del bloque de campos administrativos del modal de la Ficha en [EstudiantesAdmin.jsx](file:///c:/Users/najer/OneDrive/Desktop/PROYECTOS_FAMILIA/PAGINABRYAN/client/src/pages/admin/EstudiantesAdmin.jsx).
+* **Distribución de Columnas de Configuración:** Se modificó la cuadrícula del bloque administrativo pasando de 4 a 5 columnas responsivas (`lg:grid-cols-5`) para acomodar la nueva opción en la misma fila de forma ordenada y balanceada.
+* **Controlador Backend Actualizado:** Se modificó el controlador `updateStudent` en [studentController.js](file:///c:/Users/najer/OneDrive/Desktop/PROYECTOS_FAMILIA/PAGINABRYAN/server/src/controllers/studentController.js) para:
+  * Aceptar `fechaUltimoPago` en el cuerpo de la petición.
+  * Verificar si `fechaUltimoPago` o `periodicidadPago` han cambiado respecto a la base de datos.
+  * Si hay algún cambio, recalcular dinámicamente la nueva `fechaProximoPago` agregando el tiempo correspondiente según la periodicidad (`MENSUAL`, `TRIMESTRAL`, `ANUAL`).
+  * Guardar ambos valores actualizados en la base de datos de Prisma de forma coherente.
+* **Archivos Modificados:**
+  * [EstudiantesAdmin.jsx](file:///c:/Users/najer/OneDrive/Desktop/PROYECTOS_FAMILIA/PAGINABRYAN/client/src/pages/admin/EstudiantesAdmin.jsx) (Adición del input "Último Pago" y ajuste de columnas en la cuadrícula de la ficha).
+  * [studentController.js](file:///c:/Users/najer/OneDrive/Desktop/PROYECTOS_FAMILIA/PAGINABRYAN/server/src/controllers/studentController.js) (Estructuración de recepción de `fechaUltimoPago` y lógica de recálculo/actualización de `fechaProximoPago`).
+
