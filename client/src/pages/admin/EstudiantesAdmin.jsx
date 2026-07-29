@@ -95,6 +95,8 @@ const EstudiantesAdmin = () => {
     fechaUltimoPago: new Date().toLocaleDateString('sv-SE'),
     periodicidadPago: 'MENSUAL',
     foto: '',
+  };
+
   const [studentForm, setStudentForm] = useState(defaultFormState);
   const [uploadingImage, setUploadingImage] = useState(false);
 
