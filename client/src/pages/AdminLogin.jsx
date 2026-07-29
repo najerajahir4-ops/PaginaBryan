@@ -27,7 +27,11 @@ const AdminLogin = () => {
       await login(usuario, password);
       navigate('/admin/estudiantes');
     } catch (err) {
-      setError(err.response?.data?.error || 'Credenciales inválidas. Verifica tu usuario y contraseña.');
+      const errorData = err.response?.data?.error;
+      const errorMessage = typeof errorData === 'string' 
+        ? errorData 
+        : (errorData?.message || 'Error del servidor (500). Verifica las variables de entorno en Vercel.');
+      setError(errorMessage);
     } finally {
       setSubmitting(false);
     }
