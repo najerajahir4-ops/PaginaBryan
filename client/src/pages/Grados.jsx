@@ -60,6 +60,28 @@ const Grados = () => {
   const [formGradoTKD, setFormGradoTKD] = useState('');
   const [formGradoKB, setFormGradoKB] = useState('');
   const [saving, setSaving] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+      setUploadingImage(true);
+      const res = await API.post('/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      setFormFoto(res.data.url);
+    } catch (err) {
+      console.error(err);
+      alert('Error al subir la foto');
+    } finally {
+      setUploadingImage(false);
+    }
+  };
 
   useEffect(() => {
     fetchStudents();
@@ -325,8 +347,18 @@ const Grados = () => {
               </div>
             </div>
 
-            <div>
-              <label class="block text-[10px] text-gray-400 uppercase mb-1">Enlace de Foto (URL)</label>
+            <div class="space-y-2">
+              <label class="block text-[10px] text-gray-400 uppercase mb-1">Subir Foto de Perfil</label>
+              <input 
+                type="file" 
+                accept="image/png, image/jpeg, image/jpg, image/webp" 
+                onChange={handleImageUpload}
+                disabled={uploadingImage}
+                class="block w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-dorado-campeon file:text-carbon hover:file:bg-[#b08d20] transition-all disabled:opacity-50 cursor-pointer"
+              />
+              {uploadingImage && <p class="text-[10px] text-amber-400 mt-1 animate-pulse">Subiendo imagen a la nube...</p>}
+              
+              <div class="text-center text-[10px] text-gray-500 my-2">O pega una URL directamente:</div>
               <input
                 type="text"
                 value={formFoto}
@@ -334,7 +366,6 @@ const Grados = () => {
                 placeholder="https://images.unsplash.com/..."
                 class="w-full bg-[#1C1C21] border border-white/10 rounded-lg px-4 py-2 text-xs text-white focus:outline-none focus:border-dorado-campeon"
               />
-              <p class="text-[9px] text-gray-500 mt-1">Copia y pega la URL de una foto del estudiante en formato .jpg o .png.</p>
             </div>
 
             <div>

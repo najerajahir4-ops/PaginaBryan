@@ -179,7 +179,7 @@ const createStudent = async (req, res, next) => {
         fechaUltimoPago: fechaUltimoPago || new Date().toISOString().split('T')[0],
         fechaProximoPago: proximoPagoDate.toISOString().split('T')[0],
         periodicidadPago: period,
-        foto: foto || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+        foto: foto || '',
       },
       include: { club: true },
     });

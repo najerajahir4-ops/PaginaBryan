@@ -95,9 +95,8 @@ const EstudiantesAdmin = () => {
     fechaUltimoPago: new Date().toLocaleDateString('sv-SE'),
     periodicidadPago: 'MENSUAL',
     foto: '',
-  };
-
   const [studentForm, setStudentForm] = useState(defaultFormState);
+  const [uploadingImage, setUploadingImage] = useState(false);
 
   const [paymentForm, setPaymentForm] = useState({
     monto: '50.00',
@@ -222,6 +221,28 @@ const EstudiantesAdmin = () => {
       fetchStudents();
     } catch (err) {
       alert(err.response?.data?.error || 'Error al guardar estudiante.');
+    }
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+      setUploadingImage(true);
+      const res = await API.post('/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      setStudentForm(prev => ({ ...prev, foto: res.data.url }));
+      alert('Foto subida exitosamente');
+    } catch (err) {
+      console.error(err);
+      alert('Error al subir la foto');
+    } finally {
+      setUploadingImage(false);
     }
   };
 
@@ -1194,6 +1215,30 @@ const EstudiantesAdmin = () => {
             <div>
               <label class="block text-[10px] text-gray-400 uppercase mb-1">Último Pago</label>
               <input type="date" name="fechaUltimoPago" value={studentForm.fechaUltimoPago} onChange={handleChange} class="w-full bg-[#111114] border border-white/5 rounded-sm px-3 py-1.5 text-[11px] text-gray-200 focus:outline-none focus:border-dorado-campeon" />
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <h3 class="text-xs font-bold text-dorado-campeon font-heading tracking-widest uppercase border-b border-white/10 pb-1">
+              5. Foto de Perfil (Opcional)
+            </h3>
+            <div class="flex items-center gap-4 bg-[#1C1C21] p-4 rounded-sm border border-white/10">
+              {studentForm.foto ? (
+                <img src={studentForm.foto} alt="Perfil" class="w-16 h-16 rounded-full object-cover border border-dorado-campeon" />
+              ) : (
+                <div class="w-16 h-16 rounded-full bg-carbon border border-white/20 flex items-center justify-center text-xs text-gray-500 uppercase">Sin Foto</div>
+              )}
+              <div class="flex-1">
+                <label class="block text-[10px] text-gray-400 uppercase mb-2">Subir nueva foto desde tu equipo:</label>
+                <input 
+                  type="file" 
+                  accept="image/png, image/jpeg, image/jpg, image/webp" 
+                  onChange={handleImageUpload}
+                  disabled={uploadingImage}
+                  class="block w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-sm file:border-0 file:text-xs file:font-bold file:bg-dorado-campeon file:text-carbon hover:file:bg-[#b08d20] transition-all disabled:opacity-50 cursor-pointer"
+                />
+                {uploadingImage && <p class="text-[10px] text-amber-400 mt-1 animate-pulse">Subiendo imagen a la nube...</p>}
+              </div>
             </div>
           </div>
 
