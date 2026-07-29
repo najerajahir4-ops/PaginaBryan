@@ -1015,6 +1015,10 @@ const EstudiantesAdmin = () => {
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Celular</label>
                 <input type="text" name="celular" required value={studentForm.celular} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
+              <div>
+                <label class="block text-[10px] text-gray-400 uppercase mb-1">Fecha de Ingreso</label>
+                <input type="date" name="fechaIngreso" required value={studentForm.fechaIngreso} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
+              </div>
               <div class="sm:col-span-2">
                 <label class="block text-[10px] text-gray-400 uppercase mb-1">Dirección</label>
                 <input type="text" name="direccion" required value={studentForm.direccion} onChange={handleChange} class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-1.5 text-xs text-white focus:outline-none focus:border-dorado-campeon" />
