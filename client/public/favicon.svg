@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Left stem -->
+  <polygon points="0,100 0,0 35,0 35,100" fill="#0B1550" />
+  <!-- Right stem -->
+  <polygon points="65,100 65,0 100,0 100,100" fill="#0B1550" />
+  <!-- Diagonal slash -->
+  <polygon points="0,0 35,0 100,100 65,100" fill="#D4AF37" />
+</svg>
