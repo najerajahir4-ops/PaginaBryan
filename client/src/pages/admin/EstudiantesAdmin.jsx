@@ -63,6 +63,11 @@ const EstudiantesAdmin = () => {
   const [paymentHistory, setPaymentHistory] = useState([]);
   const [activeKebabId, setActiveKebabId] = useState(null);
 
+  // Loading States
+  const [isSavingStudent, setIsSavingStudent] = useState(false);
+  const [isSavingPayment, setIsSavingPayment] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
   // Default Ficha de Inscripción Form State
   const defaultFormState = {
     nombres: '',
@@ -218,6 +223,7 @@ const EstudiantesAdmin = () => {
   // Submit Save/Update Student
   const handleSaveStudent = async (e) => {
     e.preventDefault();
+    setIsSavingStudent(true);
     try {
       let finalGrado = studentForm.grado;
       if (studentForm.modalidad === 'AMBAS') {
@@ -243,6 +249,8 @@ const EstudiantesAdmin = () => {
       fetchStudents();
     } catch (err) {
       alert(err.response?.data?.error || 'Error al guardar estudiante.');
+    } finally {
+      setIsSavingStudent(false);
     }
   };
 
@@ -283,6 +291,7 @@ const EstudiantesAdmin = () => {
   // Save New Payment
   const handleSavePayment = async (e) => {
     e.preventDefault();
+    setIsSavingPayment(true);
     try {
       await API.post('/payments', {
         studentId: selectedStudent.id,
@@ -293,6 +302,8 @@ const EstudiantesAdmin = () => {
       alert('Pago registrado y fecha de próximo pago recalculada correctamente.');
     } catch (err) {
       alert(err.response?.data?.error || 'Error al registrar pago.');
+    } finally {
+      setIsSavingPayment(false);
     }
   };
 
@@ -311,11 +322,14 @@ const EstudiantesAdmin = () => {
   // Delete Student
   const handleDeleteStudent = async (id) => {
     if (window.confirm('¿Estás seguro de eliminar este estudiante? Esta acción borrará todo su historial.')) {
+      setIsDeleting(true);
       try {
         await API.delete(`/students/${id}`);
         fetchStudents();
       } catch (err) {
         alert('Error al eliminar estudiante.');
+      } finally {
+        setIsDeleting(false);
       }
     }
   };
@@ -993,14 +1007,12 @@ const EstudiantesAdmin = () => {
                               </button>
                               <div class="border-t border-white/5 my-1"></div>
                               <button
-                                onClick={() => {
-                                  handleDeleteStudent(student.id);
-                                  setActiveKebabId(null);
-                                }}
-                                class="w-full px-3 py-2 text-xs text-rose-400 hover:bg-rose-500/10 flex items-center gap-2"
+                                onClick={() => handleDeleteStudent(student.id)}
+                                disabled={isDeleting}
+                                class="w-full px-3 py-2 text-xs text-rose-400 hover:bg-rose-500/10 flex items-center gap-2 disabled:opacity-50"
                               >
                                 <Trash2 size={12} />
-                                Eliminar Alumno
+                                {isDeleting ? 'Eliminando...' : 'Eliminar Alumno'}
                               </button>
                             </div>
                           )}
@@ -1265,11 +1277,12 @@ const EstudiantesAdmin = () => {
             )}
             <button
               type="submit"
-              class={`w-full py-4 bg-rojo-impacto text-white font-bold text-xs uppercase tracking-widest rounded-sm hover:bg-red-700 shadow-[0_0_15px_rgba(140,29,29,0.5)] border border-rojo-impacto transition-all ${
+              disabled={isSavingStudent}
+              class={`w-full py-4 bg-rojo-impacto text-white font-bold text-xs uppercase tracking-widest rounded-sm hover:bg-red-700 shadow-[0_0_15px_rgba(140,29,29,0.5)] border border-rojo-impacto transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed ${
                 selectedStudent ? '' : 'sm:col-span-2'
               }`}
             >
-              GUARDAR FICHA OFICIAL
+              {isSavingStudent ? 'GUARDANDO...' : 'GUARDAR FICHA OFICIAL'}
             </button>
           </div>
         </form>
@@ -1312,8 +1325,8 @@ const EstudiantesAdmin = () => {
             * Al guardar este pago, la fecha de próximo pago se recalculará al <strong>Día {selectedStudent?.diaDeCobro}</strong> del siguiente periodo.
           </p>
 
-          <button type="submit" class="w-full py-3 bg-dorado-campeon text-carbon font-bold text-xs uppercase tracking-widest rounded-sm hover:bg-[#b08d20] shadow-[0_0_15px_rgba(212,175,55,0.4)]">
-            Confirmar Pago
+          <button type="submit" disabled={isSavingPayment} class="w-full py-3 bg-dorado-campeon text-carbon font-bold text-xs uppercase tracking-widest rounded-sm hover:bg-[#b08d20] shadow-[0_0_15px_rgba(212,175,55,0.4)] disabled:opacity-50 disabled:cursor-not-allowed">
+            {isSavingPayment ? 'PROCESANDO...' : 'Confirmar Pago'}
           </button>
         </form>
       </Modal>

@@ -1,28 +1,6 @@
 const prisma = require('../config/db');
-
-// Función auxiliar para calcular estado de pago usando la fecha próxima de pago real
-const calculatePaymentStatus = (fechaProximoPagoStr) => {
-  if (!fechaProximoPagoStr) return 'ROJO';
-
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  // Parsear la fecha YYYY-MM-DD en hora local para evitar desfases de zona horaria
-  const [year, month, day] = fechaProximoPagoStr.split('-').map(Number);
-  const nextPaymentDate = new Date(year, month - 1, day);
-  nextPaymentDate.setHours(0, 0, 0, 0);
-
-  const diffTime = nextPaymentDate.getTime() - today.getTime();
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-  if (diffDays < 0) {
-    return 'ROJO'; // Vencido
-  } else if (diffDays <= 7) {
-    return 'AMARILLO'; // Próximo a vencer (7 días o menos)
-  } else {
-    return 'VERDE'; // Al día
-  }
-};
+const { calculatePaymentStatus, calculateNextPaymentDate } = require('../utils/dateUtils');
+const { studentCreateSchema, studentUpdateSchema } = require('../utils/validators');
 
 const getStudents = async (req, res, next) => {
   try {
@@ -106,83 +84,43 @@ const getStudentById = async (req, res, next) => {
 
 const createStudent = async (req, res, next) => {
   try {
-    const {
-      nombres,
-      apellidos,
-      cedula,
-      fechaNacimiento,
-      edad,
-      celular,
-      direccion,
-      correo,
-      horarioElegido,
-      alergias,
-      enfermedades,
-      lesiones,
-      contactoEmergencia,
-      nombreRepresentante,
-      cedulaRepresentante,
-      celularRepresentante,
-      comoSeEntero,
-      autorizaImagen,
-      diaDeCobro,
-      modalidad,
-      
-      clubId,
-      grado,
-      fechaIngreso,
-      fechaUltimoPago,
-      periodicidadPago,
-      foto,
-    } = req.body;
-
-    if (!nombres || !apellidos || !cedula || !fechaNacimiento || !edad || !horarioElegido || !contactoEmergencia || !grado) {
-      return res.status(400).json({ error: 'Faltan campos obligatorios para registrar al estudiante.' });
-    }
+    const parsedData = studentCreateSchema.parse(req.body);
 
     // Calcular fecha del próximo pago inicial
-    const ultimoPagoDate = fechaUltimoPago ? new Date(fechaUltimoPago) : new Date();
-    const proximoPagoDate = new Date(ultimoPagoDate);
-
-    const period = periodicidadPago || 'MENSUAL';
-    if (period === 'TRIMESTRAL') {
-      proximoPagoDate.setMonth(proximoPagoDate.getMonth() + 3);
-    } else if (period === 'ANUAL') {
-      proximoPagoDate.setFullYear(proximoPagoDate.getFullYear() + 1);
-    } else {
-      proximoPagoDate.setMonth(proximoPagoDate.getMonth() + 1); // Default Mensual
-    }
+    const ultimoPagoDate = parsedData.fechaUltimoPago ? new Date(parsedData.fechaUltimoPago) : new Date();
+    const period = parsedData.periodicidadPago || 'MENSUAL';
+    const proximoPagoCalculado = calculateNextPaymentDate(ultimoPagoDate, period);
 
     const newStudent = await prisma.student.create({
       data: {
-        nombres,
-        apellidos,
-        cedula,
-        fechaNacimiento,
-        edad: parseInt(edad),
-        celular,
-        direccion,
-        correo,
-        horarioElegido,
-        alergias,
-        enfermedades,
-        lesiones,
-        contactoEmergencia,
-        nombreRepresentante,
-        cedulaRepresentante,
-        celularRepresentante,
-        comoSeEntero,
-        autorizaImagen: Boolean(autorizaImagen),
-        diaDeCobro: parseInt(diaDeCobro) || 1,
-        modalidad: modalidad || 'TAEKWONDO',
+        nombres: parsedData.nombres,
+        apellidos: parsedData.apellidos,
+        cedula: parsedData.cedula,
+        fechaNacimiento: parsedData.fechaNacimiento,
+        edad: parsedData.edad,
+        celular: parsedData.celular,
+        direccion: parsedData.direccion,
+        correo: parsedData.correo,
+        horarioElegido: parsedData.horarioElegido,
+        alergias: parsedData.alergias,
+        enfermedades: parsedData.enfermedades,
+        lesiones: parsedData.lesiones,
+        contactoEmergencia: parsedData.contactoEmergencia,
+        nombreRepresentante: parsedData.nombreRepresentante,
+        cedulaRepresentante: parsedData.cedulaRepresentante,
+        celularRepresentante: parsedData.celularRepresentante,
+        comoSeEntero: parsedData.comoSeEntero,
+        autorizaImagen: parsedData.autorizaImagen,
+        diaDeCobro: parsedData.diaDeCobro,
+        modalidad: parsedData.modalidad,
         
-        clubId: clubId ? parseInt(clubId) : null,
-        grado,
-        fechaIngreso: fechaIngreso || new Date().toISOString().split('T')[0],
-        fechaUltimoPago: fechaUltimoPago || new Date().toISOString().split('T')[0],
-        fechaProximoPago: proximoPagoDate.toISOString().split('T')[0],
+        clubId: parsedData.clubId,
+        grado: parsedData.grado,
+        fechaIngreso: parsedData.fechaIngreso || new Date().toISOString().split('T')[0],
+        fechaUltimoPago: parsedData.fechaUltimoPago || new Date().toISOString().split('T')[0],
+        fechaProximoPago: proximoPagoCalculado,
         periodicidadPago: period,
-        foto: foto || '',
+        foto: parsedData.foto,
       },
       include: { club: true },
     });
@@ -203,36 +141,7 @@ const createStudent = async (req, res, next) => {
 const updateStudent = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const {
-      nombres,
-      apellidos,
-      cedula,
-      fechaNacimiento,
-      edad,
-      celular,
-      direccion,
-      correo,
-      horarioElegido,
-      alergias,
-      enfermedades,
-      lesiones,
-      contactoEmergencia,
-      nombreRepresentante,
-      cedulaRepresentante,
-      celularRepresentante,
-      comoSeEntero,
-      autorizaImagen,
-      diaDeCobro,
-      modalidad,
-      
-      clubId,
-      grado,
-      fechaIngreso,
-      periodicidadPago,
-      foto,
-      estado,
-      fechaUltimoPago,
-    } = req.body;
+    const parsedData = studentUpdateSchema.parse(req.body);
 
     // Obtener estudiante actual para calcular fechaProximoPago si fechaUltimoPago o periodicidadPago cambian
     const currentStudent = await prisma.student.findUnique({
@@ -245,54 +154,43 @@ const updateStudent = async (req, res, next) => {
 
     // Si se especificó una nueva fecha de último pago o una nueva periodicidad, recalculamos la próxima
     let proximoPagoCalculado = undefined;
-    if (fechaUltimoPago !== undefined || periodicidadPago !== undefined) {
-      const finalUltimoPago = fechaUltimoPago !== undefined ? fechaUltimoPago : currentStudent.fechaUltimoPago;
-      const finalPeriod = periodicidadPago !== undefined ? periodicidadPago : currentStudent.periodicidadPago;
-      
-      const baseDate = new Date(finalUltimoPago);
-      const nextDate = new Date(baseDate);
-      
-      if (finalPeriod === 'TRIMESTRAL') {
-        nextDate.setMonth(nextDate.getMonth() + 3);
-      } else if (finalPeriod === 'ANUAL') {
-        nextDate.setFullYear(nextDate.getFullYear() + 1);
-      } else {
-        nextDate.setMonth(nextDate.getMonth() + 1);
-      }
-      proximoPagoCalculado = nextDate.toISOString().split('T')[0];
+    if (parsedData.fechaUltimoPago !== undefined || parsedData.periodicidadPago !== undefined) {
+      const finalUltimoPago = parsedData.fechaUltimoPago !== undefined ? parsedData.fechaUltimoPago : currentStudent.fechaUltimoPago;
+      const finalPeriod = parsedData.periodicidadPago !== undefined ? parsedData.periodicidadPago : currentStudent.periodicidadPago;
+      proximoPagoCalculado = calculateNextPaymentDate(finalUltimoPago, finalPeriod);
     }
 
     const updatedStudent = await prisma.student.update({
       where: { id: parseInt(id) },
       data: {
-        nombres,
-        apellidos,
-        cedula,
-        fechaNacimiento,
-        edad: edad ? parseInt(edad) : undefined,
-        celular,
-        direccion,
-        correo,
-        horarioElegido,
-        alergias,
-        enfermedades,
-        lesiones,
-        contactoEmergencia,
-        nombreRepresentante,
-        cedulaRepresentante,
-        celularRepresentante,
-        comoSeEntero,
-        autorizaImagen: autorizaImagen !== undefined ? Boolean(autorizaImagen) : undefined,
-        diaDeCobro: diaDeCobro ? parseInt(diaDeCobro) : undefined,
-        modalidad,
+        nombres: parsedData.nombres,
+        apellidos: parsedData.apellidos,
+        cedula: parsedData.cedula,
+        fechaNacimiento: parsedData.fechaNacimiento,
+        edad: parsedData.edad,
+        celular: parsedData.celular,
+        direccion: parsedData.direccion,
+        correo: parsedData.correo,
+        horarioElegido: parsedData.horarioElegido,
+        alergias: parsedData.alergias,
+        enfermedades: parsedData.enfermedades,
+        lesiones: parsedData.lesiones,
+        contactoEmergencia: parsedData.contactoEmergencia,
+        nombreRepresentante: parsedData.nombreRepresentante,
+        cedulaRepresentante: parsedData.cedulaRepresentante,
+        celularRepresentante: parsedData.celularRepresentante,
+        comoSeEntero: parsedData.comoSeEntero,
+        autorizaImagen: parsedData.autorizaImagen,
+        diaDeCobro: parsedData.diaDeCobro,
+        modalidad: parsedData.modalidad,
         
-        clubId: clubId ? parseInt(clubId) : null,
-        grado,
-        fechaIngreso,
-        periodicidadPago,
-        foto,
-        estado,
-        fechaUltimoPago,
+        clubId: parsedData.clubId,
+        grado: parsedData.grado,
+        fechaIngreso: parsedData.fechaIngreso,
+        periodicidadPago: parsedData.periodicidadPago,
+        foto: parsedData.foto,
+        estado: parsedData.estado,
+        fechaUltimoPago: parsedData.fechaUltimoPago,
         fechaProximoPago: proximoPagoCalculado,
       },
       include: { club: true },
