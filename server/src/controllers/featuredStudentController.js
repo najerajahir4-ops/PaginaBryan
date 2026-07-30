@@ -26,7 +26,7 @@ const getFeaturedStudents = async (req, res, next) => {
 
 const createFeaturedStudent = async (req, res, next) => {
   try {
-    const { studentId, logros, categoria, disciplina } = req.body;
+    const { studentId, logros, categoria, disciplina, imagenUrl } = req.body;
 
     if (!studentId || !logros || !categoria || !disciplina) {
       return res.status(400).json({ error: 'Faltan campos para registrar alumno destacado.' });
@@ -46,6 +46,7 @@ const createFeaturedStudent = async (req, res, next) => {
         categoria,
         disciplina,
         orden: nextOrder,
+        imagenUrl: imagenUrl || null,
       },
       include: {
         student: { include: { club: true } },
@@ -61,11 +62,11 @@ const createFeaturedStudent = async (req, res, next) => {
 const updateFeaturedStudent = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { logros, categoria, disciplina } = req.body;
+    const { logros, categoria, disciplina, imagenUrl } = req.body;
 
     const updated = await prisma.featuredStudent.update({
       where: { id: parseInt(id) },
-      data: { logros, categoria, disciplina },
+      data: { logros, categoria, disciplina, imagenUrl: imagenUrl || null },
       include: {
         student: { include: { club: true } },
       },

@@ -57,9 +57,9 @@ const SortableFeaturedCard = ({ item, isEditMode }) => {
 
       {/* Photo & Badges */}
       <div class="relative h-64 overflow-hidden bg-black">
-        {item.student.foto ? (
+        {item.imagenUrl || item.student.foto ? (
           <img
-            src={item.student.foto}
+            src={item.imagenUrl || item.student.foto}
             alt={`${item.student.nombres} ${item.student.apellidos}`}
             class="w-full h-full object-cover"
           />

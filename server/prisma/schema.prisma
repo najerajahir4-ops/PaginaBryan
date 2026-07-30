@@ -82,6 +82,7 @@ model FeaturedStudent {
   categoria  String // INFANTIL, JUVENIL, ADULTO
   disciplina String // TAEKWONDO, KICKBOXING
   orden      Int      @default(0)
+  imagenUrl  String?
   createdAt  DateTime @default(now())
 }
 

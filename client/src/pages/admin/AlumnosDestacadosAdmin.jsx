@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import API from '../../services/api';
 import Modal from '../../components/Modal';
-import { Trophy, Plus, Edit, Trash2 } from 'lucide-react';
+import { Trophy, Plus, Edit, Trash2, Camera, Loader, Image as ImageIcon } from 'lucide-react';
 
 const AlumnosDestacadosAdmin = () => {
   const [featured, setFeatured] = useState([]);
@@ -15,7 +15,10 @@ const AlumnosDestacadosAdmin = () => {
     logros: '',
     categoria: 'JUVENIL',
     disciplina: 'TAEKWONDO',
+    imagenUrl: '',
   });
+
+  const [uploadingImage, setUploadingImage] = useState(false);
 
   useEffect(() => {
     fetchFeatured();
@@ -51,6 +54,7 @@ const AlumnosDestacadosAdmin = () => {
         logros: item.logros,
         categoria: item.categoria,
         disciplina: item.disciplina,
+        imagenUrl: item.imagenUrl || '',
       });
     } else {
       setSelectedItem(null);
@@ -59,9 +63,32 @@ const AlumnosDestacadosAdmin = () => {
         logros: '',
         categoria: 'JUVENIL',
         disciplina: 'TAEKWONDO',
+        imagenUrl: '',
       });
     }
     setIsModalOpen(true);
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    try {
+      setUploadingImage(true);
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const res = await API.post('/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      setForm({ ...form, imagenUrl: res.data.url });
+    } catch (err) {
+      console.error(err);
+      alert('Error al subir la imagen');
+    } finally {
+      setUploadingImage(false);
+    }
   };
 
   const handleSave = async (e) => {
@@ -130,10 +157,10 @@ const AlumnosDestacadosAdmin = () => {
                 <tr key={item.id} class="hover:bg-white/5">
                   <td class="p-4">
                     <div class="flex items-center gap-3">
-                      {item.student?.foto ? (
+                      {item.imagenUrl || item.student?.foto ? (
                         <img
-                          src={item.student.foto}
-                          alt={`${item.student.nombres} ${item.student.apellidos}`}
+                          src={item.imagenUrl || item.student.foto}
+                          alt={`${item.student?.nombres} ${item.student?.apellidos}`}
                           class="w-8 h-8 rounded-full object-cover border border-white/20 flex-shrink-0"
                         />
                       ) : (
@@ -215,7 +242,38 @@ const AlumnosDestacadosAdmin = () => {
             ></textarea>
           </div>
 
-          <button type="submit" class="w-full py-3 bg-rojo-impacto text-white font-bold text-xs uppercase rounded-xl">
+          <div>
+            <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Foto Específica del Logro (Opcional)</label>
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 rounded-lg bg-[#111114] border border-white/10 overflow-hidden flex items-center justify-center flex-shrink-0">
+                {uploadingImage ? (
+                  <Loader class="animate-spin text-dorado-campeon" size={24} />
+                ) : form.imagenUrl ? (
+                  <img src={form.imagenUrl} alt="Preview" class="w-full h-full object-cover" />
+                ) : (
+                  <ImageIcon class="text-gray-600" size={24} />
+                )}
+              </div>
+              <div class="flex-grow">
+                <label class="flex items-center gap-2 cursor-pointer bg-[#1C1C21] hover:bg-[#2A2A35] border border-white/10 text-white text-xs px-4 py-2 rounded-lg transition-colors w-max">
+                  <Camera size={16} />
+                  <span>Subir Imagen</span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    disabled={uploadingImage}
+                    class="hidden"
+                  />
+                </label>
+                <p class="text-[9px] text-gray-500 mt-1">
+                  Si no subes una foto, se utilizará la foto de perfil del estudiante.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" disabled={uploadingImage} class="w-full py-3 bg-rojo-impacto text-white font-bold text-xs uppercase rounded-xl disabled:opacity-50">
             Guardar Reconocimiento
           </button>
         </form>
