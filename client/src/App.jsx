@@ -25,6 +25,8 @@ import AsistenciaAdmin from './pages/admin/AsistenciaAdmin';
 import ContenidoAdmin from './pages/admin/ContenidoAdmin';
 import AlumnosDestacadosAdmin from './pages/admin/AlumnosDestacadosAdmin';
 import ModulosAdmin from './pages/admin/ModulosAdmin';
+import PerfilesAdmin from './pages/admin/PerfilesAdmin';
+import PerfilDetalleAdmin from './pages/admin/PerfilDetalleAdmin';
 
 // Admin Header Navigation Bar
 const AdminNavbar = () => {
@@ -35,6 +37,7 @@ const AdminNavbar = () => {
 
   const navLinks = [
     { path: '/admin/estudiantes', label: 'Fichas & Pagos' },
+    { path: '/admin/perfiles', label: 'Perfiles' },
     { path: '/admin/asistencia', label: 'Asistencia' },
     { path: '/admin/contenido', label: 'Contenido' },
     { path: '/admin/alumnos-destacados', label: 'Destacados' },
@@ -171,6 +174,14 @@ function App() {
       <Route
         path="/admin/modulos"
         element={<ProtectedRoute><AdminLayout><ModulosAdmin /></AdminLayout></ProtectedRoute>}
+      />
+      <Route
+        path="/admin/perfiles"
+        element={<ProtectedRoute><AdminLayout><PerfilesAdmin /></AdminLayout></ProtectedRoute>}
+      />
+      <Route
+        path="/admin/perfiles/:id"
+        element={<ProtectedRoute><AdminLayout><PerfilDetalleAdmin /></AdminLayout></ProtectedRoute>}
       />
       </Routes>
     </>

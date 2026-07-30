@@ -59,6 +59,7 @@ model Student {
   payments             Payment[]
   featuredStudents     FeaturedStudent[]
   attendances          Attendance[]
+  gallery              StudentGallery[]
   createdAt            DateTime          @default(now())
 }
 
@@ -118,3 +119,11 @@ model Attendance {
   @@unique([studentId, fecha])
 }
 
+model StudentGallery {
+  id          Int      @id @default(autoincrement())
+  studentId   Int
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  url         String
+  descripcion String?
+  createdAt   DateTime @default(now())
+}

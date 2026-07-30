@@ -84,6 +84,9 @@ const getStudentById = async (req, res, next) => {
           orderBy: { fechaPago: 'desc' },
         },
         featuredStudents: true,
+        gallery: {
+          orderBy: { createdAt: 'desc' },
+        },
       },
     });
 
@@ -346,6 +349,41 @@ const getDashboardStats = async (req, res, next) => {
   }
 };
 
+const addGalleryPhoto = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { url, descripcion } = req.body;
+
+    if (!url) {
+      return res.status(400).json({ error: 'La URL de la foto es requerida.' });
+    }
+
+    const photo = await prisma.studentGallery.create({
+      data: {
+        studentId: parseInt(id),
+        url,
+        descripcion: descripcion || '',
+      },
+    });
+
+    return res.status(201).json(photo);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteGalleryPhoto = async (req, res, next) => {
+  try {
+    const { photoId } = req.params;
+    await prisma.studentGallery.delete({
+      where: { id: parseInt(photoId) },
+    });
+    return res.json({ message: 'Foto eliminada con éxito.' });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getStudents,
   getStudentById,
@@ -353,4 +391,6 @@ module.exports = {
   updateStudent,
   deleteStudent,
   getDashboardStats,
+  addGalleryPhoto,
+  deleteGalleryPhoto,
 };
