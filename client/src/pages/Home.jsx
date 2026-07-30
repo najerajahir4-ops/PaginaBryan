@@ -3,13 +3,7 @@ import { Link } from 'react-router-dom';
 import { 
   GiBlackBelt, 
   GiHighKick, 
-  GiTrophyCup, 
-  GiScrollUnfurled, 
-  GiCrossedSwords, 
-  GiOpenBook, 
-  GiPodium,
-  GiIdCard,
-  GiDiploma
+  GiTrophyCup
 } from 'react-icons/gi';
 
 import {
@@ -47,12 +41,6 @@ const Home = () => {
     { title: 'Alumnos Destacados', icon: GiTrophyCup, path: '/alumnos-destacados' },
     { title: 'Campeonatos', icon: GiHighKick, path: '/campeonatos' },
     { title: 'Grados', icon: GiBlackBelt, path: '/grados' },
-    { title: 'Historial', icon: GiScrollUnfurled, path: '/alumnos-destacados' },
-    { title: 'Llaves', icon: GiCrossedSwords, path: '/alumnos-destacados' },
-    { title: 'Contenido', icon: GiOpenBook, path: '/contenido' },
-    { title: 'Estadística', icon: GiPodium, path: '/alumnos-destacados' },
-    { title: 'Carnets', icon: GiIdCard, path: '/contactos' },
-    { title: 'Diplomas', icon: GiDiploma, path: '/quienes-somos' },
   ];
 
   // 4 Services Cards (Structured dark panels with gold border lines)
