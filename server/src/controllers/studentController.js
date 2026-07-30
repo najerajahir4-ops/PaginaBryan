@@ -384,6 +384,26 @@ const deleteGalleryPhoto = async (req, res, next) => {
   }
 };
 
+const getAllGalleryPhotos = async (req, res, next) => {
+  try {
+    const photos = await prisma.studentGallery.findMany({
+      include: {
+        student: {
+          select: {
+            nombres: true,
+            apellidos: true,
+            grado: true
+          }
+        }
+      },
+      orderBy: { createdAt: 'desc' }
+    });
+    return res.json(photos);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getStudents,
   getStudentById,
@@ -393,4 +413,5 @@ module.exports = {
   getDashboardStats,
   addGalleryPhoto,
   deleteGalleryPhoto,
+  getAllGalleryPhotos,
 };

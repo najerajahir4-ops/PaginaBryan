@@ -9,6 +9,7 @@ const {
   getDashboardStats,
   addGalleryPhoto,
   deleteGalleryPhoto,
+  getAllGalleryPhotos,
 } = require('../controllers/studentController');
 const authMiddleware = require('../middleware/authMiddleware');
 
@@ -20,7 +21,10 @@ router.post('/', authMiddleware, createStudent);
 router.put('/:id', authMiddleware, updateStudent);
 router.delete('/:id', authMiddleware, deleteStudent);
 
-// Rutas para galería del perfil
+// Rutas para galería del perfil (Público)
+router.get('/gallery/all', getAllGalleryPhotos);
+
+// Rutas para galería del perfil (Protegido)
 router.post('/:id/gallery', authMiddleware, addGalleryPhoto);
 router.delete('/gallery/:photoId', authMiddleware, deleteGalleryPhoto);
 
