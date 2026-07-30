@@ -15,7 +15,8 @@ import {
   FileSpreadsheet,
   AlertTriangle,
   FileText,
-  MoreVertical
+  MoreVertical,
+  MessageCircle
 } from 'lucide-react';
 
 const TAEKWONDO_BELTS = [
@@ -145,6 +146,25 @@ const EstudiantesAdmin = () => {
       setClubs(res.data);
     } catch (err) {
       console.error('Error al cargar clubes:', err);
+    }
+  };
+
+  const sendWhatsAppNotification = (student) => {
+    let phone = student.celular.replace(/\s+/g, '');
+    if (phone.startsWith('09')) {
+      phone = '593' + phone.substring(1);
+    }
+    
+    let message = '';
+    if (student.estadoPago === 'AMARILLO') {
+      message = `Hola ${student.nombres}, te saludamos de Najera's Team Central. Te recordamos amablemente que tu pago de mensualidad está próximo a vencer el día ${student.fechaProximoPago}. ¡Gracias por ser parte de nuestra familia marcial!`;
+    } else if (student.estadoPago === 'ROJO') {
+      message = `Hola ${student.nombres}, te saludamos de Najera's Team Central. Te informamos que tu pago de mensualidad se encuentra vencido desde el día ${student.fechaProximoPago}. Por favor, acércate a cancelar lo más pronto posible para continuar con tus entrenamientos. ¡Gracias!`;
+    }
+
+    if (message) {
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
     }
   };
 
@@ -924,6 +944,11 @@ const EstudiantesAdmin = () => {
                     </td>
                     <td class="p-4">
                       <div class="flex items-center justify-center gap-1.5 relative">
+                        {student.estadoPago !== 'VERDE' && (
+                          <button onClick={() => sendWhatsAppNotification(student)} title="Enviar Notificación WhatsApp" class="p-1.5 rounded-sm bg-[#111114] border border-green-500/30 text-green-500 hover:bg-green-500 hover:text-white transition-colors">
+                            <MessageCircle size={14} />
+                          </button>
+                        )}
                         <button onClick={() => handleOpenPaymentModal(student)} title="Registrar Pago" class="p-1.5 rounded-sm bg-[#111114] border border-dorado-campeon/30 text-dorado-campeon hover:bg-dorado-campeon hover:text-carbon transition-colors">
                           <CreditCard size={14} />
                         </button>
