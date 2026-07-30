@@ -842,7 +842,7 @@ const EstudiantesAdmin = () => {
       )}
 
       {/* Filters Bar */}
-      <div class="bg-[#111114] border border-white/10 p-4 rounded-sm grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div class="bg-[#111114] border border-white/10 p-4 rounded-sm grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="relative">
           <Search class="w-4 h-4 text-dorado-campeon absolute left-3 top-3" />
           <input
@@ -853,16 +853,6 @@ const EstudiantesAdmin = () => {
             class="w-full bg-[#1C1C21] border border-white/10 rounded-sm pl-9 pr-4 py-2 text-xs text-white focus:outline-none focus:border-dorado-campeon"
           />
         </div>
-        <select
-          value={selectedClub}
-          onChange={(e) => setSelectedClub(e.target.value)}
-          class="bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-2 text-xs text-white focus:outline-none focus:border-dorado-campeon uppercase tracking-wider font-bold"
-        >
-          <option value="" class="bg-[#1C1C21]">TODOS LOS CLUBES</option>
-          {clubs.map((c) => (
-            <option key={c.id} value={c.id} class="bg-[#1C1C21]">{c.nombre}</option>
-          ))}
-        </select>
         <select
           value={selectedEstado}
           onChange={(e) => setSelectedEstado(e.target.value)}

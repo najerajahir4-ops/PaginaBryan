@@ -385,30 +385,13 @@ const AsistenciaAdmin = () => {
             >
               <Filter size={16} class="text-dorado-campeon" />
               <span class="font-bold uppercase tracking-wider">Filtros</span>
-              {(selectedClub || selectedModalidad) && (
+              {(selectedModalidad) && (
                 <span class="ml-2 w-2 h-2 rounded-full bg-dorado-campeon"></span>
               )}
             </button>
 
             {filtersOpen && (
               <div class="absolute top-full left-0 mt-2 w-full md:w-80 bg-carbon border border-white/10 rounded-xl shadow-2xl p-4 z-50 space-y-4">
-                {/* Club Dropdown */}
-                <div class="space-y-1">
-                  <label class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Club / Sede</label>
-                  <select
-                    value={selectedClub}
-                    onChange={(e) => setSelectedClub(e.target.value)}
-                    class="bg-[#111114] text-xs text-white border border-white/10 rounded-lg p-2 w-full focus:outline-none focus:border-dorado-campeon"
-                  >
-                    <option value="" class="bg-[#111114]">Todos los Clubes / Sedes</option>
-                    {clubs.map((club) => (
-                      <option key={club.id} value={club.id} class="bg-[#111114]">
-                        {club.nombre}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
                 {/* Disciplina Dropdown */}
                 <div class="space-y-1">
                   <label class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Disciplina</label>
