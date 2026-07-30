@@ -130,18 +130,7 @@ const Home = () => {
                 state={{ scrollTarget: 'contact-cards-section' }}
                 class="px-8 py-4 text-center font-display text-base tracking-widest bg-rojo-impacto text-tatami-blanco hover:bg-white hover:text-rojo-impacto transition-colors shadow-lg uppercase clip-button impact-flash"
               >
-                UNIRSE AHORA
-              </Link>
-              <Link
-                to="/admin/login"
-                class="relative px-8 py-4 text-center font-display text-base tracking-widest text-dorado-campeon hover:text-carbon shadow-lg uppercase clip-button impact-flash group"
-              >
-                {/* Border simulation layer */}
-                <span class="absolute inset-0 bg-dorado-campeon z-0"></span>
-                {/* Inner background layer */}
-                <span class="absolute inset-[2px] bg-carbon group-hover:bg-dorado-campeon transition-colors z-0 clip-button" style={{ clipPath: 'polygon(9px 0, 100% 0, calc(100% - 9px) 100%, 0 100%)' }}></span>
-                {/* Text layer */}
-                <span class="relative z-10">ACCESO</span>
+                MÁS INFORMACIÓN
               </Link>
             </div>
           </div>
