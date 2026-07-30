@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import API from '../../../services/api';
+import API from '../../services/api';
 import { User, ArrowLeft, Camera, Image as ImageIcon, Loader, Plus, Trash2, Calendar } from 'lucide-react';
 
 const PerfilDetalleAdmin = () => {

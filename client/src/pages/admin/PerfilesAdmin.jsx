@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import API from '../../../services/api';
+import API from '../../services/api';
 import { Search, User, ChevronRight, AlertCircle, Loader } from 'lucide-react';
 
 const PerfilesAdmin = () => {
