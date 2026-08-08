@@ -14,6 +14,7 @@ import AlumnosDestacados from './pages/AlumnosDestacados';
 import Contenido from './pages/Contenido';
 import ContenidoDetalle from './pages/ContenidoDetalle';
 import Galeria from './pages/Galeria';
+import GaleriaDetalle from './pages/GaleriaDetalle';
 import Contactos from './pages/Contactos';
 import AdminLogin from './pages/AdminLogin';
 import Campeonatos from './pages/Campeonatos';
@@ -151,6 +152,7 @@ function App() {
       <Route path="/contenido" element={<PublicLayout><Contenido /></PublicLayout>} />
       <Route path="/contenido/:id" element={<PublicLayout><ContenidoDetalle /></PublicLayout>} />
       <Route path="/galeria" element={<PublicLayout><Galeria /></PublicLayout>} />
+      <Route path="/galeria/:id" element={<PublicLayout><GaleriaDetalle /></PublicLayout>} />
       <Route path="/contactos" element={<PublicLayout><Contactos /></PublicLayout>} />
       <Route path="/admin/login" element={<PublicLayout><AdminLogin /></PublicLayout>} />
 

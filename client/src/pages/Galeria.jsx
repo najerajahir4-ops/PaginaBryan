@@ -1,77 +1,115 @@
 import React, { useState, useEffect } from 'react';
-import { ImageOff, Loader } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Search, User, ChevronRight, AlertCircle, Loader } from 'lucide-react';
 import API from '../services/api';
 
 const Galeria = () => {
-  const [images, setImages] = useState([]);
+  const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
-    const fetchGallery = async () => {
+    const fetchStudents = async () => {
       try {
-        const { data } = await API.get('/students/gallery/all');
-        setImages(data);
+        const { data } = await API.get('/students');
+        setStudents(data);
       } catch (error) {
-        console.error('Error fetching gallery:', error);
+        console.error('Error fetching students:', error);
       } finally {
         setLoading(false);
       }
     };
-    fetchGallery();
+    fetchStudents();
   }, []);
+
+  const filteredStudents = students.filter(s => 
+    s.nombres.toLowerCase().includes(search.toLowerCase()) ||
+    s.apellidos.toLowerCase().includes(search.toLowerCase()) ||
+    s.cedula.includes(search)
+  );
 
   return (
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
 
       <div class="text-center space-y-3 max-w-3xl mx-auto">
         <h1 class="text-4xl font-extrabold text-white font-heading uppercase tracking-tight">
-          GALERÍA DE MOMENTOS MARCIALES
+          GALERÍA DE ESTUDIANTES
         </h1>
         <p class="text-sm text-gray-300">
-          Imágenes destacadas de nuestras clases, seminarios internacionales, pesajes, exámenes y finales de campeonato de todos nuestros estudiantes.
+          Encuentra tu perfil y revive tus mejores momentos marciales.
         </p>
+      </div>
+
+      <div class="bg-[#111114]/50 border border-white/10 p-4 rounded-xl max-w-2xl mx-auto backdrop-blur-md">
+        <div class="relative w-full">
+          <Search class="w-5 h-5 text-dorado-campeon absolute left-3 top-1/2 -translate-y-1/2" />
+          <input
+            type="text"
+            placeholder="Buscar por nombre o cédula..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            class="w-full bg-[#1C1C21] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:border-dorado-campeon/50 transition-colors"
+          />
+        </div>
       </div>
 
       {loading ? (
         <div class="flex justify-center items-center py-32">
           <Loader class="animate-spin text-[#C9A227]" size={50} />
         </div>
-      ) : images.length === 0 ? (
-        <div class="flex flex-col items-center justify-center py-24 gap-5 text-center">
-          <div class="w-20 h-20 rounded-2xl bg-[#0B1550]/10 border border-[#C9A227]/30 flex items-center justify-center">
-            <ImageOff size={36} class="text-[#C9A227]/60" />
-          </div>
-          <div class="space-y-1">
-            <p class="font-heading font-bold text-white text-lg tracking-widest uppercase">
-              Galería en construcción
-            </p>
-            <p class="text-sm text-gray-400 max-w-xs">
-              Aún no hay fotos en los perfiles de los estudiantes. Las fotos subidas a sus galerías de progreso aparecerán automáticamente aquí.
-            </p>
-          </div>
-        </div>
       ) : (
-        <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6 pb-20">
-          {images.map((img) => (
-            <div key={img.id} class="break-inside-avoid group relative rounded-2xl overflow-hidden border border-[#C9A227]/20 shadow-xl bg-carbon">
-              <img src={img.url} alt={img.descripcion || 'Momento marcial'} class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700" />
-              
-              <div class="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
-                {img.descripcion && (
-                  <h3 class="text-white font-black text-sm uppercase tracking-wide leading-tight drop-shadow-md mb-1">{img.descripcion}</h3>
-                )}
-                <div class="flex items-center justify-between mt-2 border-t border-white/20 pt-2">
-                  <div>
-                    <p class="text-dorado-campeon font-bold text-[10px] tracking-widest uppercase">{img.student?.nombres} {img.student?.apellidos}</p>
-                    <p class="text-gray-300 text-[9px] uppercase tracking-wider">{img.student?.grado?.split(' / ')[0]}</p>
-                  </div>
-                  <span class="text-[9px] text-gray-400 font-mono bg-black/40 px-2 py-1 rounded-sm">
-                    {new Date(img.createdAt).toLocaleDateString()}
-                  </span>
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-20">
+          {filteredStudents.length === 0 ? (
+            <div class="col-span-full py-24 text-center text-gray-400 flex flex-col items-center">
+              <div class="w-20 h-20 rounded-2xl bg-[#0B1550]/10 border border-[#C9A227]/30 flex items-center justify-center mb-6">
+                <AlertCircle size={36} class="text-[#C9A227]/60" />
               </div>
+              <p class="font-heading font-bold text-white text-lg tracking-widest uppercase mb-1">
+                No hay resultados
+              </p>
+              <p class="text-sm text-gray-400 max-w-xs">
+                No se encontraron estudiantes con esa búsqueda.
+              </p>
             </div>
-          ))}
+          ) : (
+            filteredStudents.map((student) => (
+              <Link 
+                key={student.id} 
+                to={`/galeria/${student.id}`}
+                class="bg-[#1C1C21] border border-white/5 rounded-2xl overflow-hidden hover:border-dorado-campeon/50 transition-all duration-300 hover:-translate-y-2 group shadow-xl hover:shadow-dorado-campeon/10"
+              >
+                <div class="h-48 bg-carbon relative overflow-hidden flex justify-center items-center">
+                  <div class="absolute inset-0 bg-gradient-to-t from-[#1C1C21] to-transparent z-10"></div>
+                  {student.foto ? (
+                    <img src={student.foto} alt={student.nombres} class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-700 group-hover:scale-105" />
+                  ) : (
+                    <User size={80} class="text-gray-600 opacity-30 group-hover:opacity-50 transition-opacity" />
+                  )}
+                  <div class="absolute bottom-3 left-4 z-20">
+                    <span class={`text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-wider ${
+                      student.estado === 'ACTIVO' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                    }`}>
+                      {student.estado}
+                    </span>
+                  </div>
+                </div>
+                <div class="p-5">
+                  <h3 class="font-black text-white uppercase text-base leading-tight drop-shadow-md mb-1 line-clamp-2">{student.nombres} {student.apellidos}</h3>
+                  <p class="text-[11px] text-gray-400 font-mono">C.I. {student.cedula}</p>
+                  
+                  <div class="mt-5 flex items-center justify-between text-xs border-t border-white/5 pt-4">
+                    <div>
+                      <span class="block text-gray-500 uppercase tracking-wider text-[10px] mb-0.5">Grado</span>
+                      <span class="text-dorado-campeon font-bold">{student.grado?.split(' / ')[0]}</span>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-dorado-campeon/10 transition-colors">
+                      <ChevronRight size={18} class="text-gray-500 group-hover:text-dorado-campeon transition-colors" />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))
+          )}
         </div>
       )}
 
