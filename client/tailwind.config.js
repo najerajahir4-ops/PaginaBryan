@@ -14,7 +14,7 @@ export default {
         'tatami-blanco': "var(--tatami-blanco)",
       },
       fontFamily: {
-        display: ['Anton', 'sans-serif'],
+        display: ['Manrope', 'sans-serif'],
         body: ['Manrope', 'sans-serif'],
       },
       keyframes: {
