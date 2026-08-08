@@ -126,7 +126,8 @@ const PerfilesAdmin = () => {
                   </div>
                 </div>
               </Link>
-            ))
+            ))}
+            </>
           )}
         </div>
       )}
