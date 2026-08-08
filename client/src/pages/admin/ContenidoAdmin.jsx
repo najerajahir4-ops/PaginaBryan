@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import API from '../../services/api';
 import Modal from '../../components/Modal';
-import { FileText, Plus, Edit, Trash2, Video, Calendar } from 'lucide-react';
+import { FileText, Plus, Edit, Trash2, Video, Calendar, Camera, Loader } from 'lucide-react';
 
 const ContenidoAdmin = () => {
   const [contents, setContents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedContent, setSelectedContent] = useState(null);
+  const [coverFile, setCoverFile] = useState(null);
+  const [coverPreview, setCoverPreview] = useState('');
+  const [uploading, setUploading] = useState(false);
 
   const [form, setForm] = useState({
     titulo: '',
@@ -38,6 +41,8 @@ const ContenidoAdmin = () => {
   const handleOpenModal = (content = null) => {
     if (content) {
       setSelectedContent(content);
+      setCoverFile(null);
+      setCoverPreview(content.imagenUrl || '');
       setForm({
         titulo: content.titulo,
         categoria: content.categoria,
@@ -49,6 +54,8 @@ const ContenidoAdmin = () => {
       });
     } else {
       setSelectedContent(null);
+      setCoverFile(null);
+      setCoverPreview('');
       setForm({
         titulo: '',
         categoria: 'TECNICA',
@@ -62,18 +69,47 @@ const ContenidoAdmin = () => {
     setIsModalOpen(true);
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setCoverFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setCoverPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSave = async (e) => {
     e.preventDefault();
     try {
+      setUploading(true);
+      let finalImageUrl = form.imagenUrl;
+
+      if (coverFile) {
+        const formData = new FormData();
+        formData.append('image', coverFile);
+        const uploadRes = await API.post('/upload', formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
+        finalImageUrl = uploadRes.data.url;
+      }
+
+      const dataToSave = { ...form, imagenUrl: finalImageUrl };
+
       if (selectedContent) {
-        await API.put(`/content/${selectedContent.id}`, form);
+        await API.put(`/content/${selectedContent.id}`, dataToSave);
       } else {
-        await API.post('/content', form);
+        await API.post('/content', dataToSave);
       }
       setIsModalOpen(false);
       fetchContents();
     } catch (err) {
+      console.error(err);
       alert('Error al guardar publicación.');
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -225,14 +261,25 @@ const ContenidoAdmin = () => {
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-bold text-gray-300 uppercase mb-1">URL Imagen de Portada</label>
-              <input
-                type="text"
-                value={form.imagenUrl}
-                onChange={(e) => setForm({ ...form, imagenUrl: e.target.value })}
-                placeholder="https://..."
-                class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
-              />
+              <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Imagen de Portada</label>
+              <div class="relative border-2 border-dashed border-white/20 rounded-xl p-4 text-center hover:border-rojo-impacto/50 transition-colors">
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={handleFileChange}
+                  class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                />
+                {!coverPreview ? (
+                  <>
+                    <Camera class="mx-auto text-gray-500 mb-1" size={24} />
+                    <span class="text-[10px] text-gray-400">Click o arrastra foto</span>
+                  </>
+                ) : (
+                  <div class="h-20 w-full rounded overflow-hidden relative">
+                    <img src={coverPreview} alt="Preview" class="w-full h-full object-cover" />
+                  </div>
+                )}
+              </div>
             </div>
             <div>
               <label class="block text-xs font-bold text-gray-300 uppercase mb-1">URL Video Embebido (opcional)</label>
@@ -248,9 +295,10 @@ const ContenidoAdmin = () => {
 
           <button
             type="submit"
-            class="w-full py-3 bg-rojo-impacto text-white font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-red-700"
+            disabled={uploading}
+            class="w-full py-3 bg-rojo-impacto text-white font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-red-700 disabled:opacity-50 flex items-center justify-center gap-2"
           >
-            Guardar Publicación
+            {uploading ? <><Loader size={16} class="animate-spin" /> Guardando...</> : 'Guardar Publicación'}
           </button>
         </form>
       </Modal>

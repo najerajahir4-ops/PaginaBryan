@@ -12,6 +12,7 @@ const featuredStudentRoutes = require('./routes/featuredStudentRoutes');
 const clubRoutes = require('./routes/clubRoutes');
 const attendanceRoutes = require('./routes/attendanceRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
+const generalPhotoRoutes = require('./routes/generalPhotoRoutes');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -70,6 +71,7 @@ app.use('/api/featured-students', featuredStudentRoutes);
 app.use('/api/clubs', clubRoutes);
 app.use('/api/attendance', attendanceRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/general-photos', generalPhotoRoutes);
 
 // Error Handler Middleware
 app.use(errorHandler);

@@ -15,6 +15,7 @@ import Contenido from './pages/Contenido';
 import ContenidoDetalle from './pages/ContenidoDetalle';
 import Galeria from './pages/Galeria';
 import GaleriaDetalle from './pages/GaleriaDetalle';
+import GeneralGallery from './pages/GeneralGallery';
 import Contactos from './pages/Contactos';
 import AdminLogin from './pages/AdminLogin';
 import Campeonatos from './pages/Campeonatos';
@@ -28,6 +29,7 @@ import AlumnosDestacadosAdmin from './pages/admin/AlumnosDestacadosAdmin';
 import ModulosAdmin from './pages/admin/ModulosAdmin';
 import PerfilesAdmin from './pages/admin/PerfilesAdmin';
 import PerfilDetalleAdmin from './pages/admin/PerfilDetalleAdmin';
+import GeneralPhotosAdmin from './pages/admin/GeneralPhotosAdmin';
 
 // Admin Header Navigation Bar
 const AdminNavbar = () => {
@@ -152,6 +154,7 @@ function App() {
       <Route path="/contenido" element={<PublicLayout><Contenido /></PublicLayout>} />
       <Route path="/contenido/:id" element={<PublicLayout><ContenidoDetalle /></PublicLayout>} />
       <Route path="/galeria" element={<PublicLayout><Galeria /></PublicLayout>} />
+      <Route path="/galeria/generales" element={<PublicLayout><GeneralGallery /></PublicLayout>} />
       <Route path="/galeria/:id" element={<PublicLayout><GaleriaDetalle /></PublicLayout>} />
       <Route path="/contactos" element={<PublicLayout><Contactos /></PublicLayout>} />
       <Route path="/admin/login" element={<PublicLayout><AdminLogin /></PublicLayout>} />
@@ -184,6 +187,10 @@ function App() {
       <Route
         path="/admin/perfiles/:id"
         element={<ProtectedRoute><AdminLayout><PerfilDetalleAdmin /></AdminLayout></ProtectedRoute>}
+      />
+      <Route
+        path="/admin/perfiles/generales"
+        element={<ProtectedRoute><AdminLayout><GeneralPhotosAdmin /></AdminLayout></ProtectedRoute>}
       />
       </Routes>
     </>

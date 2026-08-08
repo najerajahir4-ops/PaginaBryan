@@ -67,7 +67,32 @@ const PerfilesAdmin = () => {
               <p>No se encontraron estudiantes con esa búsqueda.</p>
             </div>
           ) : (
-            filteredStudents.map((student) => (
+            <>
+              {/* Tarjeta Admin Fotos Generales */}
+              {search === '' && (
+                <Link 
+                  to="/admin/perfiles/generales"
+                  class="bg-[#1C1C21] border border-dorado-campeon/30 rounded-lg overflow-hidden hover:border-dorado-campeon/80 transition-all hover:-translate-y-1 group relative shadow-lg shadow-dorado-campeon/5"
+                >
+                  <div class="h-32 bg-gradient-to-br from-[#0B1550] to-[#1C1C21] relative overflow-hidden flex justify-center items-center">
+                    <User size={60} class="text-dorado-campeon opacity-40 group-hover:opacity-70 group-hover:scale-110 transition-all duration-500" />
+                  </div>
+                  <div class="p-4">
+                    <h3 class="font-bold text-dorado-campeon uppercase text-sm truncate">Fotos Generales</h3>
+                    <p class="text-[10px] text-gray-400 font-mono mt-1">Álbum del Dojang</p>
+                    
+                    <div class="mt-4 flex items-center justify-between text-[11px] border-t border-white/5 pt-3">
+                      <div>
+                        <span class="block text-gray-500 uppercase tracking-wider text-[9px]">Gestor</span>
+                        <span class="text-white font-bold">Público</span>
+                      </div>
+                      <ChevronRight size={16} class="text-dorado-campeon transition-colors" />
+                    </div>
+                  </div>
+                </Link>
+              )}
+
+              {filteredStudents.map((student) => (
               <Link 
                 key={student.id} 
                 to={`/admin/perfiles/${student.id}`}

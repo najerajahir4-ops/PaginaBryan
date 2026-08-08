@@ -128,3 +128,10 @@ model StudentGallery {
   descripcion String?
   createdAt   DateTime @default(now())
 }
+
+model GeneralPhoto {
+  id          Int      @id @default(autoincrement())
+  url         String
+  descripcion String?
+  createdAt   DateTime @default(now())
+}

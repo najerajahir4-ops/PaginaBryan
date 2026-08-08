@@ -72,43 +72,65 @@ const Galeria = () => {
               </p>
             </div>
           ) : (
-            filteredStudents.map((student) => (
-              <Link 
-                key={student.id} 
-                to={`/galeria/${student.id}`}
-                class="bg-[#1C1C21] border border-white/5 rounded-2xl overflow-hidden hover:border-dorado-campeon/50 transition-all duration-300 hover:-translate-y-2 group shadow-xl hover:shadow-dorado-campeon/10"
-              >
-                <div class="h-48 bg-carbon relative overflow-hidden flex justify-center items-center">
-                  <div class="absolute inset-0 bg-gradient-to-t from-[#1C1C21] to-transparent z-10"></div>
-                  {student.foto ? (
-                    <img src={student.foto} alt={student.nombres} class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-700 group-hover:scale-105" />
-                  ) : (
-                    <User size={80} class="text-gray-600 opacity-30 group-hover:opacity-50 transition-opacity" />
-                  )}
-                  <div class="absolute bottom-3 left-4 z-20">
-                    <span class={`text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-wider ${
-                      student.estado === 'ACTIVO' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-red-500/20 text-red-400 border border-red-500/30'
-                    }`}>
-                      {student.estado}
-                    </span>
+            <>
+              {/* Tarjeta de Fotos Generales */}
+              {search === '' && (
+                <Link 
+                  to={`/galeria/generales`}
+                  class="bg-[#1C1C21] border border-dorado-campeon/30 rounded-2xl overflow-hidden hover:border-dorado-campeon transition-all duration-300 hover:-translate-y-2 group shadow-xl shadow-dorado-campeon/5"
+                >
+                  <div class="h-48 bg-gradient-to-br from-[#0B1550] to-carbon relative overflow-hidden flex justify-center items-center">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1C1C21] to-transparent z-10"></div>
+                    <User size={80} class="text-dorado-campeon opacity-40 group-hover:opacity-70 group-hover:scale-110 transition-all duration-700" />
                   </div>
-                </div>
-                <div class="p-5">
-                  <h3 class="font-black text-white uppercase text-base leading-tight drop-shadow-md mb-1 line-clamp-2">{student.nombres} {student.apellidos}</h3>
-                  <p class="text-[11px] text-gray-400 font-mono">C.I. {student.cedula}</p>
-                  
-                  <div class="mt-5 flex items-center justify-between text-xs border-t border-white/5 pt-4">
-                    <div>
-                      <span class="block text-gray-500 uppercase tracking-wider text-[10px] mb-0.5">Grado</span>
-                      <span class="text-dorado-campeon font-bold">{student.grado?.split(' / ')[0]}</span>
-                    </div>
-                    <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-dorado-campeon/10 transition-colors">
-                      <ChevronRight size={18} class="text-gray-500 group-hover:text-dorado-campeon transition-colors" />
+                  <div class="p-5">
+                    <p class="font-body font-bold text-dorado-campeon uppercase text-base leading-tight drop-shadow-md mb-1">FOTOS GENERALES</p>
+                    <p class="text-[11px] text-gray-400 font-mono">Álbum del Dojang</p>
+                    
+                    <div class="mt-5 flex items-center justify-between text-xs border-t border-white/5 pt-4">
+                      <div>
+                        <span class="block text-gray-500 uppercase tracking-wider text-[10px] mb-0.5">Acceso</span>
+                        <span class="text-white font-bold">Público</span>
+                      </div>
+                      <div class="w-8 h-8 rounded-full bg-dorado-campeon/10 flex items-center justify-center group-hover:bg-dorado-campeon/20 transition-colors">
+                        <ChevronRight size={18} class="text-dorado-campeon" />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            ))
+                </Link>
+              )}
+
+              {/* Tarjetas de Estudiantes */}
+              {filteredStudents.map((student) => (
+                <Link 
+                  key={student.id} 
+                  to={`/galeria/${student.id}`}
+                  class="bg-[#1C1C21] border border-white/5 rounded-2xl overflow-hidden hover:border-dorado-campeon/50 transition-all duration-300 hover:-translate-y-2 group shadow-xl hover:shadow-dorado-campeon/10"
+                >
+                  <div class="h-48 bg-carbon relative overflow-hidden flex justify-center items-center">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#1C1C21] to-transparent z-10"></div>
+                    {student.foto ? (
+                      <img src={student.foto} alt={student.nombres} class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-700 group-hover:scale-105" />
+                    ) : (
+                      <User size={80} class="text-gray-600 opacity-30 group-hover:opacity-50 transition-opacity" />
+                    )}
+                  </div>
+                  <div class="p-5">
+                    <p class="font-body font-bold text-white uppercase text-base leading-tight drop-shadow-md mb-1 line-clamp-2">{student.nombres} {student.apellidos}</p>
+                    
+                    <div class="mt-5 flex items-center justify-between text-xs border-t border-white/5 pt-4">
+                      <div>
+                        <span class="block text-gray-500 uppercase tracking-wider text-[10px] mb-0.5">Grado</span>
+                        <span class="text-dorado-campeon font-bold">{student.grado?.split(' / ')[0]}</span>
+                      </div>
+                      <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-dorado-campeon/10 transition-colors">
+                        <ChevronRight size={18} class="text-gray-500 group-hover:text-dorado-campeon transition-colors" />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </>
           )}
         </div>
       )}
