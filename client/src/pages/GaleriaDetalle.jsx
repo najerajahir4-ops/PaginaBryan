@@ -66,7 +66,7 @@ const GaleriaDetalle = () => {
               <ArrowLeft size={16} /> Volver a perfiles
             </Link>
             
-            <h1 class="text-3xl md:text-5xl font-black text-white uppercase tracking-tight leading-none mb-2">
+            <h1 class="text-3xl md:text-5xl font-body font-bold text-white uppercase leading-none mb-2">
               {student.nombres} <span class="text-dorado-campeon">{student.apellidos}</span>
             </h1>
             

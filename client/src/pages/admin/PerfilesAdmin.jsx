@@ -78,7 +78,7 @@ const PerfilesAdmin = () => {
                     <User size={60} class="text-dorado-campeon opacity-40 group-hover:opacity-70 group-hover:scale-110 transition-all duration-500" />
                   </div>
                   <div class="p-4">
-                    <h3 class="font-bold text-dorado-campeon uppercase text-sm truncate">Fotos Generales</h3>
+                    <p class="font-body font-bold text-dorado-campeon uppercase text-sm truncate">Fotos Generales</p>
                     <p class="text-[10px] text-gray-400 font-mono mt-1">Álbum del Dojang</p>
                     
                     <div class="mt-4 flex items-center justify-between text-[11px] border-t border-white/5 pt-3">
@@ -114,8 +114,7 @@ const PerfilesAdmin = () => {
                   </div>
                 </div>
                 <div class="p-4">
-                  <h3 class="font-bold text-white uppercase text-sm truncate">{student.nombres} {student.apellidos}</h3>
-                  <p class="text-[10px] text-gray-400 font-mono mt-1">C.I. {student.cedula}</p>
+                  <p class="font-body font-bold text-white uppercase text-sm truncate">{student.nombres} {student.apellidos}</p>
                   
                   <div class="mt-4 flex items-center justify-between text-[11px] border-t border-white/5 pt-3">
                     <div>

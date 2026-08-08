@@ -42,7 +42,7 @@ const GeneralGallery = () => {
               <ArrowLeft size={16} /> Volver a perfiles
             </Link>
             
-            <h1 class="text-3xl md:text-5xl font-black text-white uppercase tracking-tight leading-none mb-2">
+            <h1 class="text-3xl md:text-5xl font-body font-bold text-white uppercase leading-none mb-2">
               FOTOS <span class="text-dorado-campeon">GENERALES</span>
             </h1>
             <p class="text-gray-300">Álbum del Dojang, seminarios, torneos y momentos especiales de todo el equipo.</p>

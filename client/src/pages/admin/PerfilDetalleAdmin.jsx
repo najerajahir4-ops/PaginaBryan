@@ -146,8 +146,7 @@ const PerfilDetalleAdmin = () => {
               </div>
               
               <div class="text-center">
-                <h3 class="text-lg font-black text-white uppercase tracking-tight leading-tight">{student.nombres} <br/> {student.apellidos}</h3>
-                <p class="text-xs text-gray-400 font-mono mt-1">C.I. {student.cedula}</p>
+                <p class="text-xl font-body font-bold text-white uppercase leading-tight">{student.nombres} <br/> {student.apellidos}</p>
                 
                 <div class="mt-3 inline-flex px-3 py-1 bg-dorado-campeon/10 border border-dorado-campeon/30 rounded-full text-dorado-campeon text-[10px] font-bold uppercase tracking-widest">
                   {student.grado}
