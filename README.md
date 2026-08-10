@@ -85,14 +85,6 @@ Abrir la aplicación en el navegador: **`http://localhost:5173`**
 
 ---
 
-## 🔐 Credenciales del Panel de Administración
-
-- **Ruta de Login**: `http://localhost:5173/admin/login` (O tu dominio en producción)
-- **Usuario**: `admin`
-- **Contraseña**: `admin123`
-
----
-
 ## 💡 Funcionalidades Clave
 
 1. **Indicadores de Pago Automáticos (Colores)**:
