@@ -20,27 +20,28 @@ import {
 } from 'lucide-react';
 
 const TAEKWONDO_BELTS = [
-  "Cinturón Blanco (10° Kup)",
-  "Cinturón Blanco con punta Amarilla (9° Kup)",
-  "Cinturón Amarillo (8° Kup)",
-  "Cinturón Amarillo con punta Verde (7° Kup)",
-  "Cinturón Verde (6° Kup)",
-  "Cinturón Verde con punta Azul (5° Kup)",
-  "Cinturón Azul (4° Kup)",
-  "Cinturón Azul con punta Roja (3° Kup)",
-  "Cinturón Rojo (2° Kup)",
-  "Cinturón Rojo con punta Negra (1° Kup)",
-  "Cinturón Negro (1° Dan)",
+  "Cinturón Blanco",
+  "Cinturón Blanco - Amarillo",
+  "Cinturón Amarillo",
+  "Cinturón Amarillo - Verde",
+  "Cinturón Verde",
+  "Cinturón Verde - Azul",
+  "Cinturón Azul",
+  "Cinturón Azul - Rojo",
+  "Cinturón Rojo",
+  "Cinturón Rojo - Negro",
 ];
 
 const KICKBOXING_BELTS = [
-  "Cinturón blanco",
-  "Cinturón blanco amarillo",
-  "Cinturón naranja",
-  "Cinturón verde",
-  "Cinturón violeta",
-  "Cinturón café",
-  "Cinturón negro 1 dan",
+  "Cinturón Blanco",
+  "Cinturón Blanco - Amarillo",
+  "Cinturón Amarillo",
+  "Cinturón Naranjo",
+  "Cinturón Verde",
+  "Cinturón Azul",
+  "Cinturón Violeta",
+  "Cinturón Café o Marrón",
+  "Cinturón Negro",
 ];
 
 const EstudiantesAdmin = () => {
@@ -93,9 +94,9 @@ const EstudiantesAdmin = () => {
     
     // Internal Admin Fields
     clubId: '',
-    grado: 'Cinturón Blanco (10° Kup)',
-    gradoTKD: 'Cinturón Blanco (10° Kup)',
-    gradoKB: 'Cinturón blanco',
+    grado: 'Cinturón Blanco',
+    gradoTKD: 'Cinturón Blanco',
+    gradoKB: 'Cinturón Blanco',
     modalidad: 'TAEKWONDO',
     fechaIngreso: new Date().toLocaleDateString('sv-SE'),
     fechaUltimoPago: new Date().toLocaleDateString('sv-SE'),
@@ -204,9 +205,9 @@ const EstudiantesAdmin = () => {
         diaDeCobro: student.diaDeCobro || 1,
 
         clubId: student.clubId || '',
-        grado: student.grado || 'Cinturón Blanco (10° Kup)',
-        gradoTKD: student.modalidad === 'AMBAS' ? (student.grado || '').split(' / ')[0] || 'Cinturón Blanco (10° Kup)' : student.grado || 'Cinturón Blanco (10° Kup)',
-        gradoKB: student.modalidad === 'AMBAS' ? (student.grado || '').split(' / ')[1] || 'Cinturón blanco' : 'Cinturón blanco',
+        grado: student.grado || 'Cinturón Blanco',
+        gradoTKD: student.modalidad === 'AMBAS' ? (student.grado || '').split(' / ')[0] || 'Cinturón Blanco' : student.grado || 'Cinturón Blanco',
+        gradoKB: student.modalidad === 'AMBAS' ? (student.grado || '').split(' / ')[1] || 'Cinturón Blanco' : 'Cinturón Blanco',
         modalidad: student.modalidad || 'TAEKWONDO',
         fechaIngreso: student.fechaIngreso || new Date().toLocaleDateString('sv-SE'),
         fechaUltimoPago: student.fechaUltimoPago || new Date().toLocaleDateString('sv-SE'),
@@ -907,7 +908,7 @@ const EstudiantesAdmin = () => {
               <tr>
                 <th class="p-4 border-r border-white/5">Alumno</th>
                 <th class="p-4 border-r border-white/5">Cédula</th>
-                <th class="p-4 border-r border-white/5">Grado & Club</th>
+                <th class="p-4 border-r border-white/5">Grado</th>
                 <th class="p-4 border-r border-white/5">Último Pago</th>
                 <th class="p-4 border-r border-white/5">Próximo Pago</th>
                 <th class="p-4 border-r border-white/5 text-center">Estado</th>
@@ -949,7 +950,6 @@ const EstudiantesAdmin = () => {
                       ) : (
                         <span class="block font-semibold text-white">{student.grado}</span>
                       )}
-                      <span class="text-[10px] text-dorado-campeon uppercase tracking-widest">{student.club?.nombre || 'Central'}</span>
                     </td>
                     <td class="p-4 font-mono text-gray-400 border-r border-white/5">{student.fechaUltimoPago}</td>
                     <td class="p-4 font-bold font-mono text-white border-r border-white/5">{student.fechaProximoPago}</td>

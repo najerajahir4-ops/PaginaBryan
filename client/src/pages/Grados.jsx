@@ -5,27 +5,28 @@ import Modal from '../components/Modal';
 import { Award, ShieldAlert, Edit2, CheckCircle, Search } from 'lucide-react';
 
 const TAEKWONDO_BELTS = [
-  "Cinturón Blanco (10° Kup)",
-  "Cinturón Blanco con punta Amarilla (9° Kup)",
-  "Cinturón Amarillo (8° Kup)",
-  "Cinturón Amarillo con punta Verde (7° Kup)",
-  "Cinturón Verde (6° Kup)",
-  "Cinturón Verde con punta Azul (5° Kup)",
-  "Cinturón Azul (4° Kup)",
-  "Cinturón Azul con punta Roja (3° Kup)",
-  "Cinturón Rojo (2° Kup)",
-  "Cinturón Rojo con punta Negra (1° Kup)",
-  "Cinturón Negro (1° Dan)",
+  "Cinturón Blanco",
+  "Cinturón Blanco - Amarillo",
+  "Cinturón Amarillo",
+  "Cinturón Amarillo - Verde",
+  "Cinturón Verde",
+  "Cinturón Verde - Azul",
+  "Cinturón Azul",
+  "Cinturón Azul - Rojo",
+  "Cinturón Rojo",
+  "Cinturón Rojo - Negro",
 ];
 
 const KICKBOXING_BELTS = [
-  "Cinturón blanco",
-  "Cinturón blanco amarillo",
-  "Cinturón naranja",
-  "Cinturón verde",
-  "Cinturón violeta",
-  "Cinturón café",
-  "Cinturón negro 1 dan",
+  "Cinturón Blanco",
+  "Cinturón Blanco - Amarillo",
+  "Cinturón Amarillo",
+  "Cinturón Naranjo",
+  "Cinturón Verde",
+  "Cinturón Azul",
+  "Cinturón Violeta",
+  "Cinturón Café o Marrón",
+  "Cinturón Negro",
 ];
 
 const getBeltColorClass = (beltName) => {
@@ -106,16 +107,16 @@ const Grados = () => {
     setFormFoto(student.foto || '');
     setFormGrado(student.grado || '');
 
-    let gTKD = 'Cinturón Blanco (10° Kup)';
-    let gKB = 'Cinturón blanco';
+    let gTKD = 'Cinturón Blanco';
+    let gKB = 'Cinturón Blanco';
     if (student.modalidad === 'AMBAS' && student.grado) {
       const gradeParts = student.grado.split(' / ');
-      gTKD = gradeParts[0] || 'Cinturón Blanco (10° Kup)';
-      gKB = gradeParts[1] || 'Cinturón blanco';
+      gTKD = gradeParts[0] || 'Cinturón Blanco';
+      gKB = gradeParts[1] || 'Cinturón Blanco';
     } else if (student.modalidad === 'TAEKWONDO') {
-      gTKD = student.grado || 'Cinturón Blanco (10° Kup)';
+      gTKD = student.grado || 'Cinturón Blanco';
     } else if (student.modalidad === 'KICKBOXING') {
-      gKB = student.grado || 'Cinturón blanco';
+      gKB = student.grado || 'Cinturón Blanco';
     }
     setFormGradoTKD(gTKD);
     setFormGradoKB(gKB);
