@@ -1,6 +1,6 @@
 # Academia de Taekwondo & Kickboxing - Proyecto Full-Stack
 
-Aplicación web completa construida desde cero con arquitectura desacoplada en `/client` y `/server`. Cuenta con un portal público informativo y un panel de administración privado con autenticación JWT y gestión de cobros automatizada.
+Aplicación web completa construida desde cero con arquitectura desacoplada en `/client` y `/server`. Cuenta con un portal público informativo y un panel de administración privado con autenticación JWT y gestión de cobros automatizada, control de grados de Taekwondo y Kickboxing, y un sistema integrado para gestionar contenido web, alumnos destacados, imágenes y asitencia.
 
 ---
 
@@ -9,6 +9,7 @@ Aplicación web completa construida desde cero con arquitectura desacoplada en `
 - **Frontend (`/client`)**: React 18, Vite, TailwindCSS, Lucide-React, React Router DOM v6, Recharts, Axios.
 - **Backend (`/server`)**: Node.js, Express.js, Prisma ORM, JWT (JSON Web Tokens), Bcrypt.js, CORS, Cookie Parser.
 - **Base de Datos**: PostgreSQL / SQLite (configurado por defecto con SQLite para pruebas locales inmediatas de cero configuración).
+- **Despliegue**: Preparado y configurado en Vercel (monorepo usando `vercel.json`).
 
 ---
 
@@ -38,6 +39,7 @@ PAGINABRYAN/
 │   │   └── index.js        # Punto de entrada Express
 │   ├── .env.example
 │   └── package.json
+├── vercel.json             # Configuración de despliegue para Vercel
 └── README.md
 ```
 
@@ -85,7 +87,7 @@ Abrir la aplicación en el navegador: **`http://localhost:5173`**
 
 ## 🔐 Credenciales del Panel de Administración
 
-- **Ruta de Login**: `http://localhost:5173/admin/login`
+- **Ruta de Login**: `http://localhost:5173/admin/login` (O tu dominio en producción)
 - **Usuario**: `admin`
 - **Contraseña**: `admin123`
 
@@ -98,5 +100,27 @@ Abrir la aplicación en el navegador: **`http://localhost:5173`**
    - 🟡 **AMARILLO (Próximo a Vencer)**: Quedan 7 días o menos para el vencimiento.
    - 🔴 **ROJO (Pago Vencido)**: La fecha de pago ha expirado.
 2. **Recálculo Automático**: Al registrar un nuevo pago en el modal del estudiante, el sistema calcula automáticamente la nueva fecha de pago según su periodicidad (Mensual, Trimestral o Anual).
-3. **Filtros Avanzados y Exportación**: Filtrado por estado de cobranza, club y búsqueda por nombre/cédula + exportación instantánea a CSV.
-4. **Sección de Contenido y Reproductor**: Soporte para insertar artículos técnicos con video embebido de YouTube.
+3. **Filtros Avanzados y Exportación**: Filtrado por estado de cobranza y búsqueda por nombre/cédula + exportación instantánea a CSV.
+4. **Gestión de Grados**: Soporte nativo y diferenciado para cinturones en modalidades de **Taekwondo** y **Kickboxing**.
+5. **Sección de Contenido y Reproductor**: Soporte para insertar artículos técnicos con video embebido de YouTube.
+
+---
+
+## 🌐 Subir Cambios a Vercel (Despliegue)
+
+Este proyecto está sincronizado con **Vercel** a través de Git. Esto significa que Vercel se encarga automáticamente de compilar y actualizar la página web en vivo cada vez que subes un nuevo cambio al repositorio.
+
+**Cada vez que hagas un cambio en el código, debes seguir estos 3 comandos en tu terminal (en la raíz del proyecto) para que se reflejen en la web:**
+
+```bash
+# 1. Agrega todos los archivos modificados
+git add .
+
+# 2. Guarda los cambios con un mensaje descriptivo (puedes cambiar el texto entre comillas)
+git commit -m "Descripción de los cambios realizados"
+
+# 3. Sube los cambios al repositorio (esto dispara automáticamente la actualización en Vercel)
+git push
+```
+
+Una vez ejecutado el `git push`, solo debes esperar un par de minutos y recargar tu página web pública para ver los cambios aplicados exitosamente.
