@@ -55,8 +55,12 @@ async function initMcp(app) {
   // Endpoint de conexión SSE (El que se configura en Spark)
   app.get("/api/mcp", async (req, res) => {
     try {
-      // Indicamos la ruta por la que Gemini enviará los mensajes
-      transport = new SSEServerTransport("/api/mcp/messages", res);
+      // Usamos una URL absoluta para que Spark no se confunda de dominio
+      const protocol = req.headers['x-forwarded-proto'] || 'https';
+      const host = req.headers.host;
+      const absoluteUrl = `${protocol}://${host}/api/mcp/messages`;
+      
+      transport = new SSEServerTransport(absoluteUrl, res);
       await mcpServer.connect(transport);
     } catch (error) {
       console.error("Error al conectar transporte MCP:", error);
