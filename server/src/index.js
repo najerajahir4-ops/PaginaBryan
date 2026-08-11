@@ -14,17 +14,12 @@ const attendanceRoutes = require('./routes/attendanceRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const generalPhotoRoutes = require('./routes/generalPhotoRoutes');
 const errorHandler = require('./middleware/errorHandler');
-const { initMcp } = require('./mcp');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-// Aplicamos Helmet globalmente pero deshabilitamos Cross-Origin-Resource-Policy para que MCP funcione desde otros dominios
-app.use(helmet({
-  crossOriginResourcePolicy: false,
-  crossOriginOpenerPolicy: false
-}));
+app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -47,28 +42,20 @@ const allowedOrigins = [
 if (process.env.FRONTEND_URL) {
   allowedOrigins.push(process.env.FRONTEND_URL);
 }
-// Permitir peticiones desde cualquier origen a las rutas de MCP (Spark)
-const mcpCors = cors();
-app.use('/api/mcp', mcpCors);
 
-const globalCors = cors({
-  origin: (origin, callback) => {
-    // Permitir peticiones sin origen (como Postman) o si está en la lista de permitidos
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Bloqueado por políticas de CORS'));
-    }
-  },
-  credentials: true,
-});
-
-app.use((req, res, next) => {
-  if (req.path.startsWith('/api/mcp')) {
-    return next();
-  }
-  return globalCors(req, res, next);
-});
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Permitir peticiones sin origen (como Postman) o si está en la lista de permitidos
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Bloqueado por políticas de CORS'));
+      }
+    },
+    credentials: true,
+  })
+);
 
 // Ruta de comprobación de salud
 app.get('/api/health', (req, res) => {
@@ -85,11 +72,6 @@ app.use('/api/clubs', clubRoutes);
 app.use('/api/attendance', attendanceRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/general-photos', generalPhotoRoutes);
-
-// Inicializamos el servidor MCP (esto añade las rutas /mcp y /mcp/messages a app)
-initMcp(app).catch(err => {
-  console.error("Error al inicializar MCP:", err);
-});
 
 // Error Handler Middleware
 app.use(errorHandler);
