@@ -48,21 +48,27 @@ if (process.env.FRONTEND_URL) {
   allowedOrigins.push(process.env.FRONTEND_URL);
 }
 // Permitir peticiones desde cualquier origen a las rutas de MCP (Spark)
-app.use('/api/mcp', cors());
+const mcpCors = cors();
+app.use('/api/mcp', mcpCors);
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      // Permitir peticiones sin origen (como Postman) o si está en la lista de permitidos
-      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error('Bloqueado por políticas de CORS'));
-      }
-    },
-    credentials: true,
-  })
-);
+const globalCors = cors({
+  origin: (origin, callback) => {
+    // Permitir peticiones sin origen (como Postman) o si está en la lista de permitidos
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Bloqueado por políticas de CORS'));
+    }
+  },
+  credentials: true,
+});
+
+app.use((req, res, next) => {
+  if (req.path.startsWith('/api/mcp')) {
+    return next();
+  }
+  return globalCors(req, res, next);
+});
 
 // Ruta de comprobación de salud
 app.get('/api/health', (req, res) => {
