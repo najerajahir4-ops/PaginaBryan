@@ -14,6 +14,7 @@ const attendanceRoutes = require('./routes/attendanceRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const generalPhotoRoutes = require('./routes/generalPhotoRoutes');
 const errorHandler = require('./middleware/errorHandler');
+const { initMcp } = require('./mcp');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -72,6 +73,11 @@ app.use('/api/clubs', clubRoutes);
 app.use('/api/attendance', attendanceRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/general-photos', generalPhotoRoutes);
+
+// Inicializamos el servidor MCP (esto añade las rutas /mcp y /mcp/messages a app)
+initMcp(app).catch(err => {
+  console.error("Error al inicializar MCP:", err);
+});
 
 // Error Handler Middleware
 app.use(errorHandler);
