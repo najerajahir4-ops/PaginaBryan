@@ -43,6 +43,8 @@ const allowedOrigins = [
 if (process.env.FRONTEND_URL) {
   allowedOrigins.push(process.env.FRONTEND_URL);
 }
+// Permitir peticiones desde cualquier origen a las rutas de MCP (Spark)
+app.use('/api/mcp', cors());
 
 app.use(
   cors({
