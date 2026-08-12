@@ -142,7 +142,7 @@ const ContenidoDetalle = () => {
   };
 
   return (
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
       
       <Link to="/contenido" class="inline-flex items-center gap-2 text-xs font-bold text-gray-300 hover:text-rojo-impacto transition-colors">
         <ArrowLeft size={16} />
