@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import API from '../services/api';
 import { Calendar, Tag, ArrowLeft, Share2 } from 'lucide-react';
+import twemoji from 'twemoji';
 
 const ContenidoDetalle = () => {
   const { id } = useParams();
@@ -43,6 +44,17 @@ const ContenidoDetalle = () => {
     );
   }
 
+  const renderWithEmojis = (text, customClass = '') => {
+    if (!text) return null;
+    const html = twemoji.parse(text, {
+      base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/',
+      folder: 'svg',
+      ext: '.svg',
+      className: `w-[1.2em] h-[1.2em] inline-block align-text-bottom mx-1 ${customClass}`
+    });
+    return <span dangerouslySetInnerHTML={{ __html: html }} />;
+  };
+
   const renderParagraph = (text, index) => {
     const trimmed = text.trim();
     if (!trimmed) return <div key={index} className="h-4"></div>;
@@ -60,8 +72,8 @@ const ContenidoDetalle = () => {
     if (isNegativeBullet) {
       return (
         <div key={index} className="flex items-start gap-3 py-2.5 px-4 bg-red-950/30 border-l-4 border-red-500 rounded-r-lg my-2 shadow-sm">
-          <span className="text-red-400 mt-0.5">{icon}</span>
-          <span className="text-red-100">{restOfText}</span>
+          <span className="text-red-400 mt-0.5 flex-shrink-0 text-xl">{renderWithEmojis(icon)}</span>
+          <span className="text-red-100">{renderWithEmojis(restOfText)}</span>
         </div>
       );
     }
@@ -69,8 +81,8 @@ const ContenidoDetalle = () => {
     if (isPositiveBullet) {
       return (
         <div key={index} className="flex items-start gap-3 py-2.5 px-4 bg-emerald-950/30 border-l-4 border-emerald-500 rounded-r-lg my-2 shadow-sm">
-          <span className="text-emerald-400 mt-0.5">{icon}</span>
-          <span className="text-emerald-100">{restOfText}</span>
+          <span className="text-emerald-400 mt-0.5 flex-shrink-0 text-xl">{renderWithEmojis(icon)}</span>
+          <span className="text-emerald-100">{renderWithEmojis(restOfText)}</span>
         </div>
       );
     }
@@ -78,8 +90,8 @@ const ContenidoDetalle = () => {
     if (isWarningBullet) {
       return (
         <div key={index} className="flex items-start gap-3 py-3 px-4 bg-amber-950/30 border border-amber-500/40 rounded-lg my-4 shadow-sm">
-          <span className="text-amber-400 mt-0.5">{icon}</span>
-          <span className="text-amber-100 font-medium">{restOfText}</span>
+          <span className="text-amber-400 mt-0.5 flex-shrink-0 text-xl">{renderWithEmojis(icon)}</span>
+          <span className="text-amber-100 font-medium">{renderWithEmojis(restOfText)}</span>
         </div>
       );
     }
@@ -91,9 +103,9 @@ const ContenidoDetalle = () => {
       if (parts.length === 2 && parts[0].length < 40) {
         return (
           <div key={index} className="flex flex-wrap items-center gap-3 py-2 border-b border-white/5">
-            <strong className="text-white bg-white/10 px-3 py-1 rounded-md text-sm shadow-sm">{parts[0].trim()}</strong>
+            <strong className="text-white bg-white/10 px-3 py-1 rounded-md text-sm shadow-sm">{renderWithEmojis(parts[0].trim())}</strong>
             <span className="text-dorado-campeon text-sm">➔</span>
-            <span className="text-gray-300">{parts[1].trim()}</span>
+            <span className="text-gray-300">{renderWithEmojis(parts[1].trim())}</span>
           </div>
         );
       }
@@ -108,7 +120,7 @@ const ContenidoDetalle = () => {
     if (isShort && (isQuestion || isUppercase)) {
       return (
         <h3 key={index} className="text-2xl sm:text-3xl font-bold text-dorado-campeon mt-10 mb-4 font-heading flex items-center gap-2 border-b border-dorado-campeon/20 pb-2">
-          {trimmed}
+          {renderWithEmojis(trimmed)}
         </h3>
       );
     }
@@ -117,8 +129,8 @@ const ContenidoDetalle = () => {
     if (hasIcon) {
       return (
         <div key={index} className="flex items-start gap-3 py-1.5 my-1">
-          <span className="text-xl leading-none">{icon}</span>
-          <span className="text-gray-200 text-base">{restOfText}</span>
+          <span className="text-2xl leading-none flex-shrink-0">{renderWithEmojis(icon)}</span>
+          <span className="text-gray-200 text-base">{renderWithEmojis(restOfText)}</span>
         </div>
       );
     }
@@ -128,7 +140,7 @@ const ContenidoDetalle = () => {
     if (isShortAndNoPunctuation) {
       return (
         <strong key={index} className="block text-white text-lg font-heading tracking-wide mt-6 mb-2">
-          {trimmed}
+          {renderWithEmojis(trimmed)}
         </strong>
       );
     }
@@ -136,7 +148,7 @@ const ContenidoDetalle = () => {
     // Párrafo normal
     return (
       <p key={index} className="text-gray-300 leading-relaxed text-base md:text-lg mb-4">
-        {trimmed}
+        {renderWithEmojis(trimmed)}
       </p>
     );
   };
