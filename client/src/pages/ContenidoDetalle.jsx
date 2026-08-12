@@ -1,8 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import API from '../services/api';
-import { Calendar, Tag, ArrowLeft, Share2 } from 'lucide-react';
+import { Calendar, Tag, ArrowLeft, Share2, HelpCircle, User, Users, Trophy, Timer, CheckCircle2, XCircle, AlertTriangle, Swords, Medal } from 'lucide-react';
+import { GiBoxingGlove, GiKarate, GiBlackBelt } from 'react-icons/gi';
 import twemoji from 'twemoji';
+
+const emojiToIconMap = {
+  '🥊': <GiBoxingGlove className="w-7 h-7 text-dorado-campeon" />,
+  '🤔': <HelpCircle className="w-6 h-6 text-dorado-campeon" />,
+  '🎂': <Users className="w-6 h-6 text-dorado-campeon" />,
+  '👦': <User className="w-6 h-6 text-dorado-campeon" />,
+  '👧': <User className="w-6 h-6 text-dorado-campeon" />,
+  '👨': <User className="w-6 h-6 text-dorado-campeon" />,
+  '👩': <User className="w-6 h-6 text-dorado-campeon" />,
+  '🥋': <GiBlackBelt className="w-7 h-7 text-dorado-campeon" />,
+  '💪': <Medal className="w-6 h-6 text-dorado-campeon" />,
+  '🏆': <Trophy className="w-6 h-6 text-dorado-campeon" />,
+  '⏱️': <Timer className="w-6 h-6 text-dorado-campeon" />,
+  '❌': <XCircle className="w-5 h-5 text-red-500" />,
+  '✅': <CheckCircle2 className="w-5 h-5 text-emerald-500" />,
+  '✔️': <CheckCircle2 className="w-5 h-5 text-emerald-500" />,
+  '⚠️': <AlertTriangle className="w-5 h-5 text-amber-500" />,
+  '🤼': <Swords className="w-6 h-6 text-dorado-campeon" />,
+};
 
 const ContenidoDetalle = () => {
   const { id } = useParams();
@@ -55,6 +75,15 @@ const ContenidoDetalle = () => {
     return <span dangerouslySetInnerHTML={{ __html: html }} />;
   };
 
+  const renderIcon = (iconStr, customClass = '') => {
+    if (!iconStr) return null;
+    const cleanIcon = iconStr.trim();
+    if (emojiToIconMap[cleanIcon]) {
+      return emojiToIconMap[cleanIcon];
+    }
+    return renderWithEmojis(iconStr, customClass);
+  };
+
   const renderParagraph = (text, index) => {
     const trimmed = text.trim();
     if (!trimmed) return <div key={index} className="h-4"></div>;
@@ -72,7 +101,7 @@ const ContenidoDetalle = () => {
     if (isNegativeBullet) {
       return (
         <div key={index} className="flex items-start gap-3 py-2.5 px-4 bg-red-950/30 border-l-4 border-red-500 rounded-r-lg my-2 shadow-sm">
-          <span className="text-red-400 mt-0.5 flex-shrink-0 text-xl">{renderWithEmojis(icon)}</span>
+          <span className="mt-0.5 flex-shrink-0 flex items-center justify-center">{renderIcon(icon)}</span>
           <span className="text-red-100">{renderWithEmojis(restOfText)}</span>
         </div>
       );
@@ -81,7 +110,7 @@ const ContenidoDetalle = () => {
     if (isPositiveBullet) {
       return (
         <div key={index} className="flex items-start gap-3 py-2.5 px-4 bg-emerald-950/30 border-l-4 border-emerald-500 rounded-r-lg my-2 shadow-sm">
-          <span className="text-emerald-400 mt-0.5 flex-shrink-0 text-xl">{renderWithEmojis(icon)}</span>
+          <span className="mt-0.5 flex-shrink-0 flex items-center justify-center">{renderIcon(icon)}</span>
           <span className="text-emerald-100">{renderWithEmojis(restOfText)}</span>
         </div>
       );
@@ -90,7 +119,7 @@ const ContenidoDetalle = () => {
     if (isWarningBullet) {
       return (
         <div key={index} className="flex items-start gap-3 py-3 px-4 bg-amber-950/30 border border-amber-500/40 rounded-lg my-4 shadow-sm">
-          <span className="text-amber-400 mt-0.5 flex-shrink-0 text-xl">{renderWithEmojis(icon)}</span>
+          <span className="mt-0.5 flex-shrink-0 flex items-center justify-center">{renderIcon(icon)}</span>
           <span className="text-amber-100 font-medium">{renderWithEmojis(restOfText)}</span>
         </div>
       );
@@ -119,8 +148,15 @@ const ContenidoDetalle = () => {
 
     if (isShort && (isQuestion || isUppercase)) {
       return (
-        <h3 key={index} className="text-2xl sm:text-3xl font-bold text-dorado-campeon mt-10 mb-4 font-heading flex items-center gap-2 border-b border-dorado-campeon/20 pb-2">
-          {renderWithEmojis(trimmed)}
+        <h3 key={index} className="text-2xl sm:text-3xl font-bold text-dorado-campeon mt-10 mb-4 font-heading flex items-center gap-3 border-b border-dorado-campeon/20 pb-2">
+          {hasIcon ? (
+            <>
+              {renderIcon(icon)}
+              <span>{renderWithEmojis(restOfText)}</span>
+            </>
+          ) : (
+            renderWithEmojis(trimmed)
+          )}
         </h3>
       );
     }
@@ -129,7 +165,7 @@ const ContenidoDetalle = () => {
     if (hasIcon) {
       return (
         <div key={index} className="flex items-start gap-3 py-1.5 my-1">
-          <span className="text-2xl leading-none flex-shrink-0">{renderWithEmojis(icon)}</span>
+          <span className="flex-shrink-0 flex items-center justify-center pt-0.5">{renderIcon(icon)}</span>
           <span className="text-gray-200 text-base">{renderWithEmojis(restOfText)}</span>
         </div>
       );
