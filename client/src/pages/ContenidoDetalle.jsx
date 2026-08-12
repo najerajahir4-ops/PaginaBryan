@@ -74,8 +74,12 @@ const ContenidoDetalle = () => {
 
       {/* Featured Cover Image */}
       {content.imagenUrl && (
-        <div class="rounded-2xl overflow-hidden border border-dorado-campeon/20 shadow-2xl flex justify-center bg-black/40">
-          <img src={content.imagenUrl} alt={content.titulo} class="w-full h-auto max-h-[600px] object-contain" />
+        <div class="flex justify-center">
+          <img 
+            src={content.imagenUrl} 
+            alt={content.titulo} 
+            class="w-full max-w-3xl h-auto rounded-2xl shadow-2xl border border-dorado-campeon/20" 
+          />
         </div>
       )}
 
