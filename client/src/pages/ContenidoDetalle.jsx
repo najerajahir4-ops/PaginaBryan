@@ -46,7 +46,7 @@ const ContenidoDetalle = () => {
   return (
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
       
-      <Link to="/contenido" class="inline-flex items-center gap-2 text-xs font-bold text-carbon/70 hover:text-rojo-impacto transition-colors">
+      <Link to="/contenido" class="inline-flex items-center gap-2 text-xs font-bold text-gray-300 hover:text-rojo-impacto transition-colors">
         <ArrowLeft size={16} />
         VOLVER A CONTENIDOS
       </Link>
@@ -63,7 +63,7 @@ const ContenidoDetalle = () => {
           </span>
         </div>
 
-        <h1 class="text-3xl sm:text-5xl font-extrabold text-carbon font-heading leading-tight">
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white font-heading leading-tight">
           {content.titulo}
         </h1>
 
@@ -74,15 +74,15 @@ const ContenidoDetalle = () => {
 
       {/* Featured Cover Image */}
       {content.imagenUrl && (
-        <div class="rounded-2xl overflow-hidden border border-dorado-campeon/20 shadow-2xl max-h-[450px]">
-          <img src={content.imagenUrl} alt={content.titulo} class="w-full h-full object-cover" />
+        <div class="rounded-2xl overflow-hidden border border-dorado-campeon/20 shadow-2xl flex justify-center bg-black/40">
+          <img src={content.imagenUrl} alt={content.titulo} class="w-full h-auto max-h-[600px] object-contain" />
         </div>
       )}
 
       {/* Embedded Video (If present) */}
       {content.videoUrl && (
         <div class="space-y-2">
-          <h3 class="text-lg font-bold text-carbon font-heading">Video Explicativo:</h3>
+          <h3 class="text-lg font-bold text-white font-heading">Video Explicativo:</h3>
           <div class="aspect-video rounded-2xl overflow-hidden border border-dorado-campeon/20 shadow-xl bg-black">
             <iframe
               src={content.videoUrl}
