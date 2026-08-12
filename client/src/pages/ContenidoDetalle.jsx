@@ -1,28 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import API from '../services/api';
-import { Calendar, Tag, ArrowLeft, Share2, HelpCircle, User, Users, Trophy, Timer, CheckCircle2, XCircle, AlertTriangle, Swords, Medal } from 'lucide-react';
-import { GiBoxingGlove, GiKarate, GiBlackBelt } from 'react-icons/gi';
-import twemoji from 'twemoji';
-
-const emojiToIconMap = {
-  '🥊': <GiBoxingGlove className="w-7 h-7 text-dorado-campeon" />,
-  '🤔': <HelpCircle className="w-6 h-6 text-dorado-campeon" />,
-  '🎂': <Users className="w-6 h-6 text-dorado-campeon" />,
-  '👦': <User className="w-6 h-6 text-dorado-campeon" />,
-  '👧': <User className="w-6 h-6 text-dorado-campeon" />,
-  '👨': <User className="w-6 h-6 text-dorado-campeon" />,
-  '👩': <User className="w-6 h-6 text-dorado-campeon" />,
-  '🥋': <GiBlackBelt className="w-7 h-7 text-dorado-campeon" />,
-  '💪': <Medal className="w-6 h-6 text-dorado-campeon" />,
-  '🏆': <Trophy className="w-6 h-6 text-dorado-campeon" />,
-  '⏱️': <Timer className="w-6 h-6 text-dorado-campeon" />,
-  '❌': <XCircle className="w-5 h-5 text-red-500" />,
-  '✅': <CheckCircle2 className="w-5 h-5 text-emerald-500" />,
-  '✔️': <CheckCircle2 className="w-5 h-5 text-emerald-500" />,
-  '⚠️': <AlertTriangle className="w-5 h-5 text-amber-500" />,
-  '🤼': <Swords className="w-6 h-6 text-dorado-campeon" />,
-};
+import { Calendar, ArrowLeft } from 'lucide-react';
+import ContentCard from '../components/ContentCard';
 
 const ContenidoDetalle = () => {
   const { id } = useParams();
@@ -47,197 +27,72 @@ const ContenidoDetalle = () => {
 
   if (loading) {
     return (
-      <div class="min-h-[60vh] flex items-center justify-center">
-        <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-rojo-impacto"></div>
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-rojo-impacto"></div>
       </div>
     );
   }
 
   if (!content) {
     return (
-      <div class="max-w-4xl mx-auto px-4 py-20 text-center space-y-4">
-        <h2 class="text-2xl font-bold text-white">Publicación no encontrada</h2>
-        <Link to="/contenido" class="inline-flex items-center gap-2 text-rojo-impacto hover:underline">
+      <div className="max-w-4xl mx-auto px-4 py-20 text-center space-y-4">
+        <h2 className="text-2xl font-bold text-white">Publicación no encontrada</h2>
+        <Link to="/contenido" className="inline-flex items-center gap-2 text-rojo-impacto hover:underline">
           <ArrowLeft size={16} /> Volver a contenidos
         </Link>
       </div>
     );
   }
 
-  const renderWithEmojis = (text, customClass = '') => {
-    if (!text) return null;
-    const html = twemoji.parse(text, {
-      base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/',
-      folder: 'svg',
-      ext: '.svg',
-      className: `w-[1.2em] h-[1.2em] inline-block align-text-bottom mx-1 ${customClass}`
-    });
-    return <span dangerouslySetInnerHTML={{ __html: html }} />;
-  };
-
-  const renderIcon = (iconStr, customClass = '') => {
-    if (!iconStr) return null;
-    const cleanIcon = iconStr.trim();
-    if (emojiToIconMap[cleanIcon]) {
-      return emojiToIconMap[cleanIcon];
-    }
-    return renderWithEmojis(iconStr, customClass);
-  };
-
-  const renderParagraph = (text, index) => {
-    const trimmed = text.trim();
-    if (!trimmed) return <div key={index} className="h-4"></div>;
-
-    const isNegativeBullet = trimmed.startsWith('❌') || trimmed.startsWith('🚫');
-    const isPositiveBullet = trimmed.startsWith('✅') || trimmed.startsWith('✔️');
-    const isWarningBullet = trimmed.startsWith('⚠️');
-
-    // Extraer emoji/icono inicial si existe
-    const iconMatch = trimmed.match(/^([^\w\s"'(¿¡A-Za-z0-9]+)\s*(.*)/);
-    const hasIcon = iconMatch !== null;
-    const icon = hasIcon ? iconMatch[1] : '';
-    const restOfText = hasIcon ? iconMatch[2] : trimmed;
-
-    if (isNegativeBullet) {
-      return (
-        <div key={index} className="flex items-start gap-3 py-2.5 px-4 bg-red-950/30 border-l-4 border-red-500 rounded-r-lg my-2 shadow-sm">
-          <span className="mt-0.5 flex-shrink-0 flex items-center justify-center">{renderIcon(icon)}</span>
-          <span className="text-red-100">{renderWithEmojis(restOfText)}</span>
-        </div>
-      );
-    }
-    
-    if (isPositiveBullet) {
-      return (
-        <div key={index} className="flex items-start gap-3 py-2.5 px-4 bg-emerald-950/30 border-l-4 border-emerald-500 rounded-r-lg my-2 shadow-sm">
-          <span className="mt-0.5 flex-shrink-0 flex items-center justify-center">{renderIcon(icon)}</span>
-          <span className="text-emerald-100">{renderWithEmojis(restOfText)}</span>
-        </div>
-      );
-    }
-
-    if (isWarningBullet) {
-      return (
-        <div key={index} className="flex items-start gap-3 py-3 px-4 bg-amber-950/30 border border-amber-500/40 rounded-lg my-4 shadow-sm">
-          <span className="mt-0.5 flex-shrink-0 flex items-center justify-center">{renderIcon(icon)}</span>
-          <span className="text-amber-100 font-medium">{renderWithEmojis(restOfText)}</span>
-        </div>
-      );
-    }
-
-    // Formato clave-valor (ej: "Niños ➝ 7 años")
-    if (trimmed.includes('➝') || trimmed.includes('->')) {
-      const separator = trimmed.includes('➝') ? '➝' : '->';
-      const parts = trimmed.split(separator);
-      if (parts.length === 2 && parts[0].length < 40) {
-        return (
-          <div key={index} className="flex flex-wrap items-center gap-3 py-2 border-b border-white/5">
-            <strong className="text-white bg-white/10 px-3 py-1 rounded-md text-sm shadow-sm">{renderWithEmojis(parts[0].trim())}</strong>
-            <span className="text-dorado-campeon text-sm">➔</span>
-            <span className="text-gray-300">{renderWithEmojis(parts[1].trim())}</span>
-          </div>
-        );
-      }
-    }
-
-    // Detección de títulos (Preguntas o TODO MAYÚSCULAS)
-    const isQuestion = trimmed.startsWith('¿') && trimmed.endsWith('?');
-    const hasLetters = /[a-zA-ZáéíóúÁÉÍÓÚñÑ]/.test(trimmed);
-    const isUppercase = hasLetters && trimmed.toUpperCase() === trimmed;
-    const isShort = trimmed.length <= 60;
-
-    if (isShort && (isQuestion || isUppercase)) {
-      return (
-        <h3 key={index} className="text-2xl sm:text-3xl font-bold text-dorado-campeon mt-10 mb-4 font-heading flex items-center gap-3 border-b border-dorado-campeon/20 pb-2">
-          {hasIcon ? (
-            <>
-              {renderIcon(icon)}
-              <span>{renderWithEmojis(restOfText)}</span>
-            </>
-          ) : (
-            renderWithEmojis(trimmed)
-          )}
-        </h3>
-      );
-    }
-
-    // Items de lista con icono/emoji (ej: "🥊 Guantes")
-    if (hasIcon) {
-      return (
-        <div key={index} className="flex items-start gap-3 py-1.5 my-1">
-          <span className="flex-shrink-0 flex items-center justify-center pt-0.5">{renderIcon(icon)}</span>
-          <span className="text-gray-200 text-base">{renderWithEmojis(restOfText)}</span>
-        </div>
-      );
-    }
-
-    // Subtítulos (texto corto sin puntuación)
-    const isShortAndNoPunctuation = isShort && !/[.,;:]/.test(trimmed) && trimmed.split(' ').length <= 4 && hasLetters;
-    if (isShortAndNoPunctuation) {
-      return (
-        <strong key={index} className="block text-white text-lg font-heading tracking-wide mt-6 mb-2">
-          {renderWithEmojis(trimmed)}
-        </strong>
-      );
-    }
-
-    // Párrafo normal
-    return (
-      <p key={index} className="text-gray-300 leading-relaxed text-base md:text-lg mb-4">
-        {renderWithEmojis(trimmed)}
-      </p>
-    );
-  };
-
   return (
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
       
-      <Link to="/contenido" class="inline-flex items-center gap-2 text-xs font-bold text-gray-300 hover:text-rojo-impacto transition-colors">
+      <Link to="/contenido" className="inline-flex items-center gap-2 text-xs font-bold text-gray-300 hover:text-rojo-impacto transition-colors">
         <ArrowLeft size={16} />
         VOLVER A CONTENIDOS
       </Link>
 
       {/* Header Info */}
-      <div class="space-y-4">
-        <div class="flex items-center gap-3">
-          <span class="px-3 py-1 rounded-full text-xs font-extrabold uppercase bg-rojo-impacto text-white">
+      <div className="space-y-4">
+        <div className="flex items-center gap-3">
+          <span className="px-3 py-1 rounded-full text-xs font-extrabold uppercase bg-rojo-impacto text-white">
             {content.categoria}
           </span>
-          <span class="text-xs text-carbon/60 flex items-center gap-1">
+          <span className="text-xs text-tatami-blanco/60 flex items-center gap-1">
             <Calendar size={14} />
             {content.fechaPublicacion}
           </span>
         </div>
 
-        <h1 class="text-3xl sm:text-5xl font-extrabold text-white font-heading leading-tight">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-white font-heading leading-tight">
           {content.titulo}
         </h1>
 
-        <p class="text-base text-dorado-campeon/70 font-medium italic border-l-4 border-dorado-campeon pl-4 py-1">
+        <p className="text-base text-dorado-campeon/70 font-medium italic border-l-4 border-dorado-campeon pl-4 py-1">
           {content.resumen}
         </p>
       </div>
 
       {/* Featured Cover Image */}
       {content.imagenUrl && (
-        <div class="flex justify-center">
+        <div className="flex justify-center">
           <img 
             src={content.imagenUrl} 
             alt={content.titulo} 
-            class="w-full max-w-3xl h-auto rounded-2xl shadow-2xl border border-dorado-campeon/20" 
+            className="w-full max-w-3xl h-auto rounded-2xl shadow-2xl border border-dorado-campeon/20" 
           />
         </div>
       )}
 
       {/* Embedded Video (If present) */}
       {content.videoUrl && (
-        <div class="space-y-2">
-          <h3 class="text-lg font-bold text-white font-heading">Video Explicativo:</h3>
-          <div class="aspect-video rounded-2xl overflow-hidden border border-dorado-campeon/20 shadow-xl bg-black">
+        <div className="space-y-2">
+          <h3 className="text-lg font-bold text-white font-heading">Video Explicativo:</h3>
+          <div className="aspect-video rounded-2xl overflow-hidden border border-dorado-campeon/20 shadow-xl bg-black">
             <iframe
               src={content.videoUrl}
               title={content.titulo}
-              class="w-full h-full"
+              className="w-full h-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
@@ -245,10 +100,8 @@ const ContenidoDetalle = () => {
         </div>
       )}
 
-      {/* Article Body */}
-      <div class="bg-carbon border border-dorado-campeon/20 p-6 sm:p-10 rounded-2xl shadow-2xl">
-        {content.cuerpo.split('\n').map(renderParagraph)}
-      </div>
+      {/* Article Body using ContentCard */}
+      <ContentCard rawText={content.cuerpo} />
 
     </div>
   );
