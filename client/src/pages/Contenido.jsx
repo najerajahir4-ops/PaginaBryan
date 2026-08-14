@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { FileText, Calendar, Video, ArrowRight, Edit3, Check, GripVertical } from 'lucide-react';
+import { FileText, Calendar, Video, Edit3, Check, GripVertical } from 'lucide-react';
 
 // Dnd-kit imports
 import {
@@ -42,14 +42,16 @@ const SortableContentCard = ({ item, isEditMode }) => {
     <article
       ref={setNodeRef}
       style={style}
-      class="bg-[#111114] border border-[#C9A227]/30 rounded-sm overflow-hidden flex flex-col justify-between shadow-xl relative"
+      className="bg-[#0A0B0E] border border-white/5 flex flex-col justify-between shadow-[0_0_15px_rgba(227,178,60,0.05)] hover:shadow-[0_0_25px_rgba(227,178,60,0.15)] hover:border-dorado-campeon/30 transition-all duration-300 relative group overflow-hidden"
     >
+      <div className="absolute top-0 left-0 w-full h-[2px] bg-dorado-campeon/30 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+      
       {/* Handle de Arrastre */}
       {isEditMode && (
         <div
           {...attributes}
           {...listeners}
-          class="absolute top-3 right-3 z-30 p-2 bg-[#0B1550] border border-[#C9A227]/40 text-[#C9A227] hover:bg-[#C9A227] hover:text-[#0B1550] rounded-sm cursor-grab active:cursor-grabbing shadow-lg"
+          className="absolute top-3 right-3 z-30 p-2 bg-carbon border border-dorado-campeon/50 text-dorado-campeon hover:bg-dorado-campeon hover:text-carbon cursor-grab active:cursor-grabbing shadow-[0_0_10px_rgba(227,178,60,0.3)] transition-colors"
           title="Arrastra para reordenar"
         >
           <GripVertical size={16} />
@@ -57,25 +59,30 @@ const SortableContentCard = ({ item, isEditMode }) => {
       )}
 
       {/* Cover Image */}
-      <div class="relative h-48 overflow-hidden bg-black">
+      <div className="relative h-56 overflow-hidden bg-carbon border-b border-white/5">
         {item.imagenUrl ? (
           <img
             src={item.imagenUrl}
             alt={item.titulo}
-            class="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-500 group-hover:scale-105"
           />
         ) : (
-          <div class="w-full h-full bg-carbon/90 border border-white/5 flex flex-col items-center justify-center space-y-2">
-            <FileText size={48} class="text-[#C9A227]/40" />
-            <span class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Sin imagen de portada</span>
+          <div className="w-full h-full flex flex-col items-center justify-center space-y-2 opacity-50 group-hover:opacity-100 transition-opacity">
+            <div className="w-16 h-16 bg-tatami-blanco/5 border border-white/10 flex items-center justify-center">
+              <FileText size={32} className="text-tatami-blanco/50" />
+            </div>
+            <span className="text-[10px] text-tatami-blanco/40 font-heading uppercase tracking-widest">Sin Imagen</span>
           </div>
         )}
-        <div class="absolute top-3 left-3 flex gap-2">
-          <span class="px-2.5 py-1 text-[10px] font-heading font-extrabold uppercase bg-[#8C1D1D] text-white tracking-widest">
+        
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0E] via-transparent to-transparent opacity-80"></div>
+        
+        <div className="absolute top-0 left-0 w-full flex">
+          <span className="px-4 py-1.5 text-[10px] font-heading font-extrabold uppercase bg-rojo-impacto text-tatami-blanco tracking-widest border-b border-rojo-impacto/50 flex-1 text-center">
             {item.categoria}
           </span>
           {item.videoUrl && (
-            <span class="px-2.5 py-1 text-[10px] font-heading font-extrabold uppercase bg-[#0B1550] text-[#C9A227] border border-[#C9A227] tracking-widest flex items-center gap-1">
+            <span className="px-4 py-1.5 text-[10px] font-heading font-extrabold uppercase bg-dorado-campeon/10 text-dorado-campeon border-b border-dorado-campeon/30 tracking-widest flex items-center justify-center gap-2 backdrop-blur-sm flex-1 text-center">
               <Video size={12} />
               VIDEO
             </span>
@@ -84,26 +91,27 @@ const SortableContentCard = ({ item, isEditMode }) => {
       </div>
 
       {/* Body */}
-      <div class="p-6 space-y-4 flex-grow flex flex-col justify-between">
-        <div class="space-y-2">
-          <div class="flex items-center gap-2 text-[11px] text-gray-400 font-mono">
-            <Calendar size={12} class="text-[#C9A227]" />
+      <div className="p-6 space-y-6 flex-grow flex flex-col justify-between bg-[#0A0B0E] relative z-10">
+        <div className="space-y-3 text-center">
+          <div className="flex items-center justify-center gap-2 text-[10px] font-body text-dorado-campeon/60 uppercase tracking-widest font-bold">
+            <Calendar size={12} className="text-dorado-campeon" />
             {item.fechaPublicacion}
           </div>
-          <h3 class="text-base font-bold text-[#F5F2E9] font-heading tracking-wider line-clamp-2">
+          <h3 className="text-xl font-heading text-tatami-blanco uppercase tracking-wide leading-tight group-hover:text-dorado-campeon transition-colors line-clamp-2">
             {item.titulo}
           </h3>
-          <p class="text-xs text-[#F5F2E9]/75 line-clamp-3 leading-relaxed">
+          <div className="w-8 h-[1px] bg-dorado-campeon/30 mx-auto"></div>
+          <p className="text-sm font-body text-tatami-blanco/60 line-clamp-3 leading-relaxed">
             {item.resumen}
           </p>
         </div>
 
-        <div class="pt-4 border-t border-white/10">
+        <div className="pt-4 border-t border-white/5 text-center mt-auto">
           <Link
             to={isEditMode ? '#' : `/contenido/${item.id}`}
-            class={`inline-flex items-center gap-2 font-heading text-xs font-bold text-[#C9A227] hover:text-[#F5F2E9] tracking-widest uppercase transition-colors ${isEditMode ? 'pointer-events-none opacity-50' : ''}`}
+            className={`inline-flex items-center justify-center gap-2 font-heading text-xs text-rojo-impacto hover:text-tatami-blanco tracking-widest uppercase transition-colors ${isEditMode ? 'pointer-events-none opacity-50' : ''}`}
           >
-            LEER PUBLICACIÓN COMPLETA ➔
+            LEER PUBLICACIÓN COMPLETA
           </Link>
         </div>
       </div>
@@ -180,31 +188,34 @@ const Contenido = () => {
   const canEdit = !selectedCat;
 
   return (
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10 relative animate-fade-in">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12 relative animate-fade-in">
       
-      {/* Asymmetric Left-Aligned Header */}
-      <div class="border-l-4 border-[#C9A227] pl-6 space-y-2">
-        <div class="text-xs font-heading font-bold text-[#C9A227] tracking-widest uppercase">
-          [ CENTRO DE RECURSOS TÉCNICOS ]
+      {/* Header Ledger */}
+      <div className="text-center space-y-4 max-w-3xl mx-auto">
+        <div className="inline-flex items-center gap-2 border border-dorado-campeon/30 px-4 py-1.5 bg-dorado-campeon/5">
+          <FileText size={14} className="text-dorado-campeon" />
+          <span className="text-xs font-body font-bold text-dorado-campeon tracking-[0.2em] uppercase">
+            CENTRO DE RECURSOS TÉCNICOS
+          </span>
         </div>
-        <h1 class="text-4xl sm:text-5xl font-bold text-white font-heading tracking-wider">
-          CONTENIDO & BIBLIOTECA MARCIAL
+        <h1 className="text-5xl font-heading text-tatami-blanco uppercase tracking-tight">
+          BIBLIOTECA <span className="text-dorado-campeon">MARCIAL</span>
         </h1>
-        <p class="text-xs sm:text-sm text-gray-300 max-w-2xl">
-          Artículos técnicos, novedades del reglamento WAKO/WT, consejos de nutrición y entrevistas de combate.
+        <p className="text-sm font-body text-tatami-blanco/70 uppercase tracking-widest max-w-xl mx-auto">
+          Artículos técnicos, novedades del reglamento WAKO/WT y consejos de combate.
         </p>
       </div>
 
-      {/* Category Pills */}
-      <div class="flex flex-wrap gap-2 justify-between items-center pt-2">
-        <div class="flex flex-wrap gap-2">
+      {/* Category Pills & Controls */}
+      <div className="bg-carbon border-y border-dorado-campeon/20 py-4 px-2 max-w-5xl mx-auto flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div className="flex flex-wrap border border-dorado-campeon/30 p-1 bg-[#0A0B0E] w-full md:w-auto">
           <button
             onClick={() => setSelectedCat('')}
             disabled={isEditMode}
-            class={`px-4 py-2 font-heading text-xs font-bold tracking-widest uppercase transition-colors rounded-sm disabled:opacity-50 ${
+            className={`px-4 py-2 font-heading text-[10px] tracking-widest uppercase transition-colors flex-1 md:flex-none disabled:opacity-50 ${
               selectedCat === ''
-                ? 'bg-[#8C1D1D] text-[#F5F2E9] border border-[#8C1D1D]'
-                : 'bg-[#111114] text-[#F5F2E9]/80 hover:text-[#F5F2E9] border border-[#C9A227]/30'
+                ? 'bg-dorado-campeon text-carbon'
+                : 'text-tatami-blanco/50 hover:text-tatami-blanco bg-transparent'
             }`}
           >
             TODOS
@@ -214,10 +225,10 @@ const Contenido = () => {
               key={cat}
               onClick={() => setSelectedCat(cat)}
               disabled={isEditMode}
-              class={`px-4 py-2 font-heading text-xs font-bold tracking-widest uppercase transition-colors rounded-sm disabled:opacity-50 ${
+              className={`px-4 py-2 font-heading text-[10px] tracking-widest uppercase transition-colors flex-1 md:flex-none disabled:opacity-50 ${
                 selectedCat === cat
-                  ? 'bg-[#8C1D1D] text-[#F5F2E9] border border-[#8C1D1D]'
-                  : 'bg-[#111114] text-[#F5F2E9]/80 hover:text-[#F5F2E9] border border-[#C9A227]/30'
+                  ? 'bg-dorado-campeon text-carbon'
+                  : 'text-tatami-blanco/50 hover:text-tatami-blanco bg-transparent'
               }`}
             >
               {cat}
@@ -227,27 +238,29 @@ const Contenido = () => {
 
         {/* Informative message for admin if filters are active */}
         {isAuthenticated && !canEdit && (
-          <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">
-            ⚠️ Selecciona "TODOS" para reordenar las publicaciones
+          <span className="text-[10px] text-rojo-impacto font-heading uppercase tracking-widest border border-rojo-impacto/50 px-3 py-1 bg-rojo-impacto/10">
+            SELECCIONA "TODOS" PARA REORDENAR
           </span>
         )}
       </div>
 
       {/* Reorder instructions in edit mode */}
       {isEditMode && (
-        <div class="bg-[#0B1550]/40 border border-[#C9A227]/40 p-4 rounded-sm flex items-center justify-between text-xs text-[#C9A227] font-bold uppercase tracking-wider">
-          <span>Modo Edición Activo: Arrastra las publicaciones desde el icono superior derecho (☰) para cambiar su orden de aparición.</span>
+        <div className="bg-dorado-campeon/10 border border-dorado-campeon/40 p-4 flex items-center justify-center text-xs text-dorado-campeon font-bold uppercase tracking-[0.1em] text-center max-w-5xl mx-auto">
+          <span>Modo Edición Activo: Arrastra las publicaciones para cambiar su orden de aparición.</span>
         </div>
       )}
 
       {/* Grid of Content Cards */}
       {loading ? (
-        <div class="flex justify-center py-12">
-          <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#C9A227]"></div>
+        <div className="flex justify-center py-32">
+          <div className="animate-spin rounded-none h-10 w-10 border-t-2 border-b-2 border-dorado-campeon"></div>
         </div>
       ) : contents.length === 0 ? (
-        <div class="text-left py-12 bg-[#111114] rounded-sm border border-[#C9A227]/30 p-6 space-y-2">
-          <p class="text-gray-400 text-xs">No hay publicaciones disponibles en esta categoría.</p>
+        <div className="text-center py-24 flex flex-col items-center">
+          <FileText size={40} className="text-dorado-campeon/30 mb-4" />
+          <h3 className="font-heading text-tatami-blanco text-xl tracking-widest uppercase mb-2">Sin Publicaciones</h3>
+          <p className="text-sm font-body text-tatami-blanco/50">No hay contenido en esta categoría por ahora.</p>
         </div>
       ) : isEditMode ? (
         <DndContext
@@ -259,7 +272,7 @@ const Contenido = () => {
             items={contents.map(item => item.id)}
             strategy={rectSortingStrategy}
           >
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {contents.map((item) => (
                 <SortableContentCard
                   key={item.id}
@@ -271,7 +284,7 @@ const Contenido = () => {
           </SortableContext>
         </DndContext>
       ) : (
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-12">
           {contents.map((item) => (
             <SortableContentCard
               key={item.id}
@@ -286,23 +299,23 @@ const Contenido = () => {
       {isAuthenticated && canEdit && (
         <button
           onClick={() => setIsEditMode(!isEditMode)}
-          class={`fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center border ${
+          className={`fixed bottom-8 right-8 z-50 p-4 transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.5)] ${
             isEditMode
-              ? 'bg-[#C9A227] border-[#C9A227] text-[#111114]'
-              : 'bg-[#8C1D1D] border-[#8C1D1D] text-white hover:bg-[#6B1414]'
+              ? 'bg-dorado-campeon text-carbon border border-dorado-campeon hover:bg-white hover:border-white'
+              : 'bg-carbon text-dorado-campeon border border-dorado-campeon/50 hover:bg-dorado-campeon/10 hover:border-dorado-campeon'
           }`}
           title={isEditMode ? 'Guardar Cambios' : 'Modo Edición'}
         >
-          {isEditMode ? <Check size={22} class="stroke-[3]" /> : <Edit3 size={22} />}
+          {isEditMode ? <Check size={24} strokeWidth={3} /> : <Edit3 size={24} />}
         </button>
       )}
 
-      {/* Floating Toast Notification */}
+      {/* Toast Notification */}
       {toast.message && (
-        <div class={`fixed bottom-6 left-6 z-50 px-5 py-3 rounded-sm border shadow-2xl flex items-center gap-2 text-xs font-bold uppercase tracking-wider ${
+        <div className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-50 px-6 py-3 border shadow-[0_0_30px_rgba(0,0,0,0.5)] flex items-center justify-center text-xs font-heading uppercase tracking-widest ${
           toast.type === 'success'
-            ? 'bg-emerald-500/15 border-emerald-500/50 text-emerald-400'
-            : 'bg-rose-500/15 border-rose-500/50 text-rose-400'
+            ? 'bg-[#0A0B0E] border-emerald-500/50 text-emerald-500'
+            : 'bg-[#0A0B0E] border-rojo-impacto/50 text-rojo-impacto'
         }`}>
           <span>{toast.message}</span>
         </div>

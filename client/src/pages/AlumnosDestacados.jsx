@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import API from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { Trophy, Medal, Star, Filter, Edit3, Check, GripVertical } from 'lucide-react';
+import { Trophy, Star, Filter, Edit3, Check, GripVertical } from 'lucide-react';
+import { getBeltStyle } from '../utils/belt-colors';
 
 // Dnd-kit imports
 import {
@@ -37,18 +38,20 @@ const SortableFeaturedCard = ({ item, isEditMode }) => {
     zIndex: isDragging ? 50 : 'auto',
   };
 
+  const belt = getBeltStyle(item.student.grado || '');
+
   return (
     <div
       ref={setNodeRef}
       style={style}
-      class="bg-carbon overflow-hidden flex flex-col relative group clip-card border border-dorado-campeon/30 hover:border-dorado-campeon transition-colors duration-300"
+      className="bg-carbon overflow-hidden flex flex-col relative group border border-transparent hover:border-dorado-campeon/20 transition-all duration-300 shadow-[0_0_15px_rgba(227,178,60,0.05)] hover:shadow-[0_0_25px_rgba(227,178,60,0.15)] hover:-translate-y-1"
     >
       {/* Handle de Arrastre */}
       {isEditMode && (
         <div
           {...attributes}
           {...listeners}
-          class="absolute top-3 right-3 z-30 p-2 bg-carbon border border-dorado-campeon text-dorado-campeon hover:bg-dorado-campeon hover:text-carbon rounded-sm cursor-grab active:cursor-grabbing shadow-lg"
+          className="absolute top-3 right-3 z-30 p-2 bg-carbon border border-dorado-campeon text-dorado-campeon hover:bg-dorado-campeon hover:text-carbon cursor-grab active:cursor-grabbing shadow-[0_0_10px_rgba(227,178,60,0.3)]"
           title="Arrastra para reordenar"
         >
           <GripVertical size={16} />
@@ -56,53 +59,68 @@ const SortableFeaturedCard = ({ item, isEditMode }) => {
       )}
 
       {/* Photo & Badges */}
-      <div class="relative h-64 overflow-hidden bg-black">
+      <div className="relative h-72 overflow-hidden bg-[#0A0B0E] border border-white/5 border-b-0">
         {item.imagenUrl || item.student.foto ? (
           <img
             src={item.imagenUrl || item.student.foto}
             alt={`${item.student.nombres} ${item.student.apellidos}`}
-            class="w-full h-full object-cover"
+            className="w-full h-full object-cover object-top opacity-85 group-hover:opacity-100 transition-opacity duration-500"
           />
         ) : (
-          <div class="w-full h-full bg-carbon/90 border border-white/5 flex flex-col items-center justify-center space-y-2">
-            <Trophy size={48} class="text-[#C9A227]/40" />
-            <span class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Sin foto de perfil</span>
+          <div className="w-full h-full flex flex-col items-center justify-center opacity-30 group-hover:opacity-60 transition-opacity">
+            <div className="w-20 h-20 bg-tatami-blanco/5 border border-white/10 flex items-center justify-center mb-2">
+              <Trophy size={32} className="text-tatami-blanco" />
+            </div>
           </div>
         )}
         
-        <div class="absolute top-3 left-3 flex flex-wrap gap-2">
-          <span class="px-3 py-1 text-[10px] font-display uppercase bg-rojo-impacto text-tatami-blanco tracking-widest clip-button">
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0E] via-transparent to-transparent opacity-60"></div>
+        
+        <div className="absolute top-0 left-0 w-full flex">
+          <span className="flex-1 py-1 text-center text-[10px] font-heading uppercase bg-rojo-impacto text-tatami-blanco tracking-widest border-b border-rojo-impacto/50">
             {item.disciplina}
           </span>
-          <span class="px-3 py-1 text-[10px] font-display uppercase bg-dorado-campeon text-carbon tracking-widest clip-button">
+          <span className="flex-1 py-1 text-center text-[10px] font-heading uppercase bg-[#0A0B0E] text-dorado-campeon tracking-widest border-b border-dorado-campeon/30">
             {item.categoria}
           </span>
         </div>
       </div>
 
-      {/* Card Details */}
-      <div class="p-6 space-y-4 flex-grow flex flex-col justify-between">
-        <div>
-          <h3 class="text-xl font-bold text-tatami-blanco font-display tracking-widest uppercase group-hover:text-dorado-campeon transition-colors">
+      {/* Card Details & Anchor */}
+      <div className="bg-carbon border border-white/5 border-t-0 flex flex-col relative z-10">
+        
+        <div className="p-6 pb-8 text-center relative z-10 bg-[#0A0B0E]">
+          <h3 className="text-2xl font-heading text-tatami-blanco tracking-wide uppercase leading-none mb-2 line-clamp-1">
             {item.student.nombres} {item.student.apellidos}
           </h3>
-          <div class="text-xs text-dorado-campeon font-body mt-1 uppercase font-bold">
+          <div className="text-sm text-dorado-campeon/85 font-body font-bold uppercase tabular-nums tracking-widest">
             {item.student.grado}
           </div>
-          <div class="text-xs text-tatami-blanco/50 mt-0.5 uppercase font-body">
-            Club: {item.student.club ? item.student.club.nombre : 'Independiente'}
+          <div className="text-[10px] text-tatami-blanco/40 mt-1 uppercase font-body tracking-widest">
+            {item.student.club ? item.student.club.nombre : 'INDEPENDIENTE'}
+          </div>
+          
+          {/* Logros (Separador y texto minimalista) */}
+          <div className="mt-5 pt-4 border-t border-dorado-campeon/20">
+            <div className="flex items-center justify-center gap-2 text-[10px] font-body font-bold text-rojo-impacto uppercase tracking-[0.2em] mb-2">
+              <Star size={12} className="fill-current" />
+              LOGROS DESTACADOS
+            </div>
+            <p className="text-xs font-body text-tatami-blanco/70 leading-relaxed italic line-clamp-2">
+              "{item.logros}"
+            </p>
           </div>
         </div>
 
-        {/* Logros */}
-        <div class="bg-black/30 p-4 border-l-4 border-rojo-impacto space-y-2">
-          <div class="flex items-center gap-2 text-xs font-display text-rojo-impacto uppercase tracking-widest">
-            <Star size={14} class="fill-current" />
-            Logros Destacados:
-          </div>
-          <p class="text-sm font-body text-tatami-blanco/90 leading-relaxed italic">
-            "{item.logros}"
-          </p>
+        {/* Línea de Anclaje de Cinturón */}
+        <div className="relative z-20">
+          <div 
+            className="h-[6px] w-full"
+            style={{ backgroundColor: belt.backgroundColor }}
+          ></div>
+          {belt.isBlackBelt && (
+            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[2px] bg-[#E3B23C] opacity-100 z-20"></div>
+          )}
         </div>
       </div>
     </div>
@@ -124,7 +142,7 @@ const AlumnosDestacados = () => {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        distance: 8, // Drag starts only after moving 8px, avoids accidental clicks
+        distance: 8,
       },
     })
   );
@@ -163,86 +181,87 @@ const AlumnosDestacados = () => {
     const newIndex = featured.findIndex(item => item.id === over.id);
     const reordered = arrayMove(featured, oldIndex, newIndex);
 
-    // Update state immediately for optimal visual feedback
     setFeatured(reordered);
 
     try {
-      // Send PATCH to persist new order
       const ids = reordered.map(item => item.id);
       await API.patch('/featured-students/reorder', { ids });
       showToast('Orden guardado con éxito');
     } catch (err) {
       console.error('Error al reordenar:', err);
       showToast('Error al guardar el nuevo orden', 'error');
-      // Rollback to original order on error
       fetchFeatured();
     }
   };
 
   return (
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10 relative">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12 relative">
       
-      {/* Asymmetric Header */}
-      <div class="border-l-4 border-[#C9A227] pl-6 space-y-2">
-        <div class="text-xs font-heading font-bold text-[#C9A227] tracking-widest uppercase">
-          [ CUADRO DE HONOR Y ATLETAS DE ÉLITE ]
+      {/* Header Ledger */}
+      <div className="text-center space-y-4 max-w-3xl mx-auto">
+        <div className="inline-block border border-dorado-campeon/30 px-4 py-1.5 bg-dorado-campeon/5">
+          <span className="text-xs font-body font-bold text-dorado-campeon tracking-[0.2em] uppercase">
+            CUADRO DE HONOR Y ATLETAS DE ÉLITE
+          </span>
         </div>
-        <h1 class="text-4xl sm:text-5xl font-bold text-white font-heading tracking-wider">
-          ALUMNOS DESTACADOS
+        <h1 className="text-5xl font-heading text-tatami-blanco uppercase tracking-tight">
+          ALUMNOS <span className="text-rojo-impacto drop-shadow-[0_0_15px_rgba(214,40,57,0.3)]">DESTACADOS</span>
         </h1>
-        <p class="text-xs sm:text-sm text-gray-300 max-w-2xl">
-          Reconocimiento oficial a nuestros competidores con logros destacados en torneos de Taekwondo y Kickboxing.
+        <p className="text-sm font-body text-tatami-blanco/70 uppercase tracking-widest max-w-xl mx-auto">
+          Reconocimiento oficial a nuestros competidores con logros destacados.
         </p>
       </div>
 
-      {/* Filters Bar */}
-      <div class="bg-[#111114] border border-[#C9A227]/30 p-4 rounded-sm flex flex-wrap gap-4 items-center justify-between shadow-xl">
-        <div class="flex items-center gap-2 text-[#C9A227] font-heading font-bold text-xs uppercase tracking-widest">
+      {/* Filters Bar - Registro Oficial */}
+      <div className="bg-carbon border-y border-dorado-campeon/20 py-4 px-2 max-w-4xl mx-auto flex flex-col md:flex-row gap-4 md:items-center justify-between">
+        <div className="flex items-center gap-3 text-dorado-campeon/70 font-body font-bold text-xs uppercase tracking-widest px-4">
           <Filter size={16} />
-          Filtrar Cuadro de Honor:
+          FILTROS DEL CUADRO:
         </div>
 
-        <div class="flex flex-wrap gap-4">
+        <div className="flex flex-1 gap-4 px-4 md:px-0">
           <select
             value={categoria}
             onChange={(e) => setCategoria(e.target.value)}
             disabled={isEditMode}
-            class="bg-[#0B1550] border border-[#C9A227]/40 rounded-sm px-4 py-2 text-xs font-semibold text-[#F5F2E9] focus:outline-none focus:border-[#C9A227] disabled:opacity-50"
+            className="bg-transparent border-none text-sm text-tatami-blanco focus:outline-none focus:ring-0 font-body uppercase tracking-wider cursor-pointer appearance-none md:border-l md:border-dorado-campeon/20 md:pl-4 flex-1 disabled:opacity-50"
           >
-            <option value="">Todas las Categorías</option>
-            <option value="INFANTIL">Infantil</option>
-            <option value="JUVENIL">Juvenil</option>
-            <option value="ADULTO">Adulto</option>
+            <option value="" className="bg-carbon">TODAS LAS CATEGORÍAS</option>
+            <option value="INFANTIL" className="bg-carbon">INFANTIL</option>
+            <option value="JUVENIL" className="bg-carbon">JUVENIL</option>
+            <option value="ADULTO" className="bg-carbon">ADULTO</option>
           </select>
 
           <select
             value={disciplina}
             onChange={(e) => setDisciplina(e.target.value)}
             disabled={isEditMode}
-            class="bg-[#0B1550] border border-[#C9A227]/40 rounded-sm px-4 py-2 text-xs font-semibold text-[#F5F2E9] focus:outline-none focus:border-[#C9A227] disabled:opacity-50"
+            className="bg-transparent border-none text-sm text-tatami-blanco focus:outline-none focus:ring-0 font-body uppercase tracking-wider cursor-pointer appearance-none md:border-l md:border-dorado-campeon/20 md:pl-4 flex-1 disabled:opacity-50"
           >
-            <option value="">Todas las Disciplinas</option>
-            <option value="TAEKWONDO">Taekwondo</option>
-            <option value="KICKBOXING">Kickboxing</option>
+            <option value="" className="bg-carbon">TODAS LAS DISCIPLINAS</option>
+            <option value="TAEKWONDO" className="bg-carbon">TAEKWONDO</option>
+            <option value="KICKBOXING" className="bg-carbon">KICKBOXING</option>
           </select>
         </div>
       </div>
 
-      {/* Reorder instructions in edit mode */}
+      {/* Reorder instructions */}
       {isEditMode && (
-        <div class="bg-[#0B1550]/40 border border-[#C9A227]/40 p-4 rounded-sm flex items-center justify-between text-xs text-[#C9A227] font-bold uppercase tracking-wider">
-          <span>Modo Edición Activo: Arrastra las tarjetas desde el icono superior derecho (☰) para reordenar la galería.</span>
+        <div className="bg-dorado-campeon/10 border border-dorado-campeon/40 p-4 flex items-center justify-center text-xs text-dorado-campeon font-bold uppercase tracking-[0.1em] text-center max-w-4xl mx-auto">
+          <span>Modo Edición Activo: Arrastra las placas de honor para reordenarlas en el registro.</span>
         </div>
       )}
 
       {/* Grid of Featured Students */}
       {loading ? (
-        <div class="flex justify-center py-12">
-          <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#C9A227]"></div>
+        <div className="flex justify-center py-32">
+          <div className="animate-spin rounded-none h-10 w-10 border-t-2 border-b-2 border-dorado-campeon"></div>
         </div>
       ) : featured.length === 0 ? (
-        <div class="text-left py-12 bg-[#111114] rounded-sm border border-[#C9A227]/30 p-6">
-          <p class="text-gray-400 text-xs">No se encontraron alumnos destacados con los filtros seleccionados.</p>
+        <div className="text-center py-24 flex flex-col items-center">
+          <Trophy size={40} className="text-dorado-campeon/30 mb-4" />
+          <p className="font-heading text-tatami-blanco text-xl tracking-widest uppercase mb-2">Sin Registros</p>
+          <p className="text-sm font-body text-tatami-blanco/50">No hay placas de honor con los filtros aplicados.</p>
         </div>
       ) : isEditMode ? (
         <DndContext
@@ -254,7 +273,7 @@ const AlumnosDestacados = () => {
             items={featured.map(item => item.id)}
             strategy={rectSortingStrategy}
           >
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {featured.map((item) => (
                 <SortableFeaturedCard
                   key={item.id}
@@ -266,7 +285,7 @@ const AlumnosDestacados = () => {
           </SortableContext>
         </DndContext>
       ) : (
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-16">
           {featured.map((item) => (
             <SortableFeaturedCard
               key={item.id}
@@ -277,27 +296,27 @@ const AlumnosDestacados = () => {
         </div>
       )}
 
-      {/* Floating Action Admin Button (Lápiz) */}
+      {/* Floating Action Admin Button */}
       {isAuthenticated && (
         <button
           onClick={() => setIsEditMode(!isEditMode)}
-          class={`fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center border ${
+          className={`fixed bottom-8 right-8 z-50 p-4 transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.5)] ${
             isEditMode
-              ? 'bg-[#C9A227] border-[#C9A227] text-[#111114]'
-              : 'bg-[#8C1D1D] border-[#8C1D1D] text-white hover:bg-[#6B1414]'
+              ? 'bg-dorado-campeon text-carbon border border-dorado-campeon hover:bg-white hover:border-white'
+              : 'bg-carbon text-dorado-campeon border border-dorado-campeon/50 hover:bg-dorado-campeon/10 hover:border-dorado-campeon'
           }`}
           title={isEditMode ? 'Guardar Cambios' : 'Modo Edición'}
         >
-          {isEditMode ? <Check size={22} class="stroke-[3]" /> : <Edit3 size={22} />}
+          {isEditMode ? <Check size={24} strokeWidth={3} /> : <Edit3 size={24} />}
         </button>
       )}
 
-      {/* Floating Toast Notification */}
+      {/* Toast Notification */}
       {toast.message && (
-        <div class={`fixed bottom-6 left-6 z-50 px-5 py-3 rounded-sm border shadow-2xl flex items-center gap-2 text-xs font-bold uppercase tracking-wider ${
+        <div className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-50 px-6 py-3 border shadow-[0_0_30px_rgba(0,0,0,0.5)] flex items-center justify-center text-xs font-heading uppercase tracking-widest ${
           toast.type === 'success'
-            ? 'bg-emerald-500/15 border-emerald-500/50 text-emerald-400'
-            : 'bg-rose-500/15 border-rose-500/50 text-rose-400'
+            ? 'bg-[#0A0B0E] border-emerald-500/50 text-emerald-500'
+            : 'bg-[#0A0B0E] border-rojo-impacto/50 text-rojo-impacto'
         }`}>
           <span>{toast.message}</span>
         </div>

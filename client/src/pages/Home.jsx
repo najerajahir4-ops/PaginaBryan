@@ -36,14 +36,14 @@ const Home = () => {
     }
   };
 
-  // 3x3 Square Cards (White #F5F2E9 fill, carbon #111114 icon on top, red #8C1D1D title on bottom)
+  // Quick Access Cards - Rediseñadas estilo Placas de Honor
   const quickAccessCards = [
     { title: 'Alumnos Destacados', icon: GiTrophyCup, path: '/alumnos-destacados' },
     { title: 'Campeonatos', icon: GiHighKick, path: '/campeonatos' },
     { title: 'Grados', icon: GiBlackBelt, path: '/grados' },
   ];
 
-  // 4 Services Cards (Structured dark panels with gold border lines)
+  // 4 Services Cards - Rediseñadas estilo Placas de Honor
   const services = [
     {
       title: 'Organización de Eventos',
@@ -68,70 +68,68 @@ const Home = () => {
   ];
 
   return (
-    <div class="space-y-16 pb-16">
+    <div className="space-y-16 pb-16 bg-carbon">
       
       {/* HERO SECTION */}
-      <section class="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-carbon">
+      <section className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-carbon">
         
-        {/* Right Column Dragon (Absolute background watermark on mobile, split on desktop) */}
-        <div class="absolute right-0 top-0 w-full lg:w-3/5 h-full z-0 lg:clip-diagonal-right bg-transparent lg:bg-[#0a0b0e] overflow-hidden flex items-center justify-center pointer-events-none">
+        {/* Background Visuals */}
+        <div className="absolute right-0 top-0 w-full lg:w-3/5 h-full z-0 lg:clip-diagonal-right bg-transparent lg:bg-[#0A0B0E] overflow-hidden flex items-center justify-center pointer-events-none">
           
-          {/* Resplandor dorado central (radial gradient para evitar cortes cuadrados de blur) */}
-          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[45rem] bg-[radial-gradient(circle_at_center,_rgba(201,162,39,0.20)_0%,_transparent_65%)] pointer-events-none hidden lg:block"></div>
+          {/* Precise radial glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[45rem] bg-[radial-gradient(circle_at_center,_rgba(227,178,60,0.15)_0%,_transparent_60%)] pointer-events-none hidden lg:block"></div>
           
-          {/* Emblema Central (Logo Estático) */}
-          <div class="relative w-72 h-72 lg:w-[35rem] lg:h-[35rem] lg:translate-x-12 opacity-[0.15] lg:opacity-100 transition-all duration-700 animate-pulse-slow">
+          {/* Logo Estático con sombra precisa */}
+          <div className="relative w-72 h-72 lg:w-[35rem] lg:h-[35rem] lg:translate-x-12 opacity-20 lg:opacity-100 transition-all duration-700 animate-pulse-slow">
             <img
               src="/logo.png"
               alt="Najera's Team Logo"
-              class="w-full h-full object-contain drop-shadow-[0_0_25px_rgba(201,162,39,0.5)] lg:drop-shadow-[0_0_50px_rgba(201,162,39,0.4)]"
+              className="w-full h-full object-contain filter drop-shadow-[0_0_30px_rgba(227,178,60,0.3)] lg:drop-shadow-[0_0_60px_rgba(227,178,60,0.2)]"
             />
           </div>
 
-          <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-carbon via-transparent to-black/30 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-carbon via-transparent to-transparent pointer-events-none"></div>
         </div>
 
-        {/* Left Column Text (Always on top) */}
-        <div class="relative z-10 w-full lg:w-1/2 flex flex-col px-4 sm:px-6 lg:px-8 py-8 lg:py-0 pointer-events-auto self-stretch lg:justify-center">
-          <div class="flex flex-col justify-between h-full lg:h-auto text-left animate-hit max-w-xl mx-auto lg:mx-0 w-full">
+        {/* Left Column Text */}
+        <div className="relative z-10 w-full lg:w-1/2 flex flex-col px-4 sm:px-6 lg:px-8 py-8 lg:py-0 pointer-events-auto self-stretch lg:justify-center">
+          <div className="flex flex-col justify-between h-full lg:h-auto text-left animate-hit max-w-xl mx-auto lg:mx-0 w-full">
             
-            <div class="space-y-6 mt-8 lg:mt-0">
-              {/* Badge with increased horizontal padding to prevent clip-button text cutoff */}
-              <div class="inline-block px-5 py-1.5 bg-dorado-campeon text-carbon font-display text-xs sm:text-sm tracking-widest uppercase clip-button">
+            <div className="space-y-6 mt-8 lg:mt-0">
+              {/* Badge */}
+              <div className="inline-block px-5 py-2 bg-dorado-campeon/10 border border-dorado-campeon/50 text-dorado-campeon font-body font-bold text-xs sm:text-sm tracking-widest uppercase">
                 FORMATIVO ESPECIALIZADO
               </div>
               
-              <h1 class="text-5xl sm:text-6xl lg:text-7xl font-display text-tatami-blanco leading-none tracking-tight uppercase">
-                ENTRENA. <br/>
-                COMPITE. <br/>
-                <span class="text-rojo-impacto">GANA.</span>
+              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-heading text-tatami-blanco leading-[0.85] tracking-tight uppercase">
+                ENTRENA.<br/>
+                COMPITE.<br/>
+                <span className="text-rojo-impacto drop-shadow-[0_0_15px_rgba(214,40,57,0.4)]">GANA.</span>
               </h1>
 
-              <p class="hidden sm:block text-base sm:text-lg text-tatami-blanco/80 font-body border-l-4 border-dorado-campeon pl-4 py-1 max-w-lg">
+              <p className="hidden sm:block text-base sm:text-lg text-tatami-blanco/70 font-body border-l-2 border-dorado-campeon/50 pl-5 py-1 max-w-lg leading-relaxed">
                 Disciplina, fuerza y humildad. Tu mejor versión empieza en el tatami de Najera's Team Central.
               </p>
             </div>
 
-            <div class="pt-6 pb-6 lg:pb-0 mt-auto lg:mt-6 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+            <div className="pt-8 pb-6 lg:pb-0 mt-auto lg:mt-8 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
               <Link
                 to="/contactos?scroll=true"
                 state={{ scrollTarget: 'contact-cards-section' }}
-                class="px-8 py-4 text-center font-display text-base tracking-widest bg-rojo-impacto text-tatami-blanco hover:bg-white hover:text-rojo-impacto transition-colors shadow-lg uppercase clip-button impact-flash"
+                className="group relative px-8 py-4 bg-rojo-impacto text-center font-heading text-xl tracking-widest text-tatami-blanco transition-all shadow-[0_0_20px_rgba(214,40,57,0.2)] hover:shadow-[0_0_30px_rgba(214,40,57,0.4)] uppercase overflow-hidden"
               >
-                MÁS INFORMACIÓN
+                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+                <span className="relative z-10">MÁS INFORMACIÓN</span>
               </Link>
             </div>
           </div>
         </div>
 
-        {/* Bottom Fade to blend Right Column seamlessly into the page background */}
-        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-carbon to-transparent z-20 pointer-events-none"></div>
-
         {/* Scroll Indicator */}
-        <div class="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center">
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-20">
           <button
             onClick={handleScrollDown}
-            class={`transition-opacity duration-500 text-dorado-campeon/80 hover:text-dorado-campeon animate-bounce ${showScrollArrow ? 'opacity-100' : 'opacity-0'}`}
+            className={`transition-opacity duration-500 text-dorado-campeon/50 hover:text-dorado-campeon animate-bounce ${showScrollArrow ? 'opacity-100' : 'opacity-0'}`}
           >
             <ChevronDown size={36} />
           </button>
@@ -139,46 +137,50 @@ const Home = () => {
       </section>
 
       {/* SEPARADOR DECORATIVO */}
-      <div class="w-full flex justify-center px-4 -my-4 lg:-my-6">
-        <div class="w-full max-w-3xl h-[2px] bg-gradient-to-r from-transparent via-dorado-campeon/40 to-transparent"></div>
+      <div className="w-full flex justify-center px-4 -my-4 lg:-my-6">
+        <div className="w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-dorado-campeon/30 to-transparent"></div>
       </div>
 
-      {/* WELCOME SECTION & 3X3 QUICK ACCESS CARDS */}
-      <section id="welcome-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      {/* WELCOME SECTION & QUICK ACCESS */}
+      <section id="welcome-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Left Column Welcome Message */}
-          <div class="lg:col-span-5 space-y-6">
-            <h2 class="text-4xl sm:text-5xl font-display text-tatami-blanco leading-none border-l-8 border-rojo-impacto pl-4 uppercase">
-              Bienvenido a Najera's Team Central
+          {/* Left Column */}
+          <div className="lg:col-span-5 space-y-8">
+            <h2 className="text-4xl sm:text-5xl font-heading text-tatami-blanco leading-none uppercase tracking-wide">
+              BIENVENIDO A <br/>
+              <span className="text-dorado-campeon">NAJERA'S TEAM</span>
             </h2>
-            <p class="text-sm text-tatami-blanco/80 font-body leading-relaxed">
+            <div className="h-[2px] w-16 bg-dorado-campeon/50"></div>
+            <p className="text-sm text-tatami-blanco/70 font-body leading-relaxed">
               Ofrecemos una infraestructura integral para la enseñanza marcial y la gestión técnica de competencias. Nuestro portal centraliza el control de estudiantes, cronogramas de combate, validación de grados y diplomados oficiales.
             </p>
             <div>
               <Link
                 to="/quienes-somos"
-                class="inline-flex items-center gap-2 px-6 py-3 bg-carbon hover:bg-rojo-impacto text-tatami-blanco font-display text-sm tracking-widest uppercase clip-button impact-flash"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#0A0B0E] border border-dorado-campeon/30 hover:border-dorado-campeon text-dorado-campeon font-heading text-sm tracking-widest uppercase transition-all hover:bg-dorado-campeon/10 hover:shadow-[0_0_15px_rgba(227,178,60,0.15)]"
               >
-                LEER MÁS
+                NUESTRO MANIFIESTO
               </Link>
             </div>
           </div>
 
-          {/* Right Column 3x3 Grid of Square Cards (#F5F2E9 fill, #111114 icon, #8C1D1D title) */}
-          <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
+          {/* Right Column 3x3 Grid - Rediseñado */}
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
             {quickAccessCards.map((card, idx) => {
               const IconComp = card.icon;
               return (
                 <Link
                   key={idx}
                   to={card.path}
-                  class="bg-white p-4 sm:p-5 flex flex-col items-center justify-center text-center hover:bg-rojo-impacto hover:text-white transition-colors duration-200 clip-card aspect-square group text-carbon"
+                  className="group bg-[#0A0B0E] border border-white/5 p-6 flex flex-col items-center justify-center text-center transition-all duration-300 shadow-[0_0_15px_rgba(227,178,60,0.05)] hover:shadow-[0_0_25px_rgba(227,178,60,0.15)] hover:border-dorado-campeon/30 hover:-translate-y-1 relative overflow-hidden"
                 >
-                  <div class="mb-3 group-hover:scale-110 transition-transform">
-                    <IconComp class="w-8 h-8" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-dorado-campeon/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  
+                  <div className="mb-4 text-dorado-campeon/50 group-hover:text-dorado-campeon group-hover:scale-110 transition-all duration-300 relative z-10">
+                    <IconComp className="w-10 h-10" />
                   </div>
-                  <span class="font-display text-xs sm:text-sm uppercase tracking-wider line-clamp-2">
+                  <span className="font-heading text-sm text-tatami-blanco/80 group-hover:text-tatami-blanco uppercase tracking-widest leading-tight relative z-10">
                     {card.title}
                   </span>
                 </Link>
@@ -190,34 +192,37 @@ const Home = () => {
       </section>
 
       {/* NUESTROS SERVICIOS */}
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        <div class="space-y-2 border-l-8 border-dorado-campeon pl-4">
-          <h2 class="text-4xl sm:text-5xl font-display text-carbon uppercase">
-            NUESTROS SERVICIOS
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 pt-16">
+        <div className="space-y-4 text-center max-w-3xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-heading text-tatami-blanco uppercase tracking-wide">
+            SERVICIOS <span className="text-rojo-impacto">ESPECIALIZADOS</span>
           </h2>
-          <p class="text-sm font-body font-bold text-carbon/70 uppercase tracking-widest">
-            Especialistas en el campo deportivo de Taekwondo y Kickboxing
+          <div className="h-[2px] w-24 bg-dorado-campeon/50 mx-auto"></div>
+          <p className="text-xs font-body text-dorado-campeon/70 uppercase tracking-[0.2em]">
+            Gestión técnica y deportiva de Taekwondo y Kickboxing
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((srv, index) => {
             const SrvIcon = srv.icon;
             return (
               <div
                 key={index}
-                class="bg-carbon text-tatami-blanco p-6 space-y-4 flex flex-col justify-between group clip-card hover:bg-rojo-impacto transition-colors"
+                className="bg-[#0A0B0E] border border-white/5 p-8 flex flex-col justify-between group transition-all duration-300 shadow-[0_0_15px_rgba(227,178,60,0.05)] hover:shadow-[0_0_25px_rgba(227,178,60,0.15)] hover:border-dorado-campeon/30 hover:-translate-y-1 relative overflow-hidden"
               >
-                <div class="space-y-4">
-                  <div class="flex items-center justify-between">
-                    <div class="text-dorado-campeon group-hover:text-white transition-colors">
-                      <SrvIcon size={24} strokeWidth={2} />
-                    </div>
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-dorado-campeon/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div className="space-y-5 relative z-10">
+                  <div className="w-12 h-12 bg-carbon border border-dorado-campeon/20 flex items-center justify-center text-dorado-campeon/70 group-hover:text-dorado-campeon group-hover:border-dorado-campeon transition-colors">
+                    <SrvIcon size={24} strokeWidth={1.5} />
                   </div>
-                  <h3 class="text-xl font-display uppercase tracking-wide group-hover:text-white transition-colors">
+                  
+                  <h3 className="text-xl font-heading text-tatami-blanco/90 uppercase tracking-widest leading-tight group-hover:text-tatami-blanco transition-colors">
                     {srv.title}
                   </h3>
-                  <p class="text-sm font-body text-tatami-blanco/70 group-hover:text-white/90 leading-relaxed">
+                  
+                  <p className="text-sm font-body text-tatami-blanco/60 leading-relaxed group-hover:text-tatami-blanco/80 transition-colors">
                     {srv.desc}
                   </p>
                 </div>
