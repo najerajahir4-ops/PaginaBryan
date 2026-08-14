@@ -16,15 +16,22 @@ async function main() {
   await prisma.adminUser.deleteMany();
 
   // 2. Crear usuario administrador
-  const passwordHash = await bcrypt.hash('1999', 10);
+  const adminUser = process.env.ADMIN_USER || 'admin_local';
+  const adminPass = process.env.ADMIN_PASSWORD || 'password_local';
+  
+  if (process.env.NODE_ENV === 'production' && (!process.env.ADMIN_USER || !process.env.ADMIN_PASSWORD)) {
+    console.error('⚠️ ALERTA: Usando credenciales por defecto en PRODUCCIÓN. ¡Por favor define ADMIN_USER y ADMIN_PASSWORD en Vercel!');
+  }
+
+  const passwordHash = await bcrypt.hash(adminPass, 10);
   await prisma.adminUser.create({
     data: {
-      usuario: 'arturo321',
+      usuario: adminUser,
       passwordHash,
       rol: 'ADMIN',
     },
   });
-  console.log('✅ Usuario Administrador creado: arturo321 / 1999');
+  console.log(`✅ Usuario Administrador creado: ${adminUser} / [OCULTO]`);
 
   // 3. Crear Clubes / Sedes por defecto
   const club1 = await prisma.club.create({
