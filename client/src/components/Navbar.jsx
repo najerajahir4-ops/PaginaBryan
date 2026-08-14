@@ -25,8 +25,8 @@ const Navbar = () => {
         
         {/* Brand Emblem */}
         <Link to="/" className="flex items-center gap-3 flex-shrink-0 group">
-          <div className="w-10 h-10 rounded-none border border-dorado-campeon/30 p-0.5 bg-[#0A0B0E] group-hover:border-dorado-campeon transition-all duration-300 shadow-[0_0_10px_rgba(227,178,60,0.05)] group-hover:shadow-[0_0_15px_rgba(227,178,60,0.2)]">
-            <img src="/logo.png" alt="Najera's Team Logo" className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all" />
+          <div className="w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+            <img src="/logo.png" alt="Najera's Team Logo" className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 drop-shadow-[0_0_8px_rgba(227,178,60,0.2)] group-hover:drop-shadow-[0_0_15px_rgba(227,178,60,0.6)]" />
           </div>
           <div className="flex flex-col justify-center">
             <span className="font-heading text-xl tracking-widest text-tatami-blanco group-hover:text-dorado-campeon transition-colors leading-none mt-1">
