@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import API from '../services/api';
 import { Calendar, ArrowLeft } from 'lucide-react';
-import ContentCard from '../components/ContentCard';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const ContenidoDetalle = () => {
   const { id } = useParams();
@@ -49,7 +50,7 @@ const ContenidoDetalle = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
       
       <Link 
         to="/contenido" 
@@ -112,9 +113,14 @@ const ContenidoDetalle = () => {
         </div>
       )}
 
-      {/* Article Body using ContentCard */}
-      <div className="max-w-4xl mx-auto bg-[#0A0B0E] border border-white/5 p-6 sm:p-10 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-        <ContentCard rawText={content.cuerpo} />
+      {/* Article Body (Markdown Engine) */}
+      <div className="max-w-4xl mx-auto w-full relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-dorado-campeon/30 to-transparent"></div>
+        <div className="prose prose-dorado prose-invert prose-lg max-w-none w-full bg-[#0A0B0E] border-x border-b border-white/5 p-6 sm:p-12 md:p-16 shadow-[0_0_30px_rgba(0,0,0,0.3)]">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {content.cuerpo}
+          </ReactMarkdown>
+        </div>
       </div>
 
     </div>

@@ -38,8 +38,62 @@ export default {
         'hit-delay': 'hit 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.15s forwards',
         'fade-in': 'fadeIn 0.5s ease-out forwards',
         'slide-up': 'slideUp 0.5s ease-out forwards',
-      }
+      },
+      typography: ({ theme }) => ({
+        dorado: {
+          css: {
+            '--tw-prose-body': theme('colors.tatami-blanco / 0.8'),
+            '--tw-prose-headings': theme('colors.tatami-blanco'),
+            '--tw-prose-lead': theme('colors.tatami-blanco / 0.9'),
+            '--tw-prose-links': theme('colors.dorado-campeon'),
+            '--tw-prose-bold': theme('colors.tatami-blanco'),
+            '--tw-prose-counters': theme('colors.dorado-campeon'),
+            '--tw-prose-bullets': theme('colors.dorado-campeon'),
+            '--tw-prose-hr': theme('colors.white / 0.1'),
+            '--tw-prose-quotes': theme('colors.dorado-campeon'),
+            '--tw-prose-quote-borders': theme('colors.dorado-campeon'),
+            '--tw-prose-captions': theme('colors.tatami-blanco / 0.5'),
+            '--tw-prose-code': theme('colors.rojo-impacto'),
+            '--tw-prose-pre-code': theme('colors.tatami-blanco'),
+            '--tw-prose-pre-bg': 'rgb(0 0 0 / 50%)',
+            '--tw-prose-th-borders': theme('colors.white / 0.2'),
+            '--tw-prose-td-borders': theme('colors.white / 0.1'),
+            
+            // Custom sizing and spacing for editorial feel
+            'h1, h2': {
+              fontFamily: theme('fontFamily.heading').join(', '),
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+            },
+            'h3, h4': {
+              fontFamily: theme('fontFamily.display').join(', '),
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+              color: theme('colors.dorado-campeon'),
+            },
+            'a': {
+              textDecoration: 'none',
+              borderBottom: `1px solid ${theme('colors.dorado-campeon / 0.3')}`,
+              transition: 'all 0.2s ease',
+              '&:hover': {
+                borderBottomColor: theme('colors.dorado-campeon'),
+                backgroundColor: theme('colors.dorado-campeon / 0.1'),
+              }
+            },
+            'blockquote': {
+              backgroundColor: theme('colors.dorado-campeon / 0.05'),
+              padding: '1rem 1.5rem',
+              borderRadius: '0 0.5rem 0.5rem 0',
+              fontStyle: 'italic',
+            },
+            'strong': {
+              color: theme('colors.dorado-campeon'),
+            },
+          },
+        },
+      }),
     },
   },
-  plugins: [],
-}
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
