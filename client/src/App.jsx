@@ -49,7 +49,7 @@ const AdminSidebar = () => {
 
   const getLinkClass = (path) => {
     const isActive = location.pathname.startsWith(path);
-    return `flex items-center gap-3 py-3 px-4 transition-all uppercase tracking-widest font-heading text-xs font-bold border-l-4 ${
+    return `flex items-center gap-3 py-3 px-4 transition-all uppercase tracking-widest font-body text-xs font-semibold border-l-4 ${
       isActive 
         ? 'border-dorado-campeon bg-dorado-campeon/10 text-dorado-campeon' 
         : 'border-transparent text-gray-400 hover:text-tatami-blanco hover:bg-white/5'
@@ -65,7 +65,7 @@ const AdminSidebar = () => {
     <>
       {/* Mobile Topbar (only visible on mobile to open sidebar) */}
       <div className="lg:hidden bg-[#0A0B0E] border-b border-dorado-campeon/30 p-4 flex items-center justify-between sticky top-0 z-40">
-        <span className="font-heading font-extrabold text-dorado-campeon text-lg flex items-center gap-2 tracking-widest uppercase">
+        <span className="font-body font-bold text-dorado-campeon text-lg flex items-center gap-2 tracking-widest uppercase">
           <span className="w-3 h-3 bg-rojo-impacto"></span>
           PANEL ADMIN
         </span>
@@ -91,7 +91,7 @@ const AdminSidebar = () => {
         <div>
           {/* Logo / Header */}
           <div className="p-6 border-b border-white/5 flex items-center justify-between lg:justify-center">
-            <Link to="/admin/estudiantes" onClick={() => setMobileOpen(false)} className="font-heading font-extrabold text-dorado-campeon text-xl flex items-center gap-2 tracking-widest uppercase text-center w-full justify-center">
+            <Link to="/admin/estudiantes" onClick={() => setMobileOpen(false)} className="font-body font-bold text-dorado-campeon text-xl flex items-center gap-2 tracking-widest uppercase text-center w-full justify-center">
               <span className="w-4 h-4 bg-rojo-impacto shadow-[0_0_10px_rgba(214,40,57,0.5)]"></span>
               PANEL ADMIN
             </Link>
@@ -125,14 +125,14 @@ const AdminSidebar = () => {
             Ver Web Pública
           </Link>
           
-          <div className="flex items-center justify-center gap-2 bg-carbon p-3 border border-white/5 text-[10px] font-heading text-tatami-blanco/80 uppercase tracking-widest">
+          <div className="flex items-center justify-center gap-2 bg-carbon p-3 border border-white/5 text-[10px] font-body font-semibold text-tatami-blanco/80 uppercase tracking-widest">
             <User size={14} className="text-dorado-campeon" />
             {user?.usuario}
           </div>
           
           <button
             onClick={handleLogout}
-            className="w-full py-3 bg-rojo-impacto hover:bg-white hover:text-rojo-impacto text-tatami-blanco font-heading text-xs font-bold tracking-widest uppercase transition-colors shadow-[0_0_15px_rgba(214,40,57,0.3)] flex items-center justify-center"
+            className="w-full py-3 bg-rojo-impacto hover:bg-white hover:text-rojo-impacto text-tatami-blanco font-body text-xs font-bold tracking-widest uppercase transition-colors shadow-[0_0_15px_rgba(214,40,57,0.3)] flex items-center justify-center"
           >
             CERRAR SESIÓN
           </button>

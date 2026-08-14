@@ -834,7 +834,7 @@ const EstudiantesAdmin = () => {
       {/* Header & Warning Banner */}
       <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-dorado-campeon pb-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-white font-heading uppercase tracking-wider">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white font-body tracking-tight">
             Gestión de Estudiantes & Pagos
           </h1>
           <p className="text-xs text-dorado-campeon font-bold tracking-widest uppercase mt-1">
@@ -907,7 +907,7 @@ const EstudiantesAdmin = () => {
       <div className="bg-[#0A0B0E] border border-white/5 shadow-[0_0_8px_rgba(227,178,60,0.05)] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse">
-            <thead className="bg-carbon text-dorado-campeon font-body font-bold text-[11px] uppercase tracking-wider border-b-2 border-dorado-campeon/50">
+            <thead className="bg-carbon text-dorado-campeon font-body font-medium text-[11px] uppercase tracking-wider border-b-2 border-dorado-campeon/50">
               <tr>
                 <th className="py-4 px-4 border-r border-white/5">Alumno</th>
                 <th className="py-4 px-4 border-r border-white/5">Cédula</th>
@@ -927,7 +927,7 @@ const EstudiantesAdmin = () => {
                 </tr>
               ) : students.length === 0 ? (
                 <tr>
-                  <td colSpan="7" className="text-center py-16 text-tatami-blanco/40 uppercase font-body font-bold tracking-widest text-sm">
+                  <td colSpan="7" className="text-center py-16 text-tatami-blanco/40 font-body font-medium tracking-widest text-sm uppercase">
                     NO HAY FICHAS REGISTRADAS.
                   </td>
                 </tr>
@@ -935,12 +935,12 @@ const EstudiantesAdmin = () => {
                 students.map((student) => (
                   <tr key={student.id} className="hover:bg-white/5 transition-colors group">
                     <td className="py-6 px-4 flex items-center gap-4 border-r border-white/5">
-                      <div className="w-10 h-10 bg-carbon border border-dorado-campeon text-dorado-campeon flex flex-shrink-0 items-center justify-center font-body font-bold text-sm uppercase shadow-[0_0_10px_rgba(227,178,60,0.2)] group-hover:bg-dorado-campeon group-hover:text-carbon transition-colors">
+                      <div className="w-10 h-10 bg-carbon border border-dorado-campeon text-dorado-campeon flex flex-shrink-0 items-center justify-center font-body font-semibold text-sm uppercase shadow-[0_0_10px_rgba(227,178,60,0.2)] group-hover:bg-dorado-campeon group-hover:text-carbon transition-colors">
                         {student.nombres.charAt(0)}{student.apellidos.charAt(0)}
                       </div>
                       <div className="flex flex-col gap-1">
-                        <span className="font-body font-bold text-sm text-tatami-blanco uppercase tracking-wide leading-tight">
-                          {student.nombres} {student.apellidos}
+                        <span className="font-body font-semibold text-sm text-tatami-blanco capitalize tracking-wide leading-tight">
+                          {student.nombres.toLowerCase()} {student.apellidos.toLowerCase()}
                         </span>
                         <div className="flex items-center gap-2 mt-1">
                           <span className="inline-flex items-center gap-1 bg-carbon border border-white/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-tatami-blanco/50">
@@ -1009,7 +1009,7 @@ const EstudiantesAdmin = () => {
                                   handleOpenHistoryModal(student);
                                   setActiveKebabId(null);
                                 }}
-                                className="w-full px-4 py-2.5 text-xs font-body font-bold tracking-widest uppercase text-tatami-blanco/80 hover:bg-carbon hover:text-dorado-campeon flex items-center gap-3 transition-colors"
+                                className="w-full px-4 py-2.5 text-xs font-body font-medium tracking-widest uppercase text-tatami-blanco/80 hover:bg-carbon hover:text-dorado-campeon flex items-center gap-3 transition-colors"
                               >
                                 <History size={14} />
                                 Historial Pagos
@@ -1019,7 +1019,7 @@ const EstudiantesAdmin = () => {
                                   handleDownloadPDF(student);
                                   setActiveKebabId(null);
                                 }}
-                                className="w-full px-4 py-2.5 text-xs font-body font-bold tracking-widest uppercase text-tatami-blanco/80 hover:bg-carbon hover:text-dorado-campeon flex items-center gap-3 transition-colors"
+                                className="w-full px-4 py-2.5 text-xs font-body font-medium tracking-widest uppercase text-tatami-blanco/80 hover:bg-carbon hover:text-dorado-campeon flex items-center gap-3 transition-colors"
                               >
                                 <FileText size={14} />
                                 Ficha PDF
@@ -1056,7 +1056,7 @@ const EstudiantesAdmin = () => {
           
           {/* SECCIÓN 1: DATOS DEL ALUMNO */}
           <div class="space-y-3">
-            <h3 class="text-xs font-bold text-dorado-campeon font-body font-bold tracking-widest uppercase border-b border-white/10 pb-1">
+            <h3 class="text-xs text-dorado-campeon font-body font-semibold tracking-widest uppercase border-b border-white/10 pb-1">
               1. Datos del Alumno
             </h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
