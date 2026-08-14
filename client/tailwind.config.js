@@ -89,10 +89,16 @@ export default {
               }
             },
             'blockquote': {
-              backgroundColor: theme('colors.dorado-campeon / 0.05'),
+              backgroundColor: 'rgba(227, 178, 60, 0.1)', // dorado-campeon al 10%
+              borderLeftWidth: '4px',
+              borderLeftColor: 'var(--dorado-campeon)',
               padding: '1rem 1.5rem',
               borderRadius: '0 0.5rem 0.5rem 0',
               fontStyle: 'italic',
+              color: 'var(--tatami-blanco)',
+            },
+            'blockquote p': {
+              color: 'var(--tatami-blanco)',
             },
             'strong': {
               color: theme('colors.dorado-campeon'),
