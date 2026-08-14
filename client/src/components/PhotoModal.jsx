@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X, Download, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const PhotoModal = ({ photo, isOpen, onClose, onNext, onPrev, hasMultiple }) => {
@@ -41,10 +42,11 @@ const PhotoModal = ({ photo, isOpen, onClose, onNext, onPrev, hasMultiple }) => 
     }
   };
 
-  return (
+  return createPortal(
     <div 
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-4"
       onClick={onClose}
+      style={{ zIndex: 9999 }}
     >
       <div className="absolute top-6 right-6 flex items-center gap-4 z-50">
         <button 
@@ -97,7 +99,8 @@ const PhotoModal = ({ photo, isOpen, onClose, onNext, onPrev, hasMultiple }) => 
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
