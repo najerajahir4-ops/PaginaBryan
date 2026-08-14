@@ -1,6 +1,6 @@
 import React from 'react';
 import { HelpCircle, User, Users, Trophy, Timer, CheckCircle2, XCircle, AlertTriangle, Swords, Medal, Shield, Target, Award } from 'lucide-react';
-import { GiBoxingGlove, GiKarate, GiBlackBelt } from 'react-icons/gi';
+import { GiBoxingGlove, GiBlackBelt } from 'react-icons/gi';
 
 const iconMap = {
   '🥊': <GiBoxingGlove className="w-full h-full" />,
