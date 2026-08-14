@@ -113,6 +113,35 @@ const ContenidoAdmin = () => {
     }
   };
 
+  const handleInsertTemplate = () => {
+    const template = `# TÍTULO PRINCIPAL
+*Un subtítulo o breve descripción en cursiva*
+
+---
+
+## 🛡️ Sección 1: Conceptos Claves
+Escribe aquí una breve introducción.
+
+### Punto Importante
+- **Elemento 1** ➝ Explicación
+- **Elemento 2** ➝ Explicación
+
+---
+
+## 🎯 Sección 2: Reglas o Pasos
+1. Primer paso importante.
+2. Segundo paso importante.
+
+> "Una cita importante o nota a destacar va aquí."
+
+---
+
+## ⚠️ Notas Finales
+- Recuerda siempre usar los símbolos correspondientes.
+`;
+    setForm(prev => ({ ...prev, cuerpo: prev.cuerpo ? prev.cuerpo + '\n\n' + template : template }));
+  };
+
   const handleDelete = async (id) => {
     if (window.confirm('¿Estás seguro de eliminar esta publicación?')) {
       try {
@@ -249,7 +278,16 @@ const ContenidoAdmin = () => {
           </div>
 
           <div>
-            <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Cuerpo / Contenido Completo</label>
+            <div class="flex justify-between items-end mb-1">
+              <label class="block text-xs font-bold text-gray-300 uppercase">Cuerpo / Contenido Completo</label>
+              <button 
+                type="button"
+                onClick={handleInsertTemplate}
+                class="text-[10px] font-bold uppercase tracking-wider bg-dorado-campeon/10 text-dorado-campeon border border-dorado-campeon/30 px-3 py-1 rounded hover:bg-dorado-campeon hover:text-black transition-colors"
+              >
+                + Insertar Plantilla Base
+              </button>
+            </div>
             <textarea
               rows="5"
               required
