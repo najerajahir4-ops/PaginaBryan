@@ -11,7 +11,8 @@ import {
   BookOpen,
   Monitor,
   Code,
-  ChevronDown
+  ChevronDown,
+  ArrowRight
 } from 'lucide-react';
 
 const Home = () => {
@@ -74,52 +75,55 @@ const Home = () => {
       <section className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-carbon">
         
         {/* Background Visuals */}
-        <div className="absolute right-0 top-0 w-full lg:w-3/5 h-full z-0 lg:clip-diagonal-right bg-transparent lg:bg-[#0A0B0E] overflow-hidden flex items-center justify-center pointer-events-none">
-          
+        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden flex items-center justify-end pointer-events-none">
           {/* Precise radial glow */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[45rem] bg-[radial-gradient(circle_at_center,_rgba(227,178,60,0.15)_0%,_transparent_60%)] pointer-events-none hidden lg:block"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60rem] h-[60rem] bg-[radial-gradient(circle_at_center,_rgba(227,178,60,0.08)_0%,_transparent_60%)] pointer-events-none hidden lg:block"></div>
           
-          {/* Logo Estático con sombra precisa */}
-          <div className="relative w-72 h-72 lg:w-[35rem] lg:h-[35rem] lg:translate-x-12 opacity-20 lg:opacity-100 transition-all duration-700 animate-pulse-slow">
+          {/* Logo Estático como textura masiva */}
+          <div className="absolute right-[-20%] sm:right-[-10%] lg:right-[-5%] top-1/2 -translate-y-1/2 w-[150vw] sm:w-[90vw] lg:w-[65vw] opacity-[0.03] lg:opacity-[0.04] transition-all duration-1000 grayscale">
             <img
               src="/logo.png"
-              alt="Najera's Team Logo"
-              className="w-full h-full object-contain filter drop-shadow-[0_0_30px_rgba(227,178,60,0.3)] lg:drop-shadow-[0_0_60px_rgba(227,178,60,0.2)]"
+              alt=""
+              className="w-full h-full object-contain filter blur-[2px]"
             />
           </div>
 
-          <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-carbon via-transparent to-transparent pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-carbon via-carbon/80 to-transparent pointer-events-none"></div>
         </div>
 
         {/* Left Column Text */}
-        <div className="relative z-10 w-full lg:w-1/2 flex flex-col px-4 sm:px-6 lg:px-8 py-8 lg:py-0 pointer-events-auto self-stretch lg:justify-center">
-          <div className="flex flex-col justify-between h-full lg:h-auto text-left animate-hit max-w-xl mx-auto lg:mx-0 w-full">
+        <div className="relative z-10 w-full lg:w-2/3 flex flex-col px-4 sm:px-6 lg:px-12 xl:px-20 py-8 lg:py-0 pointer-events-auto self-stretch lg:justify-center">
+          <div className="flex flex-col justify-between h-full lg:h-auto text-left animate-hit max-w-2xl mx-auto lg:mx-0 w-full">
             
             <div className="space-y-6 mt-8 lg:mt-0">
               {/* Badge */}
-              <div className="inline-block px-5 py-2 bg-dorado-campeon/10 border border-dorado-campeon/50 text-dorado-campeon font-body font-bold text-xs sm:text-sm tracking-widest uppercase">
-                FORMATIVO ESPECIALIZADO
+              <div className="inline-flex items-center gap-4">
+                <div className="h-[1px] w-10 bg-dorado-campeon/60"></div>
+                <span className="text-tatami-blanco/60 font-body font-semibold text-xs sm:text-sm tracking-[0.25em] uppercase">
+                  FORMATIVO ESPECIALIZADO
+                </span>
               </div>
               
-              <h1 className="text-6xl sm:text-7xl lg:text-8xl font-heading text-tatami-blanco leading-[0.85] tracking-tight uppercase">
+              <h1 className="text-6xl sm:text-7xl lg:text-[7.5rem] font-heading text-tatami-blanco leading-[0.85] tracking-tight uppercase">
                 ENTRENA.<br/>
                 COMPITE.<br/>
-                <span className="text-rojo-impacto drop-shadow-[0_0_15px_rgba(214,40,57,0.4)]">GANA.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-br from-rojo-impacto to-[#8B0000] drop-shadow-[0_0_15px_rgba(214,40,57,0.3)]">GANA.</span>
               </h1>
 
-              <p className="hidden sm:block text-base sm:text-lg text-tatami-blanco/70 font-body border-l-2 border-dorado-campeon/50 pl-5 py-1 max-w-lg leading-relaxed">
-                Disciplina, fuerza y humildad. Tu mejor versión empieza en el tatami de Najera's Team Central.
+              <p className="hidden sm:block text-base sm:text-lg text-tatami-blanco/50 font-body max-w-xl leading-relaxed mt-4">
+                Disciplina, fuerza y humildad. Tu mejor versión empieza en el tatami de <strong className="text-tatami-blanco/80 font-semibold">Najera's Team Central</strong>.
               </p>
             </div>
 
-            <div className="pt-8 pb-6 lg:pb-0 mt-auto lg:mt-8 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+            <div className="pt-10 pb-6 lg:pb-0 mt-auto lg:mt-10 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
               <Link
                 to="/contactos?scroll=true"
                 state={{ scrollTarget: 'contact-cards-section' }}
-                className="group relative px-8 py-4 bg-rojo-impacto text-center font-heading text-xl tracking-widest text-tatami-blanco transition-all shadow-[0_0_20px_rgba(214,40,57,0.2)] hover:shadow-[0_0_30px_rgba(214,40,57,0.4)] uppercase overflow-hidden"
+                className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#A61019] border border-white/5 font-body font-bold text-sm tracking-[0.2em] text-tatami-blanco transition-all duration-300 hover:bg-[#D62828] hover:shadow-[0_0_30px_rgba(214,40,57,0.3)] hover:-translate-y-0.5 uppercase overflow-hidden"
               >
-                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
-                <span className="relative z-10">MÁS INFORMACIÓN</span>
+                <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+                <span className="relative z-10 drop-shadow-md">MÁS INFORMACIÓN</span>
+                <ArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform duration-300" size={18} />
               </Link>
             </div>
           </div>
