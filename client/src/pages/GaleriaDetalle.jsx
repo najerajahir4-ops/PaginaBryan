@@ -2,11 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Loader, ImageOff, ArrowLeft, Calendar } from 'lucide-react';
 import API from '../services/api';
+import PhotoModal from '../components/PhotoModal';
 
 const GaleriaDetalle = () => {
   const { id } = useParams();
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null);
+
+  const openModal = (index) => setSelectedPhotoIndex(index);
+  const closeModal = () => setSelectedPhotoIndex(null);
+  
+  const nextPhoto = () => {
+    if (student?.gallery) {
+      setSelectedPhotoIndex((prev) => (prev === student.gallery.length - 1 ? 0 : prev + 1));
+    }
+  };
+
+  const prevPhoto = () => {
+    if (student?.gallery) {
+      setSelectedPhotoIndex((prev) => (prev === 0 ? student.gallery.length - 1 : prev - 1));
+    }
+  };
 
   useEffect(() => {
     const fetchStudent = async () => {
@@ -103,8 +120,12 @@ const GaleriaDetalle = () => {
           </div>
         ) : (
           <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6 pb-20">
-            {images.map((img) => (
-              <div key={img.id} class="break-inside-avoid group relative rounded-2xl overflow-hidden border border-[#C9A227]/10 shadow-xl bg-carbon">
+            {images.map((img, index) => (
+              <div 
+                key={img.id} 
+                class="break-inside-avoid group relative rounded-2xl overflow-hidden border border-[#C9A227]/10 shadow-xl bg-carbon cursor-pointer"
+                onClick={() => openModal(index)}
+              >
                 <img src={img.url} alt={img.descripcion || 'Foto del estudiante'} class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700" />
                 
                 <div class="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
@@ -121,6 +142,15 @@ const GaleriaDetalle = () => {
           </div>
         )}
       </div>
+
+      <PhotoModal 
+        photo={selectedPhotoIndex !== null ? images[selectedPhotoIndex] : null}
+        isOpen={selectedPhotoIndex !== null}
+        onClose={closeModal}
+        onNext={nextPhoto}
+        onPrev={prevPhoto}
+        hasMultiple={images.length > 1}
+      />
 
     </div>
   );
