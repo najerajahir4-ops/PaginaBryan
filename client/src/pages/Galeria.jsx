@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, User, ChevronRight, AlertCircle, Loader } from 'lucide-react';
+import { Search, ChevronRight, AlertCircle, Loader, Filter } from 'lucide-react';
 import API from '../services/api';
+import { getBeltStyle } from '../utils/belt-colors';
 
 const Galeria = () => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const [rankFilter, setRankFilter] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('');
 
   useEffect(() => {
     const fetchStudents = async () => {
@@ -22,119 +25,182 @@ const Galeria = () => {
     fetchStudents();
   }, []);
 
-  const filteredStudents = students.filter(s => 
-    s.nombres.toLowerCase().includes(search.toLowerCase()) ||
-    s.apellidos.toLowerCase().includes(search.toLowerCase()) ||
-    s.cedula.includes(search)
-  );
+  const filteredStudents = students.filter(s => {
+    const matchesSearch = s.nombres.toLowerCase().includes(search.toLowerCase()) ||
+                          s.apellidos.toLowerCase().includes(search.toLowerCase()) ||
+                          s.cedula.includes(search);
+    const matchesRank = rankFilter === '' || (s.grado && s.grado.toLowerCase().includes(rankFilter.toLowerCase()));
+    
+    return matchesSearch && matchesRank;
+  });
+
+  // Mock de rangos para el filtro (podría extraerse de la DB o constantes)
+  const availableRanks = ['Blanco', 'Amarillo', 'Naranja', 'Verde', 'Azul', 'Morado', 'Marrón', 'Rojo', 'Negro', 'Dan', 'Poom'];
 
   return (
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
 
-      <div class="text-center space-y-3 max-w-3xl mx-auto">
-        <h1 class="text-4xl font-extrabold text-white font-heading uppercase tracking-tight">
-          GALERÍA DE ESTUDIANTES
+      <div className="text-center space-y-4 max-w-3xl mx-auto">
+        <h1 className="text-5xl font-heading text-tatami-blanco uppercase tracking-tight">
+          SALÓN DE CAMPEONES
         </h1>
-        <p class="text-sm text-gray-300">
-          Encuentra tu perfil y revive tus mejores momentos marciales.
+        <p className="text-base font-body text-tatami-blanco/70 max-w-xl mx-auto">
+          El registro oficial de nuestros artistas marciales. Disciplina, enfoque y legado, forjados en el tatami.
         </p>
       </div>
 
-      <div class="bg-[#111114]/50 border border-white/10 p-4 rounded-xl max-w-2xl mx-auto backdrop-blur-md">
-        <div class="relative w-full">
-          <Search class="w-5 h-5 text-dorado-campeon absolute left-3 top-1/2 -translate-y-1/2" />
+      {/* Panel de Filtros - Registro Oficial */}
+      <div className="bg-carbon border-y border-dorado-campeon/20 py-4 px-2 max-w-4xl mx-auto flex flex-col md:flex-row gap-4 md:items-center">
+        <div className="flex items-center gap-3 md:border-r border-dorado-campeon/20 pr-6 flex-1">
+          <Search className="w-5 h-5 text-dorado-campeon/50" />
           <input
             type="text"
             placeholder="Buscar por nombre o cédula..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            class="w-full bg-[#1C1C21] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:border-dorado-campeon/50 transition-colors"
+            className="w-full bg-transparent border-none text-sm text-tatami-blanco placeholder:text-tatami-blanco/30 focus:outline-none focus:ring-0 font-body"
           />
+        </div>
+        
+        <div className="flex items-center gap-4 flex-1 md:flex-none">
+          <Filter className="w-4 h-4 text-dorado-campeon/50 hidden md:block" />
+          <select 
+            value={rankFilter}
+            onChange={(e) => setRankFilter(e.target.value)}
+            className="bg-transparent border-none text-sm text-tatami-blanco focus:outline-none focus:ring-0 font-body uppercase tracking-wider cursor-pointer appearance-none flex-1"
+          >
+            <option value="" className="bg-carbon text-tatami-blanco">TODOS LOS RANGOS</option>
+            {availableRanks.map(r => (
+              <option key={r} value={r} className="bg-carbon text-tatami-blanco">{r.toUpperCase()}</option>
+            ))}
+          </select>
+
+          {/* Placeholder para filtro de Categoría */}
+          <select 
+            value={categoryFilter}
+            onChange={(e) => setCategoryFilter(e.target.value)}
+            className="bg-transparent border-none text-sm text-tatami-blanco focus:outline-none focus:ring-0 font-body uppercase tracking-wider cursor-pointer appearance-none md:border-l md:border-dorado-campeon/20 md:pl-4 flex-1"
+          >
+            <option value="" className="bg-carbon text-tatami-blanco">CATEGORÍA</option>
+            <option value="infantil" className="bg-carbon text-tatami-blanco">INFANTIL</option>
+            <option value="juvenil" className="bg-carbon text-tatami-blanco">JUVENIL</option>
+            <option value="adulto" className="bg-carbon text-tatami-blanco">ADULTO</option>
+          </select>
         </div>
       </div>
 
       {loading ? (
-        <div class="flex justify-center items-center py-32">
-          <Loader class="animate-spin text-[#C9A227]" size={50} />
+        <div className="flex justify-center items-center py-32">
+          <Loader className="animate-spin text-dorado-campeon" size={40} />
         </div>
       ) : (
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 pb-24">
           {filteredStudents.length === 0 ? (
-            <div class="col-span-full py-24 text-center text-gray-400 flex flex-col items-center">
-              <div class="w-20 h-20 rounded-2xl bg-[#0B1550]/10 border border-[#C9A227]/30 flex items-center justify-center mb-6">
-                <AlertCircle size={36} class="text-[#C9A227]/60" />
-              </div>
-              <p class="font-heading font-bold text-white text-lg tracking-widest uppercase mb-1">
-                No hay resultados
+            <div className="col-span-full py-24 text-center flex flex-col items-center">
+              <AlertCircle size={40} className="text-dorado-campeon/40 mb-4" />
+              <p className="font-heading text-tatami-blanco text-xl tracking-widest uppercase mb-2">
+                Sin registros
               </p>
-              <p class="text-sm text-gray-400 max-w-xs">
-                No se encontraron estudiantes con esa búsqueda.
+              <p className="text-sm font-body text-tatami-blanco/50">
+                No se encontraron estudiantes con esos criterios.
               </p>
             </div>
           ) : (
             <>
-              {/* Tarjeta de Fotos Generales */}
-              {search === '' && (
+              {/* Placa General */}
+              {search === '' && rankFilter === '' && categoryFilter === '' && (
                 <Link 
                   to={`/galeria/generales`}
-                  class="bg-[#1C1C21] border border-dorado-campeon/30 rounded-2xl overflow-hidden hover:border-dorado-campeon transition-all duration-300 hover:-translate-y-2 group shadow-xl shadow-dorado-campeon/5"
+                  className="group bg-carbon flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-[0_0_15px_rgba(227,178,60,0.08)] hover:shadow-[0_0_25px_rgba(227,178,60,0.12)] border border-transparent hover:border-dorado-campeon/20"
                 >
-                  <div class="h-48 bg-gradient-to-br from-[#0B1550] to-carbon relative overflow-hidden flex justify-center items-center">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#1C1C21] to-transparent z-10"></div>
-                    <User size={80} class="text-dorado-campeon opacity-40 group-hover:opacity-70 group-hover:scale-110 transition-all duration-700" />
-                  </div>
-                  <div class="p-5">
-                    <p class="font-body font-bold text-dorado-campeon uppercase text-base leading-tight drop-shadow-md mb-1">FOTOS GENERALES</p>
-                    <p class="text-[11px] text-gray-400 font-mono">Álbum del Dojang</p>
-                    
-                    <div class="mt-5 flex items-center justify-between text-xs border-t border-white/5 pt-4">
-                      <div>
-                        <span class="block text-gray-500 uppercase tracking-wider text-[10px] mb-0.5">Acceso</span>
-                        <span class="text-white font-bold">Público</span>
-                      </div>
-                      <div class="w-8 h-8 rounded-full bg-dorado-campeon/10 flex items-center justify-center group-hover:bg-dorado-campeon/20 transition-colors">
-                        <ChevronRight size={18} class="text-dorado-campeon" />
-                      </div>
+                  <div className="h-64 relative bg-[#0A0B0E] flex flex-col items-center justify-center border border-white/5 border-b-0 p-6 text-center">
+                    <div className="w-16 h-16 rounded-none border border-dorado-campeon/30 flex items-center justify-center mb-4 group-hover:border-dorado-campeon transition-all">
+                       <span className="text-dorado-campeon text-2xl">🏆</span>
                     </div>
+                    <p className="font-heading text-tatami-blanco text-2xl uppercase tracking-widest leading-none mb-2">
+                      FOTOS GENERALES
+                    </p>
+                    <p className="font-body font-bold text-sm uppercase tracking-widest text-dorado-campeon/85">
+                      Álbum Oficial
+                    </p>
+                  </div>
+                  
+                  {/* Línea base dorada (Mapeo a cinturón campeón) */}
+                  <div className="relative">
+                    <div className="h-2 w-full bg-dorado-campeon"></div>
+                  </div>
+                  
+                  <div className="p-4 flex justify-between items-center bg-carbon border border-white/5 border-t-0">
+                     <span className="font-body text-[10px] text-dorado-campeon/50 uppercase tracking-widest">Acceso Público</span>
+                     <ChevronRight className="w-4 h-4 text-dorado-campeon/50 group-hover:text-dorado-campeon transition-colors" />
                   </div>
                 </Link>
               )}
 
-              {/* Tarjetas de Estudiantes */}
-              {filteredStudents.map((student) => (
-                <Link 
-                  key={student.id} 
-                  to={`/galeria/${student.id}`}
-                  class="bg-[#1C1C21] border border-white/5 rounded-2xl overflow-hidden hover:border-dorado-campeon/50 transition-all duration-300 hover:-translate-y-2 group shadow-xl hover:shadow-dorado-campeon/10"
-                >
-                  <div class="h-48 bg-carbon relative overflow-hidden flex justify-center items-center">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#1C1C21] to-transparent z-10"></div>
-                    {student.foto ? (
-                      <img src={student.foto} alt={student.nombres} class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-700 group-hover:scale-105" />
-                    ) : (
-                      <User size={80} class="text-gray-600 opacity-30 group-hover:opacity-50 transition-opacity" />
-                    )}
-                  </div>
-                  <div class="p-5">
-                    <p class="font-body font-bold text-white uppercase text-base leading-tight drop-shadow-md mb-1 line-clamp-2">{student.nombres} {student.apellidos}</p>
+              {/* Placas de Estudiantes (Muro de Honor) */}
+              {filteredStudents.map((student) => {
+                const belt = getBeltStyle(student.grado || '');
+                return (
+                  <Link 
+                    key={student.id} 
+                    to={`/galeria/${student.id}`}
+                    className="group bg-carbon flex flex-col transition-all duration-300 hover:-translate-y-1 shadow-[0_0_15px_rgba(227,178,60,0.08)] hover:shadow-[0_0_25px_rgba(227,178,60,0.12)] border border-transparent hover:border-dorado-campeon/20"
+                  >
+                    <div className="h-72 relative bg-[#0A0B0E] border border-white/5 border-b-0 overflow-hidden">
+                      {student.foto ? (
+                        <img 
+                          src={student.foto} 
+                          alt={student.nombres} 
+                          className="w-full h-full object-cover object-top opacity-85 group-hover:opacity-100 transition-opacity duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex flex-col justify-center items-center opacity-30 group-hover:opacity-60 transition-opacity">
+                          <div className="w-20 h-20 bg-tatami-blanco/5 rounded-none border border-white/10 flex items-center justify-center">
+                            <span className="font-heading text-4xl text-tatami-blanco">
+                              {student.nombres?.charAt(0)}{student.apellidos?.charAt(0)}
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                     
-                    <div class="mt-5 flex items-center justify-between text-xs border-t border-white/5 pt-4">
-                      <div>
-                        <span class="block text-gray-500 uppercase tracking-wider text-[10px] mb-0.5">Grado</span>
-                        <span class="text-dorado-campeon font-bold">{student.grado?.split(' / ')[0]}</span>
+                    {/* INFO Y ANCLAJE DE RANGO */}
+                    <div className="bg-carbon border border-white/5 border-t-0 relative">
+                      <div className="p-5 pb-6 text-center z-10 relative">
+                        {/* Nombre: Anton, mayor peso, blanco puro */}
+                        <p className="font-heading text-tatami-blanco text-2xl uppercase leading-none tracking-wide mb-2 line-clamp-1">
+                          {student.nombres} {student.apellidos}
+                        </p>
+                        
+                        {/* Rango: Manrope bold, dorado 85%, tabular */}
+                        <p className="font-body font-bold text-dorado-campeon/85 text-sm uppercase tracking-widest tabular-nums">
+                          {student.grado || 'Sin Grado'}
+                        </p>
+
+                        {/* Secondary metadata */}
+                        <p className="font-body text-[10px] text-dorado-campeon/50 uppercase tracking-widest mt-3">
+                          Ver Registro Completo
+                        </p>
                       </div>
-                      <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-dorado-campeon/10 transition-colors">
-                        <ChevronRight size={18} class="text-gray-500 group-hover:text-dorado-campeon transition-colors" />
+                      
+                      {/* Línea de Anclaje de Cinturón */}
+                      <div className="relative">
+                        <div 
+                          className="h-[6px] w-full"
+                          style={{ backgroundColor: belt.backgroundColor }}
+                        ></div>
+                        {belt.isBlackBelt && (
+                          <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[2px] bg-[#E3B23C] opacity-100 z-20"></div>
+                        )}
                       </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                );
+              })}
             </>
           )}
         </div>
       )}
-
     </div>
   );
 };

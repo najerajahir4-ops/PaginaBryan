@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         display: ['Manrope', 'sans-serif'],
         body: ['Manrope', 'sans-serif'],
+        heading: ['Anton', 'sans-serif'],
       },
       keyframes: {
         hit: {
