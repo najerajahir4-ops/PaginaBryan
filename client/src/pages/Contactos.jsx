@@ -61,10 +61,12 @@ const Contactos = () => {
       
       {/* Header Ledger */}
       <div className="text-center space-y-4 max-w-3xl mx-auto">
-        <div className="inline-block border border-dorado-campeon/30 px-4 py-1.5 bg-dorado-campeon/5">
-          <span className="text-xs font-body font-bold text-dorado-campeon tracking-[0.2em] uppercase">
+        <div className="flex items-center justify-center gap-4 mb-2">
+          <div className="h-[1px] w-12 bg-dorado-campeon/40"></div>
+          <span className="text-[11px] font-body font-bold text-dorado-campeon/80 tracking-[0.25em] uppercase">
             COMUNICACIÓN DIRECTA • SEDE CENTRAL
           </span>
+          <div className="h-[1px] w-12 bg-dorado-campeon/40"></div>
         </div>
         <h1 className="text-5xl font-heading text-tatami-blanco uppercase tracking-tight">
           CONTACTOS & <span className="text-dorado-campeon">ADMISIONES</span>
