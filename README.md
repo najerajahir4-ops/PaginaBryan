@@ -116,3 +116,26 @@ git push
 ```
 
 Una vez ejecutado el `git push`, solo debes esperar un par de minutos y recargar tu página web pública para ver los cambios aplicados exitosamente.
+
+---
+
+## 📅 Registro de Mejoras (Actualización Reciente)
+
+Se ha realizado una revisión integral del sistema empleando **Skills avanzadas de IA** para pulir la interfaz, la legibilidad y asegurar el proyecto.
+
+### Mejoras de Interfaz (UI/UX)
+- **Corrección de Bugs Visuales:** Eliminación de bordes residuales y problemas de *overflow* que rompían el layout.
+- **Panel Administrativo (Fichas & Pagos):** Refinamiento tipográfico eliminando la pesada fuente *Anton* para datos crudos, reemplazándola por *Manrope* en grosores medianos, aumentando enormemente la legibilidad de las tablas.
+- **Rediseño Premium del Inicio (Hero Section):** Transformación del diseño estático 50/50. El logo se integró como una marca de agua texturizada en el fondo, se ajustaron las jerarquías de texto, los gradientes sutiles y se creó un botón de llamado a la acción moderno y táctil.
+
+### Auditoría de Seguridad
+- Se verificó la robustez de la arquitectura backend: el uso correcto de `bcryptjs` para contraseñas, la inyección SQL prevenida gracias a `Prisma`, y la sesión asegurada vía `JWT` con cookies `httpOnly`.
+- Se parcharon de forma segura vulnerabilidades en dependencias NPM de terceros tanto en el frontend (`nanoid`, `react-router`, `postcss`) como en el backend (`ip-address`), manteniendo la estabilidad del código.
+
+### 🤖 Skills de IA Integradas en el Proyecto (`.agents/skills`)
+El agente ha sido potenciado con las siguientes habilidades instaladas localmente en el repositorio:
+1. **`interface-design`**: Empleada para elevar el estándar visual del diseño, aplicar jerarquía y ritmo espacial en las vistas principales.
+2. **`impeccable`**: Utilizada para pulir detalles de legibilidad, tipografía y experiencia de usuario en las tablas de datos.
+3. **`security-and-hardening`**: Aplicada para auditar y aplicar prácticas de endurecimiento de código, rate limits, y auditoría de vulnerabilidades NPM.
+4. **`find-skills`**: Usada como motor de descubrimiento para instalar las herramientas anteriores de manera autónoma.
+5. **`vercel-react-best-practices`**: Para asegurar lineamientos de rendimiento y optimización.
