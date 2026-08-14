@@ -69,7 +69,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="space-y-16 pb-16 bg-carbon">
+    <div className="flex flex-col bg-carbon pb-24">
       
       {/* HERO SECTION */}
       <section className="relative min-h-[calc(100vh-4rem)] flex items-center overflow-hidden bg-carbon">
@@ -141,12 +141,12 @@ const Home = () => {
       </section>
 
       {/* SEPARADOR DECORATIVO */}
-      <div className="w-full flex justify-center px-4 -my-4 lg:-my-6">
-        <div className="w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-dorado-campeon/30 to-transparent"></div>
+      <div className="w-full flex justify-center px-4 py-16 lg:py-24">
+        <div className="w-full max-w-3xl h-[1px] bg-gradient-to-r from-transparent via-dorado-campeon/20 to-transparent"></div>
       </div>
 
       {/* WELCOME SECTION & QUICK ACCESS */}
-      <section id="welcome-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+      <section id="welcome-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* Left Column */}
@@ -196,7 +196,7 @@ const Home = () => {
       </section>
 
       {/* NUESTROS SERVICIOS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 pt-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 pt-24 lg:pt-32 w-full">
         <div className="space-y-4 text-center max-w-3xl mx-auto">
           <h2 className="text-4xl sm:text-5xl font-heading text-tatami-blanco uppercase tracking-wide">
             SERVICIOS <span className="text-rojo-impacto">ESPECIALIZADOS</span>
