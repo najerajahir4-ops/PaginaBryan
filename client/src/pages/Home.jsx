@@ -88,7 +88,10 @@ const Home = () => {
             />
           </div>
 
+          {/* Gradient lateral para legibilidad del texto */}
           <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-carbon via-carbon/80 to-transparent pointer-events-none"></div>
+          {/* Gradient inferior estricto para evitar que el logo se corte abruptamente */}
+          <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-carbon via-carbon/80 to-transparent pointer-events-none"></div>
         </div>
 
         {/* Left Column Text */}
