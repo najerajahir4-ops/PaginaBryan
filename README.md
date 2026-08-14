@@ -126,8 +126,10 @@ Se ha realizado una revisión integral del sistema empleando **Skills avanzadas 
 ### Mejoras de Interfaz (UI/UX)
 - **Corrección de Bugs Visuales:** Eliminación de bordes residuales y problemas de *overflow* que rompían el layout.
 - **Panel Administrativo (Fichas & Pagos):** Refinamiento tipográfico eliminando la pesada fuente *Anton* para datos crudos, reemplazándola por *Manrope* en grosores medianos, aumentando enormemente la legibilidad de las tablas.
-- **Rediseño Premium del Inicio (Hero Section):** Transformación del diseño estático 50/50. El logo se integró como una marca de agua texturizada en el fondo, se ajustaron las jerarquías de texto, los gradientes sutiles y se creó un botón de llamado a la acción moderno y táctil.
-
+- **Rediseño Premium del Inicio (Hero Section):** Transformación del diseño estático 50/50. El logo se integró como una marca de agua texturizada en el fondo (con un degradado suave para evitar cortes abruptos), se ajustaron las jerarquías de texto, el ritmo espacial entre secciones y se creó un botón moderno.
+- **Etiquetas Editoriales:** Se reemplazaron los "badges" genéricos encajonados (ej. en la sección de Contactos) por subtítulos de lujo con líneas finas, aportando un look de revista.
+- **Motor de Artículos (Markdown):** Se eliminó el antiguo e inflexible *ContentCard*. Ahora la sección de Contenido utiliza `react-markdown` y el plugin oficial de lectura `@tailwindcss/typography` (con un estilo personalizado `prose-dorado`), permitiendo anchos de lectura más generosos y asegurando que ninguna palabra enviada desde el panel se pierda.
+- **Automatización de Contenido (Admin):** Se incluyó un botón de "+ Insertar Plantilla Base" en el creador de publicaciones para facilitar el formateo perfecto vía Markdown de forma automática.
 ### Auditoría de Seguridad
 - Se verificó la robustez de la arquitectura backend: el uso correcto de `bcryptjs` para contraseñas, la inyección SQL prevenida gracias a `Prisma`, y la sesión asegurada vía `JWT` con cookies `httpOnly`.
 - Se parcharon de forma segura vulnerabilidades en dependencias NPM de terceros tanto en el frontend (`nanoid`, `react-router`, `postcss`) como en el backend (`ip-address`), manteniendo la estabilidad del código.
