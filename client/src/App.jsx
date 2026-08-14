@@ -151,10 +151,10 @@ const PublicLayout = ({ children }) => (
 );
 
 const AdminLayout = ({ children }) => (
-  <div className="min-h-screen bg-carbon text-tatami-blanco flex">
+  <div className="min-h-screen bg-carbon text-tatami-blanco flex flex-col lg:flex-row">
     <AdminSidebar />
     {/* Contenedor principal que deja margen izquierdo equivalente al ancho del sidebar en lg */}
-    <div className="flex-grow lg:ml-64 w-full relative">
+    <div className="flex-grow lg:ml-64 w-full relative min-w-0">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main>
     </div>
   </div>
