@@ -120,12 +120,12 @@ const AlumnosDestacadosAdmin = () => {
   return (
     <div class="space-y-8">
       
-      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-dorado-campeon pb-4">
         <div>
-          <h1 class="text-3xl font-extrabold text-white font-heading">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white font-body tracking-tight uppercase">
             Gestión de Alumnos Destacados
           </h1>
-          <p class="text-xs text-gray-400 mt-1">
+          <p className="text-xs text-dorado-campeon font-bold tracking-widest uppercase mt-1">
             Asigna reconocimientos y logros competitivos a los alumnos destacados de la academia.
           </p>
         </div>

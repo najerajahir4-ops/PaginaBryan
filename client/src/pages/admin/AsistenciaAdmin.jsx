@@ -291,12 +291,12 @@ const AsistenciaAdmin = () => {
     <div class="space-y-8 animate-fade-in">
       
       {/* Header */}
-      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-dorado-campeon pb-4">
         <div>
-          <h1 class="text-3xl font-extrabold text-white font-heading tracking-widest uppercase">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white font-body tracking-tight uppercase">
             Control de Asistencia
           </h1>
-          <p class="text-xs text-gray-400 mt-1">
+          <p className="text-xs text-dorado-campeon font-bold tracking-widest uppercase mt-1">
             Supervisa la asistencia diaria, consulta el historial de clases y visualiza reportes acumulados.
           </p>
         </div>

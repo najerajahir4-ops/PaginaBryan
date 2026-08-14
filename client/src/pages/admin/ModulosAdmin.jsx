@@ -130,12 +130,12 @@ const ModulosAdmin = () => {
       
       {/* SECTION 1: CLUBES */}
       <div class="space-y-6">
-        <div class="flex items-center justify-between border-b border-white/10 pb-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-dorado-campeon pb-4">
           <div>
-            <h2 class="text-2xl font-extrabold text-white font-heading flex items-center gap-2">
-              <Users class="text-rojo-impacto" /> Gestor de Clubes Afiliados
+            <h2 className="text-2xl sm:text-3xl font-bold text-white font-body tracking-tight uppercase flex items-center gap-2">
+              <Users className="text-rojo-impacto" /> Gestor de Clubes Afiliados
             </h2>
-            <p class="text-xs text-gray-400 mt-1">Registra los Do-Jangs y clubes pertenecientes a la red.</p>
+            <p className="text-xs text-dorado-campeon font-bold tracking-widest uppercase mt-1">Registra los Do-Jangs y clubes pertenecientes a la red.</p>
           </div>
           <button
             onClick={() => handleOpenClubModal()}
