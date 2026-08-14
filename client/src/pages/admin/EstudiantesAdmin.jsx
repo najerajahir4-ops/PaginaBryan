@@ -53,6 +53,7 @@ const EstudiantesAdmin = () => {
   const [search, setSearch] = useState('');
   const [selectedClub, setSelectedClub] = useState('');
   const [selectedEstado, setSelectedEstado] = useState('');
+  const [selectedTab, setSelectedTab] = useState('TAEKWONDO');
 
   // Modal States
   const [isStudentModalOpen, setIsStudentModalOpen] = useState(false);
@@ -112,6 +113,15 @@ const EstudiantesAdmin = () => {
     fechaPago: new Date().toLocaleDateString('sv-SE'),
     metodoPago: 'TRANSFERENCIA',
     periodoCubierto: 'Mensualidad Corriente',
+  });
+
+  const filteredStudentsByTab = students.filter(s => {
+    if (selectedTab === 'TAEKWONDO') {
+      return s.modalidad === 'TAEKWONDO' || s.modalidad === 'AMBAS';
+    } else if (selectedTab === 'KICKBOXING') {
+      return s.modalidad === 'KICKBOXING' || s.modalidad === 'AMBAS';
+    }
+    return true;
   });
 
   useEffect(() => {
@@ -647,7 +657,7 @@ const EstudiantesAdmin = () => {
 
   // Export Students List to Styled Excel (XLS)
   const handleExportExcel = () => {
-    if (students.length === 0) {
+    if (filteredStudentsByTab.length === 0) {
       alert('No hay estudiantes para exportar.');
       return;
     }
@@ -671,7 +681,7 @@ const EstudiantesAdmin = () => {
     ];
 
     // Build rows
-    const rowsHtml = students.map(student => {
+    const rowsHtml = filteredStudentsByTab.map(student => {
       const clubObj = clubs.find(c => String(c.id) === String(student.clubId));
       const clubName = clubObj ? clubObj.nombre : 'Sede Central';
       
@@ -826,11 +836,35 @@ const EstudiantesAdmin = () => {
     });
   };
 
-  const overdueOrDueCount = students.filter((s) => s.estadoPago === 'ROJO' || s.estadoPago === 'AMARILLO').length;
+  const overdueOrDueCount = filteredStudentsByTab.filter((s) => s.estadoPago === 'ROJO' || s.estadoPago === 'AMARILLO').length;
 
   return (
     <div class="space-y-8">
       
+      {/* Tabs / Secciones de Disciplina */}
+      <div className="flex border-b border-white/10 mb-2">
+        <button
+          onClick={() => setSelectedTab('TAEKWONDO')}
+          className={`flex-1 py-3 text-xs font-bold tracking-widest uppercase transition-colors border-b-2 ${
+            selectedTab === 'TAEKWONDO'
+              ? 'border-dorado-campeon text-dorado-campeon bg-dorado-campeon/5'
+              : 'border-transparent text-tatami-blanco/50 hover:text-tatami-blanco hover:bg-white/5'
+          }`}
+        >
+          TAEKWONDO
+        </button>
+        <button
+          onClick={() => setSelectedTab('KICKBOXING')}
+          className={`flex-1 py-3 text-xs font-bold tracking-widest uppercase transition-colors border-b-2 ${
+            selectedTab === 'KICKBOXING'
+              ? 'border-rojo-impacto text-rojo-impacto bg-rojo-impacto/5'
+              : 'border-transparent text-tatami-blanco/50 hover:text-tatami-blanco hover:bg-white/5'
+          }`}
+        >
+          KICKBOXING
+        </button>
+      </div>
+
       {/* Header & Warning Banner */}
       <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-dorado-campeon pb-4">
         <div>
@@ -925,14 +959,14 @@ const EstudiantesAdmin = () => {
                     <div className="animate-spin h-8 w-8 border-t-2 border-b-2 border-dorado-campeon mx-auto"></div>
                   </td>
                 </tr>
-              ) : students.length === 0 ? (
+              ) : filteredStudentsByTab.length === 0 ? (
                 <tr>
                   <td colSpan="7" className="text-center py-16 text-tatami-blanco/40 font-body font-medium tracking-widest text-sm uppercase">
                     NO HAY FICHAS REGISTRADAS.
                   </td>
                 </tr>
               ) : (
-                students.map((student) => (
+                filteredStudentsByTab.map((student) => (
                   <tr key={student.id} className="hover:bg-white/5 transition-colors group">
                     <td className="py-6 px-4 flex items-center gap-4 border-r border-white/5">
                       <div className="w-10 h-10 bg-carbon border border-dorado-campeon text-dorado-campeon flex flex-shrink-0 items-center justify-center font-body font-semibold text-sm uppercase shadow-[0_0_10px_rgba(227,178,60,0.2)] group-hover:bg-dorado-campeon group-hover:text-carbon transition-colors">
