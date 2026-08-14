@@ -123,7 +123,12 @@ Una vez ejecutado el `git push`, solo debes esperar un par de minutos y recargar
 
 Se ha realizado una revisión integral del sistema empleando **Skills avanzadas de IA** para pulir la interfaz, la legibilidad y asegurar el proyecto.
 
-### Mejoras de Interfaz (UI/UX)
+### Mejoras Recientes (Nuevas Funcionalidades y UI)
+- **Modal de Fotos (Lightbox):** Se implementó un componente reutilizable a pantalla completa para visualizar imágenes en alta resolución desde las galerías. Incluye navegación nativa (siguiente/anterior) y un botón integrado para descargar las fotografías directamente al dispositivo del usuario.
+- **Pestañas de Disciplina (Admin):** Se dividió la gestión principal del padrón en dos vistas dedicadas: Taekwondo y Kickboxing. Ahora el panel filtra inteligentemente la lista de alumnos, las alertas de pago vencido y la exportación de Excel dependiendo de la pestaña activa.
+- **Estandarización Visual del Panel Admin:** Se unificó la tipografía y el diseño de cabeceras en todos los apartados (Asistencia, Contenido, Destacados y Configuración/Clubes), asegurando una experiencia visual premium, coherente y sumamente profesional en todo el dashboard.
+
+### Mejoras de Interfaz (UI/UX Anteriores)
 - **Corrección de Bugs Visuales:** Eliminación de bordes residuales y problemas de *overflow* que rompían el layout.
 - **Panel Administrativo (Fichas & Pagos):** Refinamiento tipográfico eliminando la pesada fuente *Anton* para datos crudos, reemplazándola por *Manrope* en grosores medianos, aumentando enormemente la legibilidad de las tablas.
 - **Rediseño Premium del Inicio (Hero Section):** Transformación del diseño estático 50/50. El logo se integró como una marca de agua texturizada en el fondo (con un degradado suave para evitar cortes abruptos), se ajustaron las jerarquías de texto, el ritmo espacial entre secciones y se creó un botón moderno.
