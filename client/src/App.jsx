@@ -31,8 +31,8 @@ import PerfilesAdmin from './pages/admin/PerfilesAdmin';
 import PerfilDetalleAdmin from './pages/admin/PerfilDetalleAdmin';
 import GeneralPhotosAdmin from './pages/admin/GeneralPhotosAdmin';
 
-// Admin Header Navigation Bar
-const AdminNavbar = () => {
+// Sidebar Navigation for Admin
+const AdminSidebar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -49,12 +49,11 @@ const AdminNavbar = () => {
 
   const getLinkClass = (path) => {
     const isActive = location.pathname.startsWith(path);
-    return `transition-colors py-1 border-b-2 ${isActive ? 'text-dorado-campeon border-dorado-campeon' : 'text-gray-300 border-transparent hover:text-dorado-campeon hover:border-dorado-campeon/50'}`;
-  };
-
-  const getMobileLinkClass = (path) => {
-    const isActive = location.pathname.startsWith(path);
-    return `block py-1 border-l-2 pl-2 ${isActive ? 'text-dorado-campeon border-dorado-campeon font-extrabold bg-white/5' : 'text-gray-300 border-transparent hover:text-dorado-campeon hover:border-dorado-campeon/50'}`;
+    return `flex items-center gap-3 py-3 px-4 transition-all uppercase tracking-widest font-heading text-xs font-bold border-l-4 ${
+      isActive 
+        ? 'border-dorado-campeon bg-dorado-campeon/10 text-dorado-campeon' 
+        : 'border-transparent text-gray-400 hover:text-tatami-blanco hover:bg-white/5'
+    }`;
   };
 
   const handleLogout = async () => {
@@ -63,80 +62,101 @@ const AdminNavbar = () => {
   };
 
   return (
-    <header class="bg-[#060D33] border-b-2 border-dorado-campeon sticky top-0 z-40 shadow-xl">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <div class="flex items-center gap-6">
-          <Link to="/admin/estudiantes" class="font-heading font-extrabold text-dorado-campeon text-lg flex items-center gap-2 tracking-widest uppercase">
-            <span class="w-3 h-3 rounded-sm bg-rojo-impacto"></span>
-            PANEL ADMIN
-          </Link>
-          <nav class="hidden md:flex items-center gap-4 text-xs font-bold tracking-widest uppercase">
+    <>
+      {/* Mobile Topbar (only visible on mobile to open sidebar) */}
+      <div className="lg:hidden bg-[#0A0B0E] border-b border-dorado-campeon/30 p-4 flex items-center justify-between sticky top-0 z-40">
+        <span className="font-heading font-extrabold text-dorado-campeon text-lg flex items-center gap-2 tracking-widest uppercase">
+          <span className="w-3 h-3 bg-rojo-impacto"></span>
+          PANEL ADMIN
+        </span>
+        <button onClick={() => setMobileOpen(true)} className="text-white p-1">
+          <Menu size={24} />
+        </button>
+      </div>
+
+      {/* Backdrop for mobile */}
+      {mobileOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 z-40 lg:hidden" 
+          onClick={() => setMobileOpen(false)}
+        ></div>
+      )}
+
+      {/* Sidebar Container */}
+      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#0A0B0E] border-r border-dorado-campeon/20 shadow-[5px_0_15px_rgba(0,0,0,0.5)] transform transition-transform duration-300 flex flex-col justify-between ${
+        mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+      }`}>
+        
+        {/* Top Section: Logo & Nav */}
+        <div>
+          {/* Logo / Header */}
+          <div className="p-6 border-b border-white/5 flex items-center justify-between lg:justify-center">
+            <Link to="/admin/estudiantes" onClick={() => setMobileOpen(false)} className="font-heading font-extrabold text-dorado-campeon text-xl flex items-center gap-2 tracking-widest uppercase text-center w-full justify-center">
+              <span className="w-4 h-4 bg-rojo-impacto shadow-[0_0_10px_rgba(214,40,57,0.5)]"></span>
+              PANEL ADMIN
+            </Link>
+            <button onClick={() => setMobileOpen(false)} className="lg:hidden text-gray-400 hover:text-white">
+              <X size={20} />
+            </button>
+          </div>
+          
+          {/* Main Navigation Links */}
+          <nav className="py-4 space-y-1">
             {navLinks.map((link) => (
-              <Link key={link.path} to={link.path} class={getLinkClass(link.path)}>
+              <Link 
+                key={link.path} 
+                to={link.path} 
+                onClick={() => setMobileOpen(false)}
+                className={getLinkClass(link.path)}
+              >
                 {link.label}
               </Link>
             ))}
           </nav>
         </div>
 
-        <div class="flex items-center gap-3 sm:gap-5 text-xs">
-          <Link to="/" class="text-gray-400 hover:text-dorado-campeon underline font-bold tracking-wider uppercase hidden sm:block">Ver Web Pública</Link>
-          <div class="flex items-center gap-1.5 text-gray-300 px-2 uppercase tracking-widest text-[10px] sm:text-xs">
-            <User size={14} class="opacity-70" />
-            <span>{user?.usuario}</span>
+        {/* Bottom Section: User Info & Logout */}
+        <div className="p-4 border-t border-white/5 space-y-4">
+          <Link 
+            to="/" 
+            onClick={() => setMobileOpen(false)} 
+            className="block text-center text-[10px] text-gray-500 hover:text-dorado-campeon font-body uppercase tracking-widest underline"
+          >
+            Ver Web Pública
+          </Link>
+          
+          <div className="flex items-center justify-center gap-2 bg-carbon p-3 border border-white/5 text-[10px] font-heading text-tatami-blanco/80 uppercase tracking-widest">
+            <User size={14} className="text-dorado-campeon" />
+            {user?.usuario}
           </div>
+          
           <button
             onClick={handleLogout}
-            class="px-4 py-1.5 bg-rojo-impacto hover:bg-red-700 text-tatami-blanco font-display text-sm tracking-widest uppercase clip-button shadow-lg transition-colors"
+            className="w-full py-3 bg-rojo-impacto hover:bg-white hover:text-rojo-impacto text-tatami-blanco font-heading text-xs font-bold tracking-widest uppercase transition-colors shadow-[0_0_15px_rgba(214,40,57,0.3)] flex items-center justify-center"
           >
-            Salir
-          </button>
-          
-          {/* Mobile Admin Menu Toggle */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            class="md:hidden text-white hover:text-dorado-campeon p-2 ml-1"
-            aria-label="Toggle navigation menu"
-          >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+            CERRAR SESIÓN
           </button>
         </div>
-      </div>
-
-      {/* Mobile admin nav dropdown */}
-      {mobileOpen && (
-        <div class="md:hidden bg-[#060D33] border-b border-dorado-campeon px-4 py-3 space-y-3 font-heading text-xs font-bold tracking-widest uppercase shadow-xl animate-fade-in">
-            {navLinks.map((link) => (
-              <Link 
-                key={link.path} 
-                to={link.path} 
-                onClick={() => setMobileOpen(false)} 
-                class={getMobileLinkClass(link.path)}
-              >
-                {link.label}
-              </Link>
-            ))}
-          <div class="border-t border-white/10 pt-2">
-            <Link to="/" onClick={() => setMobileOpen(false)} class="block text-gray-400 hover:text-dorado-campeon underline py-1">Ver Web Pública</Link>
-          </div>
-        </div>
-      )}
-    </header>
+      </aside>
+    </>
   );
 };
 
 const PublicLayout = ({ children }) => (
-  <div class="min-h-screen flex flex-col justify-between">
+  <div className="min-h-screen flex flex-col justify-between">
     <Navbar />
-    <main class="flex-grow">{children}</main>
+    <main className="flex-grow">{children}</main>
     <Footer />
   </div>
 );
 
 const AdminLayout = ({ children }) => (
-  <div class="min-h-screen bg-[#0B1550] text-slate-100 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#0B1550] via-[#060D33] to-[#111114]">
-    <AdminNavbar />
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main>
+  <div className="min-h-screen bg-carbon text-tatami-blanco flex">
+    <AdminSidebar />
+    {/* Contenedor principal que deja margen izquierdo equivalente al ancho del sidebar en lg */}
+    <div className="flex-grow lg:ml-64 w-full relative">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">{children}</main>
+    </div>
   </div>
 );
 

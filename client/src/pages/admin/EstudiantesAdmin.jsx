@@ -832,27 +832,27 @@ const EstudiantesAdmin = () => {
     <div class="space-y-8">
       
       {/* Header & Warning Banner */}
-      <div class="flex flex-wrap items-center justify-between gap-4 border-b-2 border-dorado-campeon pb-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-dorado-campeon pb-4">
         <div>
-          <h1 class="text-3xl font-extrabold text-white font-heading uppercase tracking-wider">
+          <h1 className="text-3xl font-extrabold text-white font-heading uppercase tracking-wider">
             Gestión de Estudiantes & Pagos
           </h1>
-          <p class="text-xs text-dorado-campeon font-bold tracking-widest uppercase mt-1">
+          <p className="text-xs text-dorado-campeon font-bold tracking-widest uppercase mt-1">
             Administra el padrón de alumnos y registro de fichas
           </p>
         </div>
 
-        <div class="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <button
             onClick={handleExportExcel}
-            class="px-4 py-2.5 bg-carbon border border-dorado-campeon text-dorado-campeon text-xs font-bold rounded-sm hover:bg-dorado-campeon hover:text-carbon transition-colors inline-flex items-center gap-2 tracking-widest uppercase"
+            className="h-11 px-6 bg-carbon border border-dorado-campeon text-dorado-campeon text-xs font-bold rounded-none hover:bg-dorado-campeon hover:text-carbon transition-colors inline-flex items-center justify-center gap-2 tracking-widest uppercase shadow-[0_0_15px_rgba(227,178,60,0.1)] hover:shadow-[0_0_20px_rgba(227,178,60,0.3)]"
           >
             <FileSpreadsheet size={16} />
             EXCEL
           </button>
           <button
             onClick={() => handleOpenStudentModal()}
-            class="px-5 py-2.5 bg-rojo-impacto hover:bg-red-700 text-white text-xs font-bold rounded-sm transition-colors shadow-lg shadow-rojo-impacto/30 inline-flex items-center gap-2 tracking-widest uppercase"
+            className="h-11 px-6 bg-rojo-impacto hover:bg-white hover:text-rojo-impacto text-white text-xs font-bold rounded-none transition-colors inline-flex items-center justify-center gap-2 tracking-widest uppercase shadow-[0_0_15px_rgba(214,40,57,0.3)] hover:shadow-[0_0_20px_rgba(214,40,57,0.5)]"
           >
             <Plus size={16} />
             NUEVA FICHA
@@ -862,14 +862,17 @@ const EstudiantesAdmin = () => {
 
       {/* Warning Badge for Overdue Students */}
       {overdueOrDueCount > 0 && (
-        <div class="bg-amber-500/10 border-l-4 border-amber-500 p-4 rounded-sm flex items-center justify-between text-xs text-amber-300">
-          <div class="flex items-center gap-2 font-bold">
-            <AlertTriangle size={18} class="text-amber-400" />
-            <span class="uppercase tracking-wide">Alerta de Cobranza: {overdueOrDueCount} alumnos con pago vencido o próximo a vencer.</span>
+        <div className="bg-[#0A0B0E] border border-dorado-campeon/50 shadow-[0_0_20px_rgba(227,178,60,0.12)] p-4 flex items-center justify-between text-xs text-dorado-campeon relative overflow-hidden">
+          <div className="absolute inset-0 bg-dorado-campeon/5 pointer-events-none"></div>
+          <div className="flex items-center gap-3 font-bold relative z-10">
+            <AlertTriangle size={20} className="text-rojo-impacto" />
+            <span className="uppercase tracking-wide">
+              Alerta de Cobranza: {overdueOrDueCount} alumnos con pago vencido o próximo a vencer.
+            </span>
           </div>
           <button
             onClick={() => setSelectedEstado('ROJO')}
-            class="px-3 py-1 bg-amber-500/20 hover:bg-amber-500/30 rounded-sm text-amber-200 font-bold uppercase tracking-wider"
+            className="px-4 py-2 bg-rojo-impacto hover:bg-white hover:text-rojo-impacto text-tatami-blanco font-heading tracking-widest uppercase transition-colors relative z-10"
           >
             Ver Vencidos ➔
           </button>
@@ -877,142 +880,158 @@ const EstudiantesAdmin = () => {
       )}
 
       {/* Filters Bar */}
-      <div class="bg-[#111114] border border-white/10 p-4 rounded-sm grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="relative">
-          <Search class="w-4 h-4 text-dorado-campeon absolute left-3 top-3" />
+      <div className="bg-[#0A0B0E] border border-white/10 shadow-[0_0_15px_rgba(227,178,60,0.08)] p-4 grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
+        <div className="relative">
+          <Search className="w-4 h-4 text-dorado-campeon absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             placeholder="Buscar por nombre o cédula..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            class="w-full bg-[#1C1C21] border border-white/10 rounded-sm pl-9 pr-4 py-2 text-xs text-white focus:outline-none focus:border-dorado-campeon"
+            className="w-full bg-carbon border border-white/10 pl-10 pr-4 py-2.5 text-xs text-tatami-blanco focus:outline-none focus:border-dorado-campeon font-body uppercase tracking-wider placeholder-tatami-blanco/30 transition-colors"
           />
         </div>
         <select
           value={selectedEstado}
           onChange={(e) => setSelectedEstado(e.target.value)}
-          class="bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-2 text-xs text-white focus:outline-none focus:border-dorado-campeon uppercase tracking-wider font-bold"
+          className="bg-carbon border border-white/10 px-4 py-2.5 text-xs text-tatami-blanco focus:outline-none focus:border-dorado-campeon uppercase tracking-wider font-bold transition-colors appearance-none"
         >
-          <option value="" class="bg-[#1C1C21]">TODOS LOS ESTADOS</option>
-          <option value="VERDE" class="bg-[#1C1C21]">AL DÍA (VERDE)</option>
-          <option value="AMARILLO" class="bg-[#1C1C21]">PRÓXIMO A VENCER (AMARILLO)</option>
-          <option value="ROJO" class="bg-[#1C1C21]">VENCIDO (ROJO)</option>
+          <option value="" className="bg-carbon">TODOS LOS ESTADOS</option>
+          <option value="VERDE" className="bg-carbon">AL DÍA (VERDE)</option>
+          <option value="AMARILLO" className="bg-carbon">PRÓXIMO A VENCER (AMARILLO)</option>
+          <option value="ROJO" className="bg-carbon">VENCIDO (ROJO)</option>
         </select>
       </div>
 
       {/* Table */}
-      <div class="tatami-panel overflow-hidden">
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs border-collapse">
-            <thead class="bg-[#060D33] text-dorado-campeon font-heading text-[11px] uppercase tracking-wider border-b border-dorado-campeon/30">
+      <div className="bg-[#0A0B0E] border border-white/5 shadow-[0_0_8px_rgba(227,178,60,0.05)] overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs border-collapse">
+            <thead className="bg-carbon text-dorado-campeon font-heading text-[11px] uppercase tracking-wider border-b-2 border-dorado-campeon/50">
               <tr>
-                <th class="p-4 border-r border-white/5">Alumno</th>
-                <th class="p-4 border-r border-white/5">Cédula</th>
-                <th class="p-4 border-r border-white/5">Grado</th>
-                <th class="p-4 border-r border-white/5">Último Pago</th>
-                <th class="p-4 border-r border-white/5">Próximo Pago</th>
-                <th class="p-4 border-r border-white/5 text-center">Estado</th>
-                <th class="p-4 text-center">Acciones</th>
+                <th className="py-4 px-4 border-r border-white/5">Alumno</th>
+                <th className="py-4 px-4 border-r border-white/5">Cédula</th>
+                <th className="py-4 px-4 border-r border-white/5">Grado</th>
+                <th className="py-4 px-4 border-r border-white/5">Último Pago</th>
+                <th className="py-4 px-4 border-r border-white/5">Próximo Pago</th>
+                <th className="py-4 px-4 border-r border-white/5 text-center">Estado</th>
+                <th className="py-4 px-4 text-center">Acciones</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-white/5 text-gray-200">
+            <tbody className="divide-y divide-white/5 text-tatami-blanco/80 font-body">
               {loading ? (
                 <tr>
-                  <td colSpan="7" class="text-center py-12">
-                    <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-rojo-impacto mx-auto"></div>
+                  <td colSpan="7" className="text-center py-12">
+                    <div className="animate-spin h-8 w-8 border-t-2 border-b-2 border-dorado-campeon mx-auto"></div>
                   </td>
                 </tr>
               ) : students.length === 0 ? (
                 <tr>
-                  <td colSpan="7" class="text-center py-12 text-gray-400 uppercase font-body font-semibold">
+                  <td colSpan="7" className="text-center py-16 text-tatami-blanco/40 uppercase font-heading tracking-widest text-sm">
                     NO HAY FICHAS REGISTRADAS.
                   </td>
                 </tr>
               ) : (
                 students.map((student) => (
-                  <tr key={student.id} class="hover:bg-white/5 transition-colors">
-                    <td class="p-4 flex items-center gap-3 border-r border-white/5">
-                      <div class="w-8 h-8 bg-carbon border border-dorado-campeon text-dorado-campeon flex items-center justify-center font-bold text-xs rounded-sm uppercase">
+                  <tr key={student.id} className="hover:bg-white/5 transition-colors group">
+                    <td className="py-6 px-4 flex items-center gap-4 border-r border-white/5">
+                      <div className="w-10 h-10 bg-carbon border border-dorado-campeon text-dorado-campeon flex flex-shrink-0 items-center justify-center font-heading text-sm uppercase shadow-[0_0_10px_rgba(227,178,60,0.2)] group-hover:bg-dorado-campeon group-hover:text-carbon transition-colors">
                         {student.nombres.charAt(0)}{student.apellidos.charAt(0)}
                       </div>
-                      <div>
-                        <span class="font-bold text-white block uppercase">{student.nombres} {student.apellidos}</span>
-                        <span class="text-[10px] text-gray-400">Edad: {student.edad} | Cel: {student.celular}</span>
+                      <div className="flex flex-col gap-1">
+                        <span className="font-heading text-sm text-tatami-blanco uppercase tracking-wide leading-tight">
+                          {student.nombres} {student.apellidos}
+                        </span>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="inline-flex items-center gap-1 bg-carbon border border-white/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-tatami-blanco/50">
+                            EDAD: {student.edad}
+                          </span>
+                          <span className="inline-flex items-center gap-1 bg-carbon border border-white/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-tatami-blanco/50">
+                            CEL: {student.celular}
+                          </span>
+                        </div>
                       </div>
                     </td>
-                    <td class="p-4 font-mono text-gray-300 border-r border-white/5">{student.cedula}</td>
-                    <td class="p-4 border-r border-white/5">
+                    <td className="py-6 px-4 font-mono text-tatami-blanco/70 border-r border-white/5">{student.cedula}</td>
+                    <td className="py-6 px-4 border-r border-white/5">
                       {student.modalidad === 'AMBAS' ? (
-                        <>
-                          <span class="block font-semibold text-blue-400">TKD: {student.grado.split(' / ')[0]}</span>
-                          <span class="block font-semibold text-red-400">KB: {student.grado.split(' / ')[1]}</span>
-                        </>
+                        <div className="flex flex-col gap-1">
+                          <span className="inline-block bg-carbon border border-white/5 px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-tatami-blanco/70">
+                            TKD: <span className="text-dorado-campeon">{student.grado.split(' / ')[0]}</span>
+                          </span>
+                          <span className="inline-block bg-carbon border border-white/5 px-2 py-1 text-[9px] font-bold uppercase tracking-widest text-tatami-blanco/70">
+                            KB: <span className="text-rojo-impacto">{student.grado.split(' / ')[1]}</span>
+                          </span>
+                        </div>
                       ) : (
-                        <span class="block font-semibold text-white">{student.grado}</span>
+                        <span className="block font-bold text-[10px] uppercase tracking-widest text-tatami-blanco/90">{student.grado}</span>
                       )}
                     </td>
-                    <td class="p-4 font-mono text-gray-400 border-r border-white/5">{student.fechaUltimoPago}</td>
-                    <td class="p-4 font-bold font-mono text-white border-r border-white/5">{student.fechaProximoPago}</td>
-                    <td class="p-4 text-center border-r border-white/5">
+                    <td className="py-6 px-4 font-mono text-tatami-blanco/50 border-r border-white/5">{student.fechaUltimoPago}</td>
+                    <td className="py-6 px-4 font-bold font-mono text-tatami-blanco border-r border-white/5">{student.fechaProximoPago}</td>
+                    <td className="py-6 px-4 text-center border-r border-white/5">
                       <StatusBadge status={student.estadoPago} />
                     </td>
-                    <td class="p-4">
-                      <div class="flex items-center justify-center gap-1.5 relative">
-                        {student.estadoPago !== 'VERDE' && (
-                          <button onClick={() => sendWhatsAppNotification(student)} title="Enviar Notificación WhatsApp" class="p-1.5 rounded-sm bg-[#111114] border border-green-500/30 text-green-500 hover:bg-green-500 hover:text-white transition-colors">
-                            <MessageCircle size={14} />
-                          </button>
-                        )}
-                        <button onClick={() => handleOpenPaymentModal(student)} title="Registrar Pago" class="p-1.5 rounded-sm bg-[#111114] border border-dorado-campeon/30 text-dorado-campeon hover:bg-dorado-campeon hover:text-carbon transition-colors">
+                    <td className="py-6 px-4">
+                      <div className="flex items-center justify-center gap-2 relative">
+                        {/* Always reserve space for 4 buttons (chat, payment, edit, kebab) */}
+                        <div className="w-8 h-8">
+                          {student.estadoPago !== 'VERDE' && (
+                            <button onClick={() => sendWhatsAppNotification(student)} title="Recordatorio de Pago (WhatsApp)" className="w-full h-full flex items-center justify-center bg-carbon border border-emerald-500/30 text-emerald-500 hover:bg-emerald-500 hover:text-carbon transition-colors shadow-[0_0_10px_rgba(16,185,129,0.1)]">
+                              <MessageCircle size={14} />
+                            </button>
+                          )}
+                        </div>
+                        <button onClick={() => handleOpenPaymentModal(student)} title="Registrar Pago" className="w-8 h-8 flex items-center justify-center bg-carbon border border-dorado-campeon/50 text-dorado-campeon hover:bg-dorado-campeon hover:text-carbon transition-colors shadow-[0_0_10px_rgba(227,178,60,0.1)]">
                           <CreditCard size={14} />
                         </button>
-                        <button onClick={() => handleOpenStudentModal(student)} title="Ver / Editar Ficha" class="p-1.5 rounded-sm bg-[#111114] border border-amber-500/30 text-amber-400 hover:bg-amber-500 hover:text-white transition-colors">
+                        <button onClick={() => handleOpenStudentModal(student)} title="Ver / Editar Ficha" className="w-8 h-8 flex items-center justify-center bg-carbon border border-white/20 text-tatami-blanco/70 hover:bg-white hover:text-carbon transition-colors shadow-[0_0_10px_rgba(255,255,255,0.05)]">
                           <Edit size={14} />
                         </button>
 
                         {/* Menú Kebab (Acciones Secundarias) */}
-                        <div class="relative">
+                        <div className="relative">
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               setActiveKebabId(activeKebabId === student.id ? null : student.id);
                             }}
-                            class="p-1.5 rounded-sm bg-[#111114] border border-white/10 text-gray-400 hover:bg-white/10 hover:text-white transition-colors"
+                            className={`w-8 h-8 flex items-center justify-center border transition-colors ${activeKebabId === student.id ? 'bg-white text-carbon border-white' : 'bg-carbon border-white/10 text-tatami-blanco/50 hover:border-white/30 hover:text-tatami-blanco'}`}
                             title="Más acciones"
                           >
                             <MoreVertical size={14} />
                           </button>
 
                           {activeKebabId === student.id && (
-                            <div class="absolute right-0 top-full mt-1 w-44 bg-[#111114] border border-white/10 rounded-sm shadow-2xl z-50 py-1 text-left">
+                            <div className="absolute right-0 top-full mt-2 w-48 bg-[#0A0B0E] border border-dorado-campeon/30 shadow-[0_10px_30px_rgba(0,0,0,0.8)] z-50 py-1 text-left">
                               <button
                                 onClick={() => {
                                   handleOpenHistoryModal(student);
                                   setActiveKebabId(null);
                                 }}
-                                class="w-full px-3 py-2 text-xs text-gray-300 hover:bg-white/5 flex items-center gap-2"
+                                className="w-full px-4 py-2.5 text-xs font-heading tracking-widest uppercase text-tatami-blanco/80 hover:bg-carbon hover:text-dorado-campeon flex items-center gap-3 transition-colors"
                               >
-                                <History size={12} class="text-blue-400" />
-                                Historial Asistencia
+                                <History size={14} />
+                                Historial Pagos
                               </button>
                               <button
                                 onClick={() => {
                                   handleDownloadPDF(student);
                                   setActiveKebabId(null);
                                 }}
-                                class="w-full px-3 py-2 text-xs text-gray-300 hover:bg-white/5 flex items-center gap-2"
+                                className="w-full px-4 py-2.5 text-xs font-heading tracking-widest uppercase text-tatami-blanco/80 hover:bg-carbon hover:text-dorado-campeon flex items-center gap-3 transition-colors"
                               >
-                                <FileText size={12} class="text-dorado-campeon" />
-                                Descargar PDF
+                                <FileText size={14} />
+                                Ficha PDF
                               </button>
-                              <div class="border-t border-white/5 my-1"></div>
+                              <div className="border-t border-white/10 my-1"></div>
                               <button
                                 onClick={() => handleDeleteStudent(student.id)}
                                 disabled={isDeleting}
-                                class="w-full px-3 py-2 text-xs text-rose-400 hover:bg-rose-500/10 flex items-center gap-2 disabled:opacity-50"
+                                className="w-full px-4 py-2.5 text-xs font-heading tracking-widest uppercase text-rojo-impacto hover:bg-rojo-impacto/10 flex items-center gap-3 disabled:opacity-50 transition-colors"
                               >
-                                <Trash2 size={12} />
-                                {isDeleting ? 'Eliminando...' : 'Eliminar Alumno'}
+                                <Trash2 size={14} />
+                                {isDeleting ? 'ELIMINANDO...' : 'ELIMINAR ALUMNO'}
                               </button>
                             </div>
                           )}
