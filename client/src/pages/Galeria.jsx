@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, ChevronRight, AlertCircle, Loader, Filter } from 'lucide-react';
+import { Search, ChevronRight, AlertCircle, Loader, Filter, Trophy } from 'lucide-react';
 import API from '../services/api';
 import { getBeltStyle } from '../utils/belt-colors';
 
@@ -113,11 +113,11 @@ const Galeria = () => {
                   to={`/galeria/generales`}
                   className="group bg-carbon flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-[0_0_15px_rgba(227,178,60,0.08)] hover:shadow-[0_0_25px_rgba(227,178,60,0.12)] border border-transparent hover:border-dorado-campeon/20"
                 >
-                  <div className="h-64 relative bg-[#0A0B0E] flex flex-col items-center justify-center border border-white/5 border-b-0 p-6 text-center">
-                    <div className="w-16 h-16 rounded-none border border-dorado-campeon/30 flex items-center justify-center mb-4 group-hover:border-dorado-campeon transition-all">
-                       <span className="text-dorado-campeon text-2xl">🏆</span>
+                  <div className="h-64 relative bg-[#0A0B0E] flex flex-col items-center justify-center border border-white/5 border-b-0 p-6 text-center group/trophy">
+                    <div className="w-20 h-20 rounded-full bg-dorado-campeon/5 border border-dorado-campeon/20 flex items-center justify-center mb-4 transition-all duration-500 group-hover/trophy:scale-110 group-hover/trophy:bg-dorado-campeon/10 group-hover/trophy:border-dorado-campeon/40 shadow-[0_0_20px_rgba(227,178,60,0.1)] group-hover/trophy:shadow-[0_0_30px_rgba(227,178,60,0.2)]">
+                       <Trophy size={40} strokeWidth={1.5} className="text-dorado-campeon drop-shadow-[0_0_10px_rgba(227,178,60,0.5)]" />
                     </div>
-                    <p className="font-heading text-tatami-blanco text-2xl uppercase tracking-widest leading-none mb-2">
+                    <p className="font-heading text-tatami-blanco text-2xl uppercase tracking-widest leading-none mb-2 drop-shadow-md">
                       FOTOS GENERALES
                     </p>
                     <p className="font-body font-bold text-sm uppercase tracking-widest text-dorado-campeon/85">

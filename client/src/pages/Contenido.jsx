@@ -42,7 +42,7 @@ const SortableContentCard = ({ item, isEditMode }) => {
     <article
       ref={setNodeRef}
       style={style}
-      className="bg-[#0A0B0E] border border-white/5 flex flex-col justify-between shadow-[0_0_15px_rgba(227,178,60,0.05)] hover:shadow-[0_0_25px_rgba(227,178,60,0.15)] hover:border-dorado-campeon/30 transition-all duration-300 relative group overflow-hidden"
+      className="bg-white/[0.02] border border-white/5 rounded-2xl flex flex-col justify-between shadow-lg hover:shadow-xl hover:shadow-dorado-campeon/5 hover:border-dorado-campeon/20 hover:-translate-y-1 transition-all duration-300 relative group overflow-hidden"
     >
       <div className="absolute top-0 left-0 w-full h-[2px] bg-dorado-campeon/30 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
       
@@ -51,7 +51,7 @@ const SortableContentCard = ({ item, isEditMode }) => {
         <div
           {...attributes}
           {...listeners}
-          className="absolute top-3 right-3 z-30 p-2 bg-carbon border border-dorado-campeon/50 text-dorado-campeon hover:bg-dorado-campeon hover:text-carbon cursor-grab active:cursor-grabbing shadow-[0_0_10px_rgba(227,178,60,0.3)] transition-colors"
+          className="absolute top-3 right-3 z-30 p-2 bg-carbon/80 backdrop-blur-sm rounded-lg border border-white/10 text-dorado-campeon hover:bg-dorado-campeon hover:text-carbon cursor-grab active:cursor-grabbing shadow-sm transition-all"
           title="Arrastra para reordenar"
         >
           <GripVertical size={16} />
@@ -77,12 +77,12 @@ const SortableContentCard = ({ item, isEditMode }) => {
         
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0E] via-transparent to-transparent opacity-80"></div>
         
-        <div className="absolute top-0 left-0 w-full flex">
-          <span className="px-4 py-1.5 text-[10px] font-heading font-extrabold uppercase bg-rojo-impacto text-tatami-blanco tracking-widest border-b border-rojo-impacto/50 flex-1 text-center">
+        <div className="absolute top-3 left-4 flex flex-col gap-2">
+          <span className="text-xs font-body font-bold text-white tracking-widest uppercase drop-shadow-md">
             {item.categoria}
           </span>
           {item.videoUrl && (
-            <span className="px-4 py-1.5 text-[10px] font-heading font-extrabold uppercase bg-dorado-campeon/10 text-dorado-campeon border-b border-dorado-campeon/30 tracking-widest flex items-center justify-center gap-2 backdrop-blur-sm flex-1 text-center">
+            <span className="text-xs font-body font-bold text-dorado-campeon tracking-widest uppercase drop-shadow-md flex items-center gap-1">
               <Video size={12} />
               VIDEO
             </span>
@@ -91,7 +91,7 @@ const SortableContentCard = ({ item, isEditMode }) => {
       </div>
 
       {/* Body */}
-      <div className="p-6 space-y-6 flex-grow flex flex-col justify-between bg-[#0A0B0E] relative z-10">
+      <div className="p-6 space-y-6 flex-grow flex flex-col justify-between bg-transparent relative z-10">
         <div className="space-y-3 text-center">
           <div className="flex items-center justify-center gap-2 text-[10px] font-body text-dorado-campeon/60 uppercase tracking-widest font-bold">
             <Calendar size={12} className="text-dorado-campeon" />
@@ -106,10 +106,10 @@ const SortableContentCard = ({ item, isEditMode }) => {
           </p>
         </div>
 
-        <div className="pt-4 border-t border-white/5 text-center mt-auto">
+        <div className="pt-4 mt-auto">
           <Link
             to={isEditMode ? '#' : `/contenido/${item.id}`}
-            className={`inline-flex items-center justify-center gap-2 font-heading text-xs text-rojo-impacto hover:text-tatami-blanco tracking-widest uppercase transition-colors ${isEditMode ? 'pointer-events-none opacity-50' : ''}`}
+            className={`inline-flex items-center gap-2 font-body text-xs font-bold text-rojo-impacto hover:text-dorado-campeon tracking-widest uppercase transition-colors ${isEditMode ? 'pointer-events-none opacity-50' : ''}`}
           >
             LEER PUBLICACIÓN COMPLETA
           </Link>
@@ -192,11 +192,9 @@ const Contenido = () => {
       
       {/* Header Ledger */}
       <div className="text-center space-y-4 max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 border border-dorado-campeon/30 px-4 py-1.5 bg-dorado-campeon/5">
-          <FileText size={14} className="text-dorado-campeon" />
-          <span className="text-xs font-body font-bold text-dorado-campeon tracking-[0.2em] uppercase">
-            CENTRO DE RECURSOS TÉCNICOS
-          </span>
+        <div className="text-xs font-body font-bold text-dorado-campeon tracking-[0.2em] uppercase flex items-center justify-center gap-2">
+          <FileText size={16} />
+          CENTRO DE RECURSOS TÉCNICOS
         </div>
         <h1 className="text-5xl font-heading text-tatami-blanco uppercase tracking-tight">
           BIBLIOTECA <span className="text-dorado-campeon">MARCIAL</span>
@@ -207,31 +205,31 @@ const Contenido = () => {
       </div>
 
       {/* Category Pills & Controls */}
-      <div className="bg-carbon border-y border-dorado-campeon/20 py-4 px-2 max-w-5xl mx-auto flex flex-col md:flex-row gap-4 items-center justify-between">
-        <div className="flex flex-wrap border border-dorado-campeon/30 p-1 bg-[#0A0B0E] w-full md:w-auto">
+      <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div className="flex flex-wrap items-center justify-center gap-2 bg-carbon/50 backdrop-blur-md p-1.5 rounded-2xl border border-white/5 shadow-lg w-full md:w-auto">
           <button
             onClick={() => setSelectedCat('')}
             disabled={isEditMode}
-            className={`px-4 py-2 font-heading text-[10px] tracking-widest uppercase transition-colors flex-1 md:flex-none disabled:opacity-50 ${
+            className={`px-5 py-2 font-body text-xs font-medium tracking-wider rounded-xl transition-all duration-300 disabled:opacity-50 capitalize ${
               selectedCat === ''
-                ? 'bg-dorado-campeon text-carbon'
-                : 'text-tatami-blanco/50 hover:text-tatami-blanco bg-transparent'
+                ? 'bg-dorado-campeon/10 text-dorado-campeon shadow-sm'
+                : 'text-tatami-blanco/60 hover:text-tatami-blanco hover:bg-white/5 bg-transparent'
             }`}
           >
-            TODOS
+            Todos
           </button>
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCat(cat)}
               disabled={isEditMode}
-              className={`px-4 py-2 font-heading text-[10px] tracking-widest uppercase transition-colors flex-1 md:flex-none disabled:opacity-50 ${
+              className={`px-5 py-2 font-body text-xs font-medium tracking-wider rounded-xl transition-all duration-300 disabled:opacity-50 capitalize ${
                 selectedCat === cat
-                  ? 'bg-dorado-campeon text-carbon'
-                  : 'text-tatami-blanco/50 hover:text-tatami-blanco bg-transparent'
+                  ? 'bg-dorado-campeon/10 text-dorado-campeon shadow-sm'
+                  : 'text-tatami-blanco/60 hover:text-tatami-blanco hover:bg-white/5 bg-transparent'
               }`}
             >
-              {cat}
+              {cat.toLowerCase()}
             </button>
           ))}
         </div>
@@ -299,10 +297,10 @@ const Contenido = () => {
       {isAuthenticated && canEdit && (
         <button
           onClick={() => setIsEditMode(!isEditMode)}
-          className={`fixed bottom-8 right-8 z-50 p-4 transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.5)] ${
+          className={`fixed bottom-8 right-8 z-50 p-4 rounded-full transition-all duration-300 shadow-xl ${
             isEditMode
-              ? 'bg-dorado-campeon text-carbon border border-dorado-campeon hover:bg-white hover:border-white'
-              : 'bg-carbon text-dorado-campeon border border-dorado-campeon/50 hover:bg-dorado-campeon/10 hover:border-dorado-campeon'
+              ? 'bg-dorado-campeon text-carbon hover:bg-white hover:scale-105'
+              : 'bg-carbon/80 backdrop-blur-md text-dorado-campeon border border-white/10 hover:border-dorado-campeon/30 hover:-translate-y-1'
           }`}
           title={isEditMode ? 'Guardar Cambios' : 'Modo Edición'}
         >
@@ -312,10 +310,10 @@ const Contenido = () => {
 
       {/* Toast Notification */}
       {toast.message && (
-        <div className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-50 px-6 py-3 border shadow-[0_0_30px_rgba(0,0,0,0.5)] flex items-center justify-center text-xs font-heading uppercase tracking-widest ${
+        <div className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-full shadow-2xl flex items-center justify-center text-sm font-body font-medium tracking-wide backdrop-blur-md transition-all duration-300 ${
           toast.type === 'success'
-            ? 'bg-[#0A0B0E] border-emerald-500/50 text-emerald-500'
-            : 'bg-[#0A0B0E] border-rojo-impacto/50 text-rojo-impacto'
+            ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+            : 'bg-rojo-impacto/10 text-rojo-impacto border border-rojo-impacto/20'
         }`}>
           <span>{toast.message}</span>
         </div>

@@ -1,6 +1,20 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Facebook, Instagram, Menu, X } from 'lucide-react';
+import { 
+  Facebook, 
+  Instagram, 
+  Menu, 
+  X, 
+  Home, 
+  Info, 
+  Trophy, 
+  FileText, 
+  PlaySquare, 
+  Phone, 
+  LogOut, 
+  ShieldAlert 
+} from 'lucide-react';
+import { FaTiktok } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
@@ -9,136 +23,168 @@ const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
 
   const links = [
-    { name: 'INICIO', path: '/' },
-    { name: 'QUIÉNES SOMOS', path: '/quienes-somos' },
-    { name: 'ALUMNOS DESTACADOS', path: '/alumnos-destacados' },
-    { name: 'CONTENIDO', path: '/contenido' },
-    { name: 'GALERÍA', path: '/galeria' },
-    { name: 'CONTACTOS', path: '/contactos' },
+    { name: 'Inicio', path: '/', icon: Home },
+    { name: 'Institución', path: '/quienes-somos', icon: Info },
+    { name: 'Honor', path: '/alumnos-destacados', icon: Trophy },
+    { name: 'Contenido', path: '/contenido', icon: FileText },
+    { name: 'Multimedia', path: '/galeria', icon: PlaySquare },
+    { name: 'Contactos', path: '/contactos', icon: Phone },
   ];
 
   const isActive = (path) => location.pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 bg-carbon border-b border-dorado-campeon/20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        
-        {/* Brand Emblem */}
-        <Link to="/" className="flex items-center gap-3 flex-shrink-0 group">
-          <div className="w-12 h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-            <img src="/logo.png" alt="Najera's Team Logo" className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 drop-shadow-[0_0_8px_rgba(227,178,60,0.2)] group-hover:drop-shadow-[0_0_15px_rgba(227,178,60,0.6)]" />
-          </div>
-          <div className="flex flex-col justify-center">
-            <span className="font-heading text-xl tracking-widest text-tatami-blanco group-hover:text-dorado-campeon transition-colors leading-none mt-1">
-              NAJERA'S <span className="text-dorado-campeon">TEAM</span>
-            </span>
-            <span className="font-body text-[9px] tracking-[0.2em] uppercase font-bold text-dorado-campeon/60 leading-tight">
-              REGISTRO OFICIAL
-            </span>
-          </div>
-        </Link>
+    <header className="sticky top-0 z-50 flex flex-col shadow-xl">
+      {/* Top Section: Logo & Actions */}
+      <div className="bg-carbon border-b border-white/5 py-2 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex justify-between items-center h-12 sm:h-14">
+          
+          {/* Logo & Brand */}
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
+              <img 
+                src="/logo.png" 
+                alt="Najera's Team Logo" 
+                className="w-full h-full object-contain filter grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" 
+              />
+            </div>
+            <div className="flex flex-col justify-center">
+              <span className="font-heading text-lg sm:text-xl tracking-tight text-tatami-blanco group-hover:text-dorado-campeon transition-colors leading-none">
+                Najera's <span className="text-dorado-campeon">Team</span>
+              </span>
+              <span className="font-body text-[8px] sm:text-[9px] tracking-wider font-medium text-dorado-campeon/60 uppercase leading-tight mt-0.5">
+                Taekwondo Olímpico
+              </span>
+            </div>
+          </Link>
 
-        {/* Desktop Links */}
-        <nav className="hidden lg:flex items-center gap-1 flex-shrink-0">
-          {links.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`font-heading text-sm tracking-wider uppercase whitespace-nowrap transition-all px-4 py-5 border-b-2 ${
-                isActive(link.path)
-                  ? 'border-dorado-campeon text-dorado-campeon bg-dorado-campeon/5'
-                  : 'border-transparent text-tatami-blanco/70 hover:text-tatami-blanco hover:bg-white/5'
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </nav>
+          {/* Desktop Actions */}
+          <div className="hidden lg:flex items-center gap-6">
+            {/* Socials */}
+            <div className="flex items-center gap-4 text-tatami-blanco/50">
+              <a href="#" className="hover:text-dorado-campeon transition-colors"><Facebook size={16} /></a>
+              <a href="#" className="hover:text-dorado-campeon transition-colors"><Instagram size={16} /></a>
+              <a href="#" className="hover:text-dorado-campeon transition-colors"><FaTiktok size={14} /></a>
+            </div>
 
-        {/* Social Icons & Admin Button */}
-        <div className="hidden md:flex items-center gap-4 flex-shrink-0">
-          <div className="flex items-center gap-2 border-r border-dorado-campeon/20 pr-4 py-2">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noreferrer"
-              className="w-8 h-8 bg-[#0A0B0E] border border-dorado-campeon/20 flex items-center justify-center text-tatami-blanco/70 hover:text-dorado-campeon hover:border-dorado-campeon hover:shadow-[0_0_10px_rgba(227,178,60,0.2)] transition-all"
-              title="Facebook"
-            >
-              <Facebook size={14} />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              className="w-8 h-8 bg-[#0A0B0E] border border-dorado-campeon/20 flex items-center justify-center text-tatami-blanco/70 hover:text-dorado-campeon hover:border-dorado-campeon hover:shadow-[0_0_10px_rgba(227,178,60,0.2)] transition-all"
-              title="Instagram"
-            >
-              <Instagram size={14} />
-            </a>
-          </div>
+            <div className="w-[1px] h-6 bg-white/10"></div>
 
-          {isAuthenticated ? (
-            <div className="flex items-center gap-3">
+            {/* Auth Actions */}
+            {isAuthenticated ? (
+              <div className="flex items-center gap-5">
+                <Link
+                  to="/admin/estudiantes"
+                  className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded-full font-body font-bold text-xs hover:bg-dorado-campeon transition-colors shadow-sm"
+                >
+                  <ShieldAlert size={14} />
+                  Panel Admin
+                </Link>
+                <button
+                  onClick={logout}
+                  className="flex items-center gap-1.5 text-xs font-body font-bold text-tatami-blanco hover:text-rojo-impacto transition-colors"
+                >
+                  <LogOut size={14} />
+                  Salir
+                </button>
+              </div>
+            ) : (
               <Link
-                to="/admin/estudiantes"
-                className="px-4 py-2 font-heading text-xs tracking-widest bg-carbon border border-dorado-campeon text-dorado-campeon hover:bg-dorado-campeon/10 transition-colors uppercase whitespace-nowrap shadow-[0_0_10px_rgba(227,178,60,0.1)] hover:shadow-[0_0_20px_rgba(227,178,60,0.2)]"
+                to="/admin/login"
+                className="text-xs font-body font-bold text-tatami-blanco/60 hover:text-dorado-campeon transition-colors"
               >
-                ÁREA TÉCNICA
+                Área Técnica
               </Link>
-              <button
-                onClick={logout}
-                className="font-body text-xs font-bold text-tatami-blanco/50 hover:text-rojo-impacto uppercase tracking-wider transition-colors"
-              >
-                Salir
-              </button>
-            </div>
-          ) : null}
-        </div>
-
-        {/* Mobile menu toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden text-tatami-blanco hover:text-dorado-campeon p-2 transition-colors"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Drawer */}
-      {mobileOpen && (
-        <div className="lg:hidden bg-carbon border-b border-dorado-campeon/20 px-4 py-4 flex flex-col shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-          {links.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              onClick={() => setMobileOpen(false)}
-              className={`block py-3 font-heading text-lg tracking-widest uppercase border-b border-white/5 ${
-                isActive(link.path) ? 'text-dorado-campeon border-dorado-campeon/30' : 'text-tatami-blanco/80'
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-          <div className="pt-6 pb-2 flex items-center justify-between">
-            <div className="flex gap-3">
-              <a href="#" className="w-10 h-10 bg-[#0A0B0E] border border-dorado-campeon/20 flex items-center justify-center text-tatami-blanco/70 hover:text-dorado-campeon"><Facebook size={16} /></a>
-              <a href="#" className="w-10 h-10 bg-[#0A0B0E] border border-dorado-campeon/20 flex items-center justify-center text-tatami-blanco/70 hover:text-dorado-campeon"><Instagram size={16} /></a>
-            </div>
-            {isAuthenticated && (
-              <button
-                onClick={() => {
-                  logout();
-                  setMobileOpen(false);
-                }}
-                className="px-4 py-2 font-heading text-sm tracking-widest bg-rojo-impacto text-tatami-blanco uppercase"
-              >
-                SALIR
-              </button>
             )}
           </div>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="lg:hidden p-2 text-tatami-blanco/70 hover:text-dorado-campeon transition-colors"
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
-      )}
+      </div>
+
+      {/* Bottom Section: Nav Links */}
+      <div className="hidden lg:block bg-carbon/90 backdrop-blur-md border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="flex justify-center py-1">
+            {links.map((link) => {
+              const active = isActive(link.path);
+              const Icon = link.icon;
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`flex items-center gap-2 px-5 py-2 rounded-full font-body text-sm font-medium transition-all duration-300 mx-1 ${
+                    active
+                      ? 'bg-dorado-campeon/10 text-dorado-campeon'
+                      : 'text-tatami-blanco/70 hover:bg-white/[0.04] hover:text-tatami-blanco'
+                  }`}
+                >
+                  <Icon size={16} className={`transition-colors duration-300 ${active ? 'text-dorado-campeon' : 'text-tatami-blanco/40 group-hover:text-tatami-blanco/80'}`} />
+                  {link.name}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+      </div>
+
+      {/* Mobile Navigation Drawer */}
+      <div 
+        className={`lg:hidden absolute top-full left-0 w-full bg-carbon/95 backdrop-blur-xl border-b border-white/5 overflow-hidden transition-all duration-300 ease-in-out ${
+          mobileOpen ? 'max-h-[600px] opacity-100 visible py-2 shadow-2xl' : 'max-h-0 opacity-0 invisible'
+        }`}
+      >
+        <div className="px-4 space-y-1">
+          {links.map((link) => {
+            const active = isActive(link.path);
+            const Icon = link.icon;
+            return (
+              <Link
+                key={link.path}
+                to={link.path}
+                onClick={() => setMobileOpen(false)}
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl font-body text-sm font-medium transition-all duration-300 ${
+                  active
+                    ? 'bg-dorado-campeon/10 text-dorado-campeon'
+                    : 'text-tatami-blanco/70 hover:bg-white/[0.04] hover:text-tatami-blanco'
+                }`}
+              >
+                <Icon size={18} className={active ? 'text-dorado-campeon' : 'text-tatami-blanco/40'} />
+                {link.name}
+              </Link>
+            );
+          })}
+          
+          <div className="pt-4 mt-2 border-t border-white/5 flex items-center justify-between">
+            <div className="flex items-center gap-4 text-tatami-blanco/50">
+              <a href="#" className="hover:text-dorado-campeon"><Facebook size={18} /></a>
+              <a href="#" className="hover:text-dorado-campeon"><Instagram size={18} /></a>
+              <a href="#" className="hover:text-dorado-campeon"><FaTiktok size={16} /></a>
+            </div>
+            {isAuthenticated ? (
+               <button onClick={logout} className="text-xs font-bold uppercase text-tatami-blanco hover:text-rojo-impacto flex items-center gap-2">
+                 <LogOut size={14} /> Salir
+               </button>
+            ) : (
+               <Link to="/admin/login" onClick={() => setMobileOpen(false)} className="text-xs font-bold uppercase text-tatami-blanco/60 hover:text-dorado-campeon">
+                 Área Técnica
+               </Link>
+            )}
+          </div>
+          {isAuthenticated && (
+             <div className="pb-4 pt-4">
+                <Link to="/admin/estudiantes" onClick={() => setMobileOpen(false)} className="flex items-center justify-center gap-2 w-full py-2.5 bg-white text-black rounded-full font-bold text-sm">
+                   <ShieldAlert size={16} /> Panel Admin
+                </Link>
+             </div>
+          )}
+        </div>
+      </div>
     </header>
   );
 };
