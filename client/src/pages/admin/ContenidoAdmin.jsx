@@ -156,19 +156,19 @@ Escribe aquí una breve introducción.
   return (
     <div class="space-y-8">
       
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-dorado-campeon pb-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-red-600 dark:border-dorado-campeon pb-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-white font-body tracking-tight uppercase">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white font-body tracking-tight uppercase">
             Gestión de Contenido & Recursos
           </h1>
-          <p className="text-xs text-dorado-campeon font-bold tracking-widest uppercase mt-1">
+          <p className="text-sm text-red-600 dark:text-dorado-campeon font-medium tracking-wide uppercase mt-1">
             Publica y edita artículos técnicos, novedades del reglamento, entrevistas y nutrición.
           </p>
         </div>
 
         <button
           onClick={() => handleOpenModal()}
-          class="px-5 py-2.5 bg-rojo-impacto hover:bg-red-700 text-white text-xs font-bold rounded-xl transition-colors shadow-lg shadow-rojo-impacto/30 inline-flex items-center gap-2"
+          class="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white dark:bg-red-500/10 dark:hover:bg-red-500/20 dark:text-red-400 dark:border dark:border-red-500/20 transition-all text-sm font-medium rounded-xl shadow-sm transition-colors shadow-lg shadow-rojo-impacto/30 inline-flex items-center gap-2"
         >
           <Plus size={16} />
           NUEVA PUBLICACIÓN
@@ -183,19 +183,19 @@ Escribe aquí una breve introducción.
       ) : (
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {contents.map((item) => (
-            <div key={item.id} class="bg-carbon/80 border border-white/10 rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between p-5 space-y-4">
+            <div key={item.id} class="bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between p-5 space-y-4">
               <div class="space-y-2">
                 <div class="flex items-center justify-between text-[10px]">
-                  <span class="px-2.5 py-1 rounded-full font-extrabold uppercase bg-rojo-impacto text-white">
+                  <span class="px-2.5 py-1 rounded-full font-extrabold uppercase bg-rojo-impacto text-gray-900 dark:text-white">
                     {item.categoria}
                   </span>
-                  <span class="text-gray-400">{item.fechaPublicacion}</span>
+                  <span class="text-gray-500 dark:text-gray-400">{item.fechaPublicacion}</span>
                 </div>
-                <h3 class="text-base font-bold text-white font-heading">{item.titulo}</h3>
-                <p class="text-xs text-gray-300 line-clamp-2">{item.resumen}</p>
+                <h3 class="text-base font-bold text-gray-900 dark:text-white font-body font-bold tracking-normal">{item.titulo}</h3>
+                <p class="text-xs text-gray-600 dark:text-gray-300 line-clamp-2">{item.resumen}</p>
               </div>
 
-              <div class="pt-4 border-t border-white/10 flex justify-between items-center">
+              <div class="pt-4 border-t border-gray-200 dark:border-white/10 flex justify-between items-center">
                 {item.videoUrl && (
                   <span class="text-[10px] text-blue-400 font-bold flex items-center gap-1">
                     <Video size={12} /> Con Video
@@ -229,23 +229,23 @@ Escribe aquí una breve introducción.
       >
         <form onSubmit={handleSave} class="space-y-4">
           <div>
-            <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Título</label>
+            <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">Título</label>
             <input
               type="text"
               required
               value={form.titulo}
               onChange={(e) => setForm({ ...form, titulo: e.target.value })}
-              class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+              class="w-full bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 rounded-xl px-4 py-2 text-xs text-gray-900 dark:text-white"
             />
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Categoría</label>
+              <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">Categoría</label>
               <select
                 value={form.categoria}
                 onChange={(e) => setForm({ ...form, categoria: e.target.value })}
-                class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+                class="w-full bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 rounded-xl px-4 py-2 text-xs text-gray-900 dark:text-white"
               >
                 <option value="TECNICA">Técnica</option>
                 <option value="REGLAMENTO">Reglamento</option>
@@ -255,35 +255,35 @@ Escribe aquí una breve introducción.
               </select>
             </div>
             <div>
-              <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Fecha Publicación</label>
+              <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">Fecha Publicación</label>
               <input
                 type="date"
                 required
                 value={form.fechaPublicacion}
                 onChange={(e) => setForm({ ...form, fechaPublicacion: e.target.value })}
-                class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+                class="w-full bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 rounded-xl px-4 py-2 text-xs text-gray-900 dark:text-white"
               />
             </div>
           </div>
 
           <div>
-            <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Resumen Corto</label>
+            <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">Resumen Corto</label>
             <input
               type="text"
               required
               value={form.resumen}
               onChange={(e) => setForm({ ...form, resumen: e.target.value })}
-              class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+              class="w-full bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 rounded-xl px-4 py-2 text-xs text-gray-900 dark:text-white"
             />
           </div>
 
           <div>
             <div class="flex justify-between items-end mb-1">
-              <label class="block text-xs font-bold text-gray-300 uppercase">Cuerpo / Contenido Completo</label>
+              <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase">Cuerpo / Contenido Completo</label>
               <button 
                 type="button"
                 onClick={handleInsertTemplate}
-                class="text-[10px] font-bold uppercase tracking-wider bg-dorado-campeon/10 text-dorado-campeon border border-dorado-campeon/30 px-3 py-1 rounded hover:bg-dorado-campeon hover:text-black transition-colors"
+                class="text-[10px] font-bold uppercase tracking-wider bg-dorado-campeon/10 text-red-600 dark:text-dorado-campeon border border-dorado-campeon/30 px-3 py-1 rounded hover:bg-dorado-campeon hover:text-black transition-colors"
               >
                 + Insertar Plantilla Base
               </button>
@@ -293,13 +293,13 @@ Escribe aquí una breve introducción.
               required
               value={form.cuerpo}
               onChange={(e) => setForm({ ...form, cuerpo: e.target.value })}
-              class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+              class="w-full bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 rounded-xl px-4 py-2 text-xs text-gray-900 dark:text-white"
             ></textarea>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Imagen de Portada</label>
+              <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">Imagen de Portada</label>
               <div class="relative border-2 border-dashed border-white/20 rounded-xl p-4 text-center hover:border-rojo-impacto/50 transition-colors">
                 <input 
                   type="file" 
@@ -310,7 +310,7 @@ Escribe aquí una breve introducción.
                 {!coverPreview ? (
                   <>
                     <Camera class="mx-auto text-gray-500 mb-1" size={24} />
-                    <span class="text-[10px] text-gray-400">Click o arrastra foto</span>
+                    <span class="text-[10px] text-gray-500 dark:text-gray-400">Click o arrastra foto</span>
                   </>
                 ) : (
                   <div class="h-20 w-full rounded overflow-hidden relative">
@@ -320,13 +320,13 @@ Escribe aquí una breve introducción.
               </div>
             </div>
             <div>
-              <label class="block text-xs font-bold text-gray-300 uppercase mb-1">URL Video Embebido (opcional)</label>
+              <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">URL Video Embebido (opcional)</label>
               <input
                 type="text"
                 value={form.videoUrl}
                 onChange={(e) => setForm({ ...form, videoUrl: e.target.value })}
                 placeholder="https://www.youtube.com/embed/..."
-                class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+                class="w-full bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 rounded-xl px-4 py-2 text-xs text-gray-900 dark:text-white"
               />
             </div>
           </div>
@@ -334,7 +334,7 @@ Escribe aquí una breve introducción.
           <button
             type="submit"
             disabled={uploading}
-            class="w-full py-3 bg-rojo-impacto text-white font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-red-700 disabled:opacity-50 flex items-center justify-center gap-2"
+            class="w-full py-3 bg-gradient-to-r from-red-600 to-red-500 text-gray-900 dark:text-white font-medium hover:from-red-500 hover:to-red-400 shadow-md transition-all text-xs uppercase tracking-wider rounded-xl hover:bg-red-700 disabled:opacity-50 flex items-center justify-center gap-2"
           >
             {uploading ? <><Loader size={16} class="animate-spin" /> Guardando...</> : 'Guardar Publicación'}
           </button>

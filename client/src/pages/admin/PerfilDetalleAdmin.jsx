@@ -95,16 +95,16 @@ const PerfilDetalleAdmin = () => {
   if (loading) {
     return (
       <div class="flex justify-center items-center py-32">
-        <Loader class="animate-spin text-dorado-campeon" size={50} />
+        <Loader class="animate-spin text-red-600 dark:text-dorado-campeon" size={50} />
       </div>
     );
   }
 
   if (!student) {
     return (
-      <div class="text-center py-20 text-white">
+      <div class="text-center py-20 text-gray-900 dark:text-white">
         <p>Estudiante no encontrado.</p>
-        <Link to="/admin/perfiles" class="text-dorado-campeon mt-4 inline-block hover:underline">
+        <Link to="/admin/perfiles" class="text-red-600 dark:text-dorado-campeon mt-4 inline-block hover:underline">
           Volver a la lista
         </Link>
       </div>
@@ -112,31 +112,31 @@ const PerfilDetalleAdmin = () => {
   }
 
   return (
-    <div class="space-y-6 pb-12">
+    <div class="space-y-8 pb-12">
       {/* HEADER */}
       <div class="flex items-center gap-4">
-        <Link to="/admin/perfiles" class="p-2 bg-carbon border border-white/10 rounded-lg hover:border-dorado-campeon transition-colors">
-          <ArrowLeft class="text-white" size={20} />
+        <Link to="/admin/perfiles" class="p-2 bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 rounded-lg hover:border-dorado-campeon transition-colors">
+          <ArrowLeft class="text-gray-900 dark:text-white" size={20} />
         </Link>
         <div>
-          <h2 class="text-2xl font-black text-white uppercase tracking-tight flex items-center gap-2">
+          <h2 class="text-2xl font-black text-gray-900 dark:text-white uppercase tracking-tight flex items-center gap-2">
             Perfil del Estudiante
           </h2>
-          <p class="text-gray-400 text-sm">Ficha técnica y progreso visual</p>
+          <p class="text-gray-500 dark:text-gray-400 text-sm">Ficha técnica y progreso visual</p>
         </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* LADO IZQUIERDO: FICHA TÉCNICA */}
-        <div class="lg:col-span-1 space-y-6">
-          <div class="bg-carbon border border-dorado-campeon/30 rounded-xl overflow-hidden relative shadow-[0_0_15px_rgba(201,162,39,0.1)]">
-            <div class="h-24 bg-gradient-to-br from-[#1C1C21] to-[#0A0B0E] border-b border-white/5 relative">
+        <div class="lg:col-span-1 space-y-8">
+          <div class="bg-white dark:bg-[#15171C] border border-dorado-campeon/30 rounded-xl overflow-hidden relative shadow-[0_0_15px_rgba(201,162,39,0.1)]">
+            <div class="h-24 bg-gradient-to-br from-[#1C1C21] to-[#0A0B0E] border-b border-gray-200 dark:border-white/5 relative">
                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_rgba(201,162,39,0.8)_0%,_transparent_70%)]"></div>
             </div>
             
             <div class="px-6 pb-6 relative">
               <div class="flex justify-center -mt-12 mb-4">
-                <div class="w-24 h-24 rounded-full border-4 border-carbon bg-[#1C1C21] overflow-hidden flex items-center justify-center shadow-lg relative z-10">
+                <div class="w-24 h-24 rounded-full border-4 border-carbon bg-gray-50 dark:bg-[#1C1C21] overflow-hidden flex items-center justify-center shadow-lg relative z-10">
                   {student.foto ? (
                     <img src={student.foto} alt={student.nombres} class="w-full h-full object-cover" />
                   ) : (
@@ -146,31 +146,31 @@ const PerfilDetalleAdmin = () => {
               </div>
               
               <div class="text-center">
-                <p class="text-xl font-body font-bold text-white uppercase leading-tight">{student.nombres} <br/> {student.apellidos}</p>
+                <p class="text-xl font-body font-bold text-gray-900 dark:text-white uppercase leading-tight">{student.nombres} <br/> {student.apellidos}</p>
                 
-                <div class="mt-3 inline-flex px-3 py-1 bg-dorado-campeon/10 border border-dorado-campeon/30 rounded-full text-dorado-campeon text-[10px] font-bold uppercase tracking-widest">
+                <div class="mt-3 inline-flex px-3 py-1 bg-dorado-campeon/10 border border-dorado-campeon/30 rounded-full text-red-600 dark:text-dorado-campeon text-[10px] font-bold uppercase tracking-wide">
                   {student.grado}
                 </div>
               </div>
 
               <div class="mt-8 space-y-4">
-                <div class="bg-[#111114] p-3 rounded-lg border border-white/5">
-                  <h4 class="text-[9px] text-gray-500 uppercase tracking-widest mb-2 font-bold">Datos Personales</h4>
+                <div class="bg-white dark:bg-[#111114] p-3 rounded-lg border border-gray-200 dark:border-white/5">
+                  <h4 class="text-[9px] text-gray-500 uppercase tracking-wide mb-2 font-bold">Datos Personales</h4>
                   <div class="space-y-2 text-xs">
-                    <div class="flex justify-between border-b border-white/5 pb-1">
-                      <span class="text-gray-400">Edad:</span>
-                      <span class="text-white font-mono">{student.edad} años</span>
+                    <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-1">
+                      <span class="text-gray-500 dark:text-gray-400">Edad:</span>
+                      <span class="text-gray-900 dark:text-white font-mono">{student.edad} años</span>
                     </div>
-                    <div class="flex justify-between border-b border-white/5 pb-1">
-                      <span class="text-gray-400">Celular:</span>
-                      <span class="text-white font-mono">{student.celular}</span>
+                    <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-1">
+                      <span class="text-gray-500 dark:text-gray-400">Celular:</span>
+                      <span class="text-gray-900 dark:text-white font-mono">{student.celular}</span>
                     </div>
-                    <div class="flex justify-between border-b border-white/5 pb-1">
-                      <span class="text-gray-400">Ingreso:</span>
-                      <span class="text-white font-mono">{student.fechaIngreso}</span>
+                    <div class="flex justify-between border-b border-gray-200 dark:border-white/5 pb-1">
+                      <span class="text-gray-500 dark:text-gray-400">Ingreso:</span>
+                      <span class="text-gray-900 dark:text-white font-mono">{student.fechaIngreso}</span>
                     </div>
                     <div class="flex justify-between pb-1">
-                      <span class="text-gray-400">Estado:</span>
+                      <span class="text-gray-500 dark:text-gray-400">Estado:</span>
                       <span class={`font-bold ${student.estado === 'ACTIVO' ? 'text-green-500' : 'text-red-500'}`}>
                         {student.estado}
                       </span>
@@ -179,9 +179,9 @@ const PerfilDetalleAdmin = () => {
                 </div>
 
                 {student.alergias || student.enfermedades || student.lesiones ? (
-                   <div class="bg-[#111114] p-3 rounded-lg border border-red-500/20">
-                     <h4 class="text-[9px] text-red-400 uppercase tracking-widest mb-2 font-bold">Consideraciones Médicas</h4>
-                     <ul class="text-xs text-gray-300 space-y-1">
+                   <div class="bg-white dark:bg-[#111114] p-3 rounded-lg border border-red-500/20">
+                     <h4 class="text-[9px] text-red-400 uppercase tracking-wide mb-2 font-bold">Consideraciones Médicas</h4>
+                     <ul class="text-xs text-gray-600 dark:text-gray-300 space-y-1">
                        {student.alergias && <li><span class="text-gray-500">Alergias:</span> {student.alergias}</li>}
                        {student.enfermedades && <li><span class="text-gray-500">Enfermedades:</span> {student.enfermedades}</li>}
                        {student.lesiones && <li><span class="text-gray-500">Lesiones:</span> {student.lesiones}</li>}
@@ -195,14 +195,14 @@ const PerfilDetalleAdmin = () => {
 
         {/* LADO DERECHO: GALERÍA DE PROGRESO */}
         <div class="lg:col-span-2 space-y-4">
-          <div class="bg-carbon border border-white/10 rounded-xl p-6 shadow-xl">
+          <div class="bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 rounded-xl p-6 shadow-xl">
             <div class="flex justify-between items-center mb-6">
               <div>
-                <h3 class="text-lg font-black text-white uppercase tracking-tight flex items-center gap-2">
-                  <ImageIcon class="text-dorado-campeon" size={20} />
+                <h3 class="text-lg font-black text-gray-900 dark:text-white uppercase tracking-tight flex items-center gap-2">
+                  <ImageIcon class="text-red-600 dark:text-dorado-campeon" size={20} />
                   Galería de Progreso
                 </h3>
-                <p class="text-[11px] text-gray-400 mt-1">Registra la evolución visual del estudiante</p>
+                <p class="text-[13px] tracking-wide font-semibold text-gray-500 dark:text-gray-400 text-gray-500 dark:text-gray-400 mt-1">Registra la evolución visual del estudiante</p>
               </div>
               <button 
                 onClick={() => setShowAddForm(!showAddForm)}
@@ -214,12 +214,12 @@ const PerfilDetalleAdmin = () => {
 
             {/* FORMULARIO DE SUBIDA */}
             {showAddForm && (
-              <div class="bg-[#111114] p-5 rounded-lg border border-dorado-campeon/30 mb-8 animate-fade-in">
+              <div class="bg-white dark:bg-[#111114] p-5 rounded-lg border border-dorado-campeon/30 mb-8 animate-fade-in">
                 <form onSubmit={handleUploadPhoto} class="space-y-4">
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Input Archivo */}
                     <div>
-                      <label class="block text-[10px] text-gray-400 uppercase tracking-widest mb-2 font-bold">Seleccionar Imagen</label>
+                      <label class="block text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2 font-bold">Seleccionar Imagen</label>
                       <div class="relative border-2 border-dashed border-white/20 rounded-lg p-6 text-center hover:border-dorado-campeon/50 transition-colors">
                         <input 
                           type="file" 
@@ -229,27 +229,27 @@ const PerfilDetalleAdmin = () => {
                           required
                         />
                         <Camera class="mx-auto text-gray-500 mb-2" size={32} />
-                        <span class="text-xs text-gray-400">Click o arrastra para subir foto</span>
+                        <span class="text-xs text-gray-500 dark:text-gray-400">Click o arrastra para subir foto</span>
                       </div>
                     </div>
                     
                     {/* Input Detalles */}
                     <div class="space-y-4">
                       <div>
-                        <label class="block text-[10px] text-gray-400 uppercase tracking-widest mb-1 font-bold">Título / Descripción (Ej: Cinta Amarilla)</label>
+                        <label class="block text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1 font-bold">Título / Descripción (Ej: Cinta Amarilla)</label>
                         <input 
                           type="text" 
                           value={photoDescription}
                           onChange={(e) => setPhotoDescription(e.target.value)}
                           placeholder="Examen de ascenso, torneo, etc..."
-                          class="w-full bg-[#1C1C21] border border-white/10 rounded-sm px-3 py-2 text-xs text-white focus:outline-none focus:border-dorado-campeon"
+                          class="w-full bg-gray-50 dark:bg-[#1C1C21] border border-gray-200 dark:border-white/10 rounded-sm px-3 py-2 text-xs text-gray-900 dark:text-white focus:outline-none focus:border-dorado-campeon"
                           required
                         />
                       </div>
                       
                       {/* Preview mini */}
                       {photoPreview && (
-                        <div class="h-24 w-full bg-[#1C1C21] rounded-lg overflow-hidden border border-white/10 relative">
+                        <div class="h-24 w-full bg-gray-50 dark:bg-[#1C1C21] rounded-lg overflow-hidden border border-gray-200 dark:border-white/10 relative">
                           <img src={photoPreview} alt="Preview" class="w-full h-full object-cover" />
                         </div>
                       )}
@@ -271,7 +271,7 @@ const PerfilDetalleAdmin = () => {
             {student.gallery && student.gallery.length > 0 ? (
               <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {student.gallery.map((photo) => (
-                  <div key={photo.id} class="group relative rounded-xl overflow-hidden border border-white/10 bg-[#1C1C21] aspect-square">
+                  <div key={photo.id} class="group relative rounded-xl overflow-hidden border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-[#1C1C21] aspect-square">
                     <img 
                       src={photo.url} 
                       alt={photo.descripcion || 'Foto del estudiante'} 
@@ -280,8 +280,8 @@ const PerfilDetalleAdmin = () => {
                     
                     {/* Overlay info */}
                     <div class="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                      <p class="text-dorado-campeon font-bold text-sm mb-1 line-clamp-2">{photo.descripcion}</p>
-                      <div class="flex items-center gap-1 text-[10px] text-gray-300">
+                      <p class="text-red-600 dark:text-dorado-campeon font-bold text-sm mb-1 line-clamp-2">{photo.descripcion}</p>
+                      <div class="flex items-center gap-1 text-[10px] text-gray-600 dark:text-gray-300">
                         <Calendar size={10} />
                         {new Date(photo.createdAt).toLocaleDateString()}
                       </div>
@@ -289,7 +289,7 @@ const PerfilDetalleAdmin = () => {
                       {/* Botón borrar */}
                       <button 
                         onClick={() => handleDeletePhoto(photo.id)}
-                        class="absolute top-3 right-3 p-2 bg-red-500/80 hover:bg-red-600 text-white rounded-full transition-colors opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0"
+                        class="absolute top-3 right-3 p-2 bg-red-500/80 hover:bg-red-600 text-gray-900 dark:text-white rounded-full transition-colors opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0"
                         title="Eliminar foto"
                       >
                         <Trash2 size={14} />
@@ -299,12 +299,12 @@ const PerfilDetalleAdmin = () => {
                 ))}
               </div>
             ) : (
-              <div class="text-center py-16 bg-[#111114] border border-white/5 rounded-lg border-dashed">
+              <div class="text-center py-16 bg-white dark:bg-[#111114] border border-gray-200 dark:border-white/5 rounded-lg border-dashed">
                 <ImageIcon class="mx-auto text-gray-600 mb-3" size={40} />
-                <p class="text-gray-400 text-sm">Este estudiante aún no tiene fotos en su galería de progreso.</p>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">Este estudiante aún no tiene fotos en su galería de progreso.</p>
                 <button 
                   onClick={() => setShowAddForm(true)}
-                  class="mt-4 text-dorado-campeon text-xs font-bold hover:underline"
+                  class="mt-4 text-red-600 dark:text-dorado-campeon text-xs font-bold hover:underline"
                 >
                   Subir la primera foto
                 </button>

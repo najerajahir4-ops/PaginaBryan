@@ -120,42 +120,42 @@ const AlumnosDestacadosAdmin = () => {
   return (
     <div class="space-y-8">
       
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-dorado-campeon pb-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-red-600 dark:border-dorado-campeon pb-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-white font-body tracking-tight uppercase">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white font-body tracking-tight uppercase">
             Gestión de Alumnos Destacados
           </h1>
-          <p className="text-xs text-dorado-campeon font-bold tracking-widest uppercase mt-1">
+          <p className="text-sm text-red-600 dark:text-dorado-campeon font-medium tracking-wide uppercase mt-1">
             Asigna reconocimientos y logros competitivos a los alumnos destacados de la academia.
           </p>
         </div>
 
         <button
           onClick={() => handleOpenModal()}
-          class="px-5 py-2.5 bg-rojo-impacto hover:bg-red-700 text-white text-xs font-bold rounded-xl transition-colors shadow-lg shadow-rojo-impacto/30 inline-flex items-center gap-2"
+          class="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white dark:bg-red-500/10 dark:hover:bg-red-500/20 dark:text-red-400 dark:border dark:border-red-500/20 transition-all text-sm font-medium rounded-xl shadow-sm transition-colors shadow-lg shadow-rojo-impacto/30 inline-flex items-center gap-2"
         >
           <Plus size={16} />
           NUEVO RECONOCIMIENTO
         </button>
       </div>
 
-      <div class="bg-carbon/70 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
-        <table class="w-full text-left text-xs border-collapse">
-          <thead class="bg-carbon/80 text-gray-300 font-heading uppercase text-[11px]">
+      <div class="bg-white dark:bg-[#15171C]/70 border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+        <table class="w-full text-left text-xs border-collapse border-spacing-y-2">
+          <thead class="bg-gray-50 dark:bg-white/[0.04] text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-white/10 font-body font-bold tracking-normal uppercase text-[13px] tracking-wide font-semibold text-gray-500 dark:text-gray-400">
             <tr>
-              <th class="p-4">Estudiante</th>
-              <th class="p-4">Disciplina / Categoría</th>
-              <th class="p-4">Logros Destacados</th>
+              <th class="px-6 py-5 font-semibold">Estudiante</th>
+              <th class="px-6 py-5 font-semibold">Disciplina / Categoría</th>
+              <th class="px-6 py-5 font-semibold">Logros Destacados</th>
               <th class="p-4 text-center">Acciones</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-white/5 text-gray-200">
+          <tbody class="divide-y divide-gray-200 dark:divide-white/10 text-gray-200">
             {loading ? (
               <tr><td colSpan="4" class="text-center py-8">Cargando...</td></tr>
             ) : (
               featured.map((item) => (
-                <tr key={item.id} class="hover:bg-white/5">
-                  <td class="p-4">
+                <tr key={item.id} class="hover:bg-gray-50 dark:hover:bg-white/5">
+                  <td class="px-6 py-5 text-sm">
                     <div class="flex items-center gap-3">
                       {item.imagenUrl || item.student?.foto ? (
                         <img
@@ -164,19 +164,19 @@ const AlumnosDestacadosAdmin = () => {
                           class="w-8 h-8 rounded-full object-cover border border-white/20 flex-shrink-0"
                         />
                       ) : (
-                        <div class="w-8 h-8 rounded-full bg-carbon border border-dorado-campeon/30 flex items-center justify-center text-[10px] font-bold text-dorado-campeon uppercase flex-shrink-0">
+                        <div class="w-8 h-8 rounded-full bg-white dark:bg-[#15171C] border border-dorado-campeon/30 flex items-center justify-center text-[10px] font-bold text-red-600 dark:text-dorado-campeon uppercase flex-shrink-0">
                           {item.student?.nombres?.[0] || ''}
                           {item.student?.apellidos?.[0] || ''}
                         </div>
                       )}
-                      <span class="font-bold text-white block">
+                      <span class="font-bold text-gray-900 dark:text-white block">
                         {item.student ? `${item.student.nombres} ${item.student.apellidos}` : 'Sin alumno'}
                       </span>
                     </div>
                   </td>
-                  <td class="p-4 font-semibold text-dorado-campeon">{item.disciplina} ({item.categoria})</td>
-                  <td class="p-4 italic">"{item.logros}"</td>
-                  <td class="p-4 text-center space-x-2">
+                  <td class="px-6 py-5 text-sm font-semibold text-red-600 dark:text-dorado-campeon">{item.disciplina} ({item.categoria})</td>
+                  <td class="px-6 py-5 text-sm italic">"{item.logros}"</td>
+                  <td class="px-6 py-5 text-sm text-center space-x-2">
                     <button onClick={() => handleOpenModal(item)} class="p-2 bg-amber-500/20 text-amber-400 rounded-lg"><Edit size={14} /></button>
                     <button onClick={() => handleDelete(item.id)} class="p-2 bg-rose-500/20 text-rose-400 rounded-lg"><Trash2 size={14} /></button>
                   </td>
@@ -190,12 +190,12 @@ const AlumnosDestacadosAdmin = () => {
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Gestionar Alumno Destacado">
         <form onSubmit={handleSave} class="space-y-4">
           <div>
-            <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Seleccionar Estudiante</label>
+            <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">Seleccionar Estudiante</label>
             <select
               value={form.studentId}
               onChange={(e) => setForm({ ...form, studentId: e.target.value })}
               required
-              class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+              class="w-full bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 rounded-xl px-4 py-2 text-xs text-gray-900 dark:text-white"
             >
               <option value="">-- Selecciona un estudiante --</option>
               {students.map((s) => (
@@ -206,22 +206,22 @@ const AlumnosDestacadosAdmin = () => {
 
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Disciplina</label>
+              <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">Disciplina</label>
               <select
                 value={form.disciplina}
                 onChange={(e) => setForm({ ...form, disciplina: e.target.value })}
-                class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+                class="w-full bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 rounded-xl px-4 py-2 text-xs text-gray-900 dark:text-white"
               >
                 <option value="TAEKWONDO">Taekwondo</option>
                 <option value="KICKBOXING">Kickboxing</option>
               </select>
             </div>
             <div>
-              <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Categoría</label>
+              <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">Categoría</label>
               <select
                 value={form.categoria}
                 onChange={(e) => setForm({ ...form, categoria: e.target.value })}
-                class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+                class="w-full bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 rounded-xl px-4 py-2 text-xs text-gray-900 dark:text-white"
               >
                 <option value="INFANTIL">Infantil</option>
                 <option value="JUVENIL">Juvenil</option>
@@ -231,23 +231,23 @@ const AlumnosDestacadosAdmin = () => {
           </div>
 
           <div>
-            <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Logros Obtenidos</label>
+            <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">Logros Obtenidos</label>
             <textarea
               rows="3"
               required
               value={form.logros}
               onChange={(e) => setForm({ ...form, logros: e.target.value })}
               placeholder="Ej. Medalla de Oro Torneo Abierto Nacional 2025"
-              class="w-full bg-carbon border border-white/10 rounded-xl px-4 py-2 text-xs text-white"
+              class="w-full bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 rounded-xl px-4 py-2 text-xs text-gray-900 dark:text-white"
             ></textarea>
           </div>
 
           <div>
-            <label class="block text-xs font-bold text-gray-300 uppercase mb-1">Foto Específica del Logro (Opcional)</label>
+            <label class="block text-xs font-bold text-gray-600 dark:text-gray-300 uppercase mb-1">Foto Específica del Logro (Opcional)</label>
             <div class="flex items-center gap-4">
-              <div class="w-16 h-16 rounded-lg bg-[#111114] border border-white/10 overflow-hidden flex items-center justify-center flex-shrink-0">
+              <div class="w-16 h-16 rounded-lg bg-white dark:bg-[#111114] border border-gray-200 dark:border-white/10 overflow-hidden flex items-center justify-center flex-shrink-0">
                 {uploadingImage ? (
-                  <Loader class="animate-spin text-dorado-campeon" size={24} />
+                  <Loader class="animate-spin text-red-600 dark:text-dorado-campeon" size={24} />
                 ) : form.imagenUrl ? (
                   <img src={form.imagenUrl} alt="Preview" class="w-full h-full object-cover" />
                 ) : (
@@ -255,7 +255,7 @@ const AlumnosDestacadosAdmin = () => {
                 )}
               </div>
               <div class="flex-grow">
-                <label class="flex items-center gap-2 cursor-pointer bg-[#1C1C21] hover:bg-[#2A2A35] border border-white/10 text-white text-xs px-4 py-2 rounded-lg transition-colors w-max">
+                <label class="flex items-center gap-2 cursor-pointer bg-gray-50 dark:bg-[#1C1C21] hover:bg-[#2A2A35] border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs px-4 py-2 rounded-lg transition-colors w-max">
                   <Camera size={16} />
                   <span>Subir Imagen</span>
                   <input
@@ -273,7 +273,7 @@ const AlumnosDestacadosAdmin = () => {
             </div>
           </div>
 
-          <button type="submit" disabled={uploadingImage} class="w-full py-3 bg-rojo-impacto text-white font-bold text-xs uppercase rounded-xl disabled:opacity-50">
+          <button type="submit" disabled={uploadingImage} class="w-full py-3 bg-gradient-to-r from-red-600 to-red-500 text-gray-900 dark:text-white font-medium hover:from-red-500 hover:to-red-400 shadow-md transition-all text-xs uppercase rounded-xl disabled:opacity-50">
             Guardar Reconocimiento
           </button>
         </form>

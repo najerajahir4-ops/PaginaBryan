@@ -16,7 +16,7 @@
   }
 
   body {
-    @apply bg-carbon text-tatami-blanco font-body selection:bg-rojo-impacto selection:text-tatami-blanco;
+    @apply bg-gray-50 text-gray-900 dark:bg-carbon dark:text-tatami-blanco font-body selection:bg-rojo-impacto selection:text-tatami-blanco;
   }
 
   h1, h2, h3, h4, h5, h6 {

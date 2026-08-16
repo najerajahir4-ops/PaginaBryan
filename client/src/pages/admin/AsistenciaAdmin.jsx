@@ -291,32 +291,32 @@ const AsistenciaAdmin = () => {
     <div class="space-y-8 animate-fade-in">
       
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-dorado-campeon pb-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-red-600 dark:border-dorado-campeon pb-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-white font-body tracking-tight uppercase">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white font-body tracking-tight uppercase">
             Control de Asistencia
           </h1>
-          <p className="text-xs text-dorado-campeon font-bold tracking-widest uppercase mt-1">
+          <p className="text-sm text-red-600 dark:text-dorado-campeon font-medium tracking-wide uppercase mt-1">
             Supervisa la asistencia diaria, consulta el historial de clases y visualiza reportes acumulados.
           </p>
         </div>
 
         {activeTab === 'tomar' && (
           <div class="flex items-center gap-3">
-            <div class="flex items-center gap-2 bg-carbon border border-white/10 px-3 py-1.5 rounded-lg shadow-inner">
-              <Calendar size={16} class="text-dorado-campeon" />
+            <div class="flex items-center gap-2 bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 px-3 py-1.5 rounded-lg shadow-inner">
+              <Calendar size={16} class="text-red-600 dark:text-dorado-campeon" />
               <input
                 type="date"
                 value={fecha}
                 onChange={(e) => setFecha(e.target.value)}
-                class="bg-transparent text-white text-sm focus:outline-none cursor-pointer border-none font-bold"
+                class="bg-transparent text-gray-900 dark:text-white text-sm focus:outline-none cursor-pointer border-none font-bold"
               />
             </div>
 
             <button
               onClick={handleMarkAllPresent}
               disabled={students.length === 0 || loading}
-              class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-emerald-900/20 flex items-center gap-2"
+              class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-gray-900 dark:text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-emerald-900/20 flex items-center gap-2"
             >
               <CheckCircle size={16} />
               MARCAR TODOS PRESENTES
@@ -326,13 +326,13 @@ const AsistenciaAdmin = () => {
       </div>
 
       {/* Navegación por Pestañas (Tabs) */}
-      <div class="flex overflow-x-auto whitespace-nowrap border-b border-white/10 gap-2 pb-1" style={{ scrollbarWidth: 'none' }}>
+      <div class="flex overflow-x-auto whitespace-nowrap border-b border-gray-200 dark:border-white/10 gap-2 pb-1" style={{ scrollbarWidth: 'none' }}>
         <button
           onClick={() => { setActiveTab('tomar'); clearFilters(); }}
-          class={`flex-shrink-0 px-4 sm:px-6 py-3 text-[10px] sm:text-xs font-extrabold uppercase tracking-widest transition-all border-b-2 flex items-center gap-2 ${
+          class={`flex-shrink-0 px-4 sm:px-6 py-3 text-[10px] sm:text-xs font-extrabold uppercase tracking-wide transition-all border-b-2 flex items-center gap-2 ${
             activeTab === 'tomar'
-              ? 'border-dorado-campeon text-dorado-campeon'
-              : 'border-transparent text-gray-400 hover:text-white'
+              ? 'border-dorado-campeon text-red-600 dark:text-dorado-campeon'
+              : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:text-white'
           }`}
         >
           <CalendarDays size={16} />
@@ -340,10 +340,10 @@ const AsistenciaAdmin = () => {
         </button>
         <button
           onClick={() => { setActiveTab('historial'); clearFilters(); }}
-          class={`flex-shrink-0 px-4 sm:px-6 py-3 text-[10px] sm:text-xs font-extrabold uppercase tracking-widest transition-all border-b-2 flex items-center gap-2 ${
+          class={`flex-shrink-0 px-4 sm:px-6 py-3 text-[10px] sm:text-xs font-extrabold uppercase tracking-wide transition-all border-b-2 flex items-center gap-2 ${
             activeTab === 'historial'
-              ? 'border-dorado-campeon text-dorado-campeon'
-              : 'border-transparent text-gray-400 hover:text-white'
+              ? 'border-dorado-campeon text-red-600 dark:text-dorado-campeon'
+              : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:text-white'
           }`}
         >
           <History size={16} />
@@ -351,10 +351,10 @@ const AsistenciaAdmin = () => {
         </button>
         <button
           onClick={() => { setActiveTab('reporte'); clearFilters(); }}
-          class={`flex-shrink-0 px-4 sm:px-6 py-3 text-[10px] sm:text-xs font-extrabold uppercase tracking-widest transition-all border-b-2 flex items-center gap-2 ${
+          class={`flex-shrink-0 px-4 sm:px-6 py-3 text-[10px] sm:text-xs font-extrabold uppercase tracking-wide transition-all border-b-2 flex items-center gap-2 ${
             activeTab === 'reporte'
-              ? 'border-dorado-campeon text-dorado-campeon'
-              : 'border-transparent text-gray-400 hover:text-white'
+              ? 'border-dorado-campeon text-red-600 dark:text-dorado-campeon'
+              : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:text-white'
           }`}
         >
           <FileSpreadsheet size={16} />
@@ -364,16 +364,16 @@ const AsistenciaAdmin = () => {
 
       {/* FILTROS (Se muestran para Registrar Día y Reporte por Alumno) */}
       {activeTab !== 'historial' && (
-        <div class="bg-carbon/90 border border-white/10 p-4 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-4 shadow-xl">
+        <div class="bg-white dark:bg-[#15171C]/90 border border-gray-200 dark:border-white/10 p-4 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-4 shadow-xl">
           {/* Buscar */}
-          <div class="relative flex items-center bg-carbon rounded-lg border border-white/10 px-3 py-2">
-            <Search size={16} class="text-gray-400 mr-2" />
+          <div class="relative flex items-center bg-white dark:bg-[#15171C] rounded-lg border border-gray-200 dark:border-white/10 px-3 py-2">
+            <Search size={16} class="text-gray-500 dark:text-gray-400 mr-2" />
             <input
               type="text"
               placeholder="Buscar por nombre, apellido o cédula..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              class="bg-transparent text-xs text-white placeholder-gray-500 w-full focus:outline-none"
+              class="bg-transparent text-xs text-gray-900 dark:text-white placeholder-gray-500 w-full focus:outline-none"
             />
           </div>
 
@@ -381,9 +381,9 @@ const AsistenciaAdmin = () => {
           <div class="relative md:col-span-2">
             <button
               onClick={() => setFiltersOpen(!filtersOpen)}
-              class="flex items-center gap-2 bg-carbon rounded-lg border border-white/10 px-4 py-2 text-xs text-white hover:bg-white/5 transition-colors w-full md:w-auto"
+              class="flex items-center gap-2 bg-white dark:bg-[#15171C] rounded-lg border border-gray-200 dark:border-white/10 px-4 py-2 text-xs text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 transition-colors w-full md:w-auto"
             >
-              <Filter size={16} class="text-dorado-campeon" />
+              <Filter size={16} class="text-red-600 dark:text-dorado-campeon" />
               <span class="font-bold uppercase tracking-wider">Filtros</span>
               {(selectedModalidad) && (
                 <span class="ml-2 w-2 h-2 rounded-full bg-dorado-campeon"></span>
@@ -391,18 +391,18 @@ const AsistenciaAdmin = () => {
             </button>
 
             {filtersOpen && (
-              <div class="absolute top-full left-0 mt-2 w-full md:w-80 bg-carbon border border-white/10 rounded-xl shadow-2xl p-4 z-50 space-y-4">
+              <div class="absolute top-full left-0 mt-2 w-full md:w-80 bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 rounded-xl shadow-2xl p-4 z-50 space-y-4">
                 {/* Disciplina Dropdown */}
                 <div class="space-y-1">
-                  <label class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Disciplina</label>
+                  <label class="text-[10px] text-gray-500 dark:text-gray-400 font-bold uppercase tracking-wide">Disciplina</label>
                   <select
                     value={selectedModalidad}
                     onChange={(e) => setSelectedModalidad(e.target.value)}
-                    class="bg-[#111114] text-xs text-white border border-white/10 rounded-lg p-2 w-full focus:outline-none focus:border-dorado-campeon"
+                    class="bg-white dark:bg-[#111114] text-xs text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 rounded-lg p-2 w-full focus:outline-none focus:border-dorado-campeon"
                   >
-                    <option value="" class="bg-[#111114]">Todas las Disciplinas</option>
-                    <option value="TAEKWONDO" class="bg-[#111114]">Taekwondo</option>
-                    <option value="KICKBOXING" class="bg-[#111114]">Kickboxing</option>
+                    <option value="" class="bg-white dark:bg-[#111114]">Todas las Disciplinas</option>
+                    <option value="TAEKWONDO" class="bg-white dark:bg-[#111114]">Taekwondo</option>
+                    <option value="KICKBOXING" class="bg-white dark:bg-[#111114]">Kickboxing</option>
                   </select>
                 </div>
               </div>
@@ -415,13 +415,13 @@ const AsistenciaAdmin = () => {
 
       {/* --- TAB 1: REGISTRAR ASISTENCIA --- */}
       {activeTab === 'tomar' && (
-        <div class="space-y-6">
+        <div class="space-y-8">
           {/* Header & Toggle de Estadísticas */}
-          <div class="flex items-center justify-between border-b border-white/5 pb-2">
-            <h3 class="text-xs font-bold text-gray-400 font-display tracking-widest uppercase">Resumen del Día</h3>
+          <div class="flex items-center justify-between border-b border-gray-200 dark:border-white/5 pb-2">
+            <h3 class="text-xs font-bold text-gray-500 dark:text-gray-400 font-display tracking-wide">Resumen del Día</h3>
             <button
               onClick={() => setShowStats(!showStats)}
-              class="text-[10px] text-dorado-campeon hover:text-white transition-colors flex items-center gap-1.5 font-bold uppercase tracking-widest bg-carbon border border-dorado-campeon/30 px-3 py-1.5 rounded-lg"
+              class="text-[10px] text-red-600 dark:text-dorado-campeon hover:text-gray-900 dark:text-white transition-colors flex items-center gap-1.5 font-bold uppercase tracking-wide bg-white dark:bg-[#15171C] border border-dorado-campeon/30 px-3 py-1.5 rounded-lg"
             >
               {showStats ? (
                 <><EyeOff size={14} /> Ocultar</>
@@ -435,57 +435,57 @@ const AsistenciaAdmin = () => {
           {showStats && (
             <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
             <div class="bg-emerald-950/20 border border-emerald-500/20 p-4 rounded-xl text-center space-y-1">
-              <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-widest block">Presentes</span>
-              <div class="text-2xl font-bold text-emerald-400 font-heading">{stats.presentes}</div>
+              <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wide block">Presentes</span>
+              <div class="text-2xl font-bold text-emerald-400 font-body font-bold tracking-normal">{stats.presentes}</div>
               <span class="text-[9px] text-emerald-500/80">Asistieron a clase</span>
             </div>
 
             <div class="bg-rose-950/20 border border-rose-500/20 p-4 rounded-xl text-center space-y-1">
-              <span class="text-[10px] font-bold text-rose-400 uppercase tracking-widest block">Ausentes</span>
-              <div class="text-2xl font-bold text-rose-400 font-heading">{stats.ausentes}</div>
+              <span class="text-[10px] font-bold text-rose-400 uppercase tracking-wide block">Ausentes</span>
+              <div class="text-2xl font-bold text-rose-400 font-body font-bold tracking-normal">{stats.ausentes}</div>
               <span class="text-[9px] text-rose-500/80">Falta sin justificar</span>
             </div>
 
             <div class="bg-amber-950/20 border border-amber-500/20 p-4 rounded-xl text-center space-y-1">
-              <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest block">Tardes</span>
-              <div class="text-2xl font-bold text-amber-400 font-heading">{stats.tardes}</div>
+              <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wide block">Tardes</span>
+              <div class="text-2xl font-bold text-amber-400 font-body font-bold tracking-normal">{stats.tardes}</div>
               <span class="text-[9px] text-amber-500/80">Llegadas con retraso</span>
             </div>
 
             <div class="bg-blue-950/20 border border-blue-500/20 p-4 rounded-xl text-center space-y-1">
-              <span class="text-[10px] font-bold text-blue-400 uppercase tracking-widest block">Justificados</span>
-              <div class="text-2xl font-bold text-blue-400 font-heading">{stats.justificados}</div>
+              <span class="text-[10px] font-bold text-blue-400 uppercase tracking-wide block">Justificados</span>
+              <div class="text-2xl font-bold text-blue-400 font-body font-bold tracking-normal">{stats.justificados}</div>
               <span class="text-[9px] text-blue-500/80">Faltas notificadas</span>
             </div>
 
-            <div class="bg-carbon/50 border border-white/5 p-4 rounded-xl text-center space-y-1 col-span-2 md:col-span-1">
-              <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest block">Sin Registrar</span>
-              <div class="text-2xl font-bold text-white font-heading">{stats.sinRegistrar}</div>
+            <div class="bg-white dark:bg-[#15171C]/50 border border-gray-200 dark:border-white/5 p-4 rounded-xl text-center space-y-1 col-span-2 md:col-span-1">
+              <span class="text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide block">Sin Registrar</span>
+              <div class="text-2xl font-bold text-gray-900 dark:text-white font-body font-bold tracking-normal">{stats.sinRegistrar}</div>
               <span class="text-[9px] text-gray-500">Pendiente tomar lista</span>
             </div>
           </div>
           )}
 
           {/* Tabla de Estudiantes */}
-          <div class="bg-carbon/70 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+          <div class="bg-white dark:bg-[#15171C]/70 border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden shadow-2xl">
             {loading ? (
               <div class="flex flex-col items-center justify-center py-20 gap-4">
-                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-dorado-campeon"></div>
-                <p class="text-xs text-gray-400">Cargando fichas de alumnos...</p>
+                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-red-600 dark:border-dorado-campeon"></div>
+                <p class="text-xs text-gray-500 dark:text-gray-400">Cargando fichas de alumnos...</p>
               </div>
             ) : students.length === 0 ? (
               <div class="text-center py-16 px-4 space-y-3">
                 <Users size={48} class="text-gray-600 mx-auto" />
-                <h3 class="text-base font-body font-semibold text-white uppercase">No se encontraron estudiantes</h3>
-                <p class="text-xs text-gray-400 max-w-md mx-auto">
+                <h3 class="text-base font-body font-semibold text-gray-900 dark:text-white uppercase">No se encontraron estudiantes</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 max-w-md mx-auto">
                   Asegúrate de tener estudiantes registrados en las fichas de alumnos.
                 </p>
               </div>
             ) : (
               <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
+                <table class="w-full text-left border-collapse border-spacing-y-2">
                   <thead>
-                    <tr class="bg-carbon border-b border-white/10 text-[10px] font-bold text-gray-300 uppercase tracking-widest">
+                    <tr class="bg-white dark:bg-[#15171C] border-b border-gray-200 dark:border-white/10 text-[10px] font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
                       <th class="py-4 px-6">Estudiante</th>
                       <th class="py-4 px-6 hidden sm:table-cell">Cédula</th>
                       <th class="py-4 px-6 hidden md:table-cell">Club / Sede</th>
@@ -493,13 +493,13 @@ const AsistenciaAdmin = () => {
                       <th class="py-4 px-6 text-center">Estado de Asistencia</th>
                     </tr>
                   </thead>
-                  <tbody class="divide-y divide-white/5 text-xs">
+                  <tbody class="divide-y divide-gray-200 dark:divide-white/10 text-xs">
                     {students.map((student) => {
                       const currentEstado = student.attendance?.estado;
                       const isUpdating = updatingId === student.id;
 
                       return (
-                        <tr key={student.id} class="hover:bg-white/5 transition-colors">
+                        <tr key={student.id} class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
                           <td class="py-4 px-6">
                             <div class="flex items-center gap-3">
                               {student.foto ? (
@@ -509,23 +509,23 @@ const AsistenciaAdmin = () => {
                                   class="w-8 h-8 rounded-full object-cover border border-white/20"
                                 />
                               ) : (
-                                <div class="w-8 h-8 rounded-full bg-carbon border border-dorado-campeon/30 flex items-center justify-center text-[10px] font-bold text-dorado-campeon uppercase">
+                                <div class="w-8 h-8 rounded-full bg-white dark:bg-[#15171C] border border-dorado-campeon/30 flex items-center justify-center text-[10px] font-bold text-red-600 dark:text-dorado-campeon uppercase">
                                   {student.nombres[0]}
                                   {student.apellidos[0]}
                                 </div>
                               )}
                               <div>
-                                <span class="font-bold text-white block">{student.nombreCompleto}</span>
-                                <span class="text-[10px] text-gray-400 block sm:hidden">C.I: {student.cedula}</span>
+                                <span class="font-bold text-gray-900 dark:text-white block">{student.nombreCompleto}</span>
+                                <span class="text-[10px] text-gray-500 dark:text-gray-400 block sm:hidden">C.I: {student.cedula}</span>
                               </div>
                             </div>
                           </td>
 
-                          <td class="py-4 px-6 text-gray-300 font-mono hidden sm:table-cell">
+                          <td class="py-4 px-6 text-gray-600 dark:text-gray-300 font-mono hidden sm:table-cell">
                             {student.cedula}
                           </td>
 
-                          <td class="py-4 px-6 text-gray-400 hidden md:table-cell">
+                          <td class="py-4 px-6 text-gray-500 dark:text-gray-400 hidden md:table-cell">
                             {student.club?.nombre || 'Sin Club asignado'}
                           </td>
 
@@ -538,7 +538,7 @@ const AsistenciaAdmin = () => {
                               }`}>
                                 {student.modalidad}
                               </span>
-                              <span class="text-[10px] text-gray-400 block">{student.grado}</span>
+                              <span class="text-[10px] text-gray-500 dark:text-gray-400 block">{student.grado}</span>
                             </div>
                           </td>
 
@@ -548,10 +548,10 @@ const AsistenciaAdmin = () => {
                               <button
                                 onClick={() => handleAttendanceChange(student.id, 'PRESENTE')}
                                 disabled={isUpdating}
-                                class={`px-2.5 py-1.5 rounded-lg border text-[10px] font-bold tracking-widest transition-all flex items-center gap-1 ${
+                                class={`px-2.5 py-1.5 rounded-lg border text-[10px] font-bold tracking-wide transition-all flex items-center gap-1 ${
                                   currentEstado === 'PRESENTE'
-                                    ? 'bg-emerald-600 border-emerald-500 text-white shadow-lg shadow-emerald-950/40'
-                                    : 'bg-carbon/40 border-white/10 text-gray-400 hover:border-emerald-500/50 hover:text-emerald-400'
+                                    ? 'bg-emerald-600 border-emerald-500 text-gray-900 dark:text-white shadow-lg shadow-emerald-950/40'
+                                    : 'bg-white dark:bg-[#15171C]/40 border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:border-emerald-500/50 hover:text-emerald-400'
                                 }`}
                               >
                                 <CheckCircle size={12} />
@@ -563,10 +563,10 @@ const AsistenciaAdmin = () => {
                               <button
                                 onClick={() => handleAttendanceChange(student.id, 'AUSENTE')}
                                 disabled={isUpdating}
-                                class={`px-2.5 py-1.5 rounded-lg border text-[10px] font-bold tracking-widest transition-all flex items-center gap-1 ${
+                                class={`px-2.5 py-1.5 rounded-lg border text-[10px] font-bold tracking-wide transition-all flex items-center gap-1 ${
                                   currentEstado === 'AUSENTE'
-                                    ? 'bg-rose-600 border-rose-500 text-white shadow-lg shadow-rose-950/40'
-                                    : 'bg-carbon/40 border-white/10 text-gray-400 hover:border-rose-500/50 hover:text-rose-400'
+                                    ? 'bg-rose-600 border-rose-500 text-gray-900 dark:text-white shadow-lg shadow-rose-950/40'
+                                    : 'bg-white dark:bg-[#15171C]/40 border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:border-rose-500/50 hover:text-rose-400'
                                 }`}
                               >
                                 <XCircle size={12} />
@@ -578,10 +578,10 @@ const AsistenciaAdmin = () => {
                               <button
                                 onClick={() => handleAttendanceChange(student.id, 'TARDE')}
                                 disabled={isUpdating}
-                                class={`px-2.5 py-1.5 rounded-lg border text-[10px] font-bold tracking-widest transition-all flex items-center gap-1 ${
+                                class={`px-2.5 py-1.5 rounded-lg border text-[10px] font-bold tracking-wide transition-all flex items-center gap-1 ${
                                   currentEstado === 'TARDE'
-                                    ? 'bg-amber-600 border-amber-500 text-white shadow-lg shadow-amber-950/40'
-                                    : 'bg-carbon/40 border-white/10 text-gray-400 hover:border-amber-500/50 hover:text-amber-400'
+                                    ? 'bg-amber-600 border-amber-500 text-gray-900 dark:text-white shadow-lg shadow-amber-950/40'
+                                    : 'bg-white dark:bg-[#15171C]/40 border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:border-amber-500/50 hover:text-amber-400'
                                 }`}
                               >
                                 <Clock size={12} />
@@ -593,10 +593,10 @@ const AsistenciaAdmin = () => {
                               <button
                                 onClick={() => handleAttendanceChange(student.id, 'JUSTIFICADO')}
                                 disabled={isUpdating}
-                                class={`px-2.5 py-1.5 rounded-lg border text-[10px] font-bold tracking-widest transition-all flex items-center gap-1 ${
+                                class={`px-2.5 py-1.5 rounded-lg border text-[10px] font-bold tracking-wide transition-all flex items-center gap-1 ${
                                   currentEstado === 'JUSTIFICADO'
-                                    ? 'bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-950/40'
-                                    : 'bg-carbon/40 border-white/10 text-gray-400 hover:border-blue-500/50 hover:text-blue-400'
+                                    ? 'bg-blue-600 border-blue-500 text-gray-900 dark:text-white shadow-lg shadow-blue-950/40'
+                                    : 'bg-white dark:bg-[#15171C]/40 border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:border-blue-500/50 hover:text-blue-400'
                                 }`}
                               >
                                 <HelpCircle size={12} />
@@ -609,7 +609,7 @@ const AsistenciaAdmin = () => {
                                 <button
                                   onClick={() => handleClearAttendance(student.id)}
                                   disabled={isUpdating}
-                                  class="p-1.5 rounded-lg bg-white/5 border border-white/10 text-gray-400 hover:bg-rojo-impacto hover:text-white hover:border-rojo-impacto transition-all"
+                                  class="p-1.5 rounded-lg bg-white/5 border border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 hover:bg-rojo-impacto hover:text-gray-900 dark:text-white hover:border-rojo-impacto transition-all"
                                 >
                                   <RotateCcw size={12} />
                                 </button>
@@ -629,26 +629,26 @@ const AsistenciaAdmin = () => {
 
       {/* --- TAB 2: HISTORIAL DE FECHAS --- */}
       {activeTab === 'historial' && (
-        <div class="space-y-6">
-          <div class="bg-carbon/70 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+        <div class="space-y-8">
+          <div class="bg-white dark:bg-[#15171C]/70 border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden shadow-2xl">
             {loadingHistory ? (
               <div class="flex flex-col items-center justify-center py-20 gap-4">
-                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-dorado-campeon"></div>
-                <p class="text-xs text-gray-400">Cargando fechas de asistencia históricas...</p>
+                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-red-600 dark:border-dorado-campeon"></div>
+                <p class="text-xs text-gray-500 dark:text-gray-400">Cargando fechas de asistencia históricas...</p>
               </div>
             ) : historyList.length === 0 ? (
               <div class="text-center py-16 px-4 space-y-3">
                 <Calendar size={48} class="text-gray-600 mx-auto" />
-                <h3 class="text-base font-body font-semibold text-white uppercase">No se encontraron registros de asistencia</h3>
-                <p class="text-xs text-gray-400 max-w-md mx-auto">
+                <h3 class="text-base font-body font-semibold text-gray-900 dark:text-white uppercase">No se encontraron registros de asistencia</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 max-w-md mx-auto">
                   Registra la asistencia diaria para ver el historial consolidado de fechas aquí.
                 </p>
               </div>
             ) : (
               <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
+                <table class="w-full text-left border-collapse border-spacing-y-2">
                   <thead>
-                    <tr class="bg-carbon border-b border-white/10 text-[10px] font-bold text-gray-300 uppercase tracking-widest">
+                    <tr class="bg-white dark:bg-[#15171C] border-b border-gray-200 dark:border-white/10 text-[10px] font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
                       <th class="py-4 px-6">Fecha</th>
                       <th class="py-4 px-6 text-center">Presentes</th>
                       <th class="py-4 px-6 text-center">Ausentes</th>
@@ -658,13 +658,13 @@ const AsistenciaAdmin = () => {
                       <th class="py-4 px-6 text-center">Acción</th>
                     </tr>
                   </thead>
-                  <tbody class="divide-y divide-white/5 text-xs text-center">
+                  <tbody class="divide-y divide-gray-200 dark:divide-white/10 text-xs text-center">
                     {historyList.map((h, i) => (
-                      <tr key={i} class="hover:bg-white/5 transition-colors">
+                      <tr key={i} class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
                         {/* Fecha */}
-                        <td class="py-4 px-6 text-left font-bold text-white">
+                        <td class="py-4 px-6 text-left font-bold text-gray-900 dark:text-white">
                           <span class="inline-flex items-center gap-2">
-                            <Calendar size={14} class="text-dorado-campeon" />
+                            <Calendar size={14} class="text-red-600 dark:text-dorado-campeon" />
                             {formatDateString(h.fecha)}
                           </span>
                         </td>
@@ -693,14 +693,14 @@ const AsistenciaAdmin = () => {
                           </span>
                         </td>
                         {/* Total */}
-                        <td class="py-4 px-6 text-gray-300 font-semibold">
+                        <td class="py-4 px-6 text-gray-600 dark:text-gray-300 font-semibold">
                           {h.total}
                         </td>
                         {/* Acción */}
                         <td class="py-4 px-6">
                           <button
                             onClick={() => loadDateFromHistory(h.fecha)}
-                            class="px-3 py-1 bg-dorado-campeon hover:bg-dorado-campeon/70 text-[#111114] text-[10px] font-extrabold rounded uppercase tracking-widest transition-colors"
+                            class="px-3 py-1 bg-dorado-campeon hover:bg-dorado-campeon/70 text-[#111114] text-[10px] font-extrabold rounded uppercase tracking-wide transition-colors"
                           >
                             Ver / Editar
                           </button>
@@ -717,26 +717,26 @@ const AsistenciaAdmin = () => {
 
       {/* --- TAB 3: REPORTE POR ALUMNO --- */}
       {activeTab === 'reporte' && (
-        <div class="space-y-6">
-          <div class="bg-carbon/70 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+        <div class="space-y-8">
+          <div class="bg-white dark:bg-[#15171C]/70 border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden shadow-2xl">
             {loadingReport ? (
               <div class="flex flex-col items-center justify-center py-20 gap-4">
-                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-dorado-campeon"></div>
-                <p class="text-xs text-gray-400">Calculando estadísticas de asistencia de alumnos...</p>
+                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-red-600 dark:border-dorado-campeon"></div>
+                <p class="text-xs text-gray-500 dark:text-gray-400">Calculando estadísticas de asistencia de alumnos...</p>
               </div>
             ) : reportList.length === 0 ? (
               <div class="text-center py-16 px-4 space-y-3">
                 <Users size={48} class="text-gray-600 mx-auto" />
-                <h3 class="text-base font-body font-semibold text-white uppercase">No hay alumnos para reportar</h3>
-                <p class="text-xs text-gray-400 max-w-md mx-auto">
+                <h3 class="text-base font-body font-semibold text-gray-900 dark:text-white uppercase">No hay alumnos para reportar</h3>
+                <p class="text-xs text-gray-500 dark:text-gray-400 max-w-md mx-auto">
                   Asegúrate de que haya alumnos cargados bajo los filtros seleccionados.
                 </p>
               </div>
             ) : (
               <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse font-sans">
+                <table class="w-full text-left border-collapse border-spacing-y-2 font-sans">
                   <thead>
-                    <tr class="bg-carbon border-b border-white/10 text-[10px] font-bold text-gray-300 uppercase tracking-widest">
+                    <tr class="bg-white dark:bg-[#15171C] border-b border-gray-200 dark:border-white/10 text-[10px] font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
                       <th class="py-4 px-6">Estudiante</th>
                       <th class="py-4 px-6 hidden sm:table-cell">Sede / Club</th>
                       <th class="py-4 px-6 text-center">Clases Registradas</th>
@@ -745,7 +745,7 @@ const AsistenciaAdmin = () => {
                       <th class="py-4 px-6">% Promedio de Asistencia</th>
                     </tr>
                   </thead>
-                  <tbody class="divide-y divide-white/5 text-xs">
+                  <tbody class="divide-y divide-gray-200 dark:divide-white/10 text-xs">
                     {reportList.map((student) => {
                       // Determinar color de porcentaje
                       let percentColor = 'text-rose-400';
@@ -759,7 +759,7 @@ const AsistenciaAdmin = () => {
                       }
 
                       return (
-                        <tr key={student.id} class="hover:bg-white/5 transition-colors">
+                        <tr key={student.id} class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
                           {/* Estudiante */}
                           <td class="py-4 px-6">
                             <div class="flex items-center gap-3">
@@ -770,24 +770,24 @@ const AsistenciaAdmin = () => {
                                   class="w-8 h-8 rounded-full object-cover border border-white/20"
                                 />
                               ) : (
-                                <div class="w-8 h-8 rounded-full bg-carbon border border-dorado-campeon/30 flex items-center justify-center text-[10px] font-bold text-dorado-campeon uppercase">
+                                <div class="w-8 h-8 rounded-full bg-white dark:bg-[#15171C] border border-dorado-campeon/30 flex items-center justify-center text-[10px] font-bold text-red-600 dark:text-dorado-campeon uppercase">
                                   {student.nombreCompleto[0]}
                                 </div>
                               )}
                               <div>
-                                <span class="font-bold text-white block">{student.nombreCompleto}</span>
-                                <span class="text-[9px] text-gray-400">{student.grado}</span>
+                                <span class="font-bold text-gray-900 dark:text-white block">{student.nombreCompleto}</span>
+                                <span class="text-[9px] text-gray-500 dark:text-gray-400">{student.grado}</span>
                               </div>
                             </div>
                           </td>
 
                           {/* Club */}
-                          <td class="py-4 px-6 text-gray-400 hidden sm:table-cell">
+                          <td class="py-4 px-6 text-gray-500 dark:text-gray-400 hidden sm:table-cell">
                             {student.club}
                           </td>
 
                           {/* Clases Totales */}
-                          <td class="py-4 px-6 text-center font-bold text-gray-300">
+                          <td class="py-4 px-6 text-center font-bold text-gray-600 dark:text-gray-300">
                             {student.total}
                           </td>
 
@@ -797,7 +797,7 @@ const AsistenciaAdmin = () => {
                           </td>
 
                           {/* Faltas (Ausentes + Tardes + Justificados) */}
-                          <td class="py-4 px-6 text-center text-gray-400">
+                          <td class="py-4 px-6 text-center text-gray-500 dark:text-gray-400">
                             <div class="flex items-center justify-center gap-2 font-semibold">
                               <span class="text-rose-400" title="Ausente">{student.ausentes}A</span>
                               <span class="text-amber-400" title="Tarde">{student.tardes}T</span>
@@ -808,7 +808,7 @@ const AsistenciaAdmin = () => {
                           {/* Porcentaje y Barra */}
                           <td class="py-4 px-6">
                             <div class="flex items-center gap-3 max-w-xs">
-                              <span class={`font-extrabold text-sm w-12 text-right font-heading ${percentColor}`}>
+                              <span class={`font-extrabold text-sm w-12 text-right font-body font-bold tracking-normal ${percentColor}`}>
                                 {student.porcentaje}%
                               </span>
                               <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden">

@@ -44,19 +44,19 @@ const Dashboard = () => {
     <div class="space-y-8">
       
       {/* Header */}
-      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-200 dark:border-white/10 pb-4">
         <div>
-          <h1 class="text-3xl font-extrabold text-white font-display tracking-widest uppercase">
+          <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white font-display tracking-wide">
             Panel Principal de Control
           </h1>
-          <p class="text-xs text-gray-400 mt-1 font-body">
+          <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 font-body">
             Resumen estadístico de estudiantes, estado de cobranza e ingresos generales.
           </p>
         </div>
 
         <Link
           to="/admin/estudiantes"
-          class="px-5 py-2.5 bg-rojo-impacto hover:bg-white hover:text-rojo-impacto text-white text-xs font-bold clip-button uppercase transition-colors shadow-lg inline-flex items-center gap-2 impact-flash"
+          class="px-5 py-2.5 bg-rojo-impacto hover:bg-white hover:text-rojo-impacto text-gray-900 dark:text-white text-xs font-bold clip-button uppercase transition-colors shadow-lg inline-flex items-center gap-2 impact-flash"
         >
           <Users size={16} />
           GESTIONAR ESTUDIANTES
@@ -72,72 +72,72 @@ const Dashboard = () => {
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           
           {/* Total Estudiantes Activos */}
-          <div class="bg-carbon/80 border border-white/10 p-6 rounded-2xl space-y-3 shadow-xl">
+          <div class="bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 backdrop-blur-sm p-6 rounded-2xl space-y-3 shadow-xl">
             <div class="flex items-center justify-between text-blue-400">
-              <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Estudiantes Activos</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300">Estudiantes Activos</span>
               <div class="p-2 rounded-xl bg-blue-500/10">
                 <Users size={20} />
               </div>
             </div>
-            <div class="text-3xl font-extrabold text-white font-heading">
+            <div class="text-3xl font-extrabold text-gray-900 dark:text-white font-body font-bold tracking-normal">
               {stats.totalActiveStudents}
             </div>
-            <p class="text-[11px] text-gray-400">Inscritos en la academia</p>
+            <p class="text-[13px] tracking-wide font-semibold text-gray-500 dark:text-gray-400 text-gray-500 dark:text-gray-400">Inscritos en la academia</p>
           </div>
 
           {/* Pagos al Día */}
-          <div class="bg-carbon/80 border border-white/10 p-6 rounded-2xl space-y-3 shadow-xl">
+          <div class="bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 backdrop-blur-sm p-6 rounded-2xl space-y-3 shadow-xl">
             <div class="flex items-center justify-between text-emerald-400">
-              <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Pagos al Día</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300">Pagos al Día</span>
               <div class="p-2 rounded-xl bg-emerald-500/10">
                 <Users size={20} />
               </div>
             </div>
-            <div class="text-3xl font-extrabold text-emerald-400 font-heading">
+            <div class="text-3xl font-extrabold text-emerald-400 font-body font-bold tracking-normal">
               {stats.alDiaCount}
             </div>
-            <p class="text-[11px] text-gray-400">Cuotas al corriente</p>
+            <p class="text-[13px] tracking-wide font-semibold text-gray-500 dark:text-gray-400 text-gray-500 dark:text-gray-400">Cuotas al corriente</p>
           </div>
 
           {/* Por Vencer (7 días o menos) */}
-          <div class="bg-carbon/80 border border-white/10 p-6 rounded-2xl space-y-3 shadow-xl">
+          <div class="bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 backdrop-blur-sm p-6 rounded-2xl space-y-3 shadow-xl">
             <div class="flex items-center justify-between text-amber-400">
-              <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Por Vencer (7 días)</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300">Por Vencer (7 días)</span>
               <div class="p-2 rounded-xl bg-amber-500/10">
                 <Clock size={20} />
               </div>
             </div>
-            <div class="text-3xl font-extrabold text-amber-400 font-heading">
+            <div class="text-3xl font-extrabold text-amber-400 font-body font-bold tracking-normal">
               {stats.porVencerCount}
             </div>
-            <p class="text-[11px] text-gray-400">Requieren recordatorio</p>
+            <p class="text-[13px] tracking-wide font-semibold text-gray-500 dark:text-gray-400 text-gray-500 dark:text-gray-400">Requieren recordatorio</p>
           </div>
 
           {/* Pagos Vencidos */}
-          <div class="bg-carbon/80 border border-white/10 p-6 rounded-2xl space-y-3 shadow-xl">
+          <div class="bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 backdrop-blur-sm p-6 rounded-2xl space-y-3 shadow-xl">
             <div class="flex items-center justify-between text-rose-400">
-              <span class="text-xs font-bold uppercase tracking-wider text-gray-300">Pagos Vencidos</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-gray-600 dark:text-gray-300">Pagos Vencidos</span>
               <div class="p-2 rounded-xl bg-rose-500/10">
                 <AlertTriangle size={20} />
               </div>
             </div>
-            <div class="text-3xl font-extrabold text-rose-400 font-heading">
+            <div class="text-3xl font-extrabold text-rose-400 font-body font-bold tracking-normal">
               {stats.vencidoCount}
             </div>
-            <p class="text-[11px] text-gray-400">Cobro prioritario</p>
+            <p class="text-[13px] tracking-wide font-semibold text-gray-500 dark:text-gray-400 text-gray-500 dark:text-gray-400">Cobro prioritario</p>
           </div>
 
         </div>
       )}
 
       {/* Chart Section */}
-      <div class="bg-carbon border border-white/10 p-6 sm:p-8 rounded-sm shadow-xl space-y-6">
+      <div class="bg-white dark:bg-[#1C1C21]/[0.02] shadow-sm dark:shadow-none border border-gray-200 dark:border-white/5 p-6 sm:p-8 rounded-sm shadow-xl space-y-8">
         <div class="flex items-center justify-between">
           <div>
-            <h3 class="text-xl font-bold text-white font-display uppercase tracking-widest">Ingresos Mensuales por Colegiaturas</h3>
-            <p class="text-xs text-gray-400 font-body">Histórico de recaudación acumulada del año 2026</p>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white font-display uppercase tracking-wide">Ingresos Mensuales por Colegiaturas</h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400 font-body">Histórico de recaudación acumulada del año 2026</p>
           </div>
-          <div class="flex items-center gap-2 text-dorado-campeon font-bold text-sm">
+          <div class="flex items-center gap-2 text-red-600 dark:text-dorado-campeon font-bold text-sm">
             <DollarSign size={18} />
             Total Recaudado: ${stats.totalRevenue.toFixed(2)} USD
           </div>
