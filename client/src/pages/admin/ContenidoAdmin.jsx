@@ -26,7 +26,6 @@ import ContenidoDetalle from '../ContenidoDetalle';
 import Navbar from '../../components/Navbar';
 import { useAuth } from '../../context/AuthContext';
 import ConfirmModal from '../../components/ConfirmModal';
-import { useToast } from '../../context/ToastContext';
 
 const quillModules = {
   toolbar: [
@@ -156,7 +155,6 @@ const ContenidoAdmin = () => {
   const [coverFile, setCoverFile] = useState(null);
   const [coverPreview, setCoverPreview] = useState('');
   const [uploading, setUploading] = useState(false);
-  const { showToast } = useToast();
 
   const [blocks, setBlocks] = useState([]);
   const [isLivePreview, setIsLivePreview] = useState(false);
@@ -292,10 +290,10 @@ const ContenidoAdmin = () => {
       }
       setIsModalOpen(false);
       fetchContents();
-      showToast('Publicación guardada exitosamente', 'success');
+      alert('Publicación guardada exitosamente');
     } catch (err) {
       console.error(err);
-      showToast('Error al guardar publicación', 'error');
+      alert('Error al guardar publicación');
     } finally {
       setUploading(false);
     }
@@ -344,10 +342,10 @@ const ContenidoAdmin = () => {
     try {
       await API.delete(`/content/${id}`);
       fetchContents();
-      showToast('Publicación eliminada correctamente', 'success');
+      alert('Publicación eliminada correctamente');
       setDeleteConfirm({ isOpen: false, id: null });
     } catch (err) {
-      showToast('Error al eliminar publicación', 'error');
+      alert('Error al eliminar publicación');
     }
   };
 
