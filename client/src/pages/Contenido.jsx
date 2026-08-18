@@ -42,14 +42,14 @@ const SortableContentCard = ({ item, isEditMode }) => {
     <article
       ref={setNodeRef}
       style={style}
-      className="border-precision bg-blanco-absoluto flex flex-col justify-between transition-transform hover:-translate-y-2 hover:border-carbon relative group overflow-hidden"
+      className="border-precision bg-white dark:bg-[#0A0B0E] flex flex-col justify-between transition-transform hover:-translate-y-2 hover:border-carbon dark:border-white/20 relative group overflow-hidden"
     >
       {/* Handle de Arrastre */}
       {isEditMode && (
         <div
           {...attributes}
           {...listeners}
-          className="absolute top-3 right-3 z-30 p-2 bg-blanco-absoluto border-precision text-carbon hover:bg-carbon hover:text-blanco-absoluto cursor-grab active:cursor-grabbing transition-colors"
+          className="absolute top-3 right-3 z-30 p-2 bg-white dark:bg-[#0A0B0E] border-precision text-carbon dark:text-white hover:bg-carbon hover:text-blanco-absoluto cursor-grab active:cursor-grabbing transition-colors"
           title="Arrastra para reordenar"
         >
           <GripVertical size={20} />
@@ -57,7 +57,7 @@ const SortableContentCard = ({ item, isEditMode }) => {
       )}
 
       {/* Cover Image */}
-      <div className="relative h-56 overflow-hidden bg-gris-claro border-b-2 border-carbon">
+      <div className="relative h-56 overflow-hidden bg-gris-claro border-b-2 border-carbon dark:border-white/20">
         {item.imagenUrl ? (
           <img
             src={item.imagenUrl}
@@ -66,18 +66,18 @@ const SortableContentCard = ({ item, isEditMode }) => {
           />
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center space-y-2 group-hover:scale-105 transition-transform">
-            <div className="w-20 h-20 border-4 border-carbon flex items-center justify-center bg-blanco-absoluto">
-              <FileText size={40} className="text-carbon" />
+            <div className="w-20 h-20 border-4 border-carbon dark:border-white/20 flex items-center justify-center bg-white dark:bg-[#0A0B0E]">
+              <FileText size={40} className="text-carbon dark:text-white" />
             </div>
           </div>
         )}
         
         <div className="absolute top-0 left-0 w-full flex">
-          <span className="px-4 py-2 text-xs font-title uppercase bg-carbon text-blanco-absoluto tracking-widest border-r-2 border-b-2 border-carbon">
+          <span className="px-4 py-2 text-xs font-title uppercase bg-carbon text-blanco-absoluto tracking-widest border-r-2 border-b-2 border-carbon dark:border-white/20">
             {item.categoria}
           </span>
           {item.videoUrl && (
-            <span className="px-4 py-2 text-xs font-title uppercase bg-rojo-impacto text-blanco-absoluto border-b-2 border-l-2 border-carbon tracking-widest flex items-center justify-center gap-2 ml-auto">
+            <span className="px-4 py-2 text-xs font-title uppercase bg-rojo-impacto text-blanco-absoluto border-b-2 border-l-2 border-carbon dark:border-white/20 tracking-widest flex items-center justify-center gap-2 ml-auto">
               <Video size={14} />
               VIDEO
             </span>
@@ -86,24 +86,24 @@ const SortableContentCard = ({ item, isEditMode }) => {
       </div>
 
       {/* Body */}
-      <div className="p-6 space-y-4 flex-grow flex flex-col justify-between bg-blanco-absoluto relative z-10">
+      <div className="p-6 space-y-4 flex-grow flex flex-col justify-between bg-white dark:bg-[#0A0B0E] relative z-10">
         <div className="space-y-3">
-          <div className="flex items-center gap-2 text-xs font-title text-carbon/60 uppercase tracking-widest">
+          <div className="flex items-center gap-2 text-xs font-title text-carbon dark:text-white/60 uppercase tracking-widest">
             <Calendar size={14} className="text-rojo-impacto" />
             {item.fechaPublicacion}
           </div>
-          <h3 className="text-2xl font-title text-carbon uppercase tracking-wide leading-tight group-hover:text-rojo-impacto transition-colors line-clamp-2">
+          <h3 className="text-2xl font-title text-carbon dark:text-white uppercase tracking-wide leading-tight group-hover:text-rojo-impacto transition-colors line-clamp-2">
             {item.titulo}
           </h3>
-          <p className="text-base font-body text-carbon/80 line-clamp-3 leading-relaxed">
+          <p className="text-base font-body text-carbon dark:text-white/80 line-clamp-3 leading-relaxed">
             {item.resumen}
           </p>
         </div>
 
-        <div className="pt-4 border-t-2 border-carbon text-center mt-auto">
+        <div className="pt-4 border-t-2 border-carbon dark:border-white/20 text-center mt-auto">
           <Link
             to={isEditMode ? '#' : `/contenido/${item.id}`}
-            className={`inline-flex items-center justify-center font-title text-sm text-rojo-impacto hover:text-carbon tracking-widest uppercase transition-colors ${isEditMode ? 'pointer-events-none opacity-50' : ''}`}
+            className={`inline-flex items-center justify-center font-title text-sm text-rojo-impacto hover:text-carbon dark:text-white tracking-widest uppercase transition-colors ${isEditMode ? 'pointer-events-none opacity-50' : ''}`}
           >
             LEER PUBLICACIÓN COMPLETA
           </Link>
@@ -182,14 +182,14 @@ const Contenido = () => {
   const canEdit = !selectedCat;
 
   return (
-    <div className="bg-blanco-absoluto w-full min-h-screen pb-24">
+    <div className="bg-white dark:bg-[#0A0B0E] w-full min-h-screen pb-24">
       
       {/* HEADER NORMALIZADO */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 pt-16 pb-8 mb-12 border-b border-gray-200">
-        <h1 className="text-4xl sm:text-5xl font-bold font-body normal-case tracking-normal text-carbon m-0 p-0 break-words mix-blend-multiply">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 pt-16 pb-8 mb-12 border-b border-gray-200 dark:border-white/10">
+        <h1 className="text-4xl sm:text-5xl font-bold font-body normal-case tracking-normal text-carbon dark:text-white m-0 p-0 break-words mix-blend-multiply">
           Biblioteca <span className="text-rojo-impacto">Marcial</span>
         </h1>
-        <p className="font-body text-lg text-gray-600 mt-4 max-w-2xl leading-relaxed">
+        <p className="font-body text-lg text-gray-600 dark:text-gray-300 mt-4 max-w-2xl leading-relaxed">
           Artículos técnicos, novedades del reglamento y consejos de combate.
         </p>
       </div>
@@ -197,7 +197,7 @@ const Contenido = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
         
         {/* Category Pills & Controls */}
-        <div className="border-b border-gray-200 pb-6 mb-12 flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div className="border-b border-gray-200 dark:border-white/10 pb-6 mb-12 flex flex-col md:flex-row gap-4 items-center justify-between">
           <div className="flex flex-wrap gap-2 w-full md:w-auto">
             <button
               onClick={() => setSelectedCat('')}
@@ -205,7 +205,7 @@ const Contenido = () => {
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors disabled:opacity-50 ${
                 selectedCat === ''
                   ? 'bg-rojo-impacto text-white shadow-sm'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  : 'bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-300 hover:bg-gray-200'
               }`}
             >
               Todos
@@ -218,7 +218,7 @@ const Contenido = () => {
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors disabled:opacity-50 capitalize ${
                   selectedCat === cat
                     ? 'bg-rojo-impacto text-white shadow-sm'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    : 'bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-300 hover:bg-gray-200'
                 }`}
               >
                 {cat.toLowerCase()}
@@ -247,12 +247,12 @@ const Contenido = () => {
             <Loader className="animate-spin text-red-600" size={48} strokeWidth={3} />
           </div>
         ) : contents.length === 0 ? (
-          <div className="py-16 text-center border border-gray-200 rounded-xl bg-white flex flex-col items-center justify-center p-6 shadow-sm">
-            <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
-              <FileText size={32} className="text-gray-400" />
+          <div className="py-16 text-center border border-gray-200 dark:border-white/10 rounded-xl bg-white flex flex-col items-center justify-center p-6 shadow-sm">
+            <div className="w-16 h-16 bg-gray-50 dark:bg-white/5 rounded-full flex items-center justify-center mb-4">
+              <FileText size={32} className="text-gray-400 dark:text-gray-500 dark:text-gray-400" />
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-1">Sin Publicaciones</h3>
-            <p className="text-gray-500 text-sm">No hay contenido en esta categoría por ahora.</p>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">Sin Publicaciones</h3>
+            <p className="text-gray-500 dark:text-gray-400 text-sm">No hay contenido en esta categoría por ahora.</p>
           </div>
         ) : isEditMode ? (
           <DndContext
@@ -291,10 +291,10 @@ const Contenido = () => {
         {isAuthenticated && canEdit && (
           <button
             onClick={() => setIsEditMode(!isEditMode)}
-            className={`fixed bottom-8 right-8 z-50 p-4 border-precision transition-all duration-300 hover:-translate-y-1 hover:border-carbon ${
+            className={`fixed bottom-8 right-8 z-50 p-4 border-precision transition-all duration-300 hover:-translate-y-1 hover:border-carbon dark:border-white/20 ${
               isEditMode
                 ? 'bg-rojo-impacto text-blanco-absoluto'
-                : 'bg-blanco-absoluto text-carbon'
+                : 'bg-white dark:bg-[#0A0B0E] text-carbon dark:text-white'
             }`}
             title={isEditMode ? 'Guardar Cambios' : 'Modo Edición'}
           >
@@ -304,9 +304,9 @@ const Contenido = () => {
 
         {/* Toast Notification */}
         {toast.message && (
-          <div className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-50 px-6 py-4 border-precision flex items-center justify-center font-title text-lg uppercase tracking-widest bg-blanco-absoluto ${
+          <div className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-50 px-6 py-4 border-precision flex items-center justify-center font-title text-lg uppercase tracking-widest bg-white dark:bg-[#0A0B0E] ${
             toast.type === 'success'
-              ? 'border-carbon text-carbon'
+              ? 'border-carbon dark:border-white/20 text-carbon dark:text-white'
               : 'border-rojo-impacto text-rojo-impacto'
           }`}>
             <span>{toast.message}</span>
@@ -319,3 +319,4 @@ const Contenido = () => {
 };
 
 export default Contenido;
+
