@@ -182,11 +182,11 @@ const Contenido = () => {
   const canEdit = !selectedCat;
 
   return (
-    <div className="bg-white dark:bg-[#0A0B0E] w-full min-h-screen pb-24">
+    <div className="w-full min-h-screen pb-24">
       
       {/* HEADER NORMALIZADO */}
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 pt-16 pb-8 mb-12 border-b border-gray-200 dark:border-white/10">
-        <h1 className="text-4xl sm:text-5xl font-bold font-body normal-case tracking-normal text-carbon dark:text-white m-0 p-0 break-words ">
+        <h1 className="text-4xl sm:text-5xl font-heading tracking-tight uppercase text-carbon dark:text-tatami-blanco m-0 p-0 break-words ">
           Biblioteca <span className="text-rojo-impacto">Marcial</span>
         </h1>
         <p className="font-body text-lg text-gray-600 dark:text-gray-300 mt-4 max-w-2xl leading-relaxed">
@@ -319,4 +319,5 @@ const Contenido = () => {
 };
 
 export default Contenido;
+
 
