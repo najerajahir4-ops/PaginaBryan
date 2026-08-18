@@ -53,7 +53,7 @@ const EstudiantesAdmin = () => {
   const [search, setSearch] = useState('');
   const [selectedClub, setSelectedClub] = useState('');
   const [selectedEstado, setSelectedEstado] = useState('');
-  const [selectedTab, setSelectedTab] = useState('TAEKWONDO');
+  const [selectedTab, setSelectedTab] = useState('TODOS');
 
   // Modal States
   const [isStudentModalOpen, setIsStudentModalOpen] = useState(false);
@@ -843,6 +843,16 @@ const EstudiantesAdmin = () => {
       
       {/* Tabs / Secciones de Disciplina */}
       <div className="flex border-b border-gray-200 dark:border-white/10 mb-2">
+        <button
+          onClick={() => setSelectedTab('TODOS')}
+          className={`flex-1 py-3 text-xs font-bold tracking-wide transition-colors border-b-2 ${
+            selectedTab === 'TODOS'
+              ? 'border-gray-900 text-gray-900 dark:border-white dark:text-white bg-gray-100 dark:bg-white/10'
+              : 'border-transparent text-gray-500 dark:text-white/50 hover:text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-white/5'
+          }`}
+        >
+          TODOS
+        </button>
         <button
           onClick={() => setSelectedTab('TAEKWONDO')}
           className={`flex-1 py-3 text-xs font-bold tracking-wide transition-colors border-b-2 ${

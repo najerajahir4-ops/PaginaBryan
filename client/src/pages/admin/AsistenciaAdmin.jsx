@@ -533,8 +533,8 @@ const AsistenciaAdmin = () => {
                             <div class="space-y-0.5">
                               <span class={`inline-block px-2 py-0.5 rounded text-[9px] font-bold tracking-wider ${
                                 student.modalidad === 'TAEKWONDO'
-                                  ? 'bg-blue-900/30 text-blue-300 border border-blue-500/20'
-                                  : 'bg-red-900/30 text-red-300 border border-red-500/20'
+                                  ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-500/20'
+                                  : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 border border-red-200 dark:border-red-500/20'
                               }`}>
                                 {student.modalidad}
                               </span>
