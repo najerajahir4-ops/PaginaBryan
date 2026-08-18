@@ -61,6 +61,7 @@ const createContent = async (req, res, next) => {
         cuerpo,
         imagenUrl: imagenUrl || 'https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=800&q=80',
         videoUrl: videoUrl || '',
+        autor: req.user ? (req.user.nombreVisible || req.user.usuario) : 'Administración',
         fechaPublicacion: fechaPublicacion || new Date().toISOString().split('T')[0],
         orden: nextOrder,
       },
@@ -86,6 +87,7 @@ const updateContent = async (req, res, next) => {
         cuerpo,
         imagenUrl,
         videoUrl,
+        autor: req.user ? req.user.usuario : 'Administración',
         fechaPublicacion,
       },
     });
@@ -100,6 +102,7 @@ const deleteContent = async (req, res, next) => {
   try {
     const { id } = req.params;
     await prisma.content.delete({ where: { id: parseInt(id) } });
+
     return res.json({ message: 'Publicación eliminada con éxito.' });
   } catch (error) {
     next(error);

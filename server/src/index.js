@@ -14,12 +14,18 @@ const attendanceRoutes = require('./routes/attendanceRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const generalPhotoRoutes = require('./routes/generalPhotoRoutes');
 const errorHandler = require('./middleware/errorHandler');
+const csrfMiddleware = require('./middleware/csrfMiddleware');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Configurar confianza en el proxy de Vercel/reverse proxy para rate-limiting y cookies precisas
+app.set('trust proxy', 1);
+
 // Middleware
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -29,31 +35,62 @@ const rateLimit = require('express-rate-limit');
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutos
   max: 200, // Límite de 200 peticiones por IP cada 15 minutos
-  message: { error: 'Demasiadas peticiones desde esta IP, por favor intenta de nuevo después de 15 minutos.' }
+  message: { error: 'Demasiadas peticiones desde esta IP, por favor intenta de nuevo después de 15 minutos.' },
+  standardHeaders: true,
+  legacyHeaders: false,
 });
 app.use('/api', limiter);
 
-// CORS configuration
+// Whitelist explícita de dominios autorizados para CORS
 const allowedOrigins = [
   'http://localhost:5173', 
   'http://127.0.0.1:5173',
-  'http://localhost:5174',
-  'http://127.0.0.1:5174',
+  'http://localhost:3000',
   'https://paginabryan-db.vercel.app'
 ];
+
 if (process.env.FRONTEND_URL) {
-  allowedOrigins.push(process.env.FRONTEND_URL);
+  const envUrl = process.env.FRONTEND_URL.trim().replace(/\/$/, '');
+  if (envUrl && !allowedOrigins.includes(envUrl)) {
+    allowedOrigins.push(envUrl);
+  }
+}
+
+if (process.env.VERCEL_URL) {
+  const vercelUrl = `https://${process.env.VERCEL_URL.trim().replace(/\/$/, '')}`;
+  if (!allowedOrigins.includes(vercelUrl)) {
+    allowedOrigins.push(vercelUrl);
+  }
+}
+
+if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+  const prodUrl = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL.trim().replace(/\/$/, '')}`;
+  if (!allowedOrigins.includes(prodUrl)) {
+    allowedOrigins.push(prodUrl);
+  }
 }
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Permitir peticiones sin origen (como Postman) o si está en la lista de permitidos
-      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error('Bloqueado por políticas de CORS'));
+      // Permitir peticiones sin cabecera origin (server-to-server / curl)
+      if (!origin) {
+        return callback(null, true);
       }
+
+      // Validar contra lista blanca estricta
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      // Permitir subdominios de preview específicos de este proyecto en Vercel
+      if (/^https:\/\/paginabryan[a-z0-9-]*\.vercel\.app$/i.test(origin)) {
+        return callback(null, true);
+      }
+
+      const corsErr = new Error(`Bloqueado por políticas de CORS: Origen '${origin}' no autorizado.`);
+      corsErr.status = 403;
+      return callback(corsErr);
     },
     credentials: true,
   })
@@ -64,8 +101,12 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Servidor de Taekwondo & Kickboxing en funcionamiento 🥋' });
 });
 
-// Rutas de la API
-app.use('/api/auth', authRoutes);
+// Rutas de la API (Públicas o que manejan su propio middleware específico primero)
+app.use('/api/auth', authRoutes); // login/logout
+
+// Middleware de protección CSRF para el resto de rutas (que incluyen endpoints mutantes)
+app.use('/api', csrfMiddleware);
+
 app.use('/api/students', studentRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/content', contentRoutes);
