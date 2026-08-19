@@ -186,7 +186,7 @@ const Contenido = () => {
       
       {/* HEADER NORMALIZADO */}
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 pt-16 pb-8 mb-12 border-b border-gray-200 dark:border-white/10">
-        <h1 className="text-4xl sm:text-5xl font-heading tracking-tight uppercase text-gray-900 dark:text-white m-0 p-0 break-words">
+        <h1 className="text-4xl sm:text-5xl font-heading tracking-tight uppercase text-tatami-blanco m-0 p-0 break-words">
           Biblioteca <span className="text-rojo-impacto">Marcial</span>
         </h1>
         <p className="font-body text-lg text-gray-600 dark:text-gray-300 mt-4 max-w-2xl leading-relaxed">
