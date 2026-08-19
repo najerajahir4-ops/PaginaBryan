@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 const prisma = require('../config/db');
 
 const login = async (req, res, next) => {
@@ -40,6 +41,15 @@ const login = async (req, res, next) => {
       maxAge: 24 * 60 * 60 * 1000,
     });
 
+    // Generar y enviar token CSRF (sin httpOnly para que el frontend lo lea)
+    const csrfToken = crypto.randomBytes(32).toString('hex');
+    res.cookie('csrfToken', csrfToken, {
+      httpOnly: false,
+      secure: isProd,
+      sameSite: isProd ? 'none' : 'lax',
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+
     return res.json({
       message: 'Inicio de sesión exitoso',
       user: { id: admin.id, usuario: admin.usuario, rol: admin.rol },
@@ -55,6 +65,7 @@ const verifyToken = async (req, res) => {
 
 const logout = (req, res) => {
   res.clearCookie('token');
+  res.clearCookie('csrfToken');
   return res.json({ message: 'Sesión cerrada correctamente.' });
 };
 
