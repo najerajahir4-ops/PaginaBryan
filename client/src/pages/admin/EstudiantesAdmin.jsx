@@ -44,6 +44,19 @@ const KICKBOXING_BELTS = [
   "Cinturón Negro",
 ];
 
+const calculateAge = (dobString) => {
+  if (!dobString) return '';
+  const dob = new Date(dobString);
+  if (isNaN(dob.getTime())) return '';
+  const today = new Date();
+  let age = today.getFullYear() - dob.getFullYear();
+  const m = today.getMonth() - dob.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+    age--;
+  }
+  return age;
+};
+
 const EstudiantesAdmin = () => {
   const [students, setStudents] = useState([]);
   const [clubs, setClubs] = useState([]);
@@ -79,7 +92,6 @@ const EstudiantesAdmin = () => {
     cedula: '',
     celular: '',
     direccion: '',
-    correo: '',
     horarioElegido: '15:00 a 16:00 hrs',
     alergias: '',
     enfermedades: '',
@@ -148,7 +160,11 @@ const EstudiantesAdmin = () => {
       if (selectedEstado) params.estadoPago = selectedEstado;
 
       const res = await API.get('/students', { params });
-      setStudents(res.data);
+      const studentsWithDynamicAge = res.data.map(student => ({
+        ...student,
+        edad: calculateAge(student.fechaNacimiento) || student.edad
+      }));
+      setStudents(studentsWithDynamicAge);
     } catch (err) {
       console.error('Error al cargar estudiantes:', err);
     } finally {
@@ -200,7 +216,6 @@ const EstudiantesAdmin = () => {
         cedula: student.cedula || '',
         celular: student.celular || '',
         direccion: student.direccion || '',
-        correo: student.correo || '',
         horarioElegido: student.horarioElegido || '15:00 a 16:00 hrs',
         alergias: student.alergias || '',
         enfermedades: student.enfermedades || '',
@@ -548,13 +563,9 @@ const EstudiantesAdmin = () => {
       <div class="field-label">Edad</div>
       <div class="field-value">${student.edad || 'N/A'} años</div>
     </div>
-    <div class="field">
+    <div class="field col-2">
       <div class="field-label">Celular</div>
       <div class="field-value">${student.celular || 'N/A'}</div>
-    </div>
-    <div class="field">
-      <div class="field-label">Correo</div>
-      <div class="field-value">${student.correo || 'N/A'}</div>
     </div>
     <div class="field col-4">
       <div class="field-label">Dirección Domiciliaria</div>
@@ -667,14 +678,12 @@ const EstudiantesAdmin = () => {
       'Nombres',
       'Apellidos',
       'Cédula',
+      'Fecha Nacimiento',
       'Edad',
       'Celular',
-      'Correo',
       'Dirección',
-      'Club',
       'Grado',
       'Modalidad',
-      'Día de Cobro',
       'Periodicidad Pago',
       'Fecha Ingreso',
       'Estado de Pago'
@@ -682,9 +691,7 @@ const EstudiantesAdmin = () => {
 
     // Build rows
     const rowsHtml = filteredStudentsByTab.map(student => {
-      const clubObj = clubs.find(c => String(c.id) === String(student.clubId));
-      const clubName = clubObj ? clubObj.nombre : 'Sede Central';
-      
+
       let statusClass = 'estado-verde';
       let statusText = 'AL DÍA';
       if (student.estadoPago === 'AMARILLO') {
@@ -700,14 +707,12 @@ const EstudiantesAdmin = () => {
           <td style="text-align: left; text-transform: uppercase;">${student.nombres || ''}</td>
           <td style="text-align: left; text-transform: uppercase;">${student.apellidos || ''}</td>
           <td style="mso-number-format:'\\@'; text-align: center;">${student.cedula || ''}</td>
+          <td style="text-align: center;">${student.fechaNacimiento || ''}</td>
           <td style="text-align: center;">${student.edad || ''}</td>
           <td style="mso-number-format:'\\@'; text-align: center;">${student.celular || ''}</td>
-          <td style="text-align: left;">${student.correo || ''}</td>
           <td style="text-align: left;">${student.direccion || ''}</td>
-          <td style="text-align: left;">${clubName}</td>
           <td style="text-align: left;">${student.grado || ''}</td>
           <td style="text-align: left;">${student.modalidad || ''}</td>
-          <td style="text-align: center;">Día ${student.diaDeCobro || '1'}</td>
           <td style="text-align: center;">${student.periodicidadPago || 'MENSUAL'}</td>
           <td style="text-align: center;">${student.fechaIngreso || ''}</td>
           <td class="${statusClass}">${statusText}</td>
@@ -814,6 +819,13 @@ const EstudiantesAdmin = () => {
         [name]: type === 'checkbox' ? checked : value
       };
       
+      if (name === 'fechaNacimiento') {
+        const calculatedAge = calculateAge(value);
+        if (calculatedAge !== '') {
+          updated.edad = calculatedAge;
+        }
+      }
+
       // Ajustar automáticamente el cinturón/grado si se cambia la modalidad
       if (name === 'modalidad') {
         if (value === 'TAEKWONDO') {
@@ -1118,7 +1130,7 @@ const EstudiantesAdmin = () => {
               </div>
               <div>
                 <label class="block text-[10px] text-gray-500 dark:text-gray-400 uppercase mb-1">Edad</label>
-                <input type="number" name="edad" required value={studentForm.edad} onChange={handleChange} class="w-full bg-gray-50 dark:bg-[#1C1C21] border border-gray-200 dark:border-white/10 rounded-sm px-3 py-1.5 text-xs text-gray-900 dark:text-white focus:outline-none focus:border-dorado-campeon" />
+                <input type="number" name="edad" required readOnly value={studentForm.edad} onChange={handleChange} class="w-full bg-gray-200 dark:bg-[#2A2A30] border border-gray-200 dark:border-white/10 rounded-sm px-3 py-1.5 text-xs text-gray-900 dark:text-white focus:outline-none cursor-not-allowed opacity-70" title="Se calcula automáticamente" />
               </div>
               <div>
                 <label class="block text-[10px] text-gray-500 dark:text-gray-400 uppercase mb-1">Cédula de Identidad</label>
@@ -1135,10 +1147,6 @@ const EstudiantesAdmin = () => {
               <div class="sm:col-span-2">
                 <label class="block text-[10px] text-gray-500 dark:text-gray-400 uppercase mb-1">Dirección</label>
                 <input type="text" name="direccion" required value={studentForm.direccion} onChange={handleChange} class="w-full bg-gray-50 dark:bg-[#1C1C21] border border-gray-200 dark:border-white/10 rounded-sm px-3 py-1.5 text-xs text-gray-900 dark:text-white focus:outline-none focus:border-dorado-campeon" />
-              </div>
-              <div class="sm:col-span-2">
-                <label class="block text-[10px] text-gray-500 dark:text-gray-400 uppercase mb-1">Correo Electrónico</label>
-                <input type="email" name="correo" required value={studentForm.correo} onChange={handleChange} class="w-full bg-gray-50 dark:bg-[#1C1C21] border border-gray-200 dark:border-white/10 rounded-sm px-3 py-1.5 text-xs text-gray-900 dark:text-white focus:outline-none focus:border-dorado-campeon" />
               </div>
             </div>
           </div>
